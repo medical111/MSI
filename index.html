@@ -1,1536 +1,1182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSI — Military Medical System</title>
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #f0f2f5; }
-    textarea, input, select, button { font-family: inherit; }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f5f5f5; }
-    ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSI – ClinicalOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {
+        "primary-fixed":"#dae2ff","surface-tint":"#0c56d0","primary-container":"#0052cc",
+        "on-tertiary":"#ffffff","tertiary-container":"#b02300","inverse-on-surface":"#edf0ff",
+        "on-secondary-fixed":"#002113","tertiary-fixed":"#ffdad2","primary":"#003d9b",
+        "on-primary":"#ffffff","surface-dim":"#cadaff","surface":"#f9f9ff",
+        "on-secondary-fixed-variant":"#005235","outline-variant":"#c3c6d6","surface-bright":"#f9f9ff",
+        "on-primary-fixed-variant":"#0040a2","on-error":"#ffffff","inverse-surface":"#1d3052",
+        "on-background":"#041b3c","inverse-primary":"#b2c5ff","primary-fixed-dim":"#b2c5ff",
+        "on-secondary-container":"#00714b","on-surface-variant":"#434654","background":"#f9f9ff",
+        "on-secondary":"#ffffff","error":"#ba1a1a","secondary-fixed-dim":"#71dba6",
+        "tertiary":"#851800","surface-container-lowest":"#ffffff","surface-container":"#e8edff",
+        "error-container":"#ffdad6","on-primary-container":"#c4d2ff",
+        "on-tertiary-fixed-variant":"#8b1a00","tertiary-fixed-dim":"#ffb4a3",
+        "surface-container-low":"#f1f3ff","secondary-container":"#8af5be","on-surface":"#041b3c",
+        "surface-container-high":"#e0e8ff","outline":"#737685","surface-container-highest":"#d7e2ff",
+        "on-tertiary-fixed":"#3d0600","on-primary-fixed":"#001848","surface-variant":"#d7e2ff",
+        "on-error-container":"#93000a","secondary-fixed":"#8df7c1",
+        "on-tertiary-container":"#ffc6b9","secondary":"#006c47"
+      },
+      borderRadius:{ DEFAULT:"0.125rem", lg:"0.25rem", xl:"0.5rem", full:"0.75rem" },
+      spacing:{
+        "stack-gap-sm":"4px","stack-gap-md":"8px","stack-gap-lg":"16px",
+        "grid-gutter":"16px","baseline":"4px","container-padding":"24px"
+      },
+      fontFamily:{
+        "headline-section":["Inter"],"display-context":["Inter"],"body-sm":["Inter"],
+        "body-md":["Inter"],"label-caps":["Inter"],"data-tabular":["Inter"],"status-badge":["Inter"]
+      },
+      fontSize:{
+        "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
+        "display-context":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "status-badge":["12px",{"lineHeight":"16px","fontWeight":"600"}],
+        "data-tabular":["14px",{"lineHeight":"20px","fontWeight":"500"}],
+        "headline-section":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],
+        "body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],
+        "label-caps":["11px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"700"}]
+      }
+    }}
+  }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;display:inline-block;}
+  body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  /* Each screen is fixed to the viewport below the header, beside the sidebar.
+     JS toggles display:block / display:none directly on style attribute. */
+  .screen{
+    display:none;
+    position:fixed;
+    top:64px;       /* header height */
+    left:256px;     /* sidebar width */
+    right:0;
+    bottom:0;
+    overflow-y:auto;
+    background:#f9f9ff;
+  }
+</style>
 </head>
-<body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState } = React;
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden">
 
-
-const NAV_ITEMS = [
-  { id: "dashboard", label: "DASHBOARD", icon: "▦" },
-  { id: "patient-military-data", label: "PATIENT MILITARY DATA", icon: "♟" },
-  { id: "ffi", label: "FFI", icon: "✚" },
-  { id: "pes-mgs", label: "PES/ MGS CLASSIFICATION", icon: "◈" },
-  { id: "medical-board", label: "MEDICAL BOARD REVIEW", icon: "⚕" },
-  { id: "ace", label: "ACE", icon: "▤" },
-  { id: "pems", label: "PEMS", icon: "⊟" },
-  { id: "patient-list", label: "PATIENT LIST", icon: "≡" },
-];
-
-const PATIENT = {
-  name: "CPL (NS) Tan Ah Teck",
-  pes: "PES A",
-  nric: "S1234567A",
-  status: "NSF (3 SIR)",
-  vocation: "Infantry Specialist",
-  bio: "Male, Age 26 (08-Sep-1997)",
-};
-
-const Badge = ({ color, children }) => {
-  const colors = {
-    green: { bg: "#e6f9f0", text: "#0a7a4b", border: "#9fe1cb" },
-    red: { bg: "#fcebeb", text: "#a32d2d", border: "#f09595" },
-    yellow: { bg: "#faeeda", text: "#854f0b", border: "#fac775" },
-    blue: { bg: "#e6f1fb", text: "#185fa5", border: "#85b7eb" },
-    gray: { bg: "#f1efe8", text: "#5f5e5a", border: "#b4b2a9" },
-    teal: { bg: "#e1f5ee", text: "#0f6e56", border: "#5dcaa5" },
-  };
-  const c = colors[color] || colors.gray;
-  return (
-    <span style={{ background: c.bg, color: c.text, border: `1px solid ${c.border}`, borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 4 }}>
-      {children}
-    </span>
-  );
-};
-
-const PatientHeader = ({ patient = PATIENT }) => (
-  <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "18px 24px", marginBottom: 24, color: "white" }}>
-    <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 10 }}>
-      <h2 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: 0.3 }}>{patient.name}</h2>
-      <span style={{ background: "#22c97a", color: "#fff", borderRadius: 20, padding: "3px 12px", fontSize: 13, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 5 }}>
-        ✓ {patient.pes}
-      </span>
+<!-- ===================== SHARED SIDEBAR ===================== -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider">
+<div class="px-6 mb-8">
+  <div class="flex items-center justify-between w-full">
+    <div class="flex items-center gap-3">
+      <img alt="Hospital Logo" class="rounded-lg object-cover w-12 h-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyLL-rvD-QLGtNvM4GC4U0pW8h0VNiGaZ0NJeBNqkT8LnPJPZRvrSyZU8R-ap7wa3nKRs65TA5Sd-7arwjN4H-H2LHQ0ixMnxykLVed5QMMaVLamfMa03EJjAoYg-j3hfUxMCaT_YgC42ljz1MUQ0f80yOFqttDbu3h8fx2Gm8ADsTCOxQY1XeVOQ1mdnTjFDFCbrk-BKasJnXFT6Trckopp2ym0cPQWTQKTknRUtGoC-KkwlQfhEuKq6tUdndSPhAkQ-VCNAVRU5z">
     </div>
-    <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
-      {[["NRIC", patient.nric, "🪪"], ["SERVICE STATUS", patient.status, "🔱"], ["VOCATION", patient.vocation, "📋"], ["BIO DATA", patient.bio, "👤"]].map(([label, val, icon]) => (
-        <div key={label}>
-          <div style={{ fontSize: 10, opacity: 0.6, letterSpacing: 1, marginBottom: 2 }}>{label}</div>
-          <div style={{ fontSize: 13, fontWeight: 500 }}>{icon} {val}</div>
-        </div>
-      ))}
+    <button class="rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2" title="Toggle Sidebar">
+      <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+    </button>
+  </div>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+  <a id="nav-msi" href="#" onclick="navigateTo('msi');return false;" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer">
+    <span class="material-symbols-outlined text-[20px]">group</span>MSI Profile
+  </a>
+  <div class="flex flex-col gap-1">
+    <div onclick="toggleFFI()" class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-slate-100 text-blue-700 transition-all duration-200 cursor-pointer">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-[20px] text-primary">medical_services</span>
+        <span class="font-bold">FFI</span>
+      </div>
+      <span id="ffi-chevron" class="material-symbols-outlined text-[18px] text-slate-400">keyboard_arrow_down</span>
+    </div>
+    <div id="ffi-submenu" class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2">
+      <a id="nav-ffi-create"   href="#" onclick="navigateTo('ffi-create');return false;"   class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer">CREATE NEW</a>
+      <a id="nav-ffi-ha"       href="#" onclick="navigateTo('ffi-ha');return false;"       class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer">MAINTAIN HIGHER AUTHORITY REVIEW</a>
+      <a id="nav-ffi-validity" href="#" onclick="navigateTo('ffi-validity');return false;" class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer">MAINTAIN VALIDITY</a>
     </div>
   </div>
-);
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
+    <span class="material-symbols-outlined text-[20px]">category</span>PES/ MGS Classification
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
+    <span class="material-symbols-outlined text-[20px]">gavel</span>Medical Board Review
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
+    <span class="material-symbols-outlined text-[20px]">analytics</span>ACE
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
+    <span class="material-symbols-outlined text-[20px]">monitor_heart</span>PEMS
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
+    <span class="material-symbols-outlined text-[20px]">description</span>NUMC
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px]">list</span>Patient List
+  </a>
+</div>
+<div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px]">settings</span>Settings
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px]">logout</span>Logout
+  </a>
+</div>
+</aside>
+<!-- ===================== MAIN WRAPPER ===================== -->
+<div class="ml-64 bg-background">
 
-// ── DASHBOARD ───────────────────────────────────────────────
-function Dashboard({ navigate }) {
-  const stats = [
-    { label: "Patients Today", value: 24, color: "#185fa5" },
-    { label: "Pending Reviews", value: 7, color: "#854f0b" },
-    { label: "FFI Due", value: 12, color: "#a32d2d" },
-    { label: "Board Meetings", value: 3, color: "#0f6e56" },
+<!-- ===================== SHARED TOP NAV ===================== -->
+<header class="bg-white font-sans text-sm tracking-tight border-b border-slate-200 fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40">
+  <div class="flex items-center gap-6 flex-1"></div>
+  <div class="flex items-center gap-2">
+    <button class="p-2 rounded-full text-slate-600 hover:bg-slate-50 transition-colors relative">
+      <span class="material-symbols-outlined text-[22px]">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+    </button>
+    <button class="p-2 rounded-full text-slate-600 hover:bg-slate-50 transition-colors mr-2">
+      <span class="material-symbols-outlined text-[22px]">help</span>
+    </button>
+    <div class="h-8 w-px bg-slate-200 mx-2"></div>
+    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider leading-none">DR RYAN GOH</span>
+  </div>
+</header>
+<!-- ============= SCREEN 1 : MSI PROFILE ============= -->
+<main id="screen-msi" class="screen bg-surface-container-low p-container-padding">
+
+<div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+<!-- Patient Context Header (Updated) -->
+<div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5">
+<div class="flex flex-col gap-6">
+<!-- Primary Identity Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 flex-wrap">
+<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<div class="flex gap-2">
+</div>
+</div>
+</div>
+<!-- Information Grid -->
+<div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
+<div class="flex items-center gap-2 font-semibold">
+
+                                S1234567A
+                            </div>
+</div>
+<!-- Column 2: GENDER -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
+<div class="flex items-center gap-2 font-semibold">
+
+                                Male
+                            </div>
+</div>
+<!-- Column 3: AGE -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
+<div class="flex items-center gap-2 font-semibold">
+
+                                26
+                            </div>
+</div>
+<!-- Column 4: DOB -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
+<div class="flex items-center gap-2 font-semibold">
+
+                                08-Sep-1997
+                            </div>
+</div>
+<!-- Column 5: Type of Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<div class="flex items-center gap-2 font-semibold">
+        
+        NSF
+    </div>
+</div>
+<!-- Column 6: Unit -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
+<div class="flex items-center gap-2 font-semibold">
+        
+        3 SIR
+    </div>
+</div>
+<!-- Column 7: Vocation -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<div class="flex items-center gap-2 font-semibold">
+
+                                Infantry Specialist
+                            </div>
+</div></div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-grid-gutter">
+<!-- Left Column (Military Overview) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-grid-gutter">
+<!-- Service Overview -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h3 class="font-headline-section text-headline-section text-on-surface mb-6 flex items-center gap-2">Military Overview</h3>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between border-b border-surface-container py-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Type of Service</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">NSF</span>
+</div>
+<div class="flex justify-end mb-2">
+<button onclick="toggleSection('tos-history',this)" data-state="collapsed" data-expand="View Past History" data-collapse="Collapse History" class="text-[10px] text-primary hover:underline flex items-center gap-0.5"><span class="btn-label">View Past History</span><span class="material-symbols-outlined text-[14px]">keyboard_arrow_down</span></button>
+</div>
+<div id="tos-history" style="display:none" class="mt-2 bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">No past type of service history on record.</p>
+</div>
+</div>
+<!-- Updated Unit Field with History -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between border-b border-surface-container py-2 items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Unit / Service</span>
+<div class="flex items-center gap-2">
+<span class="font-data-tabular text-data-tabular text-on-surface font-bold">3 SIR / Army</span>
+</div>
+</div>
+<div class="flex justify-end mb-2">
+<button onclick="toggleSection('unit-history',this)" data-state="expanded" data-expand="View Past History" data-collapse="Collapse History" class="text-[10px] text-primary hover:underline flex items-center gap-0.5"><span class="btn-label">Collapse History</span><span class="material-symbols-outlined text-[14px]">keyboard_arrow_up</span>
+</button>
+</div>
+<!-- Unit History Table -->
+<div id="unit-history" class="mt-2 bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<h4 class="font-label-caps text-[10px] text-on-surface-variant mb-3 uppercase tracking-widest">Past Unit History</h4>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container"><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Unit</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Service</th></tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">1st CDO BN</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Army</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between border-b border-surface-container py-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Vocation</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">Infantry Specialist</span>
+</div>
+<div class="flex justify-end mb-2">
+<button onclick="toggleSection('voc-history',this)" data-state="collapsed" data-expand="View Past History" data-collapse="Collapse History" class="text-[10px] text-primary hover:underline flex items-center gap-0.5"><span class="btn-label">View Past History</span><span class="material-symbols-outlined text-[14px]">keyboard_arrow_down</span></button>
+</div>
+<div id="voc-history" style="display:none" class="mt-2 bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">No past vocation history on record.</p>
+</div>
+</div>
+<div class="flex justify-between border-b border-surface-container py-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Enlistment Date</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">15 Jan 2018</span>
+</div>
+<div class="flex justify-between border-b border-surface-container py-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">ORD Date</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">14 Jan 2020</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Column (MGS Scores & PES History) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-grid-gutter">
+<!-- MGS Scores -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-section text-headline-section text-on-surface flex items-center gap-2">MGS</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Current</span>
+</div>
+<div class="mb-4 font-body-sm text-body-sm text-on-surface-variant">Start: 01 Jan 2024</div><div class="flex flex-col gap-1 mt-2 font-body-md text-on-surface">
+<div class="flex gap-2">
+<span class="font-semibold">Disposition Code:</span>
+<span class="">Fit</span>
+</div>
+<div class="flex gap-2">
+<span class="font-semibold">Disposition:</span>
+<span class="">Medically Fit for Service</span>
+</div>
+</div><div class="mt-4"><div class="mt-6 border-t border-surface-container pt-6">
+<button onclick="toggleSection('mgs-history',this)" data-state="expanded" data-expand="View Past MGS History" data-collapse="Collapse History" class="mb-4 flex items-center gap-1 text-primary font-body-sm text-body-sm hover:underline"><span class="btn-label">Collapse History</span><span class="material-symbols-outlined text-[18px]">keyboard_arrow_up</span></button>
+<div id="mgs-history">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase tracking-widest">Past MGS History</h4>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container"><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Unit</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Service</th></tr>
+</thead>
+<tbody class="font-data-tabular text-data-tabular text-on-surface">
+<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">1st CDO BN</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Army</td></tr>
+<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">1st CDO BN</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Army</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</div><div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 h-full flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-section text-headline-section text-on-surface flex items-center gap-2">PES</h3>
+</div>
+<div class="grid grid-cols-1 gap-6 flex-1">
+<!-- Current PES -->
+<div class="border rounded-lg p-5 bg-surface-bright flex flex-col gap-4 relative overflow-hidden border-outline-variant">
+<div class="absolute top-0 right-0 bg-surface-variant text-on-surface-variant px-3 py-1 rounded-bl-lg font-label-caps text-label-caps uppercase">Past</div>
+<div>
+<div class="text-body-md font-display-context font-semibold text-on-surface">PES A</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">01 Jan 2021 - 31 Dec 2023</div>
+</div>
+</div>
+<!-- Past PES -->
+<div class="flex flex-col gap-4">
+<button onclick="toggleSection('pes-history',this)" data-state="collapsed" data-expand="View Past PES History" data-collapse="Collapse PES History" class="flex items-center gap-1 text-primary font-body-sm text-body-sm hover:underline">
+<span class="btn-label">View Past PES History</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+<div id="pes-history" style="display:none" class="border border-outline-variant rounded-lg p-5 bg-surface flex flex-col gap-4">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Enlistment Status</div>
+<div class="text-2xl font-headline-section text-on-surface">PES B1</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">15 Jan 2018 - 31 Dec 2020</div>
+</div>
+<div class="mt-auto">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Past Health Issues</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-low border border-outline-variant px-2 py-1 rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant">Asthma (Childhood)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Lower Row: Board Review -->
+<div class="grid grid-cols-1 gap-grid-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h3 class="font-headline-section text-headline-section text-on-surface mb-6 flex items-center gap-2">Outstanding Reviews</h3>
+<div class="flex flex-col gap-4">
+<!-- Medical Board Review Entry -->
+<div class="p-6 bg-error-container/10 border border-error-container rounded-xl">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-error">assignment_late</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 flex-wrap">
+<h4 class="font-headline-section text-headline-section text-on-surface">Medical Board Review</h4>
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Action Required</span>
+</div>
+<div class="flex items-center gap-4 text-sm mt-1">
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">description</span>MGS Scores</div>
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span>
+                                            24 May 2026</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ACE Board Review Entry -->
+<div class="p-6 border rounded-xl bg-error-container/10 border-error-container">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-error">assignment_late</span></div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 flex-wrap">
+<h4 class="font-headline-section text-headline-section text-on-surface">ACE Board Review</h4>
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Action Required</span>
+</div>
+<div class="flex items-center gap-4 text-sm mt-1">
+<div class="flex items-center gap-1.5 text-on-surface font-medium"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">info</span>Pilot | 24 May 2026</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 mt-grid-gutter">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"> FFI Outcomes</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container bg-surface-container-low bg-surface-container/30">
+<th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Issue Date</th><th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Expiry Date</th>
+<th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Type</th>
+<th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">Outcome</th>
+
+<th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">Status</th><th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest text-right px-4">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface"><tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"><td class="py-4 px-4"><div class="flex flex-col"><span class="">15 May 2024</span></div></td><td class="py-4 px-4"><div class="flex flex-col"><span class="">15 May 2029</span></div></td><td class="py-4 px-4">Cat B - Military Freefall</td><td class="py-4 px-4"><span class="bg-surface-variant text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Pending</span></td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4"><div class="flex justify-end gap-3"><a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a></div></td></tr>
+<tr class="ffi-detail-row" style="display:none">
+<td class="px-4 pb-4 pt-0" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-0 shadow-sm"><p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Cat B – Military Freefall</p><p class="font-body-sm text-body-sm text-on-surface-variant">Outcome pending final board assessment. No additional details on record.</p></div></td>
+</tr>
+<tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"><td class="py-4 px-4"><div class="flex flex-col"><span class="">14 Jan 2024</span></div></td><td class="py-4 px-4"><div class="flex flex-col"><span class="">14 Jan 2028</span></div></td><td class="py-4 px-4">Cat A - OCS / SCS</td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Fit</span></td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4"><div class="flex justify-end gap-3"><a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a></div></td></tr>
+<tr class="ffi-detail-row" style="display:none">
+<td class="px-4 pb-4 pt-0" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-0 shadow-sm"><p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Cat A – OCS / SCS</p><p class="font-body-sm text-body-sm text-on-surface-variant">Serviceman assessed as fit. No waiver required. No additional notes on record.</p></div></td>
+</tr>
+<tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="">12 Oct 2023</span>
+</div>
+</td><td class="py-4 px-4"><div class="flex flex-col"><span class="">12 Oct 2028</span></div></td>
+<td class="py-4 px-4">Cat A - OCS / SCS</td>
+<td class="py-4 px-4">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Waiver granted</span></td>
+
+<td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4">
+<div class="flex justify-end gap-3">
+<a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Collapse</a>
+</div>
+</td>
+</tr><tr class="border-b border-surface-container/50">
+<td class="p-6" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-4 mb-4 shadow-sm"><div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">#01</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">Dr. A. Chen</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">CARMO</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">Nee Soon Medical Centre</span></span></div></div><div class="pt-6 border-t border-surface-container"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span><p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p></div></div></td>
+</tr>
+
+<tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="">10 Jan 2021</span>
+</div>
+</td><td class="py-4 px-4"><div class="flex flex-col"><span class="">10 Jan 2023</span></div></td>
+<td class="py-4 px-4">Cat A - OCS / SCS</td>
+<td class="py-4 px-4">
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Unfit</span>
+</td>
+
+<td class="py-4 px-4"><span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Inactive</span></td><td class="py-4 text-right px-4">
+<div class="flex justify-end gap-3">
+<a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+</div>
+</td>
+</tr>
+<tr class="ffi-detail-row" style="display:none">
+<td class="px-4 pb-4 pt-0" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-0 shadow-sm"><p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Cat A – OCS / SCS</p><p class="font-body-sm text-body-sm text-on-surface-variant">Serviceman assessed as unfit. FFI expired 10 Jan 2023. No further action required.</p></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 flex justify-center">
+<button class="border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary/5 transition-all duration-200 font-semibold text-sm">Load More Records</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end mt-6"></div></div>
+
+</main>
+
+<!-- ============= SCREEN 2 : FFI CREATE NEW (2+3+4 merged) ============= -->
+<main id="screen-ffi-create" class="screen bg-surface-container-low">
+
+<div class="flex-1 p-4">
+<div class="max-w-7xl mx-auto flex flex-col gap-grid-gutter">
+<!-- Patient Context Header from SCREEN_159 -->
+<div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5">
+<div class="flex flex-col gap-6">
+<!-- Primary Identity Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 flex-wrap">
+<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<div class="flex gap-2">
+</div>
+</div>
+</div>
+<!-- Information Grid -->
+<div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
+<div class="flex items-center gap-2 font-semibold">
+                                S1234567A
+                            </div>
+</div>
+<!-- Column 2: GENDER -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
+<div class="flex items-center gap-2 font-semibold">
+                                Male
+                            </div>
+</div>
+<!-- Column 3: AGE -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
+<div class="flex items-center gap-2 font-semibold">
+                                26
+                            </div>
+</div>
+<!-- Column 4: DOB -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
+<div class="flex items-center gap-2 font-semibold">
+                                08-Sep-1997
+                            </div>
+</div>
+<!-- Column 5: Type of Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<div class="flex items-center gap-2 font-semibold">
+        NSF
+    </div>
+</div>
+<!-- Column 6: Unit -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
+<div class="flex items-center gap-2 font-semibold">
+        3 SIR
+    </div>
+</div>
+<!-- Column 7: Vocation -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<div class="flex items-center gap-2 font-semibold">
+                                Infantry Specialist
+                            </div>
+</div></div>
+</div>
+</div>
+<!-- Navigation Breadcrumb -->
+<div class="flex items-center gap-2 text-sm text-slate-500">
+<span class="material-symbols-outlined text-sm">home</span>
+<span class="">FFI</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-semibold">Create New</span>
+</div>
+<!-- Focused Entry Card -->
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<!-- Card Header -->
+<div class="bg-slate-50 px-8 border-b border-outline-variant flex justify-between items-center py-3">
+<div>
+<h2 class="text-xl font-bold text-slate-900 tracking-tight">New FFI Outcome Form</h2>
+<p class="text-sm text-slate-500 mt-1">Please complete all required clinical assessment fields below.</p>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded uppercase tracking-widest">In Progress</span>
+</div>
+</div>
+<!-- Form Content -->
+<div class="pb-0 p-4">
+<form class="space-y-4" id="ffi-form">
+<!-- CDS Recommendation Box -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6 mb-8">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+<h3 class="text-label-caps font-bold text-on-surface-variant uppercase tracking-widest">FFI Selection Details</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-1">
+<span class="text-label-caps text-slate-500 uppercase">FFI Type</span>
+<div class="text-body-md font-semibold text-on-surface">Overseas</div>
+</div>
+<div class="flex flex-col gap-1 md:border-l md:border-outline-variant md:pl-8">
+<span class="text-label-caps text-slate-500 uppercase">Category</span>
+<div class="text-body-md font-semibold text-on-surface">Sample 1</div>
+</div>
+<div class="flex flex-col gap-1 md:border-l md:border-outline-variant md:pl-8">
+<span class="text-label-caps text-slate-500 uppercase">Sub-Category</span>
+<div class="text-body-md font-semibold text-on-surface">Sample 1</div>
+</div>
+</div>
+</div><div class="bg-emerald-50 border border-emerald-100 rounded-xl p-6 flex items-start gap-6 mb-8 shadow-sm">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-secondary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[28px]">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-headline-section text-on-secondary-container flex items-center gap-2">
+        Clinical Decision Support Recommendation: 
+        <span class="bg-secondary-container text-on-secondary-container border border-secondary/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">FIT</span>
+</h3>
+<span class="status-badge text-emerald-700 bg-white px-3 py-1 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px]">CDS SUGGESTION</span>
+</div>
+<div class="text-on-secondary-container/90">
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Medical Requirements for XXX Course:</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">PES Status</span>
+<span class="font-bold text-slate-900">PES X</span>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">Height</span>
+<span class="font-bold text-slate-900">XXX cm</span>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">Weight</span>
+<span class="font-bold text-slate-900">XXX kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Date and Time Section -->
+<!-- Facility and Type Section -->
+<!-- Disagree Interaction Section -->
+<!-- Outcome Selection Container -->
+<div class="space-y-3" id="outcome-selection-container"><label class="block font-label-caps text-slate-500 mb-4 tracking-widest">SELECT OUTCOME <span class="text-error">*</span></label><div class="grid grid-cols-1 md:grid-cols-4 gap-4"><!-- Fit Card --><label class="cursor-pointer group" for="outcome-fit"><input class="hidden peer" id="outcome-fit" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-primary peer-checked:bg-primary/5 hover:border-primary/30"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">check_circle</span></div><div id="ring-fit" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-fit" class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Fit</span><p class="text-[12px] text-slate-500 leading-tight">Meets all clinical requirements</p><div class="mt-2"><span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-tighter border border-emerald-100"><span class="material-symbols-outlined text-[12px]">auto_awesome</span> CDS SUGGESTED</span></div></div></div></label><!-- Unfit Card --><label class="cursor-pointer group" for="outcome-unfit"><input class="hidden peer" id="outcome-unfit" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-error peer-checked:bg-red-50/50 hover:border-error/30"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-error"><span class="material-symbols-outlined">cancel</span></div><div id="ring-unfit" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-unfit" class="w-2.5 h-2.5 rounded-full bg-error opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Unfit</span><p class="text-[12px] text-slate-500 leading-tight">Does not meet requirements</p></div></div></label><!-- Request Waiver Card --><label class="cursor-pointer group" for="outcome-waiver"><input class="hidden peer" id="outcome-waiver" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-primary peer-checked:bg-primary/5 hover:border-primary/30"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-primary"><span class="material-symbols-outlined">assignment_late</span></div><div id="ring-waiver" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-waiver" class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Request Waiver</span><p class="text-[12px] text-slate-500 leading-tight">Submit for Higher Authority Review</p></div></div></label><!-- Pending Card --><label class="cursor-pointer group" for="outcome-pending"><input class="hidden peer" id="outcome-pending" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-slate-600 peer-checked:bg-slate-50 hover:border-slate-400"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600"><span class="material-symbols-outlined">schedule</span></div><div id="ring-pending" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-pending" class="w-2.5 h-2.5 rounded-full bg-slate-600 opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Pending</span><p class="text-[12px] text-slate-500 leading-tight">Awaiting further investigation</p></div></div></label></div></div>
+<!-- Additional Notes / Remarks Section -->
+<!-- Conditional Justification Section (visible when outcome disagrees with CDS 'Fit') -->
+
+<div class="mt-8 space-y-6 p-6 bg-surface-container-low border border-outline-variant rounded-xl" id="waiver-details-section" style="display:none"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary text-[20px]">assignment_late</span><h3 class="text-label-caps font-bold text-on-surface-variant uppercase tracking-widest">Waiver Request Details</h3></div><div class="space-y-4"><div class="space-y-2"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Conditions Affecting Overseas Deployment <span class="text-error">*</span></label><textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Describe conditions..." rows="3"></textarea></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="space-y-2"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 1 <span class="text-error">*</span></label><input class="w-full border border-outline-variant rounded-xl px-5 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white shadow-sm" type="text"></div><div class="space-y-2"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 2 <span class="text-error">*</span></label><input class="w-full border border-outline-variant rounded-xl px-5 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white shadow-sm" type="text"></div></div><div class="space-y-3"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Proposed Outcome <span class="text-error">*</span></label><div class="flex flex-wrap gap-6"><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed-outcome" type="radio"><span class="text-body-md text-on-surface">Fit for deployment</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed-outcome" type="radio"><span class="text-body-md text-on-surface">Unfit for deployment</span></label></div></div><div class="space-y-3"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Raise Waiver To <span class="text-error">*</span></label><div class="flex flex-wrap gap-6"><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">CAMO</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">CARMO</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">CNMO</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">Comd MMI</span></label></div></div></div></div>
+<div class="mt-8 space-y-6 p-6 bg-surface-container border border-outline-variant rounded-xl" id="pending-details-section" style="display:none"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary text-[20px]">pending_actions</span><h3 class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest">Pending Details</h3></div><div class="space-y-4"><div><label class="block font-label-caps text-slate-500 mb-3 tracking-widest">PENDING OUTCOME <span class="text-error">*</span></label><div class="flex flex-wrap gap-3"><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 1</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 2</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 3</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 4</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 5</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 6</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input id="pending-others-radio" class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Others</span></label></div></div><div id="pending-others-container" class="space-y-2" style="display:none"><label class="block font-label-caps text-slate-500 tracking-widest">OTHERS (PLEASE SPECIFY) <span class="text-error">*</span></label><textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Enter details for pending status..." rows="3"></textarea></div></div></div>
+<div id="justification-section" class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl" style="display:none">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-4">Justification Remarks <span class="text-error">*</span></h3>
+<textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Provide clinical reasoning for this outcome..." rows="4"></textarea>
+</div>
+</form>
+</div>
+<!-- Guidance Note -->
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="bg-white border-t border-outline-variant px-container-padding z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] py-2 px-6">
+<div class="max-w-7xl mx-auto flex items-center justify-end">
+<div class="flex gap-4">
+<button class="px-6 py-2.5 text-primary font-bold hover:bg-primary/5 rounded-lg transition-all" type="button">
+                Save Draft
+            </button>
+<button class="px-10 py-2.5 bg-primary text-white font-bold rounded-lg shadow-sm hover:bg-primary-container active:scale-[0.98] transition-all flex items-center gap-2" form="ffi-form" type="submit">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="" id="submit-btn-text">Submit</span>
+</button>
+</div>
+</div>
+</div>
+
+</main>
+
+<!-- ============= SCREEN 3 : MAINTAIN HA REVIEW ============= -->
+<main id="screen-ffi-ha" class="screen bg-background">
+
+<!-- Patient Context Header -->
+<div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5 mx-container-padding mt-container-padding mb-0">
+<div class="flex flex-col gap-6">
+<!-- Primary Identity Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 flex-wrap">
+<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<div class="flex gap-2">
+</div>
+</div>
+</div>
+<!-- Information Grid -->
+<div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
+<div class="flex items-center gap-2 font-semibold">
+                                S1234567A
+                            </div>
+</div>
+<!-- Column 2: GENDER -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
+<div class="flex items-center gap-2 font-semibold">
+                                Male
+                            </div>
+</div>
+<!-- Column 3: AGE -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
+<div class="flex items-center gap-2 font-semibold">
+                                26
+                            </div>
+</div>
+<!-- Column 4: DOB -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
+<div class="flex items-center gap-2 font-semibold">
+                                08-Sep-1997
+                            </div>
+</div>
+<!-- Column 5: Type of Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<div class="flex items-center gap-2 font-semibold">
+        NSF
+    </div>
+</div>
+<!-- Column 6: Unit -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
+<div class="flex items-center gap-2 font-semibold">
+        3 SIR
+    </div>
+</div>
+<!-- Column 7: Vocation -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<div class="flex items-center gap-2 font-semibold">
+                                Infantry Specialist
+                            </div>
+</div></div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-container-padding">
+<nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span class="hover:underline cursor-pointer">FFI</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+<span class="font-medium text-slate-900">Maintain Higher Authority Review</span>
+</nav><header class="mb-stack-gap-lg">
+<h1 class="font-headline-section text-headline-section text-on-surface">Maintain Higher Authority Review</h1>
+</header>
+<!-- Submission Details Section (Replacing old row) -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm">
+<div class="p-stack-gap-lg border-b border-surface-container bg-surface-container-low">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Submission Details</h2>
+</div>
+<div class="p-stack-gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-gap-lg mb-6">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Submitted By</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">Dr. Ryan Goh</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Submission Date</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">24 Oct 2023, 09:45 AM</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">FFI Type</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">CAT A - OCS / SCS</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">CDS RECOMMENDATION</span>
+<span class="inline-flex items-center justify-center bg-secondary/10 text-secondary border border-secondary/20 rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase">
+                            Fit
+                        </span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Clinical Remarks (Conditions affecting overseas deployment)</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                        Serviceman exhibits normal vital signs and passed all physical fitness components. No clinical contraindications for OCS/SCS duties found during the assessment.
+                    </p>
+</div><div class="grid grid-cols-1 md:grid-cols-4 gap-stack-gap-lg mt-6 pt-6 border-t border-surface-container">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Sample 1</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">-</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Sample 2</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">-</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Proposed Outcome</span>
+<span class="bg-error text-white px-2 py-0.5 rounded uppercase font-bold text-[10px] w-fit inline-flex items-center justify-center">Unfit for deployment</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Review Form Container -->
+<div class="bg-white border border-outline-variant rounded-lg shadow-sm">
+<div class="p-stack-gap-lg border-b border-surface-container bg-surface-container-lowest">
+<h2 class="font-headline-section text-headline-section text-primary">Higher Authority Review Details</h2>
+</div>
+<div class="p-container-padding space-y-stack-gap-lg">
+<!-- Approval Radios -->
+<div class="space-y-stack-gap-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Decision</p>
+<div class="flex gap-stack-gap-lg">
+<label class="inline-flex items-center cursor-pointer group">
+<input class="w-4 h-4 text-primary border-outline focus:ring-primary/20" name="decision" type="radio">
+<span class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Approve</span>
+</label>
+<label class="inline-flex items-center cursor-pointer group">
+<input class="w-4 h-4 text-primary border-outline focus:ring-primary/20" name="decision" type="radio">
+<span class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Reject</span>
+</label>
+</div>
+</div>
+<!-- Remarks Field -->
+<div class="space-y-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="remarks">Remarks</label>
+<textarea class="w-full border border-outline-variant rounded p-stack-gap-md font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary/20 bg-surface-container-lowest" id="remarks" placeholder="Enter clinical remarks or justification for review outcome..." rows="6"></textarea>
+</div>
+</div>
+<!-- Footer Buttons -->
+<div class="p-stack-gap-lg border-t border-surface-container bg-surface-container-low flex justify-end gap-stack-gap-md">
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant rounded font-semibold text-body-md hover:bg-surface-variant transition-colors">
+                        Cancel
+                    </button>
+<button class="px-8 py-2 border border-primary text-primary rounded font-semibold text-body-md hover:bg-primary/5 transition-all active:scale-95">
+                        Save
+                    </button>
+<button class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95">
+                        Submit
+                    </button>
+</div>
+</div>
+<!-- Audit Info -->
+</div>
+
+</main>
+
+<!-- ============= SCREEN 4 : MAINTAIN VALIDITY ============= -->
+<main id="screen-ffi-validity" class="screen bg-surface-container-low">
+
+<div class="flex-1 p-container-padding">
+<div class="max-w-7xl mx-auto flex flex-col gap-grid-gutter">
+<!-- Patient Context Header (Updated to match SCREEN_106) -->
+<div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5 mx-0 mt-0 mb-0">
+<div class="flex flex-col gap-6">
+<!-- Primary Identity Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 flex-wrap">
+<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<div class="flex gap-2">
+</div>
+</div>
+</div>
+<!-- Information Grid -->
+<div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm">
+<!-- Column 1: NRIC -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
+<div class="flex items-center gap-2 font-semibold">
+                                S1234567A
+                            </div>
+</div>
+<!-- Column 2: GENDER -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
+<div class="flex items-center gap-2 font-semibold">
+                                Male
+                            </div>
+</div>
+<!-- Column 3: AGE -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
+<div class="flex items-center gap-2 font-semibold">
+                                26
+                            </div>
+</div>
+<!-- Column 4: DOB -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
+<div class="flex items-center gap-2 font-semibold">
+                                08-Sep-1997
+                            </div>
+</div>
+<!-- Column 5: Type of Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<div class="flex items-center gap-2 font-semibold">
+        NSF
+    </div>
+</div>
+<!-- Column 6: Unit -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
+<div class="flex items-center gap-2 font-semibold">
+        3 SIR
+    </div>
+</div>
+<!-- Column 7: Vocation -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<div class="flex items-center gap-2 font-semibold">
+                                Infantry Specialist
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Page Header -->
+<nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span class="hover:underline cursor-pointer">FFI</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+<span class="font-medium text-slate-900">Maintain FFI Validity</span>
+</nav><div class="flex justify-between items-end mb-4 border-b border-outline-variant pb-4">
+<div>
+<h1 class="font-display-context text-display-context text-on-surface m-0">Maintain FFI Validity Form</h1>
+
+</div>
+<div class="flex gap-stack-gap-md">
+<button class="flex items-center gap-2 px-4 py-2 border border-error text-error rounded hover:bg-error-container/20 transition-colors font-data-tabular text-data-tabular bg-surface-container-lowest">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+                                Void
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-error text-on-error rounded hover:bg-on-error-container transition-colors font-data-tabular text-data-tabular shadow-sm">
+<span class="material-symbols-outlined text-[18px]">block</span>
+                                Discontinue
+                            </button>
+</div>
+</div>
+<!-- Form Content Canvas -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm flex flex-col">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface">
+<h3 class="font-headline-section text-headline-section text-on-surface m-0">Details</h3>
+</div>
+<div class="p-6 grid grid-cols-2 gap-x-grid-gutter gap-y-stack-gap-lg"><!-- FFI Type -->
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1">
+        FFI Type
+    </label>
+<input class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed" type="text" value="Overseas" readonly="" disabled="">
+</div>
+<!-- Category -->
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1">
+        Category
+    </label>
+<input class="w-full bg-surface border border-outline-variant rounded px-3 py-2 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow" type="text" value="Sample 1">
+</div>
+<!-- Outcome -->
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1">
+        Outcome
+    </label>
+<div class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed">Fit</div>
+</div>
+<!-- Empty cell to push dates to next row or align them -->
+<div class="hidden md:block"></div>
+<!-- Issue Date -->
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1">
+        Issue Date
+    </label>
+<div class="relative">
+
+<input class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed" type="text" value="24/10/2023" readonly="" disabled="">
+</div>
+</div>
+<!-- Expiry Date -->
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1">
+        Expiry Date
+    </label>
+<div class="relative">
+
+<input class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed" type="text" value="24/10/2024" readonly="" disabled="">
+</div>
+</div></div>
+</div>
+<!-- Administrative Actions Card -->
+<div class="bg-surface-container border border-outline-variant rounded flex flex-col relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-tint"></div>
+<div class="px-6 py-4 flex justify-between items-center">
+<div>
+<h3 class="font-data-tabular text-data-tabular text-on-surface font-semibold m-0 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-surface-tint">history</span>
+                                    Record Backdating
+                                </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Authorized personnel may apply retroactive effective dates to this outcome.</p>
+</div>
+<button class="px-4 py-2 bg-white border border-outline-variant text-primary rounded font-data-tabular text-data-tabular hover:bg-surface transition-colors flex items-center gap-2">
+                                Submit Backdate
+                            </button>
+</div>
+<div class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest grid grid-cols-2 gap-grid-gutter items-end">
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-primary flex items-center gap-1">
+                                    Backdated Effective Date
+                                </label>
+<div class="relative">
+
+<input class="w-full bg-primary-fixed border border-primary-container rounded pr-3 py-2 font-data-tabular text-data-tabular text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow px-3 cursor-not-allowed opacity-50" type="date" disabled="true" readonly="true">
+</div>
+</div>
+<div class="flex flex-col gap-stack-gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1">
+                                    Reason for Backdating
+                                </label>
+<input class="w-full bg-surface border border-outline-variant rounded px-3 py-2 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow" placeholder="Required for retroactive changes" type="text">
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="mt-auto pt-6 pb-8 flex justify-end">
+</div>
+</div>
+</div>
+
+</main>
+
+<script>
+
+// ── MSI expand / collapse ─────────────────────────────────────────────────────
+function toggleSection(id, btn) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var expanding = el.style.display === 'none';
+  el.style.display = expanding ? '' : 'none';
+  btn.dataset.state = expanding ? 'expanded' : 'collapsed';
+  var label = btn.querySelector('.btn-label');
+  var icon  = btn.querySelector('.material-symbols-outlined');
+  if (label) label.textContent = expanding ? btn.dataset.collapse : btn.dataset.expand;
+  if (icon)  icon.textContent  = expanding ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+}
+
+// ── FFI row expand / collapse ────────────────────────────────────────────────
+function toggleFFIRow(btn) {
+  var tr   = btn.closest('tr');
+  var next = tr ? tr.nextElementSibling : null;
+  if (!next) return;
+  var showing = next.style.display !== 'none';
+  next.style.display = showing ? 'none' : '';
+  btn.textContent = showing ? 'Expand' : 'Collapse';
+}
+
+// ── navigation ────────────────────────────────────────────────────────────────
+var SCREENS = ['msi','ffi-create','ffi-ha','ffi-validity'];
+var ffiOpen = true;
+
+function navigateTo(id) {
+  // hide all screens via inline style (bypasses any CSS/Tailwind conflicts)
+  SCREENS.forEach(function(s){
+    var el = document.getElementById('screen-' + s);
+    if (el) el.style.display = 'none';
+  });
+  // show target
+  var target = document.getElementById('screen-' + id);
+  if (target) target.style.display = 'block';
+
+  updateSidebarActive(id);
+
+  if (id.startsWith('ffi-') && !ffiOpen) {
+    ffiOpen = true;
+    document.getElementById('ffi-submenu').style.display = '';
+    document.getElementById('ffi-chevron').textContent = 'keyboard_arrow_up';
+  }
+}
+
+function updateSidebarActive(id) {
+  var navMsi = document.getElementById('nav-msi');
+  var base = 'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ';
+  ['nav-ffi-create','nav-ffi-ha','nav-ffi-validity'].forEach(function(fid){
+    var el = document.getElementById(fid);
+    if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer text-slate-500 hover:text-primary hover:bg-slate-50';
+  });
+  if (id === 'msi') {
+    navMsi.className = base + 'bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm';
+  } else {
+    navMsi.className = base + 'text-slate-500 hover:text-slate-900 hover:bg-slate-100';
+    var el = document.getElementById('nav-' + id);
+    if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer text-primary font-bold bg-white border-r-4 border-primary shadow-sm';
+  }
+}
+
+function toggleFFI() {
+  ffiOpen = !ffiOpen;
+  document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
+  document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+}
+
+// ── FFI outcome form logic ────────────────────────────────────────────────────
+// ── Outcome card visual selection (ring + dot) ────────────────────────────────
+function updateOutcomeCards() {
+  var opts = [
+    { id: 'fit',     color: '#003d9b' },
+    { id: 'unfit',   color: '#ba1a1a' },
+    { id: 'waiver',  color: '#003d9b' },
+    { id: 'pending', color: '#475569' }
   ];
-  const recentActivity = [
-    { time: "09:45 AM", action: "FFI Outcome submitted", patient: "CPL Tan Ah Teck", type: "FFI", status: "FIT" },
-    { time: "09:20 AM", action: "PES Classification updated", patient: "PTE Ahmad Ismail", type: "PES", status: "PENDING" },
-    { time: "08:55 AM", action: "Medical Board review", patient: "SGT Lim Wei Jie", type: "BOARD", status: "APPROVED" },
-    { time: "08:30 AM", action: "PEMS assessment created", patient: "CPL Sarah Tan", type: "PEMS", status: "ENDORSED" },
-  ];
-  return (
-    <div>
-      <div style={{ marginBottom: 24 }}>
-        <h1 style={{ margin: "0 0 4px", fontSize: 24, fontWeight: 700, color: "#0d2260" }}>Welcome back, Dr Ryan Goh</h1>
-        <p style={{ margin: 0, color: "#666", fontSize: 14 }}>Tuesday, 24 October 2023 — Jurong Camp Medical Centre</p>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 28 }}>
-        {stats.map(s => (
-          <div key={s.label} style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: "20px 24px", borderTop: `4px solid ${s.color}` }}>
-            <div style={{ fontSize: 32, fontWeight: 700, color: s.color }}>{s.value}</div>
-            <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-        <h3 style={{ margin: "0 0 16px", fontSize: 15, fontWeight: 600, color: "#0d2260" }}>Recent Activity</h3>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead>
-            <tr style={{ borderBottom: "2px solid #f0f0f0" }}>
-              {["Time", "Action", "Patient", "Type", "Status"].map(h => (
-                <th key={h} style={{ textAlign: "left", padding: "8px 12px", color: "#888", fontWeight: 600, fontSize: 11, letterSpacing: 0.5 }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {recentActivity.map((r, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "10px 12px", color: "#666" }}>{r.time}</td>
-                <td style={{ padding: "10px 12px" }}>{r.action}</td>
-                <td style={{ padding: "10px 12px", fontWeight: 500 }}>{r.patient}</td>
-                <td style={{ padding: "10px 12px" }}><span style={{ background: "#e6f1fb", color: "#185fa5", borderRadius: 4, padding: "2px 8px", fontSize: 11, fontWeight: 600 }}>{r.type}</span></td>
-                <td style={{ padding: "10px 12px" }}>
-                  <Badge color={r.status === "FIT" || r.status === "APPROVED" || r.status === "ENDORSED" ? "green" : r.status === "PENDING" ? "yellow" : "gray"}>{r.status}</Badge>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+  opts.forEach(function(o) {
+    var radio = document.getElementById('outcome-' + o.id);
+    var ring  = document.getElementById('ring-'    + o.id);
+    var dot   = document.getElementById('dot-'     + o.id);
+    if (!radio || !ring || !dot) return;
+    if (radio.checked) {
+      ring.style.borderColor = o.color;
+      dot.style.opacity = '1';
+    } else {
+      ring.style.borderColor = '';
+      dot.style.opacity = '0';
+    }
+  });
 }
 
-// ── PATIENT LIST OVERVIEW ────────────────────────────────────
-function PatientListOverview({ navigate }) {
-  const allLists = [
-    { id: "SAF#001", desc: "CDO_Vax_04062025", assignedTo: "LTA (DR) Ryan Goh", editedBy: "LTA (DR) Ryan Goh", validTill: "02 Apr 26 09:00", status: "Draft" },
-    { id: "SAF#002", desc: "Guards_HSP_04062025", assignedTo: "LTA (DR) Chen", editedBy: "LTA (DR) Lim", validTill: "—", status: "Inactive" },
-    { id: "SAF#003", desc: "CDO_HSP_05062025", assignedTo: "LTA (DR) Chen", editedBy: "LTA (DR) Chen", validTill: "02 Apr 26 09:00", status: "Transferred" },
-    { id: "SAF#004", desc: "GUARDS_Vax_06062025", assignedTo: "CPT (DR) Sarah Lee", editedBy: "CPT (DR) Sarah Lee", validTill: "03 Apr 26 10:15", status: "Transferred" },
-  ];
-  const myLists = allLists.filter(l => l.assignedTo.includes("Ryan Goh"));
-  const statusColor = { Draft: "yellow", Inactive: "red", Transferred: "green" };
-
-  return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-        <div>
-          <div style={{ fontSize: 12, color: "#888" }}>Dashboard &gt; Patient Military Data</div>
-          <h1 style={{ margin: "4px 0 0", fontSize: 22, fontWeight: 700, color: "#0d2260" }}>Patient List Overview</h1>
-        </div>
-        <button onClick={() => navigate("create-patient-list")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>+ CREATE NEW</button>
-      </div>
-      {[{ title: "All Patient Lists", subtitle: "Manage and monitor all institutional patient data records", data: allLists, count: 142 },
-        { title: "Your Patient Lists", subtitle: "Review and edit lists specifically assigned to you", data: myLists, count: 12 }].map(section => (
-        <div key={section.title} style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, marginBottom: 20, overflow: "hidden" }}>
-          <div style={{ padding: "16px 20px", borderBottom: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#0d2260" }}>👥 {section.title}</h3>
-              <p style={{ margin: "2px 0 0", fontSize: 12, color: "#888" }}>{section.subtitle}</p>
-            </div>
-            <div style={{ display: "flex", gap: 8 }}>
-              {["All", "Draft", "Transferred", "Inactive"].map(f => (
-                <button key={f} style={{ padding: "4px 12px", borderRadius: 20, border: f === "All" ? "1.5px solid #1a3a8f" : "1px solid #ddd", background: f === "All" ? "#1a3a8f" : "#fff", color: f === "All" ? "#fff" : "#555", fontSize: 12, cursor: "pointer", fontWeight: f === "All" ? 600 : 400 }}>{f}</button>
-              ))}
-            </div>
-          </div>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
-              <tr style={{ background: "#fafafa" }}>
-                {["S/N", "Form ID", "Description", "Assigned to", "Last Edited by", "Valid till", "Status", "Actions"].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "10px 16px", color: "#888", fontWeight: 600, fontSize: 11, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {section.data.map((row, i) => (
-                <tr key={row.id} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                  <td style={{ padding: "12px 16px", color: "#888" }}>{i + 1}</td>
-                  <td style={{ padding: "12px 16px", color: "#1a3a8f", fontWeight: 600 }}>{row.id}</td>
-                  <td style={{ padding: "12px 16px" }}>{row.desc}</td>
-                  <td style={{ padding: "12px 16px" }}>{row.assignedTo}</td>
-                  <td style={{ padding: "12px 16px", color: "#666" }}>{row.editedBy}<br /><span style={{ fontSize: 11, color: "#aaa" }}>02 Jan 25 09:00</span></td>
-                  <td style={{ padding: "12px 16px", color: "#666" }}>{row.validTill}</td>
-                  <td style={{ padding: "12px 16px" }}><Badge color={statusColor[row.status]}>{row.status}</Badge></td>
-                  <td style={{ padding: "12px 16px" }}>
-                    {row.status === "Draft" ? (
-                      <button onClick={() => navigate("edit-patient-list")} style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 13 }}>EDIT</button>
-                    ) : (
-                      <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 13 }}>VIEW</button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div style={{ padding: "12px 16px", color: "#888", fontSize: 12, borderTop: "1px solid #f5f5f5", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span>Showing 1 to {section.data.length} of {section.count} records</span>
-            <div style={{ display: "flex", gap: 4 }}>
-              {["‹", "1", "2", "3", "›"].map(p => (
-                <button key={p} style={{ width: 28, height: 28, border: p === "1" ? "1.5px solid #1a3a8f" : "1px solid #ddd", borderRadius: 6, background: p === "1" ? "#1a3a8f" : "#fff", color: p === "1" ? "#fff" : "#555", cursor: "pointer", fontSize: 13 }}>{p}</button>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+// ── "OTHERS (PLEASE SPECIFY)" visibility inside Pending Details ───────────────
+function updatePendingOthers() {
+  var othersRadio = document.getElementById('pending-others-radio');
+  var container   = document.getElementById('pending-others-container');
+  if (!othersRadio || !container) return;
+  container.style.display = othersRadio.checked ? '' : 'none';
 }
 
-// ── CREATE PATIENT LIST ──────────────────────────────────────
-function CreatePatientList({ navigate }) {
-  return (
-    <div>
-      <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "20px 24px", marginBottom: 24, color: "white", display: "flex", alignItems: "center", gap: 14 }}>
-        <span style={{ fontSize: 22 }}>👥</span>
-        <div>
-          <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>Create New Patient List</h2>
-          <p style={{ margin: "2px 0 0", opacity: 0.8, fontSize: 13 }}>Follow the steps below to generate a filtered patient list.</p>
-        </div>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 28, maxWidth: 700 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
-          <span style={{ color: "#1a3a8f", fontSize: 16 }}>▼</span>
-          <h3 style={{ margin: 0, fontSize: 16, fontWeight: 600, color: "#0d2260" }}>Filters</h3>
-        </div>
-        <p style={{ fontSize: 13, color: "#666", marginBottom: 20 }}>Please select initial filters to generate the patient list. You can further refine these filters once the list is populated.</p>
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 1, display: "block", marginBottom: 6 }}>ADD FILTERS</label>
-          <div style={{ display: "flex", gap: 8 }}>
-            <input placeholder="Search filters..." style={{ flex: 1, padding: "10px 14px", border: "1px solid #ddd", borderRadius: 8, fontSize: 13 }} />
-            <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontWeight: 600, cursor: "pointer" }}>Add</button>
-          </div>
-        </div>
-        {[{ label: "UNIT / FORMATION", value: "Commando" }, { label: "PES CLASSIFICATION", value: "PES: A, PES: B1" }, { label: "FFI OUTCOME", value: "Unfit" }].map(f => (
-          <div key={f.label} style={{ marginBottom: 14 }}>
-            <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 1, display: "block", marginBottom: 6 }}>{f.label}</label>
-            <div style={{ display: "flex", alignItems: "center", border: "1px solid #ddd", borderRadius: 8, padding: "10px 14px", background: "#fafafa" }}>
-              <span style={{ flex: 1, fontSize: 13 }}>{f.value}</span>
-              <span style={{ color: "#aaa", cursor: "pointer" }}>✕</span>
-              <span style={{ color: "#aaa", marginLeft: 8 }}>▾</span>
-            </div>
-          </div>
-        ))}
-        <button onClick={() => navigate("patient-list-creation-review")} style={{ width: "100%", background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "14px", fontSize: 14, fontWeight: 600, cursor: "pointer", marginTop: 8 }}>⚡ Generate from Filters</button>
-      </div>
-    </div>
-  );
+// ── Main outcome logic ────────────────────────────────────────────────────────
+function updateFFIOutcome() {
+  var fit     = document.getElementById('outcome-fit');
+  var unfit   = document.getElementById('outcome-unfit');
+  var waiver  = document.getElementById('outcome-waiver');
+  var pending = document.getElementById('outcome-pending');
+  if (!fit) return;
+
+  var waiverSec  = document.getElementById('waiver-details-section');
+  var pendingSec = document.getElementById('pending-details-section');
+  var justSec    = document.getElementById('justification-section');
+  var submitText = document.getElementById('submit-btn-text');
+
+  // Hide all conditional panels first
+  if (waiverSec)  waiverSec.style.display = 'none';
+  if (pendingSec) pendingSec.style.display = 'none';
+  if (justSec)    justSec.style.display   = 'none';
+
+  // Sync card dot/ring visuals
+  updateOutcomeCards();
+
+  if (fit.checked) {
+    if (submitText) submitText.textContent = 'Submit Consultation';
+
+  } else if (unfit && unfit.checked) {
+    // Show justification remarks (no CDS warning)
+    if (justSec)    justSec.style.display  = '';
+    if (submitText) submitText.textContent = 'Submit for Review';
+
+  } else if (waiver && waiver.checked) {
+    // Waiver details only — no CDS disagreement section
+    if (waiverSec)  waiverSec.style.display = '';
+    if (submitText) submitText.textContent  = 'Submit for Review';
+
+  } else if (pending && pending.checked) {
+    // Pending details only — no CDS disagreement section
+    if (pendingSec) pendingSec.style.display = '';
+    if (submitText) submitText.textContent   = 'Submit for Review';
+    // Also reset "Others" sub-section
+    updatePendingOthers();
+  }
 }
 
-// ── PATIENT LIST CREATION REVIEW ─────────────────────────────
-function PatientListCreationReview({ navigate }) {
-  const [showFinalise, setShowFinalise] = useState(false);
-  const patients = [
-    { sn: "01", nric: "SXXXX567A", name: "CPL AHMAD BIN ISMAIL", rank: "CPL", unit: "1 CDO BN", pes: "A", ffi: "UNFIT" },
-    { sn: "02", nric: "SXXXX890B", name: "LCP WEI JIE", rank: "LCP", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-    { sn: "03", nric: "SXXXX123C", name: "CPL TAN KAH BOON", rank: "CPL", unit: "1 CDO BN", pes: "A", ffi: "UNFIT" },
-    { sn: "04", nric: "SXXXX456D", name: "PTE RAJ KUMAR", rank: "PTE", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-    { sn: "05", nric: "SXXXX789E", name: "LCP ZHANG WEI", rank: "LCP", unit: "1 CDO BN", pes: "A", ffi: "UNFIT" },
-    { sn: "06", nric: "SXXXX321F", name: "CPL MUHAMMAD ALI", rank: "CPL", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-  ];
-  return (
-    <div>
-      <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "18px 24px", marginBottom: 24, color: "white" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-          <div>
-            <div style={{ fontSize: 11, opacity: 0.7, letterSpacing: 1 }}>PATIENT LISTS &gt; REVIEW PATIENT SELECTION</div>
-            <h2 style={{ margin: "4px 0 0", fontSize: 20, fontWeight: 700 }}>Patient List Creation</h2>
-            <div style={{ display: "inline-block", background: "rgba(255,255,255,0.2)", borderRadius: 20, padding: "2px 12px", fontSize: 13, fontWeight: 600, marginTop: 4 }}>FORM ID: SAF#010</div>
-            <p style={{ margin: "6px 0 0", opacity: 0.8, fontSize: 12 }}>Review and manage patients matching your selected criteria before finalisation.</p>
-          </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => navigate("patient-list-overview")} style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 8, padding: "8px 16px", fontSize: 13, cursor: "pointer" }}>Cancel</button>
-            <button style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 8, padding: "8px 16px", fontSize: 13, cursor: "pointer" }}>💾 Save as Draft</button>
-            <button onClick={() => setShowFinalise(true)} style={{ background: "#fff", color: "#1a3a8f", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Finalise Patient List ✓</button>
-          </div>
-        </div>
-      </div>
-      <div style={{ marginBottom: 16 }}>
-        <label style={{ fontSize: 11, color: "#888", display: "block", marginBottom: 6 }}>FORM DESCRIPTION</label>
-        <div style={{ border: "1px solid #ddd", borderRadius: 8, padding: "10px 14px", color: "#aaa", fontSize: 13, background: "#fafafa" }}>📄 Add a description for this patient selection...</div>
-      </div>
-      <div style={{ display: "flex", gap: 20 }}>
-        <div style={{ width: 220 }}>
-          <div style={{ background: "#1a3a8f", borderRadius: 10, padding: 20, color: "white", marginBottom: 16, textAlign: "center" }}>
-            <div style={{ fontSize: 11, opacity: 0.7, letterSpacing: 1 }}>TOTAL MATCHES</div>
-            <div style={{ fontSize: 48, fontWeight: 700, lineHeight: 1 }}>24</div>
-            <div style={{ fontSize: 12, opacity: 0.8, marginTop: 4 }}>👥 Patients selected for review</div>
-          </div>
-          <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 16, marginBottom: 16 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12, color: "#1a3a8f" }}><span>▼</span><strong style={{ fontSize: 13 }}>Active Filters</strong></div>
-            {[{ label: "UNIT", val: "Commando" }, { label: "PES", val: "A, B1" }, { label: "FFI OUTCOME", val: "Unfit" }].map(f => (
-              <div key={f.label} style={{ border: "1px solid #ddd", borderRadius: 6, padding: "8px 10px", marginBottom: 8, fontSize: 12 }}>
-                <div style={{ color: "#888", fontSize: 10, letterSpacing: 0.8 }}>{f.label}</div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ fontWeight: 500 }}>{f.val}</span><span style={{ color: "#aaa", cursor: "pointer" }}>✕</span></div>
-              </div>
-            ))}
-            <div style={{ marginTop: 12 }}>
-              <div style={{ fontSize: 11, color: "#888", marginBottom: 6 }}>ADD NEW CRITERIA</div>
-              <div style={{ display: "flex", gap: 6 }}>
-                <input placeholder="⊕ Search attributes..." style={{ flex: 1, padding: "6px 10px", border: "1px solid #ddd", borderRadius: 6, fontSize: 12 }} />
-                <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 6, padding: "6px 10px", fontWeight: 600, cursor: "pointer", fontSize: 12 }}>ADD</button>
-              </div>
-            </div>
-          </div>
-          <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 16 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: "#0d2260", marginBottom: 12 }}>👥 Manually Add Patient</div>
-            <div style={{ fontSize: 11, color: "#888", marginBottom: 6 }}>SEARCH BY NAME OR NRIC</div>
-            <div style={{ display: "flex", gap: 6 }}>
-              <input placeholder="🔍 Search by Name or NRIC" style={{ flex: 1, padding: "6px 10px", border: "1px solid #ddd", borderRadius: 6, fontSize: 12 }} />
-              <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 6, padding: "6px 10px", fontWeight: 600, cursor: "pointer", fontSize: 12 }}>ADD</button>
-            </div>
-          </div>
-        </div>
-        <div style={{ flex: 1, background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
-          <div style={{ padding: "12px 16px", borderBottom: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 13 }}>Filtered Patients</span>
-              <span style={{ background: "#e6f1fb", color: "#185fa5", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 600 }}>👥 24 results</span>
-            </div>
-            <div style={{ fontSize: 12, color: "#888" }}>Sort: <strong style={{ color: "#333" }}>Last Edited</strong> ▾</div>
-          </div>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
-              <tr style={{ background: "#fafafa" }}>
-                {["S/N", "NRIC/ID", "Name", "Rank", "Unit", "PES", "FFI Outcome", ""].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "8px 12px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {patients.map(p => (
-                <tr key={p.sn} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                  <td style={{ padding: "10px 12px", color: "#888" }}>{p.sn}</td>
-                  <td style={{ padding: "10px 12px", fontWeight: 600 }}>{p.nric}</td>
-                  <td style={{ padding: "10px 12px" }}>{p.name}</td>
-                  <td style={{ padding: "10px 12px" }}>{p.rank}</td>
-                  <td style={{ padding: "10px 12px", color: "#666" }}>{p.unit}</td>
-                  <td style={{ padding: "10px 12px" }}><span style={{ background: p.pes === "A" ? "#e6f9f0" : "#e6f1fb", color: p.pes === "A" ? "#0a7a4b" : "#185fa5", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 700 }}>{p.pes}</span></td>
-                  <td style={{ padding: "10px 12px" }}><Badge color="red">{p.ffi}</Badge></td>
-                  <td style={{ padding: "10px 12px" }}><span style={{ color: "#cc3333", cursor: "pointer" }}>🗑</span></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div style={{ padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888" }}>
-            <span>Showing 1 to 6 of 24 patients</span>
-            <div style={{ display: "flex", gap: 4 }}>
-              {["‹", "1", "2", "3", "4", "›"].map(p => (
-                <button key={p} style={{ width: 28, height: 28, border: p === "1" ? "2px solid #1a3a8f" : "1px solid #ddd", borderRadius: 6, background: p === "1" ? "#1a3a8f" : "#fff", color: p === "1" ? "#fff" : "#555", cursor: "pointer", fontSize: 12, fontWeight: p === "1" ? 700 : 400 }}>{p}</button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      {showFinalise && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
-          <div style={{ background: "#fff", borderRadius: 12, padding: 28, width: 480, maxHeight: "80vh", overflow: "auto" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-              <h3 style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>Finalise Patient List</h3>
-              <button onClick={() => setShowFinalise(false)} style={{ background: "none", border: "none", fontSize: 20, cursor: "pointer", color: "#666" }}>✕</button>
-            </div>
-            <p style={{ fontSize: 13, color: "#666", marginBottom: 16 }}>Confirm submission of 24 patient records to NGEMR.</p>
-            <div style={{ border: "1px solid #e8e8e8", borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
-              <div style={{ background: "#f5f5f5", padding: "8px 16px", fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8 }}>PATIENT IDENTIFIER (NRIC)</div>
-              {["SXXXX567A", "SXXXX890B", "SXXXX123C", "SXXXX456D", "SXXXX998F", "SXXXX441K"].map(n => (
-                <div key={n} style={{ padding: "10px 16px", borderTop: "1px solid #f0f0f0", fontSize: 13 }}>{n}</div>
-              ))}
-            </div>
-            <div style={{ background: "#e6f1fb", borderLeft: "4px solid #1a3a8f", borderRadius: 4, padding: "10px 14px", fontSize: 13, color: "#185fa5", marginBottom: 20 }}>
-              🛡 This action will finalize the list and initiate the secure transfer to NGEMR.
-            </div>
-            <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
-              <button onClick={() => setShowFinalise(false)} style={{ padding: "10px 20px", border: "1px solid #ddd", borderRadius: 8, background: "#fff", cursor: "pointer", fontSize: 13 }}>Cancel</button>
-              <button style={{ padding: "10px 20px", border: "1px solid #1a3a8f", borderRadius: 8, background: "#fff", color: "#1a3a8f", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Save as Draft</button>
-              <button onClick={() => { setShowFinalise(false); navigate("patient-list-overview"); }} style={{ padding: "10px 20px", background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, cursor: "pointer", fontSize: 13, fontWeight: 700 }}>Submit to NGEMR ➤</button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ── EDIT PATIENT LIST ────────────────────────────────────────
-function EditPatientList({ navigate }) {
-  const patients = [
-    { sn: "01", nric: "S****234A", name: "TAN CHIN HOCK, GABRIEL", rank: "CPL", unit: "1 CDO BN", pes: "A", ffi: "UNFIT" },
-    { sn: "02", nric: "S****910B", name: "MOHAMMED AZIZ BIN OSMAN", rank: "LCP", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-    { sn: "03", nric: "S****567D", name: "WONG KAI WEN, JASON", rank: "3SG", unit: "1 CDO BN", pes: "A", ffi: "UNFIT" },
-    { sn: "04", nric: "S****882F", name: "KARTIK S/O BALAN", rank: "PTE", unit: "SOCOM HQ", pes: "A", ffi: "UNFIT" },
-    { sn: "05", nric: "T****431G", name: "LEE ZHI HAO, DERRICK", rank: "CPL", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-  ];
-  return (
-    <div>
-      <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "18px 24px", marginBottom: 24, color: "white" }}>
-        <div style={{ fontSize: 11, opacity: 0.7, letterSpacing: 1, marginBottom: 4 }}>DASHBOARD &gt; PATIENT MILITARY DATA &gt; EDIT PATIENT LIST (SAF#001)</div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-              <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>Edit Patient List: SAF#001</h2>
-              <span style={{ background: "rgba(255,255,255,0.2)", borderRadius: 4, padding: "2px 10px", fontSize: 12 }}>CDO_Vax_04062025</span>
-            </div>
-            <p style={{ margin: 0, opacity: 0.8, fontSize: 12 }}>Modify selection criteria and manage individual patient memberships for this mobilization record.</p>
-          </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => navigate("patient-list-overview")} style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 8, padding: "8px 16px", fontSize: 13, cursor: "pointer" }}>Cancel</button>
-            <button style={{ background: "#fff", color: "#1a3a8f", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>💾 Save Changes</button>
-          </div>
-        </div>
-      </div>
-      <div style={{ display: "flex", gap: 20 }}>
-        <div style={{ width: 220 }}>
-          <div style={{ background: "#1a3a8f", borderRadius: 10, padding: 20, color: "white", marginBottom: 16 }}>
-            <div style={{ fontSize: 11, opacity: 0.7, letterSpacing: 1 }}>TOTAL PATIENTS</div>
-            <div style={{ fontSize: 48, fontWeight: 700, lineHeight: 1 }}>24</div>
-            <div style={{ fontSize: 11, opacity: 0.7, marginTop: 6 }}>≡ Last edited by LTA (DR) Tan on 02 Jan 25</div>
-          </div>
-          <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 16, marginBottom: 16 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}><span>▼</span><strong style={{ fontSize: 13 }}>Active Filters</strong></div>
-            {[{ label: "UNIT", val: "Commando" }, { label: "PES", val: "A, B1" }, { label: "FFI OUTCOME", val: "Unfit", highlight: true }].map(f => (
-              <div key={f.label} style={{ border: "1px solid #ddd", borderRadius: 6, padding: "8px 10px", marginBottom: 8, fontSize: 12 }}>
-                <div style={{ color: "#888", fontSize: 10, letterSpacing: 0.8 }}>{f.label}</div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ fontWeight: 500, color: f.highlight ? "#cc3333" : "inherit" }}>{f.val}</span>
-                  <span style={{ color: "#aaa" }}>✕</span>
-                </div>
-              </div>
-            ))}
-            <div style={{ fontSize: 11, color: "#888", marginBottom: 6 }}>ADD NEW CRITERIA</div>
-            <div style={{ display: "flex", gap: 6 }}>
-              <input placeholder="⊕ Search attributes..." style={{ flex: 1, padding: "6px 10px", border: "1px solid #ddd", borderRadius: 6, fontSize: 12 }} />
-              <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 6, padding: "6px 10px", fontWeight: 600, cursor: "pointer", fontSize: 12 }}>ADD</button>
-            </div>
-          </div>
-          <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 16 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: "#0d2260", marginBottom: 12 }}>👥 Manually Add Patient</div>
-            <div style={{ fontSize: 11, color: "#888", marginBottom: 6 }}>SEARCH BY NAME OR NRIC</div>
-            <div style={{ display: "flex", gap: 6 }}>
-              <input placeholder="🔍 Search by Name or NRI" style={{ flex: 1, padding: "6px 10px", border: "1px solid #ddd", borderRadius: 6, fontSize: 12 }} />
-              <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 6, padding: "6px 10px", fontWeight: 600, cursor: "pointer", fontSize: 12 }}>ADD</button>
-            </div>
-          </div>
-        </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden", marginBottom: 16 }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-              <thead>
-                <tr style={{ background: "#fafafa" }}>
-                  {["S/N", "NRIC/ID", "Name", "Rank", "Unit", "PES", "FFI Outcome", ""].map(h => (
-                    <th key={h} style={{ textAlign: "left", padding: "10px 12px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {patients.map(p => (
-                  <tr key={p.sn} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                    <td style={{ padding: "10px 12px", color: "#888" }}>{p.sn}</td>
-                    <td style={{ padding: "10px 12px", fontWeight: 600 }}>{p.nric}</td>
-                    <td style={{ padding: "10px 12px" }}>{p.name}</td>
-                    <td style={{ padding: "10px 12px" }}>{p.rank}</td>
-                    <td style={{ padding: "10px 12px", color: "#666" }}>{p.unit}</td>
-                    <td style={{ padding: "10px 12px" }}><span style={{ background: p.pes === "A" ? "#e6f9f0" : "#e6f1fb", color: p.pes === "A" ? "#0a7a4b" : "#185fa5", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 700 }}>{p.pes}</span></td>
-                    <td style={{ padding: "10px 12px" }}><Badge color="red">{p.ffi}</Badge></td>
-                    <td style={{ padding: "10px 12px" }}><span style={{ color: "#cc3333", cursor: "pointer" }}>🗑</span></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div style={{ padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888" }}>
-              <span>Showing 1 to 10 of 24 patients</span>
-              <div style={{ display: "flex", gap: 4 }}>
-                {["‹", "1", "2", "3", "›"].map(p => (
-                  <button key={p} style={{ width: 28, height: 28, border: p === "1" ? "2px solid #1a3a8f" : "1px solid #ddd", borderRadius: 6, background: p === "1" ? "#1a3a8f" : "#fff", color: p === "1" ? "#fff" : "#555", cursor: "pointer", fontSize: 12 }}>{p}</button>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div style={{ background: "#e6f1fb", border: "1px solid #b5d4f4", borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#185fa5" }}>
-            <strong>ⓘ Manual Overrides Applied</strong>
-            <p style={{ margin: "4px 0 0" }}>The current list includes 3 patients who were manually added outside the filter criteria. Changes to the 'Unit' or 'PES' filters will not remove these manual additions.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── PATIENT LIST VIEW DETAIL ─────────────────────────────────
-function PatientListViewDetail({ navigate }) {
-  const patients = [
-    { sn: "01", nric: "S****123A", name: "Jonathan Lim Wei Kiat", rank: "LTA", unit: "1 CDO BN", pes: "A", ffi: "FIT" },
-    { sn: "02", nric: "S****567B", name: "Arjun s/o Ramasamy", rank: "CPL", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-    { sn: "03", nric: "S****890C", name: "Muhammad Taufik Bin Ismail", rank: "3SG", unit: "1 CDO BN", pes: "A", ffi: "FIT" },
-    { sn: "04", nric: "T****432D", name: "Chen Wei Ming", rank: "PTE", unit: "1 CDO BN", pes: "A", ffi: "FIT" },
-    { sn: "05", nric: "S****678E", name: "Sarah Nurulhuda", rank: "2LT", unit: "1 CDO BN", pes: "B1", ffi: "UNFIT" },
-    { sn: "06", nric: "S****246F", name: "Mohammad Farhan Bin Abu", rank: "CPL", unit: "1 CDO BN", pes: "A", ffi: "FIT" },
-    { sn: "07", nric: "S****357G", name: "Vikram Singh", rank: "LCP", unit: "1 CDO BN", pes: "B1", ffi: "FIT" },
-    { sn: "08", nric: "S****468H", name: "Wong Kar Wai", rank: "PTE", unit: "1 CDO BN", pes: "A", ffi: "UNFIT" },
-    { sn: "09", nric: "S****579I", name: "Nurul Izzah", rank: "ME1", unit: "1 CDO BN", pes: "A", ffi: "FIT" },
-    { sn: "10", nric: "T****680J", name: "Lee Kian Hee", rank: "CFC", unit: "1 CDO BN", pes: "B1", ffi: "FIT" },
-  ];
-  return (
-    <div>
-      <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "18px 24px", marginBottom: 24, color: "white" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontSize: 11, opacity: 0.7 }}>FORM ID</span>
-            <span style={{ fontSize: 20, fontWeight: 700 }}>SAF#003</span>
-            <span style={{ background: "#fac775", color: "#412402", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 700 }}>DRAFT</span>
-          </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <button style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 8, padding: "8px 16px", fontSize: 13, cursor: "pointer" }}>📄 Duplicate</button>
-            <button style={{ background: "#fff", color: "#1a3a8f", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>👤 Assign to User</button>
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: 24, fontSize: 13, opacity: 0.9 }}>
-          <span>📄 CDO_HSP_05062025</span>
-          <span>📅 Transferred: 05 Jan 2025</span>
-          <span>👤 Assigned to: LTA (DR) Chen</span>
-        </div>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-        <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "8px 14px", fontSize: 13, cursor: "pointer" }}>✏️ Edit List</button>
-        <div style={{ fontSize: 13, color: "#888" }}>Showing 10 of 42 Patients <span style={{ marginLeft: 8 }}>▼ ⇅</span></div>
-      </div>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-        {["Unit: Commando", "PES: A, B1", "FFI: Fit, Unfit"].map(f => (
-          <span key={f} style={{ background: "#e6f1fb", color: "#185fa5", borderRadius: 20, padding: "4px 12px", fontSize: 12, fontWeight: 500 }}>Applied Filters: {f} ✕</span>
-        ))}
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead>
-            <tr style={{ background: "#fafafa" }}>
-              {["S/N", "NRIC", "NAME", "RANK", "UNIT", "PES STATUS", "FFI OUTCOME"].map(h => (
-                <th key={h} style={{ textAlign: "left", padding: "10px 14px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {patients.map(p => (
-              <tr key={p.sn} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "10px 14px", color: "#888" }}>{p.sn}</td>
-                <td style={{ padding: "10px 14px", fontWeight: 600 }}>{p.nric}</td>
-                <td style={{ padding: "10px 14px" }}>{p.name}</td>
-                <td style={{ padding: "10px 14px" }}>{p.rank}</td>
-                <td style={{ padding: "10px 14px", color: "#666" }}>{p.unit}</td>
-                <td style={{ padding: "10px 14px" }}><span style={{ background: p.pes === "A" ? "#e6f9f0" : "#e6f1fb", color: p.pes === "A" ? "#0a7a4b" : "#185fa5", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 700 }}>{p.pes}</span></td>
-                <td style={{ padding: "10px 14px" }}><Badge color={p.ffi === "FIT" ? "green" : "red"}>{p.ffi}</Badge></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888" }}>
-          <span>Page 1 of 5</span>
-          <div style={{ display: "flex", gap: 4 }}>
-            <button style={{ padding: "5px 12px", border: "1px solid #ddd", borderRadius: 6, background: "#f5f5f5", color: "#aaa", cursor: "default", fontSize: 12 }}>Previous</button>
-            {["1", "2", "3"].map(p => (
-              <button key={p} style={{ width: 28, height: 28, border: p === "1" ? "2px solid #1a3a8f" : "1px solid #ddd", borderRadius: 6, background: p === "1" ? "#1a3a8f" : "#fff", color: p === "1" ? "#fff" : "#555", cursor: "pointer", fontSize: 12 }}>{p}</button>
-            ))}
-            <button style={{ padding: "5px 12px", border: "1px solid #1a3a8f", borderRadius: 6, background: "#fff", color: "#1a3a8f", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Next</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── PATIENT MILITARY DATA ────────────────────────────────────
-function PatientMilitaryData({ navigate }) {
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-        <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 14, fontWeight: 700, color: "#0d2260", letterSpacing: 0.5 }}>🔱 Service Overview</h3>
-          {[["Status", "NSF"], ["Current Unit", "3 SIR"], ["Enlistment Date", "15 Jan 2018"], ["ORD Date", "14 Jan 2020"]].map(([k, v]) => (
-            <div key={k} style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #f5f5f5", padding: "8px 0", fontSize: 13 }}>
-              <span style={{ color: "#666" }}>{k}</span><span style={{ fontWeight: 500 }}>{v}</span>
-            </div>
-          ))}
-        </div>
-        <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-            <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: "#0d2260" }}>🔱 PES History</h3>
-            <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>View Full Record</button>
-          </div>
-          <div style={{ display: "flex", gap: 12 }}>
-            <div style={{ flex: 1, border: "2px solid #22c97a", borderRadius: 8, padding: 14, position: "relative" }}>
-              <div style={{ position: "absolute", top: -10, right: 10, background: "#22c97a", color: "#fff", borderRadius: 4, padding: "2px 8px", fontSize: 11, fontWeight: 700 }}>CURRENT</div>
-              <div style={{ fontSize: 22, fontWeight: 800, color: "#0d2260" }}>PES A</div>
-              <div style={{ fontSize: 12, color: "#666", marginBottom: 8 }}>Start: 01 Jan 2021</div>
-              <div style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>DECLARED HEALTH ISSUES</div>
-              <span style={{ background: "#e6f1fb", color: "#185fa5", borderRadius: 20, padding: "2px 10px", fontSize: 12 }}>Asthma (Childhood)</span>
-            </div>
-            <div style={{ flex: 1, border: "1px solid #e8e8e8", borderRadius: 8, padding: 14 }}>
-              <div style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>ENLISTMENT STATUS</div>
-              <div style={{ fontWeight: 700, fontSize: 15 }}>PES B1</div>
-              <div style={{ fontSize: 12, color: "#666", marginBottom: 8 }}>15 Jan 2018 – 31 Dec 2020</div>
-              <div style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>PAST HEALTH ISSUES</div>
-              <span style={{ background: "#f1efe8", color: "#5f5e5a", borderRadius: 20, padding: "2px 10px", fontSize: 12 }}>Asthma (Childhood)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
-        <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 14, fontWeight: 700, color: "#0d2260" }}>⊙ Vocation & Deployment</h3>
-          <div style={{ background: "#fafafa", borderRadius: 8, padding: 14 }}>
-            {[["VOCATION", "Infantry Specialist"], ["UNIT", "304 SCE"]].map(([k, v]) => (
-              <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "4px 0", fontSize: 13 }}>
-                <span style={{ color: "#888", fontSize: 11, letterSpacing: 0.5 }}>{k}</span><span style={{ fontWeight: 600 }}>{v}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 14, fontWeight: 700, color: "#0d2260" }}>⊟ PULHEEMS Scores</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8 }}>
-            {[["P", "1"], ["U", "1"], ["L", "1"], ["H", "1"], ["E", "1"], ["E", "1"], ["M", "1"], ["S", "1"]].map(([l, v], i) => (
-              <div key={i} style={{ background: "#f5f5f5", borderRadius: 6, padding: "8px 4px", textAlign: "center" }}>
-                <div style={{ fontSize: 16, fontWeight: 700, color: "#0d2260" }}>{v}</div>
-                <div style={{ fontSize: 11, color: "#888" }}>{l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 14, fontWeight: 700, color: "#0d2260" }}>⚕ Medical Board Review</h3>
-          <div style={{ background: "#e6f9f0", border: "1px solid #9fe1cb", borderRadius: 8, padding: 12, marginBottom: 12 }}>
-            <div style={{ color: "#0a7a4b", fontWeight: 600, fontSize: 13 }}>✓ No Outstanding Reviews</div>
-            <div style={{ color: "#0a7a4b", fontSize: 12 }}>Patient cleared for current duties.</div>
-          </div>
-          <div style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>PAST REVIEW</div>
-          <div style={{ fontSize: 13, fontWeight: 500 }}>PES Upgrade Review <span style={{ color: "#666", fontWeight: 400 }}>01 Jan 2021</span></div>
-          <div style={{ background: "#e6f1fb", borderRadius: 6, padding: 10, marginTop: 8, fontSize: 12, color: "#185fa5" }}>
-            <strong>Outcome:</strong> Upgraded from B1 to A following clearance of mild flat foot symptoms and inactive asthma history.
-          </div>
-        </div>
-      </div>
-      <div style={{ textAlign: "right", marginTop: 16 }}>
-        <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>🖨 Print</button>
-      </div>
-    </div>
-  );
-}
-
-// ── FFI SCREEN ───────────────────────────────────────────────
-function FFIScreen({ navigate }) {
-  const history = [
-    { date: "12 Oct 2023\n09:45 AM", type: "Cat A - OCS / SCS", outcome: "FIT", officer: "Dr. A. Chen", actions: ["View", "Edit"] },
-    { date: "05 May 2022\n14:20 PM", type: "Cat B - Military Freefall", outcome: "PENDING", officer: "Dr. S. Lee", actions: ["Approve / Disapprove", "View", "Edit"] },
-    { date: "10 Jan 2021\n11:00 AM", type: "Cat A - OCS / SCS", outcome: "UNFIT", officer: "Dr. K. Lim", actions: ["View", "Edit"] },
-  ];
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 28, marginBottom: 20, textAlign: "center" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>📋</div>
-        <h3 style={{ margin: "0 0 6px", fontSize: 16, fontWeight: 600 }}>Create New FFI Outcome</h3>
-        <p style={{ margin: "0 0 16px", color: "#666", fontSize: 13 }}>Initiate a new Fitness for Instruction assessment for this personnel.</p>
-        <button onClick={() => navigate("ffi-consultation-form")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "12px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>+ Start New FFI Consultation</button>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
-        <div style={{ padding: "16px 20px", borderBottom: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ color: "#1a3a8f" }}>↺</span>
-            <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#0d2260" }}>FFI Assessment History</h3>
-          </div>
-          <button style={{ background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "4px 10px", cursor: "pointer" }}>▼</button>
-        </div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead>
-            <tr style={{ background: "#fafafa" }}>
-              {["DATE / TIME", "FFI TYPE", "OUTCOME", "MEDICAL OFFICER", "ACTIONS"].map(h => (
-                <th key={h} style={{ textAlign: "left", padding: "10px 16px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((r, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "12px 16px", color: "#555", whiteSpace: "pre-line", fontSize: 13 }}>{r.date}</td>
-                <td style={{ padding: "12px 16px" }}>{r.type}</td>
-                <td style={{ padding: "12px 16px" }}><Badge color={r.outcome === "FIT" ? "green" : r.outcome === "PENDING" ? "yellow" : "red"}>{r.outcome}</Badge></td>
-                <td style={{ padding: "12px 16px" }}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={{ background: "#1a3a8f", color: "#fff", borderRadius: 50, width: 24, height: 24, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700 }}>DR</span>{r.officer}</span></td>
-                <td style={{ padding: "12px 16px" }}>
-                  {r.actions.map((a, j) => (
-                    <button key={j} onClick={a === "View" ? () => navigate("ffi-higher-authority-screen") : undefined} style={{ color: a === "Approve / Disapprove" ? "#1a3a8f" : "#555", background: "none", border: "none", cursor: "pointer", fontSize: 13, fontWeight: a === "Approve / Disapprove" ? 700 : 400, marginRight: 8 }}>{a}</button>
-                  ))}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ padding: "12px 16px", textAlign: "center", borderTop: "1px solid #f0f0f0" }}>
-          <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Load More Records</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── FFI CONSULTATION FORM ────────────────────────────────────
-function FFIConsultationForm({ navigate }) {
-  const [outcome, setOutcome] = useState("Fit");
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ fontSize: 12, color: "#888", marginBottom: 12 }}>FFI Consultation &gt; <strong style={{ color: "#333" }}>Start New FFI Outcome Form</strong></div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
-          <div>
-            <h2 style={{ margin: "0 0 4px", fontSize: 18, fontWeight: 700, color: "#0d2260" }}>New FFI Outcome Form</h2>
-            <p style={{ margin: 0, fontSize: 13, color: "#666" }}>Please complete all required clinical assessment fields below.</p>
-          </div>
-          <span style={{ background: "#e6f1fb", color: "#185fa5", borderRadius: 4, padding: "4px 12px", fontSize: 12, fontWeight: 700 }}>IN PROGRESS</span>
-        </div>
-        <div style={{ background: "#eaf8f0", border: "1px solid #9fe1cb", borderRadius: 8, padding: 14, marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-            <span style={{ fontSize: 22 }}>🏥</span>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: "#0a7a4b" }}>Clinical Decision Support Recommendation: FIT</div>
-              <div style={{ fontSize: 13, color: "#0f6e56" }}>Based on current medical profile and screening results, the system suggests a 'Fit' status.</div>
-            </div>
-          </div>
-          <span style={{ background: "#0a7a4b", color: "#fff", borderRadius: 4, padding: "3px 10px", fontSize: 11, fontWeight: 700 }}>CDS SUGGESTION</span>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-          {[["DATE FROM *", "24/10/2023"], ["DATE TO *", "24/11/2023"], ["SUBMITTING MEDICAL CENTRE *", "Jurong Camp Medical Centre"], ["FFI TYPE *", "FFI Type 1"]].map(([label, val]) => (
-            <div key={label}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 6 }}>{label}</label>
-              <div style={{ display: "flex", alignItems: "center", border: "1px solid #ddd", borderRadius: 8, padding: "10px 14px", background: "#fafafa" }}>
-                <span style={{ flex: 1, fontSize: 13 }}>{val}</span>
-                <span style={{ color: "#aaa" }}>{label.includes("CENTRE") || label.includes("TYPE") ? "▾" : "📅"}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ background: "#f8f9fa", border: "1px solid #e8e8e8", borderRadius: 8, padding: 14, marginBottom: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div>
-            <div style={{ fontWeight: 600, fontSize: 13 }}>Disagree with recommendation? Request to override the clinical decision support.</div>
-            <div style={{ fontSize: 12, color: "#666" }}>Waiver will be routed for approval to Higher Authority: DR COLIN LEE (CARMO)</div>
-          </div>
-          <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#fff", border: "1.5px solid #1a3a8f", borderRadius: 8, padding: "8px 16px", color: "#1a3a8f", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>⊙ Request for Waiver</button>
-        </div>
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 8 }}>CONSULTATION OUTCOME *</label>
-          <div style={{ display: "flex", gap: 12 }}>
-            {["Fit", "Unfit", "Pending"].map(o => (
-              <div key={o} onClick={() => setOutcome(o)} style={{ flex: 1, border: `2px solid ${outcome === o ? "#22c97a" : "#ddd"}`, background: outcome === o ? "#eaf8f0" : "#fff", borderRadius: 8, padding: "12px 16px", cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}>
-                <div style={{ width: 16, height: 16, borderRadius: 50, border: `2px solid ${outcome === o ? "#22c97a" : "#ddd"}`, background: outcome === o ? "#22c97a" : "#fff" }}></div>
-                <span style={{ fontWeight: outcome === o ? 600 : 400, color: outcome === o ? "#0a7a4b" : "#333" }}>{o}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 8 }}>CLINICAL REMARKS *</label>
-          <textarea placeholder="Enter clinical observations, vital signs, or justification for waiver..." style={{ width: "100%", border: "1px solid #ddd", borderRadius: 8, padding: "12px 14px", fontSize: 13, minHeight: 80, resize: "vertical", boxSizing: "border-box" }} />
-        </div>
-        <div style={{ background: "#e6f1fb", border: "1px solid #b5d4f4", borderLeft: "4px solid #1a3a8f", borderRadius: 4, padding: 14 }}>
-          <div style={{ color: "#185fa5", fontWeight: 700, fontSize: 13, marginBottom: 4 }}>ⓘ Medical Directive 24-01</div>
-          <div style={{ fontSize: 12, color: "#185fa5" }}>Ensure that the "Date To" field does not exceed 12 months from the consultation date for all FFI Type 1 assessments. Physical examinations must be documented in the PES/MGS module separately if changes occur.</div>
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16 }}>
-        <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13 }}>↺ Restore Default</button>
-        <div style={{ display: "flex", gap: 10 }}>
-          <button style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13 }}>Save Draft</button>
-          <button onClick={() => navigate("ffi-higher-authority-review")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>⊙ Submit</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── FFI HIGHER AUTHORITY REVIEW ──────────────────────────────
-function FFIHigherAuthorityReview({ navigate }) {
-  return (
-    <div>
-      <PatientHeader />
-      <h2 style={{ fontSize: 18, fontWeight: 700, color: "#0d2260", marginBottom: 20 }}>Maintain Higher Authority Review</h2>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 24, marginBottom: 16 }}>
-        <div style={{ background: "#f5f5f5", borderRadius: 8, padding: "6px 14px", marginBottom: 20, fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 1 }}>SUBMISSION DETAILS</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 20 }}>
-          {[["SUBMITTED BY", "Dr. Ryan Goh"], ["SUBMISSION DATE", "24 Oct 2023, 09:45 AM"], ["FFI TYPE", "CAT A - OCS / SCS"]].map(([k, v]) => (
-            <div key={k}>
-              <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>{k}</div>
-              <div style={{ fontWeight: 600, fontSize: 14 }}>{v}</div>
-            </div>
-          ))}
-          <div>
-            <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>PROPOSED OUTCOME</div>
-            <Badge color="green">FIT</Badge>
-          </div>
-        </div>
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>CDS RECOMMENDATION</div>
-          <Badge color="green">FIT</Badge>
-        </div>
-        <div>
-          <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>CLINICAL REMARKS</div>
-          <p style={{ margin: 0, fontSize: 13, color: "#333" }}>Serviceman exhibits normal vital signs and passed all physical fitness components. No clinical contraindications for OCS/SCS duties found during the assessment.</p>
-        </div>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 24 }}>
-        <h3 style={{ margin: "0 0 20px", fontSize: 16, fontWeight: 700, color: "#1a3a8f" }}>Higher Authority Review Details</h3>
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 10 }}>DECISION</label>
-          <div style={{ display: "flex", gap: 20 }}>
-            {["Approve", "Reject"].map(d => (
-              <div key={d} style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
-                <div style={{ width: 16, height: 16, borderRadius: 50, border: "2px solid #ddd" }}></div>
-                <span style={{ fontSize: 14 }}>{d}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 6 }}>REMARKS</label>
-          <textarea placeholder="Enter clinical remarks or justification for review outcome..." style={{ width: "100%", border: "1px solid #ddd", borderRadius: 8, padding: "12px 14px", fontSize: 13, minHeight: 100, resize: "vertical", boxSizing: "border-box" }} />
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginTop: 16 }}>
-        <button onClick={() => navigate("ffi")} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13 }}>Cancel</button>
-        <button style={{ background: "#fff", border: "1px solid #1a3a8f", color: "#1a3a8f", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Save</button>
-        <button onClick={() => navigate("ffi")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>Submit</button>
-      </div>
-    </div>
-  );
-}
-
-// ── EDIT FFI OUTCOME ─────────────────────────────────────────
-function EditFFIOutcome({ navigate }) {
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <div>
-            <h2 style={{ margin: "0 0 4px", fontSize: 18, fontWeight: 700 }}>Maintain FFI Validity Form</h2>
-            <p style={{ margin: 0, fontSize: 13, color: "#666" }}>Update assessment parameters and record lifecycle status.</p>
-          </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#fff", border: "1.5px solid #cc3333", color: "#cc3333", borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>⊗ Void</button>
-            <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#cc3333", color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>⊘ Discontinue</button>
-          </div>
-        </div>
-        <div style={{ background: "#f5f5f5", borderRadius: 8, padding: "8px 14px", marginBottom: 20, fontSize: 13, fontWeight: 600, color: "#555" }}>Details</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-          {[["FFI Type *", "CAT A - OCS / SCS", true], ["Outcome *", "PENDING SPECIALIST", true], ["Issue Date *", "10/24/2023", false], ["Expiry Date", "10/24/2024", false]].map(([label, val, isDropdown]) => (
-            <div key={label}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 6 }}>{label}</label>
-              <div style={{ display: "flex", alignItems: "center", border: "1px solid #ddd", borderRadius: 8, padding: "10px 14px", background: "#fafafa", color: "#aaa" }}>
-                {!isDropdown && <span style={{ marginRight: 8, color: "#ccc" }}>📅</span>}
-                <span style={{ flex: 1, fontSize: 13 }}>{val}</span>
-                {isDropdown && <span>▾</span>}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ border: "2px solid #1a3a8f", borderRadius: 10, padding: 20 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <span style={{ color: "#1a3a8f" }}>↺</span>
-              <strong style={{ fontSize: 14, color: "#0d2260" }}>Record Backdating</strong>
-            </div>
-            <button style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "6px 14px", fontSize: 13, cursor: "pointer" }}>Submit Backdate</button>
-          </div>
-          <p style={{ margin: "0 0 14px", fontSize: 13, color: "#666" }}>Authorized personnel may apply retroactive effective dates to this outcome.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <div>
-              <label style={{ fontSize: 11, fontWeight: 700, color: "#1a3a8f", letterSpacing: 0.8, display: "block", marginBottom: 6 }}>Backdated Effective Date</label>
-              <input type="date" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #1a3a8f", borderRadius: 8, fontSize: 13, boxSizing: "border-box" }} />
-            </div>
-            <div>
-              <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 6 }}>Reason for Backdating</label>
-              <input placeholder="Required for retroactive changes" style={{ width: "100%", padding: "10px 14px", border: "1px solid #ddd", borderRadius: 8, fontSize: 13, boxSizing: "border-box" }} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style={{ textAlign: "right", marginTop: 16 }}>
-        <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>🖨 Print Document</button>
-      </div>
-    </div>
-  );
-}
-
-// ── PES / MGS CLASSIFICATION ─────────────────────────────────
-function PESMGSClassification({ navigate }) {
-  const history = [
-    { date: "05 May 2022\n14:20 PM", classification: "PES B1", status: "PENDING FOR APPROVAL", start: "—", expiry: "—", mo: "Dr. S. Lee", approveAction: true },
-    { date: "12 Oct 2023\n09:45 AM", classification: "PES A", status: "CURRENT", start: "12 Oct 2023", expiry: "—", mo: "Dr. A. Chen" },
-    { date: "10 Jan 2021\n11:00 AM", classification: "PES B1", status: "PAST", start: "10 Jan 2021", expiry: "05 May 2022", mo: "Dr. K. Lim" },
-  ];
-  const statusColor = { "CURRENT": "green", "PAST": "gray", "PENDING FOR APPROVAL": "yellow" };
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 28, marginBottom: 20, textAlign: "center" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>📋</div>
-        <h3 style={{ margin: "0 0 6px", fontSize: 16, fontWeight: 600 }}>Create New Medical Classification</h3>
-        <p style={{ margin: "0 0 16px", color: "#666", fontSize: 13 }}>Initiate a new Medical Classification assessment for this personnel.</p>
-        <button onClick={() => navigate("new-medical-classification")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "12px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>+ Start New Medical Classification</button>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
-        <div style={{ padding: "16px 20px", borderBottom: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ color: "#1a3a8f" }}>↺</span>
-            <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#0d2260" }}>Medical Classification History</h3>
-          </div>
-          <button style={{ background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "4px 10px", cursor: "pointer" }}>▼</button>
-        </div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead>
-            <tr style={{ background: "#fafafa" }}>
-              {["SUBMISSION DATE / TIME", "CLASSIFICATION", "STATUS", "START DATE", "EXPIRY DATE", "PROPOSED MO", "", "ACTIONS"].map(h => (
-                <th key={h} style={{ textAlign: "left", padding: "10px 14px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((r, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "12px 14px", whiteSpace: "pre-line", fontSize: 13, color: "#555" }}>{r.date}</td>
-                <td style={{ padding: "12px 14px" }}><span style={{ background: "#e6f1fb", color: "#185fa5", borderRadius: 20, padding: "3px 12px", fontSize: 12, fontWeight: 700 }}>{r.classification}</span></td>
-                <td style={{ padding: "12px 14px" }}><Badge color={statusColor[r.status]}>{r.status}</Badge></td>
-                <td style={{ padding: "12px 14px", color: "#666" }}>{r.start}</td>
-                <td style={{ padding: "12px 14px", color: "#666" }}>{r.expiry}</td>
-                <td style={{ padding: "12px 14px" }}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={{ background: "#1a3a8f", color: "#fff", borderRadius: 50, width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 700 }}>DR</span>{r.mo}</span></td>
-                <td style={{ padding: "12px 14px" }}>{r.approveAction && <button onClick={() => navigate("medical-classification-endorsement")} style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontWeight: 700, fontSize: 13 }}>Approve / Disapprove</button>}</td>
-                <td style={{ padding: "12px 14px" }}>
-                  <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 13, marginRight: 8 }}>View</button>
-                  <button style={{ color: "#555", background: "none", border: "none", cursor: "pointer", fontSize: 13 }}>Edit</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ padding: "12px 16px", textAlign: "center", borderTop: "1px solid #f0f0f0" }}>
-          <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Load More Records</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── NEW MEDICAL CLASSIFICATION ───────────────────────────────
-function NewMedicalClassification({ navigate }) {
-  const pulheems = ["P", "U", "L", "H", "E", "E", "M", "S"];
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 24 }}>
-        <div style={{ background: "#fafafa", border: "1px solid #e8e8e8", borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
-          <div style={{ padding: "12px 16px", background: "#fff", borderBottom: "1px solid #f0f0f0", fontSize: 14, fontWeight: 600, color: "#0d2260" }}>Problem History (source: NGEMR) <span style={{ float: "right", color: "#aaa" }}>🛡</span></div>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-            <thead><tr style={{ background: "#fafafa" }}>{["ONSET DATE", "PROBLEM / DIAGNOSIS", "VISIT ID", "ASSESSMENT / PLAN"].map(h => <th key={h} style={{ textAlign: "left", padding: "8px 14px", color: "#888", fontSize: 11, fontWeight: 700, borderBottom: "1px solid #f0f0f0" }}>{h}</th>)}</tr></thead>
-            <tbody>
-              {[["12 Oct 2023", "Cardiac insufficiency following cardiac surgery", "V10234", "Review specialist reports; evaluate current ejection fraction and symptoms."],
-                ["05 Sep 2023", "Sinus arrest", "V10235", "Monitor ECG results; confirm pacemaker status if applicable."],
-                ["10 Jan 2018", "Essential (primary) hypertension", "V10236", "Review historical BP logs; currently managed and stable."]].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                  {r.map((c, j) => <td key={j} style={{ padding: "10px 14px", color: j === 0 ? "#666" : "#333" }}>{c}</td>)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div style={{ border: "1px solid #e8e8e8", borderRadius: 8, padding: 16, marginBottom: 16 }}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "#0d2260", marginBottom: 12 }}>Current Medical Classification</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12 }}>
-            {[["CURRENT MGS SCORE", "—"], ["CURRENT PES", "PES A"], ["CURRENT PULHEEMS", "11111111"], ["VALIDITY", "Permanent"], ["DATE OF EXPIRY", "N/A"]].map(([k, v]) => (
-              <div key={k}><div style={{ fontSize: 10, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>{k}</div><div style={{ fontWeight: 600, fontSize: 14, color: v === "PES A" ? "#0a7a4b" : "#333" }}>{v}</div></div>
-            ))}
-          </div>
-        </div>
-        <div style={{ background: "#eaf8f0", border: "1px solid #9fe1cb", borderRadius: 8, padding: 14, marginBottom: 16 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <span style={{ color: "#22c97a", fontSize: 18 }}>🏥</span>
-              <strong style={{ fontSize: 14, color: "#0a7a4b" }}>Clinical Decision Support Recommendation</strong>
-            </div>
-            <span style={{ background: "#0a7a4b", color: "#fff", borderRadius: 4, padding: "2px 10px", fontSize: 11, fontWeight: 700 }}>✦ CDS Suggestion</span>
-          </div>
-          <div style={{ fontSize: 13, color: "#0f6e56", marginBottom: 14 }}>ⓘ Based on diagnosed condition: <strong>'Cardiac insufficiency'</strong></div>
-          <div style={{ background: "#fff", border: "2px solid #0a7a4b", borderRadius: 8, padding: 14, marginBottom: 12 }}>
-            <div style={{ fontSize: 11, color: "#888", textAlign: "center", marginBottom: 8 }}>⊙ RECOMMENDED MGS SCORE</div>
-            <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
-              {["CR","N","P","A","U","L","H","V","C","S"].map((l, i) => (
-                <div key={i} style={{ textAlign: "center" }}><div style={{ fontSize: 10, color: "#888" }}>{l}</div><div style={{ background: "#e6f9f0", border: "1px solid #9fe1cb", borderRadius: 4, padding: "6px 8px", fontWeight: 700 }}>1</div></div>
-              ))}
-            </div>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            <div style={{ border: "1px solid #e8e8e8", borderRadius: 8, padding: 14, background: "#fff" }}>
-              <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 4 }}>
-                <div style={{ width: 14, height: 14, borderRadius: 50, border: "2px solid #ddd" }}></div>
-                <span style={{ fontSize: 11, color: "#888", letterSpacing: 0.8 }}>RECOMMENDED PES</span>
-              </div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: "#1a3a8f" }}>E9</div>
-            </div>
-            <div style={{ border: "1px solid #e8e8e8", borderRadius: 8, padding: 14, background: "#fff" }}>
-              <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 8 }}>
-                <div style={{ width: 14, height: 14, borderRadius: 50, border: "2px solid #ddd" }}></div>
-                <span style={{ fontSize: 11, color: "#888", letterSpacing: 0.8 }}>RECOMMENDED PULHEEMS</span>
-              </div>
-              <div style={{ display: "flex", gap: 4 }}>
-                {pulheems.map((l, i) => (
-                  <div key={i} style={{ textAlign: "center" }}><div style={{ fontSize: 10, color: "#888" }}>{l}</div><div style={{ background: i === 4 ? "#faeeda" : "#f5f5f5", border: i === 4 ? "1px solid #fac775" : "1px solid #e8e8e8", borderRadius: 4, padding: "4px 6px", fontWeight: 700, color: i === 4 ? "#854f0b" : "#333" }}>{i === 4 ? "8" : "1"}</div></div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style={{ background: "#f8f9fa", border: "1px solid #e8e8e8", borderRadius: 8, padding: 14, marginBottom: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div>
-            <div style={{ fontWeight: 600, fontSize: 13 }}>Disagree with recommendation? Request to override the clinical decision support.</div>
-            <div style={{ fontSize: 12, color: "#666" }}>Waiver will be routed for approval to Higher Authority: DR COLIN LEE (CARMO)</div>
-          </div>
-          <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#fff", border: "1.5px solid #1a3a8f", borderRadius: 8, padding: "8px 16px", color: "#1a3a8f", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>⊙ Request for Waiver</button>
-        </div>
-        <div style={{ border: "1px solid #ddd", borderRadius: 8, padding: 16, opacity: 0.5 }}>
-          <h4 style={{ margin: "0 0 12px", fontSize: 14, color: "#888" }}>Medical Officer Assessment (Request for Waiver)</h4>
-          <p style={{ fontSize: 12, color: "#888", margin: 0 }}>ⓘ This section is only available when 'Request for Waiver' is selected above.</p>
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16 }}>
-        <div style={{ fontSize: 12, color: "#888" }}>ⓘ Draft auto-saved at 14:20 PM</div>
-        <div style={{ display: "flex", gap: 10 }}>
-          <button onClick={() => navigate("pes-mgs")} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13 }}>Cancel</button>
-          <button style={{ background: "#fff", border: "1px solid #1a3a8f", color: "#1a3a8f", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Save Draft</button>
-          <button onClick={() => navigate("medical-classification-endorsement")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>Submit →</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── MEDICAL CLASSIFICATION ENDORSEMENT ──────────────────────
-function MedicalClassificationEndorsement({ navigate }) {
-  const pulheems = ["1", "1", "1", "1", "8", "1", "1", "1"];
-  return (
-    <div>
-      <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "18px 24px", marginBottom: 24, color: "white" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 10 }}>
-          <h2 style={{ margin: 0, fontSize: 22, fontWeight: 700 }}>CPL (NS) Tan Ah Teck</h2>
-          <Badge color="green">✓ PES A</Badge>
-          <Badge color="yellow">⏳ PENDING ENDORSEMENT</Badge>
-          <span style={{ fontSize: 12, opacity: 0.7, marginLeft: 8 }}>Submitted: 14 Oct 2023, 09:45H</span>
-        </div>
-        <div style={{ display: "flex", gap: 32, fontSize: 13, opacity: 0.9 }}>
-          <span>🪪 S1234567A</span><span>🔱 NSF (1 SIR)</span><span>📋 Infantry Specialist</span><span>👤 Male, Age 26 (08-Sep-1997)</span>
-        </div>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden", marginBottom: 16 }}>
-        <div style={{ padding: "12px 16px", background: "#fafafa", borderBottom: "1px solid #f0f0f0", fontSize: 14, fontWeight: 600, color: "#0d2260" }}>Problem History (source: NGEMR) <span style={{ float: "right", color: "#aaa" }}>🛡</span></div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-          <thead><tr style={{ background: "#fafafa" }}>{["ONSET DATE", "PROBLEM / DIAGNOSIS", "VISIT ID", "ASSESSMENT / PLAN"].map(h => <th key={h} style={{ textAlign: "left", padding: "8px 14px", color: "#888", fontSize: 11, fontWeight: 700, borderBottom: "1px solid #f0f0f0" }}>{h}</th>)}</tr></thead>
-          <tbody>
-            {[["12 Oct 2023", "Cardiac insufficiency following cardiac surgery", "V10234", "Review specialist reports; evaluate current ejection fraction and symptoms."],
-              ["05 Sep 2023", "Sinus arrest", "V10235", "Monitor ECG results; confirm pacemaker status if applicable."]].map((r, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                {r.map((c, j) => <td key={j} style={{ padding: "10px 14px", color: j === 0 ? "#666" : "#333" }}>{c}</td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div style={{ border: "1px solid #e8e8e8", borderRadius: 10, padding: 20, marginBottom: 16 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginBottom: 8 }}>
-          {[["CURRENT MGS SCORE", "—"], ["CURRENT PES", "PES A"], ["CURRENT PULHEEMS", "11111111"], ["VALIDITY", "Permanent"], ["DATE OF EXPIRY", "N/A"]].map(([k, v]) => (
-            <div key={k}><div style={{ fontSize: 10, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>{k}</div><div style={{ fontWeight: 600, color: v === "PES A" ? "#0a7a4b" : "#333" }}>{v}</div></div>
-          ))}
-        </div>
-      </div>
-      <div style={{ background: "#eaf8f0", border: "1px solid #9fe1cb", borderRadius: 8, padding: 12, marginBottom: 16, fontSize: 13, color: "#0f6e56" }}>
-        <strong>Clinical Decision Support Recommendation</strong> — System suggests <strong>PES E9</strong> based on active diagnosis of <em>'Cardiac insufficiency'</em> matching critical downgrade criteria.
-      </div>
-      <div style={{ background: "#fff", border: "2px solid #1a3a8f", borderRadius: 10, padding: 20, marginBottom: 16 }}>
-        <div style={{ marginBottom: 4, fontSize: 12, color: "#666" }}>MO Proposal — Submitted by Dr. Ryan Goh</div>
-        <div style={{ display: "flex", gap: 24, alignItems: "flex-start", marginBottom: 16 }}>
-          <div>
-            <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 4 }}>PROPOSED PES</div>
-            <div style={{ fontSize: 28, fontWeight: 800, color: "#cc3333" }}>E9</div>
-          </div>
-          <div>
-            <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 8 }}>PROPOSED PULHEEMS</div>
-            <div style={{ display: "flex", gap: 4 }}>
-              {pulheems.map((v, i) => (
-                <div key={i} style={{ background: v === "8" ? "#faeeda" : "#f5f5f5", border: v === "8" ? "1.5px solid #fac775" : "1px solid #e8e8e8", borderRadius: 4, padding: "5px 8px", fontWeight: 700, color: v === "8" ? "#854f0b" : "#333" }}>{v}</div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 6 }}>CLINICAL JUSTIFICATION</div>
-        <div style={{ border: "1px solid #e8e8e8", borderRadius: 6, padding: 12, fontSize: 13, fontStyle: "italic", color: "#333" }}>"Serviceman exhibits signs of progressive cardiac insufficiency. Recommend downgrade to E9 for safety."</div>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-          <span style={{ color: "#1a3a8f" }}>⚕</span>
-          <h3 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "#0d2260" }}>Endorsement Decision</h3>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-          <div>
-            <div style={{ fontSize: 11, color: "#888", letterSpacing: 0.8, marginBottom: 8 }}>Select Action</div>
-            {[{ label: "Agree with MO Proposal", sub: "Endorse PES E9, PULHEEMS 11118111", checked: true },
-              { label: "Agree with CDS Recommendation", sub: "Endorse standard PES E9 pathway", checked: false },
-              { label: "Reject Submission", sub: "Return to MO for revision", checked: false, red: true }].map((opt, i) => (
-              <div key={i} style={{ border: `1.5px solid ${opt.checked ? "#1a3a8f" : "#e8e8e8"}`, background: opt.checked ? "#e6f1fb" : "#fff", borderRadius: 8, padding: "12px 14px", marginBottom: 10, cursor: "pointer", display: "flex", gap: 10 }}>
-                <div style={{ width: 16, height: 16, borderRadius: 50, border: `2px solid ${opt.checked ? "#1a3a8f" : "#ddd"}`, background: opt.checked ? "#1a3a8f" : "#fff", marginTop: 2 }}></div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: 13, color: opt.red ? "#cc3333" : "#333" }}>{opt.label}</div>
-                  <div style={{ fontSize: 12, color: "#666" }}>{opt.sub}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <label style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: 0.8, display: "block", marginBottom: 6 }}>Authority Remarks *</label>
-            <textarea placeholder="Enter clinical justification for endorsement or rejection..." style={{ width: "100%", border: "1px solid #ddd", borderRadius: 8, padding: "12px 14px", fontSize: 13, minHeight: 140, resize: "vertical", boxSizing: "border-box" }} />
-          </div>
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginTop: 16 }}>
-        <button onClick={() => navigate("pes-mgs")} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13 }}>Cancel</button>
-        <button onClick={() => navigate("pes-mgs")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontSize: 13, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>⊙ Submit Decision</button>
-      </div>
-    </div>
-  );
-}
-
-// ── PEMS SCREEN ──────────────────────────────────────────────
-function PEMSScreen({ navigate }) {
-  const history = [
-    { date: "24 Oct 2023, 10:30 AM", type: "Pilot", outcome: "PENDING", officer: "Dr. S. Lee", actions: ["APPROVE / DISAPPROVE", "VIEW", "EDIT"] },
-    { date: "12 Oct 2023, 09:45 AM", type: "UAV Pilot", outcome: "ENDORSED", officer: "Dr. A. Chen", actions: ["PRINT", "VIEW", "EDIT"] },
-    { date: "10 Jan 2021, 11:00 AM", type: "UAV Pilot", outcome: "REJECTED", officer: "Dr. K. Lim", actions: ["VIEW", "EDIT"] },
-  ];
-  const statusColor = { PENDING: "yellow", ENDORSED: "green", REJECTED: "red" };
-  return (
-    <div>
-      <PatientHeader />
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 28, marginBottom: 20, textAlign: "center" }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>📋</div>
-        <h3 style={{ margin: "0 0 6px", fontSize: 16, fontWeight: 600 }}>Create New PEMS Board Form</h3>
-        <p style={{ margin: "0 0 16px", color: "#666", fontSize: 13 }}>Submit a new assessment for medical category or vocational fitness.</p>
-        <button onClick={() => navigate("pems-board-form")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "12px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>+ Start New PEMS Board Form</button>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
-        <div style={{ padding: "16px 20px", borderBottom: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#0d2260" }}>PEMS Assessment History</h3>
-          <button style={{ color: "#1a3a8f", background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "4px 10px", cursor: "pointer", fontSize: 12 }}>≡ FILTER HISTORY</button>
-        </div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead>
-            <tr style={{ background: "#fafafa" }}>
-              {["SUBMISSION DATE / TIME", "PEMS TYPE", "OUTCOME", "MEDICAL OFFICER", "ACTIONS"].map(h => (
-                <th key={h} style={{ textAlign: "left", padding: "10px 16px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((r, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "12px 16px", color: "#555" }}>{r.date}</td>
-                <td style={{ padding: "12px 16px" }}>{r.type}</td>
-                <td style={{ padding: "12px 16px" }}><Badge color={statusColor[r.outcome]}>{r.outcome}</Badge></td>
-                <td style={{ padding: "12px 16px" }}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={{ background: "#1a3a8f", color: "#fff", borderRadius: 50, width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 700 }}>DR</span>{r.officer}</span></td>
-                <td style={{ padding: "12px 16px" }}>{r.actions.map((a, j) => <button key={j} style={{ color: a === "APPROVE / DISAPPROVE" || a === "PRINT" ? "#1a3a8f" : "#555", background: "none", border: "none", cursor: "pointer", fontSize: 12, fontWeight: a === "APPROVE / DISAPPROVE" ? 700 : 400, marginRight: 6 }}>{a}</button>)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ padding: "12px 16px", textAlign: "center", borderTop: "1px solid #f0f0f0" }}>
-          <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>Load More Records</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── PEMS BOARD FORM ──────────────────────────────────────────
-function PEMSBoardForm({ navigate }) {
-  const systems = ["Cardiology", "Eye", "ENT", "Gastroenterology", "Endocrine", "Neurology", "MSK", "Respiratory", "Genito-Urinary", "Dermatology", "Psychiatry", "Haematology", "Others"];
-  return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
-        <div>
-          <h2 style={{ margin: "0 0 2px", fontSize: 18, fontWeight: 700, color: "#0d2260" }}>New PEMS Board Form</h2>
-          <p style={{ margin: 0, fontSize: 12, color: "#666" }}>Electronic Medical Boarding System — Specialist Assessment</p>
-        </div>
-        <div style={{ fontSize: 12, color: "#888" }}>FORM ID: PEMS-2016-0042</div>
-      </div>
-      <PatientHeader patient={{ ...PATIENT, nric: "S1111111A", status: "NSF (1 SIR)", vocation: "PILOT" }} />
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden", marginBottom: 16 }}>
-        <div style={{ padding: "12px 16px", background: "#fafafa", borderBottom: "1px solid #f0f0f0", fontSize: 14, fontWeight: 600 }}>Problem History (source: NGEMR)</div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-          <tbody>
-            {[["12 Oct 2023", "Cardiac insufficiency following cardiac surgery", "V10234", "Review specialist reports."],
-              ["05 Sep 2023", "Sinus arrest", "V10235", "Monitor ECG results."],
-              ["10 Jan 2018", "Essential (primary) hypertension", "V10236", "Review historical BP logs."]].map((r, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                {r.map((c, j) => <td key={j} style={{ padding: "8px 14px", color: j === 0 ? "#666" : "#333", fontSize: 12 }}>{c}</td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div style={{ background: "#eaf8f0", border: "1px solid #9fe1cb", borderRadius: 8, padding: 14, marginBottom: 16 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <strong style={{ fontSize: 13, color: "#0a7a4b" }}>🏥 Clinical Decision Support Recommendation</strong>
-          <span style={{ background: "#0a7a4b", color: "#fff", borderRadius: 4, padding: "2px 10px", fontSize: 11, fontWeight: 700 }}>✦ CDS Suggestion</span>
-        </div>
-        <table style={{ width: "100%", marginTop: 12, fontSize: 12, borderCollapse: "collapse" }}>
-          <thead><tr style={{ background: "#d8f4e8" }}>{["VOCATION IS APPLIED", "GRADING", "SYSTEM AFFECTED", "MEDICAL CONDITION", "DECLARATION OR FURTHER ASSESSMENT"].map(h => <th key={h} style={{ textAlign: "left", padding: "6px 10px", color: "#0a7a4b", fontSize: 11, fontWeight: 700 }}>{h}</th>)}</tr></thead>
-          <tbody>
-            <tr>
-              <td style={{ padding: "8px 10px" }}><span style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ background: "#22c97a", color: "#fff", borderRadius: 50, width: 14, height: 14, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8 }}>✓</span> PILOT</span></td>
-              <td style={{ padding: "8px 10px" }}><span style={{ background: "#1a3a8f", color: "#fff", borderRadius: 4, padding: "2px 8px", fontWeight: 700 }}>1A</span></td>
-              <td style={{ padding: "8px 10px", color: "#0a7a4b", fontWeight: 600 }}>Respiratory</td>
-              <td style={{ padding: "8px 10px" }}>RESPIRATORY<br /><span style={{ color: "#666" }}>Childhood Asthma</span></td>
-              <td style={{ padding: "8px 10px" }}>RESPIRATORY<br /><span style={{ color: "#666" }}>MCR</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20, marginBottom: 16 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#0d2260", marginBottom: 16 }}>PEMS Board Form</div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-          <thead><tr style={{ background: "#fafafa", borderBottom: "2px solid #e8e8e8" }}>{["VOCATION IS APPLIED", "GRADING", "SYSTEM AFFECTED", "MEDICAL CONDITION", "DECLARATION OR FURTHER ASSESSMENT"].map(h => <th key={h} style={{ textAlign: "left", padding: "8px 10px", fontSize: 11, color: "#888", fontWeight: 700 }}>{h}</th>)}</tr></thead>
-          <tbody>
-            <tr>
-              <td style={{ padding: "10px 10px", verticalAlign: "top" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <input type="checkbox" defaultChecked />
-                  <span style={{ fontWeight: 600 }}>PILOT</span>
-                </div>
-              </td>
-              <td style={{ padding: "10px 10px", verticalAlign: "top" }}>
-                {["1A", "1B", "2", "3", "4", "5"].map((g, i) => (
-                  <div key={g} style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 4 }}>
-                    <input type="radio" name="grade" defaultChecked={i === 0} />
-                    <span>{g}</span>
-                  </div>
-                ))}
-              </td>
-              <td style={{ padding: "10px 10px", verticalAlign: "top" }}>
-                {systems.slice(0, 6).map(s => (
-                  <div key={s} style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 4 }}>
-                    <input type="checkbox" defaultChecked={s === "Cardiology" || s === "Respiratory"} />
-                    <span>{s}</span>
-                  </div>
-                ))}
-              </td>
-              <td style={{ padding: "10px 10px", verticalAlign: "top", fontSize: 12 }}>
-                <div style={{ fontWeight: 600, marginBottom: 4 }}>CARDIOLOGY</div>
-                {["High BP", "RSR' in ead", "Right Axis Deviation", "Left Axis Deviation", "Partial RBBB", "Complete RBBB", "MVP"].map(c => (
-                  <div key={c} style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 3 }}>
-                    <input type="checkbox" defaultChecked={c === "Complete RBBB"} />
-                    <span>{c}</span>
-                  </div>
-                ))}
-              </td>
-              <td style={{ padding: "10px 10px", verticalAlign: "top", fontSize: 12 }}>
-                <div style={{ fontWeight: 600, marginBottom: 4 }}>CARDIOLOGY</div>
-                {["2D Echo", "TMX", "24 Hr Holter", "24 Hr BP", "CXR", "Spirometry"].map(c => (
-                  <div key={c} style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 3 }}>
-                    <input type="checkbox" defaultChecked={c === "24 Hr BP"} />
-                    <span>{c}</span>
-                  </div>
-                ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div style={{ background: "#f5f5f5", borderRadius: 6, padding: 12, marginTop: 12, fontSize: 12, color: "#666" }}>
-          <strong>BOARD ENDORSEMENT ROUTING</strong><br />
-          Board Member 1: <strong>DR LEE WEI HAO</strong> &nbsp;&nbsp;|&nbsp;&nbsp; Board Member 2: <strong>DR CHEN JIA MIN</strong><br />
-          <em style={{ color: "#aaa" }}>Upon submission, this form will be automatically routed to the above members for digital endorsement.</em>
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
-        <button onClick={() => navigate("pems")} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13 }}>Cancel</button>
-        <button style={{ background: "#fff", border: "1px solid #1a3a8f", color: "#1a3a8f", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>💾 Save Progress</button>
-        <button onClick={() => navigate("pems")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>▶ Submit to Board</button>
-      </div>
-    </div>
-  );
-}
-
-// ── PATIENT LIST ADMIN PORTAL ────────────────────────────────
-function PatientListAdminPortal({ navigate }) {
-  const lists = [
-    { sn: 1, id: "SAF#001", desc: "CDO_Vax_04062025", assigned: "LTA (DR) Tan", edited: "LTA (DR) Tan", status: "Draft" },
-    { sn: 2, id: "SAF#002", desc: "Guards_HSP_04062025", assigned: "LTA (DR) Chen", edited: "LTA (DR) Lim", status: "Inactive" },
-    { sn: 3, id: "SAF#003", desc: "Infantry_B_05062025", assigned: "CPT (DR) Wong", edited: "CPT (DR) Wong", status: "Transferred" },
-    { sn: 4, id: "SAF#004", desc: "Naval_C_05062025", assigned: "MAJ (DR) Ng", edited: "LTA (DR) Tan", status: "Draft" },
-    { sn: 5, id: "SAF#005", desc: "Airforce_D_06062025", assigned: "LTA (DR) Goh", edited: "LTA (DR) Goh", status: "Transferred" },
-  ];
-  const users = [
-    { name: "Dr. A. Chen", nric: "SXXXX123A", role: "Senior Medical Officer", rank: "LTC", unit: "MMI" },
-    { name: "Dr. K. Lim", nric: "SXXXX456B", role: "Medical Officer", rank: "MAJ", unit: "HQMC" },
-    { name: "Dr. S. Lee", nric: "SXXXX789C", role: "Dental Officer", rank: "CPT", unit: "AFMS" },
-  ];
-  const statusColor = { Draft: "yellow", Inactive: "red", Transferred: "green" };
-  const summaryStats = [
-    { label: "INACTIVE\nPATIENT LISTS", value: 12, note: "-2% vs last month", color: "#888" },
-    { label: "DRAFT MODE", value: "08", note: "+5% pending review", color: "#185fa5" },
-    { label: "TRANSFERRED", value: 45, note: "+12% processed", color: "#0a7a4b" },
-    { label: "FAILED TRANSFERS", value: "03", note: "Priority High — requires action", color: "#cc3333", icon: "⚠" },
-  ];
-  return (
-    <div>
-      <div style={{ background: "linear-gradient(135deg, #1a3a8f 0%, #0d2260 100%)", borderRadius: 10, padding: "20px 24px", marginBottom: 24, color: "white" }}>
-        <h2 style={{ margin: "0 0 4px", fontSize: 20, fontWeight: 700 }}>Patient List Admin Portal</h2>
-        <p style={{ margin: 0, opacity: 0.8, fontSize: 13 }}>Management of clinical patient rosters and system access governance.</p>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden", marginBottom: 20 }}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span>⊟</span><h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#0d2260" }}>Patient List Management Overview</h3>
-          </div>
-          <span style={{ fontSize: 12, color: "#888" }}>Showing 5 active rosters</span>
-        </div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead><tr style={{ background: "#fafafa" }}>{["S/N", "Form ID", "Description", "Assigned To", "Last Edited By", "Status", "Actions"].map(h => <th key={h} style={{ textAlign: "left", padding: "10px 16px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>)}</tr></thead>
-          <tbody>
-            {lists.map(r => (
-              <tr key={r.id} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "10px 16px", color: "#888" }}>{r.sn}</td>
-                <td style={{ padding: "10px 16px", color: "#1a3a8f", fontWeight: 600 }}>{r.id}</td>
-                <td style={{ padding: "10px 16px" }}>{r.desc}</td>
-                <td style={{ padding: "10px 16px" }}>{r.assigned}</td>
-                <td style={{ padding: "10px 16px", color: "#666" }}>{r.edited}</td>
-                <td style={{ padding: "10px 16px" }}><Badge color={statusColor[r.status]}>{r.status}</Badge></td>
-                <td style={{ padding: "10px 16px" }}><button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 13 }}>Edit Assignment</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ padding: "12px 16px", textAlign: "center", borderTop: "1px solid #f0f0f0" }}>
-          <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>View All Patient Lists →</button>
-        </div>
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20, marginBottom: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-          <span style={{ color: "#1a3a8f" }}>🛡</span><h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#0d2260" }}>System Access Control</h3>
-        </div>
-        <div style={{ display: "flex", gap: 10, marginBottom: 14 }}>
-          <input placeholder="Search by NRIC or name..." style={{ flex: 1, padding: "8px 14px", border: "1px solid #ddd", borderRadius: 8, fontSize: 13 }} />
-          <button style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "8px 14px", cursor: "pointer", fontSize: 13 }}>⊡ Filter</button>
-          <button style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 8, padding: "8px 14px", cursor: "pointer", fontSize: 13 }}>⇅ Sort</button>
-        </div>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-          <thead><tr style={{ background: "#fafafa" }}>{["User Name", "NRIC", "Role", "Rank", "Unit", "Actions"].map(h => <th key={h} style={{ textAlign: "left", padding: "8px 14px", fontSize: 11, color: "#888", fontWeight: 700, letterSpacing: 0.5, borderBottom: "1px solid #f0f0f0" }}>{h}</th>)}</tr></thead>
-          <tbody>
-            {users.map(u => (
-              <tr key={u.nric} style={{ borderBottom: "1px solid #f5f5f5" }}>
-                <td style={{ padding: "10px 14px", fontWeight: 500 }}>{u.name}</td>
-                <td style={{ padding: "10px 14px", color: "#666" }}>{u.nric}</td>
-                <td style={{ padding: "10px 14px" }}>{u.role}</td>
-                <td style={{ padding: "10px 14px" }}>{u.rank}</td>
-                <td style={{ padding: "10px 14px" }}>{u.unit}</td>
-                <td style={{ padding: "10px 14px" }}>
-                  <button style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 6, padding: "5px 12px", fontSize: 12, cursor: "pointer", marginRight: 6, fontWeight: 600 }}>GRANT ACCESS</button>
-                  <button style={{ background: "#fff", color: "#cc3333", border: "1px solid #cc3333", borderRadius: 6, padding: "5px 12px", fontSize: 12, cursor: "pointer", fontWeight: 600 }}>REMOVE ACCESS</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ padding: "10px 14px", fontSize: 12, color: "#666", display: "flex", justifyContent: "space-between", borderTop: "1px solid #f0f0f0" }}>
-          <span>ⓘ Granting 'Create Patient List' permission will allow users to generate new clinical worksheets.</span>
-          <button style={{ color: "#1a3a8f", background: "none", border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>View All User Access →</button>
-        </div>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }}>
-        {summaryStats.map((s, i) => (
-          <div key={i} style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 10, padding: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1, color: "#888", whiteSpace: "pre-line", marginBottom: 8 }}>{s.label}</div>
-            <div style={{ fontSize: 36, fontWeight: 800, color: s.color }}>{s.value}</div>
-            <div style={{ fontSize: 12, color: "#666", marginTop: 4 }}>{s.note}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ── WORK IN PROGRESS ────────────────────────────────────────
-function WorkInProgress({ navigate, label }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 480, textAlign: "center" }}>
-      <div style={{ fontSize: 72, marginBottom: 24 }}>🚧</div>
-      <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 14, padding: "40px 56px", maxWidth: 520 }}>
-        <div style={{ display: "inline-block", background: "#faeeda", color: "#854f0b", border: "1px solid #fac775", borderRadius: 20, padding: "4px 16px", fontSize: 12, fontWeight: 700, letterSpacing: 1, marginBottom: 20 }}>COMING SOON</div>
-        <h2 style={{ fontSize: 22, fontWeight: 700, color: "#0d2260", marginBottom: 10 }}>Work in Progress</h2>
-        <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6, marginBottom: 28 }}>
-          The <strong style={{ color: "#1a3a8f" }}>{label}</strong> module is currently under development and will be available in a future release.
-        </p>
-        <div style={{ background: "#f5f7fa", borderRadius: 8, padding: "14px 18px", fontSize: 13, color: "#888", marginBottom: 28, borderLeft: "4px solid #1a3a8f" }}>
-          ⓘ Please check back later or contact your system administrator for more information.
-        </div>
-        <button onClick={() => navigate("dashboard")} style={{ background: "#1a3a8f", color: "#fff", border: "none", borderRadius: 8, padding: "10px 28px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
-          ← Back to Dashboard
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ── MAIN APP ─────────────────────────────────────────────────
-const SCREENS = {
-  dashboard: Dashboard,
-  "patient-list": PatientListOverview,
-  "patient-list-overview": PatientListOverview,
-  "create-patient-list": CreatePatientList,
-  "patient-list-creation-review": PatientListCreationReview,
-  "edit-patient-list": EditPatientList,
-  "patient-list-view-detail": PatientListViewDetail,
-  "patient-list-admin": PatientListAdminPortal,
-  "patient-military-data": PatientMilitaryData,
-  "ffi": FFIScreen,
-  "ffi-consultation-form": FFIConsultationForm,
-  "ffi-higher-authority-review": FFIHigherAuthorityReview,
-  "ffi-higher-authority-screen": FFIScreen,
-  "edit-ffi-outcome": EditFFIOutcome,
-  "pes-mgs": PESMGSClassification,
-  "new-medical-classification": NewMedicalClassification,
-  "medical-classification-endorsement": MedicalClassificationEndorsement,
-  "pems": PEMSScreen,
-  "pems-board-form": PEMSBoardForm,
-  "medical-board": ({ navigate }) => <WorkInProgress navigate={navigate} label="Medical Board Review" />,
-  "ace": ({ navigate }) => <WorkInProgress navigate={navigate} label="ACE" />,
-};
-
-function App() {
-  const [activeNav, setActiveNav] = useState("dashboard");
-  const [currentScreen, setCurrentScreen] = useState("dashboard");
-
-  const navigate = (screen) => {
-    setCurrentScreen(screen);
-    const navMap = {
-      "patient-list": "patient-list", "patient-list-overview": "patient-list",
-      "create-patient-list": "patient-list", "patient-list-creation-review": "patient-list",
-      "edit-patient-list": "patient-list", "patient-list-view-detail": "patient-list",
-      "patient-list-admin": "patient-list",
-      "patient-military-data": "patient-military-data",
-      "ffi": "ffi", "ffi-consultation-form": "ffi", "ffi-higher-authority-review": "ffi",
-      "ffi-higher-authority-screen": "ffi", "edit-ffi-outcome": "ffi",
-      "pes-mgs": "pes-mgs", "new-medical-classification": "pes-mgs",
-      "medical-classification-endorsement": "pes-mgs",
-      "pems": "pems", "pems-board-form": "pems",
-    };
-    if (navMap[screen]) setActiveNav(navMap[screen]);
-    else setActiveNav(screen);
-  };
-
-  const Screen = SCREENS[currentScreen] || Dashboard;
-
-  return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#f0f2f5", fontFamily: "'Segoe UI', -apple-system, sans-serif" }}>
-      {/* Sidebar */}
-      <div style={{ width: 220, background: "#fff", borderRight: "1px solid #e8e8e8", display: "flex", flexDirection: "column", position: "sticky", top: 0, height: "100vh" }}>
-        <div style={{ padding: "18px 20px", borderBottom: "1px solid #f0f0f0", display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ background: "#1a3a8f", width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ color: "#fff", fontSize: 14 }}>◈</span>
-          </div>
-          <span style={{ fontWeight: 800, fontSize: 18, color: "#0d2260", letterSpacing: 1 }}>MSI</span>
-        </div>
-        <nav style={{ flex: 1, padding: "12px 0", overflow: "auto" }}>
-          {NAV_ITEMS.map(item => (
-            <div key={item.id}>
-              <button
-                onClick={() => navigate(item.id)}
-                style={{
-                  width: "100%", textAlign: "left", background: "none", border: "none",
-                  padding: "10px 20px", cursor: "pointer", fontSize: 11, fontWeight: 700,
-                  letterSpacing: 0.8, color: activeNav === item.id ? "#1a3a8f" : "#666",
-                  borderLeft: activeNav === item.id ? "3px solid #1a3a8f" : "3px solid transparent",
-                  background: activeNav === item.id ? "#e6f1fb" : "transparent",
-                  display: "flex", alignItems: "center", gap: 10,
-                }}
-              >
-                <span>{item.icon}</span>
-                {item.label}
-              </button>
-              {item.id === "patient-list" && activeNav === "patient-list" && (
-                <button
-                  onClick={() => navigate("patient-list-admin")}
-                  style={{ width: "100%", textAlign: "left", background: "none", border: "none", padding: "6px 20px 6px 44px", cursor: "pointer", fontSize: 10, fontWeight: 700, letterSpacing: 0.8, color: currentScreen === "patient-list-admin" ? "#1a3a8f" : "#888", background: currentScreen === "patient-list-admin" ? "#e6f1fb" : "transparent" }}
-                >• ADMIN PORTAL</button>
-              )}
-            </div>
-          ))}
-        </nav>
-        <div style={{ borderTop: "1px solid #f0f0f0", padding: "12px 0" }}>
-          <button style={{ width: "100%", textAlign: "left", background: "none", border: "none", padding: "8px 20px", cursor: "pointer", fontSize: 11, fontWeight: 700, letterSpacing: 0.8, color: "#666", display: "flex", alignItems: "center", gap: 10 }}>⚙ SETTINGS</button>
-          <button style={{ width: "100%", textAlign: "left", background: "none", border: "none", padding: "8px 20px", cursor: "pointer", fontSize: 11, fontWeight: 700, letterSpacing: 0.8, color: "#666", display: "flex", alignItems: "center", gap: 10 }}>→ LOGOUT</button>
-        </div>
-      </div>
-      {/* Main content */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        {/* Top bar */}
-        <div style={{ background: "#fff", borderBottom: "1px solid #e8e8e8", padding: "12px 28px", display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 16, position: "sticky", top: 0, zIndex: 100 }}>
-          <input placeholder="Search patients, NRIC, or records..." style={{ width: 280, padding: "7px 14px", border: "1px solid #ddd", borderRadius: 20, fontSize: 13, outline: "none" }} />
-          <span style={{ cursor: "pointer", fontSize: 18 }}>🔔</span>
-          <span style={{ cursor: "pointer", fontSize: 18 }}>⚙</span>
-          <span style={{ cursor: "pointer", fontSize: 18 }}>❓</span>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div style={{ background: "#1a3a8f", width: 32, height: 32, borderRadius: 50, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 13, fontWeight: 700 }}>R</div>
-            <span style={{ fontSize: 12, fontWeight: 600, color: "#0d2260" }}>DR RYAN GOH</span>
-          </div>
-        </div>
-        {/* Page content */}
-        <div style={{ flex: 1, padding: 28, overflowY: "auto" }}>
-          <Screen navigate={navigate} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+// ── init ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  ['outcome-fit','outcome-unfit','outcome-waiver','outcome-pending'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('change', updateFFIOutcome);
+  });
+  // Wire Pending-outcome radios for Others sub-section
+  document.querySelectorAll('[name="pending-outcome"]').forEach(function(r){
+    r.addEventListener('change', updatePendingOthers);
+  });
+  updateFFIOutcome();
+  updatePendingOthers();
+  navigateTo('msi');   // show MSI Profile on load
+});
+</script>
+</div><!-- end main wrapper -->
 </body>
 </html>
