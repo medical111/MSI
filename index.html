@@ -12,34 +12,35 @@
     darkMode: "class",
     theme: { extend: {
       colors: {
-        "primary-fixed":"#dae2ff","surface-tint":"#0c56d0","primary-container":"#0052cc",
-        "on-tertiary":"#ffffff","tertiary-container":"#b02300","inverse-on-surface":"#edf0ff",
-        "on-secondary-fixed":"#002113","tertiary-fixed":"#ffdad2","primary":"#003d9b",
-        "on-primary":"#ffffff","surface-dim":"#cadaff","surface":"#f9f9ff",
-        "on-secondary-fixed-variant":"#005235","outline-variant":"#c3c6d6","surface-bright":"#f9f9ff",
-        "on-primary-fixed-variant":"#0040a2","on-error":"#ffffff","inverse-surface":"#1d3052",
-        "on-background":"#041b3c","inverse-primary":"#b2c5ff","primary-fixed-dim":"#b2c5ff",
-        "on-secondary-container":"#00714b","on-surface-variant":"#434654","background":"#f9f9ff",
-        "on-secondary":"#ffffff","error":"#ba1a1a","secondary-fixed-dim":"#71dba6",
-        "tertiary":"#851800","surface-container-lowest":"#ffffff","surface-container":"#e8edff",
-        "error-container":"#ffdad6","on-primary-container":"#c4d2ff",
-        "on-tertiary-fixed-variant":"#8b1a00","tertiary-fixed-dim":"#ffb4a3",
-        "surface-container-low":"#f1f3ff","secondary-container":"#8af5be","on-surface":"#041b3c",
-        "surface-container-high":"#e0e8ff","outline":"#737685","surface-container-highest":"#d7e2ff",
-        "on-tertiary-fixed":"#3d0600","on-primary-fixed":"#001848","surface-variant":"#d7e2ff",
-        "on-error-container":"#93000a","secondary-fixed":"#8df7c1",
-        "on-tertiary-container":"#ffc6b9","secondary":"#006c47"
+        "on-background":"#041b3c","background":"#f9f9ff","inverse-on-surface":"#edf0ff",
+        "surface-tint":"#2f59b7","surface-dim":"#cadaff","surface-container":"#e8edff",
+        "primary-fixed":"#dae2ff","on-error":"#ffffff","surface-container-low":"#f1f3ff",
+        "on-primary":"#ffffff","primary":"#003d9a","on-surface-variant":"#434654",
+        "tertiary":"#861800","error-container":"#ffdad6","primary-fixed-dim":"#b2c5ff",
+        "on-surface":"#041b3c","secondary-container":"#9df5c5","error":"#ba1a1a",
+        "surface-container-high":"#e0e8ff","inverse-primary":"#b2c5ff",
+        "on-primary-fixed-variant":"#08409e","inverse-surface":"#1d3052",
+        "surface-container-lowest":"#ffffff","on-tertiary-container":"#ffc6ba",
+        "on-secondary-container":"#10734d","secondary-fixed-dim":"#81d8aa",
+        "surface-variant":"#d7e2ff","on-secondary-fixed":"#002113","surface-bright":"#f9f9ff",
+        "primary-container":"#2a56b4","outline-variant":"#c3c6d6","on-primary-fixed":"#001848",
+        "on-primary-container":"#c4d2ff","on-secondary":"#ffffff","tertiary-fixed-dim":"#ffb4a3",
+        "on-tertiary-fixed-variant":"#8a1c02","outline":"#737685",
+        "surface-container-highest":"#d7e2ff","tertiary-fixed":"#ffdad2",
+        "on-tertiary-fixed":"#3d0600","on-tertiary":"#ffffff","surface":"#f9f9ff",
+        "on-secondary-fixed-variant":"#005235","secondary-fixed":"#9df5c5",
+        "secondary":"#016c47","tertiary-container":"#a73116","on-error-container":"#93000a"
       },
-      borderRadius:{ DEFAULT:"0.125rem", lg:"0.25rem", xl:"0.5rem", full:"0.75rem" },
-      spacing:{
-        "stack-gap-sm":"4px","stack-gap-md":"8px","stack-gap-lg":"16px",
-        "grid-gutter":"16px","baseline":"4px","container-padding":"24px"
+      borderRadius: { DEFAULT:"0.125rem", lg:"0.25rem", xl:"0.5rem", full:"0.75rem" },
+      spacing: {
+        "stack-gap-sm":"4px","grid-gutter":"16px","stack-gap-md":"8px",
+        "baseline":"4px","container-padding":"24px","stack-gap-lg":"16px"
       },
-      fontFamily:{
-        "headline-section":["Inter"],"display-context":["Inter"],"body-sm":["Inter"],
-        "body-md":["Inter"],"label-caps":["Inter"],"data-tabular":["Inter"],"status-badge":["Inter"]
+      fontFamily: {
+        "body-md":["Inter"],"display-context":["Inter"],"status-badge":["Inter"],
+        "data-tabular":["Inter"],"headline-section":["Inter"],"body-sm":["Inter"],"label-caps":["Inter"]
       },
-      fontSize:{
+      fontSize: {
         "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
         "display-context":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],
         "status-badge":["12px",{"lineHeight":"16px","fontWeight":"600"}],
@@ -54,86 +55,108 @@
 <style>
   .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;display:inline-block;}
   body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
-  /* Each screen is fixed to the viewport below the header, beside the sidebar.
-     JS toggles display:block / display:none directly on style attribute. */
-  .screen{
-    display:none;
-    position:fixed;
-    top:64px;       /* header height */
-    left:256px;     /* sidebar width */
-    right:0;
-    bottom:0;
-    overflow-y:auto;
-    background:#f9f9ff;
-  }
+  /* Sidebar collapse */
+  #sidebar{transition:width 0.3s cubic-bezier(0.4,0,0.2,1);}
+  #main-content{transition:margin-left 0.3s cubic-bezier(0.4,0,0.2,1);}
+  #top-header{transition:left 0.3s cubic-bezier(0.4,0,0.2,1);}
+  .sidebar-collapsed{width:5rem!important;}
+  .sidebar-collapsed .nav-text{display:none;}
+  .sidebar-collapsed .logo-container{padding-left:0.75rem;padding-right:0.75rem;justify-content:center;}
+  .sidebar-collapsed .logo-container .logo-image{width:2.5rem;height:2.5rem;min-width:2.5rem;}
+  .sidebar-collapsed .nav-item{justify-content:center;padding-left:0;padding-right:0;}
+  .sidebar-collapsed .sidebar-toggle-btn span{transform:rotate(180deg);}
+  .sidebar-collapsed .logo-wrapper{display:none;}
+  .sidebar-collapsed .ffi-submenu{display:none!important;}
+  .content-expanded{margin-left:5rem!important;}
+  .header-expanded{left:5rem!important;}
+  /* Screen routing — fixed to viewport, toggled by JS */
+  .screen{display:none;position:fixed;top:64px;left:256px;right:0;bottom:0;overflow-y:auto;}
+  /* Details/summary arrow */
+  details summary::-webkit-details-marker{display:none;}
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md h-screen overflow-hidden">
 
 <!-- ===================== SHARED SIDEBAR ===================== -->
-<aside class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider">
-<div class="px-6 mb-8">
+<aside class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider" id="sidebar">
+<div class="px-6 mb-8 logo-container flex items-center">
   <div class="flex items-center justify-between w-full">
-    <div class="flex items-center gap-3">
-      <img alt="Hospital Logo" class="rounded-lg object-cover w-12 h-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyLL-rvD-QLGtNvM4GC4U0pW8h0VNiGaZ0NJeBNqkT8LnPJPZRvrSyZU8R-ap7wa3nKRs65TA5Sd-7arwjN4H-H2LHQ0ixMnxykLVed5QMMaVLamfMa03EJjAoYg-j3hfUxMCaT_YgC42ljz1MUQ0f80yOFqttDbu3h8fx2Gm8ADsTCOxQY1XeVOQ1mdnTjFDFCbrk-BKasJnXFT6Trckopp2ym0cPQWTQKTknRUtGoC-KkwlQfhEuKq6tUdndSPhAkQ-VCNAVRU5z">
+    <div class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper">
+      <img alt="MSI Logo" class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE">
     </div>
-    <button class="rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2" title="Toggle Sidebar">
-      <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+    <button class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2" id="toggle-sidebar" title="Toggle Sidebar">
+      <span class="material-symbols-outlined text-[24px] transition-transform duration-300">chevron_left</span>
     </button>
   </div>
 </div>
 <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
-  <a id="nav-msi" href="#" onclick="navigateTo('msi');return false;" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer">
-    <span class="material-symbols-outlined text-[20px]">group</span>MSI Profile
+  <a id="nav-msi" href="#" onclick="navigateTo('msi');return false;" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer">
+    <span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings:'FILL' 1;">group</span>
+    <span class="nav-text whitespace-nowrap">MSI Profile</span>
   </a>
   <div class="flex flex-col gap-1">
     <div onclick="toggleFFI()" class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-slate-100 text-blue-700 transition-all duration-200 cursor-pointer">
       <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-[20px] text-primary">medical_services</span>
-        <span class="font-bold">FFI</span>
+        <span class="material-symbols-outlined text-[20px] shrink-0 text-primary">medical_services</span>
+        <span class="nav-text font-bold whitespace-nowrap">FFI</span>
       </div>
-      <span id="ffi-chevron" class="material-symbols-outlined text-[18px] text-slate-400">keyboard_arrow_down</span>
+      <span id="ffi-chevron" class="material-symbols-outlined text-[18px] text-slate-400 nav-text">keyboard_arrow_down</span>
     </div>
-    <div id="ffi-submenu" class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2">
-      <a id="nav-ffi-create"   href="#" onclick="navigateTo('ffi-create');return false;"   class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer">CREATE NEW</a>
-      <a id="nav-ffi-ha"       href="#" onclick="navigateTo('ffi-ha');return false;"       class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer">MAINTAIN HIGHER AUTHORITY REVIEW</a>
-      <a id="nav-ffi-validity" href="#" onclick="navigateTo('ffi-validity');return false;" class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer">MAINTAIN VALIDITY</a>
+    <div id="ffi-submenu" class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2">
+      <a id="nav-ffi-create"   href="#" onclick="navigateTo('ffi-create');return false;"   class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap">CREATE NEW</a>
+      <a id="nav-ffi-ha"       href="#" onclick="navigateTo('ffi-ha');return false;"       class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap">MAINTAIN HIGHER AUTHORITY REVIEW</a>
+      <a id="nav-ffi-validity" href="#" onclick="navigateTo('ffi-validity');return false;" class="px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap">MAINTAIN VALIDITY</a>
     </div>
   </div>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
-    <span class="material-symbols-outlined text-[20px]">category</span>PES/ MGS Classification
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">category</span>
+    <span class="nav-text whitespace-nowrap">PES/ MGS Classification</span>
   </a>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
-    <span class="material-symbols-outlined text-[20px]">gavel</span>Medical Board Review
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">gavel</span>
+    <span class="nav-text whitespace-nowrap">Medical Board Review</span>
   </a>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
-    <span class="material-symbols-outlined text-[20px]">analytics</span>ACE
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">analytics</span>
+    <span class="nav-text whitespace-nowrap">ACE</span>
   </a>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
-    <span class="material-symbols-outlined text-[20px]">monitor_heart</span>PEMS
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">monitor_heart</span>
+    <span class="nav-text whitespace-nowrap">PEMS</span>
   </a>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 opacity-50 pointer-events-none cursor-not-allowed" href="#">
-    <span class="material-symbols-outlined text-[20px]">description</span>NUMC
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">description</span>
+    <span class="nav-text whitespace-nowrap">NUMC</span>
   </a>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
-    <span class="material-symbols-outlined text-[20px]">list</span>Patient List
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">list</span>
+    <span class="nav-text whitespace-nowrap">Patient List</span>
   </a>
 </div>
 <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
-    <span class="material-symbols-outlined text-[20px]">settings</span>Settings
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">settings</span>
+    <span class="nav-text whitespace-nowrap">Settings</span>
   </a>
-  <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
-    <span class="material-symbols-outlined text-[20px]">logout</span>Logout
+  <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
+    <span class="nav-text whitespace-nowrap">Logout</span>
   </a>
 </div>
 </aside>
+
 <!-- ===================== MAIN WRAPPER ===================== -->
-<div class="ml-64 bg-background">
+<div class="ml-64 bg-background" id="main-content">
 
 <!-- ===================== SHARED TOP NAV ===================== -->
-<header class="bg-white font-sans text-sm tracking-tight border-b border-slate-200 fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40">
-  <div class="flex items-center gap-6 flex-1"></div>
+<header class="bg-white font-sans text-sm tracking-tight border-b border-slate-200 fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40" id="top-header">
+  <div class="flex items-center gap-6 flex-1">
+    <div class="flex items-baseline gap-2 bg-surface-container-low px-3 py-1 rounded-lg">
+      <div class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-2 self-center"></div>
+      <span class="text-on-surface font-bold text-[24px] leading-none tracking-tight">Tan Ah Teck</span>
+      <span class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase">S1234567A</span>
+    </div>
+  </div>
   <div class="flex items-center gap-2">
     <button class="p-2 rounded-full text-slate-600 hover:bg-slate-50 transition-colors relative">
       <span class="material-symbols-outlined text-[22px]">notifications</span>
@@ -146,17 +169,17 @@
     <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider leading-none">DR RYAN GOH</span>
   </div>
 </header>
-<!-- ============= SCREEN 1 : MSI PROFILE ============= -->
+
+<!-- ============= SCREEN 1: MSI PROFILE ============= -->
 <main id="screen-msi" class="screen bg-surface-container-low p-container-padding">
 
-<div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-<!-- Patient Context Header (Updated) -->
+<div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter"><!-- Patient Context Header (Updated) -->
 <div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5">
 <div class="flex flex-col gap-6">
 <!-- Primary Identity Section -->
 <div class="flex flex-col gap-3">
 <div class="flex items-center gap-4 flex-wrap">
-<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<h2 class="text-4xl font-black tracking-tight text-white">Tan Ah Teck</h2>
 <div class="flex gap-2">
 </div>
 </div>
@@ -165,7 +188,7 @@
 <div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
-<div class="flex items-center gap-2 font-semibold">
+<div class="flex items-center gap-2 font-semibold ml-2">
 
                                 S1234567A
                             </div>
@@ -194,13 +217,18 @@
                                 08-Sep-1997
                             </div>
 </div>
-<!-- Column 5: Type of Service -->
+<!-- Service History Toggle Section -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE TYPE</span>
 <div class="flex items-center gap-2 font-semibold">
         
         NSF
     </div>
+</div><div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">RANK</span>
+<div class="flex items-center gap-2 font-semibold">
+    CPT
+  </div>
 </div>
 <!-- Column 6: Unit -->
 <div class="flex flex-col gap-1">
@@ -212,82 +240,114 @@
 </div>
 <!-- Column 7: Vocation -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">VOCATION</span>
 <div class="flex items-center gap-2 font-semibold">
 
                                 Infantry Specialist
                             </div>
+</div><!-- Column 8: Rank -->
+<!-- Column 9: Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE</span>
+<div class="flex items-center gap-2 font-semibold bg-secondary text-white px-2 py-0.5 w-fit rounded-lg">Army</div>
 </div></div>
 </div>
 </div>
+<!-- Patient Context Header (Updated) -->
+
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-12 gap-grid-gutter">
 <!-- Left Column (Military Overview) -->
 <div class="col-span-12 lg:col-span-4 flex flex-col gap-grid-gutter">
-<!-- Service Overview -->
+<!-- Service Overview - Expandable Accordion List -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
-<h3 class="font-headline-section text-headline-section text-on-surface mb-6 flex items-center gap-2">Military Overview</h3>
-<div class="flex flex-col gap-4">
-<div class="flex flex-col gap-1">
-<div class="flex justify-between border-b border-surface-container py-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">Type of Service</span>
-<span class="font-data-tabular text-data-tabular text-on-surface">NSF</span>
-</div>
-<div class="flex justify-end mb-2">
-<button onclick="toggleSection('tos-history',this)" data-state="collapsed" data-expand="View Past History" data-collapse="Collapse History" class="text-[10px] text-primary hover:underline flex items-center gap-0.5"><span class="btn-label">View Past History</span><span class="material-symbols-outlined text-[14px]">keyboard_arrow_down</span></button>
-</div>
-<div id="tos-history" style="display:none" class="mt-2 bg-surface-container-low rounded-lg p-3 border border-outline-variant">
-<p class="font-body-sm text-body-sm text-on-surface-variant italic">No past type of service history on record.</p>
-</div>
-</div>
-<!-- Updated Unit Field with History -->
-<div class="flex flex-col gap-1">
-<div class="flex justify-between border-b border-surface-container py-2 items-center">
-<span class="font-body-sm text-body-sm text-on-surface-variant">Unit / Service</span>
-<div class="flex items-center gap-2">
-<span class="font-data-tabular text-data-tabular text-on-surface font-bold">3 SIR / Army</span>
-</div>
-</div>
-<div class="flex justify-end mb-2">
-<button onclick="toggleSection('unit-history',this)" data-state="expanded" data-expand="View Past History" data-collapse="Collapse History" class="text-[10px] text-primary hover:underline flex items-center gap-0.5"><span class="btn-label">Collapse History</span><span class="material-symbols-outlined text-[14px]">keyboard_arrow_up</span>
-</button>
-</div>
-<!-- Unit History Table -->
-<div id="unit-history" class="mt-2 bg-surface-container-low rounded-lg p-3 border border-outline-variant">
-<h4 class="font-label-caps text-[10px] text-on-surface-variant mb-3 uppercase tracking-widest">Past Unit History</h4>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="border-b border-surface-container"><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Unit</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Service</th></tr>
-</thead>
-<tbody class="font-body-sm text-body-sm text-on-surface">
-<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">1st CDO BN</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Army</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<div class="flex justify-between border-b border-surface-container py-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">Vocation</span>
-<span class="font-data-tabular text-data-tabular text-on-surface">Infantry Specialist</span>
-</div>
-<div class="flex justify-end mb-2">
-<button onclick="toggleSection('voc-history',this)" data-state="collapsed" data-expand="View Past History" data-collapse="Collapse History" class="text-[10px] text-primary hover:underline flex items-center gap-0.5"><span class="btn-label">View Past History</span><span class="material-symbols-outlined text-[14px]">keyboard_arrow_down</span></button>
-</div>
-<div id="voc-history" style="display:none" class="mt-2 bg-surface-container-low rounded-lg p-3 border border-outline-variant">
-<p class="font-body-sm text-body-sm text-on-surface-variant italic">No past vocation history on record.</p>
-</div>
-</div>
-<div class="flex justify-between border-b border-surface-container py-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">Enlistment Date</span>
-<span class="font-data-tabular text-data-tabular text-on-surface">15 Jan 2018</span>
-</div>
-<div class="flex justify-between border-b border-surface-container py-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">ORD Date</span>
-<span class="font-data-tabular text-data-tabular text-on-surface">14 Jan 2020</span>
-</div>
-</div>
+<div class="flex justify-between items-center mb-6"><h3 class="font-headline-section text-headline-section text-on-surface flex items-center gap-2">Military Overview</h3><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Current</span></div>
+<div class="flex flex-col gap-2"><!-- Record 1 (Expanded) -->
+<details class="group border-b border-surface-container pb-2" open="">
+  <summary class="list-none cursor-pointer flex justify-between items-center py-2 hover:bg-surface-container-low px-2 -mx-2 rounded transition-colors duration-150">
+    <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Service Record 1</span>
+    <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-open:rotate-180 transition-transform duration-200">keyboard_arrow_down</span>
+  </summary>
+  <div class="flex flex-col gap-0 px-2 pt-2">
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Service Type</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">NSman</span>
+    </div>
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Rank</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">CPT</span>
+    </div>
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Unit / Service</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">3 SIR / Army</span>
+    </div>
+    <div class="flex justify-between py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Vocation</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">Infantry Specialist</span>
+    </div>
+  </div>
+</details>
+<!-- Record 2 -->
+<details class="group border-b border-surface-container pb-2">
+  <summary class="list-none cursor-pointer flex justify-between items-center py-2 hover:bg-surface-container-low px-2 -mx-2 rounded transition-colors duration-150">
+    <span class="text-[10px] font-bold text-on-surface-variant/70 uppercase tracking-widest">Service Record 2</span>
+    <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-open:rotate-180 transition-transform duration-200">keyboard_arrow_down</span>
+  </summary>
+  <div class="flex flex-col gap-0 px-2 pt-2">
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Service Type</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">DXO</span>
+    </div>
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Rank</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">ME2</span>
+    </div>
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Unit / Service</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">XXX / Navy</span>
+    </div>
+    <div class="flex justify-between py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Vocation</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">XXX</span>
+    </div>
+  </div>
+</details>
+<!-- Record 3 -->
+<details class="group border-b border-surface-container pb-2">
+  <summary class="list-none cursor-pointer flex justify-between items-center py-2 hover:bg-surface-container-low px-2 -mx-2 rounded transition-colors duration-150">
+    <span class="text-[10px] font-bold text-on-surface-variant/70 uppercase tracking-widest">Service Record 3</span>
+    <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-open:rotate-180 transition-transform duration-200">keyboard_arrow_down</span>
+  </summary>
+  <div class="flex flex-col gap-0 px-2 pt-2">
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Service Type</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">-</span>
+    </div>
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Rank</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">-</span>
+    </div>
+    <div class="flex justify-between border-b border-surface-container/50 py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Unit / Service</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">-</span>
+    </div>
+    <div class="flex justify-between py-2">
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Vocation</span>
+      <span class="font-data-tabular text-data-tabular text-on-surface">-</span>
+    </div>
+  </div>
+</details>
+<!-- Dates Section -->
+<div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <div class="flex justify-between border-b border-surface-container py-2">
+    <span class="font-body-sm text-body-sm text-on-surface-variant">Enlistment Date</span>
+    <span class="font-data-tabular text-data-tabular text-on-surface">15 Jan 2018</span>
+  </div>
+  <div class="flex justify-between border-b border-surface-container py-2">
+    <span class="font-body-sm text-body-sm text-on-surface-variant">ORD Date</span>
+    <span class="font-data-tabular text-data-tabular text-on-surface">14 Jan 2020</span>
+  </div>
+</div></div>
 </div>
 </div>
 <!-- Middle Column (MGS Scores & PES History) -->
@@ -307,74 +367,44 @@
 <span class="font-semibold">Disposition:</span>
 <span class="">Medically Fit for Service</span>
 </div>
-</div><div class="mt-4"><div class="mt-6 border-t border-surface-container pt-6">
-<button onclick="toggleSection('mgs-history',this)" data-state="expanded" data-expand="View Past MGS History" data-collapse="Collapse History" class="mb-4 flex items-center gap-1 text-primary font-body-sm text-body-sm hover:underline"><span class="btn-label">Collapse History</span><span class="material-symbols-outlined text-[18px]">keyboard_arrow_up</span></button>
-<div id="mgs-history">
-<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase tracking-widest">Past MGS History</h4>
-<div class="overflow-x-auto">
+</div><div class="mt-4"><details class="group mt-6 border-t border-surface-container pt-6">
+<summary class="list-none cursor-pointer flex items-center justify-between">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Past MGS History</h4>
+<div class="flex items-center gap-1 text-primary font-body-sm text-body-sm hover:underline">
+<span class="group-open:hidden">View History</span>
+<span class="hidden group-open:inline">Collapse History</span>
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-open:rotate-180">keyboard_arrow_down</span>
+</div>
+</summary>
+<div class="mt-4 overflow-x-auto">
 <table class="w-full text-left border-collapse">
 <thead>
-<tr class="border-b border-surface-container"><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Unit</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Service</th></tr>
+<tr class="border-b border-surface-container"><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">MGS Disposition Code</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Disposition</th></tr>
 </thead>
 <tbody class="font-data-tabular text-data-tabular text-on-surface">
-<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">1st CDO BN</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Army</td></tr>
-<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">1st CDO BN</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Army</td></tr>
+<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">FIT</span><span class="text-xs text-on-surface-variant">15 Jan 2021 - 31 Dec 2023</span></div></td><td class="py-2">Medically Fit for Service<br></td></tr>
+<tr class="border-b border-surface-container/50"><td class="py-2"><div class="flex flex-col"><span class="">D1[XX]</span><span class="text-xs text-on-surface-variant">15 Jan 2018 - 31 Dec 2020</span></div></td><td class="py-2">Pending Medical Review</td></tr>
 </tbody>
 </table>
 </div>
-</div>
-</div></div>
-</div><div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 h-full flex flex-col">
-<div class="flex justify-between items-center mb-6">
-<h3 class="font-headline-section text-headline-section text-on-surface flex items-center gap-2">PES</h3>
-</div>
-<div class="grid grid-cols-1 gap-6 flex-1">
-<!-- Current PES -->
-<div class="border rounded-lg p-5 bg-surface-bright flex flex-col gap-4 relative overflow-hidden border-outline-variant">
-<div class="absolute top-0 right-0 bg-surface-variant text-on-surface-variant px-3 py-1 rounded-bl-lg font-label-caps text-label-caps uppercase">Past</div>
-<div>
-<div class="text-body-md font-display-context font-semibold text-on-surface">PES A</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">01 Jan 2021 - 31 Dec 2023</div>
-</div>
-</div>
-<!-- Past PES -->
-<div class="flex flex-col gap-4">
-<button onclick="toggleSection('pes-history',this)" data-state="collapsed" data-expand="View Past PES History" data-collapse="Collapse PES History" class="flex items-center gap-1 text-primary font-body-sm text-body-sm hover:underline">
-<span class="btn-label">View Past PES History</span>
-<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
-</button>
-<div id="pes-history" style="display:none" class="border border-outline-variant rounded-lg p-5 bg-surface flex flex-col gap-4">
-<div>
-<div class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Enlistment Status</div>
-<div class="text-2xl font-headline-section text-on-surface">PES B1</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">15 Jan 2018 - 31 Dec 2020</div>
-</div>
-<div class="mt-auto">
-<div class="font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Past Health Issues</div>
-<div class="flex flex-wrap gap-2">
-<span class="bg-surface-container-low border border-outline-variant px-2 py-1 rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant">Asthma (Childhood)</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</details></div>
+</div><div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 h-full flex flex-col"><div class="flex justify-between items-center mb-6"><h3 class="font-headline-section text-headline-section text-on-surface flex items-center gap-2">PES</h3></div><div class="grid grid-cols-1 gap-6 flex-1"><div class="border rounded-lg p-5 bg-surface-bright flex flex-col gap-4 relative overflow-hidden border-outline-variant"><div><div class="text-body-md font-display-context font-semibold text-on-surface">PES A</div><div class="font-body-sm text-body-sm text-on-surface-variant mt-1">01 Jan 2021 - 31 Dec 2023</div></div><div class="absolute top-2 right-2 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">PAST</div></div><details class="group mt-6 border-t border-surface-container pt-4"><summary class="list-none cursor-pointer flex items-center justify-between"><h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Past PES History</h4><div class="flex items-center gap-1 text-primary font-body-sm text-body-sm hover:underline"><span class="group-open:hidden">View Past PES History</span><span class="hidden group-open:inline">Collapse History</span><span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-open:rotate-180">keyboard_arrow_down</span></div></summary><div class="mt-4 overflow-x-auto"><table class="w-full text-left border-collapse"><thead><tr class="border-b border-surface-container"><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">PES Status</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Period</th><th class="py-1 font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider text-right">Status</th></tr></thead><tbody class="font-data-tabular text-data-tabular text-on-surface"><tr class="border-b border-surface-container/50"><td class="py-3"><span class="font-semibold">PES B1</span></td><td class="py-3">15 Jan 2018 - 31 Dec 2020</td><td class="py-3 text-right"><span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">PAST</span></td></tr><tr class="border-b border-surface-container/50"><td class="py-3"><span class="font-semibold">PES A</span></td><td class="py-3">01 Jan 2017 - 14 Jan 2018</td><td class="py-3 text-right"><span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">PAST</span></td></tr></tbody></table></div></details></div></div>
 <!-- Lower Row: Board Review -->
 <div class="grid grid-cols-1 gap-grid-gutter">
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
 <h3 class="font-headline-section text-headline-section text-on-surface mb-6 flex items-center gap-2">Outstanding Reviews</h3>
 <div class="flex flex-col gap-4">
 <!-- Medical Board Review Entry -->
-<div class="p-6 bg-error-container/10 border border-error-container rounded-xl">
+<div class="p-6 bg-surface-variant/20 border border-outline-variant/30 rounded-xl">
 <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
 <div class="flex gap-4">
-<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center flex-shrink-0">
-<span class="material-symbols-outlined text-error">assignment_late</span>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary">assignment_late</span>
 </div>
 <div class="flex flex-col gap-1">
 <div class="flex items-center gap-3 flex-wrap">
 <h4 class="font-headline-section text-headline-section text-on-surface">Medical Board Review</h4>
-<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Action Required</span>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-red-50 text-red-600">ACTION REQUIRED</span>
 </div>
 <div class="flex items-center gap-4 text-sm mt-1">
 <div class="flex items-center gap-1.5 text-on-surface font-medium">
@@ -386,24 +416,8 @@
 </div>
 </div>
 </div>
-</div>
+</div><div class="p-6 bg-surface-variant/20 border border-outline-variant/30 rounded-xl"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-primary">assignment_late</span></div><div class="flex flex-col gap-1"><div class="flex items-center gap-3 flex-wrap"><h4 class="font-headline-section text-headline-section text-on-surface">ACE Board Review</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-red-50 text-red-600">ACTION REQUIRED</span></div><div class="flex items-center gap-4 text-sm mt-1"><div class="flex items-center gap-1.5 text-on-surface font-medium"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">description</span>Pilot</div><div class="flex items-center gap-1.5 text-on-surface font-medium"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span>02 Apr 2026</div></div></div></div></div></div>
 <!-- ACE Board Review Entry -->
-<div class="p-6 border rounded-xl bg-error-container/10 border-error-container">
-<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-<div class="flex gap-4">
-<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-error">assignment_late</span></div>
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-3 flex-wrap">
-<h4 class="font-headline-section text-headline-section text-on-surface">ACE Board Review</h4>
-<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Action Required</span>
-</div>
-<div class="flex items-center gap-4 text-sm mt-1">
-<div class="flex items-center gap-1.5 text-on-surface font-medium"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">info</span>Pilot | 24 May 2026</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div><div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 mt-grid-gutter">
 <div class="flex justify-between items-center mb-6">
@@ -416,18 +430,10 @@
 <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Issue Date</th><th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Expiry Date</th>
 <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Type</th>
 <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">Outcome</th>
-
 <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">Status</th><th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest text-right px-4">Actions</th>
 </tr>
 </thead>
-<tbody class="font-body-sm text-body-sm text-on-surface"><tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"><td class="py-4 px-4"><div class="flex flex-col"><span class="">15 May 2024</span></div></td><td class="py-4 px-4"><div class="flex flex-col"><span class="">15 May 2029</span></div></td><td class="py-4 px-4">Cat B - Military Freefall</td><td class="py-4 px-4"><span class="bg-surface-variant text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Pending</span></td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4"><div class="flex justify-end gap-3"><a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a></div></td></tr>
-<tr class="ffi-detail-row" style="display:none">
-<td class="px-4 pb-4 pt-0" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-0 shadow-sm"><p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Cat B – Military Freefall</p><p class="font-body-sm text-body-sm text-on-surface-variant">Outcome pending final board assessment. No additional details on record.</p></div></td>
-</tr>
-<tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"><td class="py-4 px-4"><div class="flex flex-col"><span class="">14 Jan 2024</span></div></td><td class="py-4 px-4"><div class="flex flex-col"><span class="">14 Jan 2028</span></div></td><td class="py-4 px-4">Cat A - OCS / SCS</td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Fit</span></td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4"><div class="flex justify-end gap-3"><a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a></div></td></tr>
-<tr class="ffi-detail-row" style="display:none">
-<td class="px-4 pb-4 pt-0" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-0 shadow-sm"><p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Cat A – OCS / SCS</p><p class="font-body-sm text-body-sm text-on-surface-variant">Serviceman assessed as fit. No waiver required. No additional notes on record.</p></div></td>
-</tr>
+<tbody class="font-body-sm text-body-sm text-on-surface"><tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"><td class="py-4 px-4"><div class="flex flex-col"><span class="">15 May 2024</span></div></td><td class="py-4 px-4"><div class="flex flex-col"><span class="">15 May 2029</span></div></td><td class="py-4 px-4">Cat B - Military Freefall</td><td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-error-container text-error">Pending</span></td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4"><div class="flex justify-end gap-3"><a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a></div></td></tr><tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"><td class="py-4 px-4"><div class="flex flex-col"><span class="">14 Jan 2024</span></div></td><td class="py-4 px-4"><div class="flex flex-col"><span class="">14 Jan 2028</span><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 w-fit">Expiring</span></div></td><td class="py-4 px-4">Cat A - OCS / SCS</td><td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Fit</span></td><td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4"><div class="flex justify-end gap-3"><a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a></div></td></tr>
 <tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
 <td class="py-4 px-4">
 <div class="flex flex-col">
@@ -436,17 +442,15 @@
 </td><td class="py-4 px-4"><div class="flex flex-col"><span class="">12 Oct 2028</span></div></td>
 <td class="py-4 px-4">Cat A - OCS / SCS</td>
 <td class="py-4 px-4">
-<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Waiver granted</span></td>
-
+<span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Waiver granted</span></td>
 <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td><td class="py-4 text-right px-4">
 <div class="flex justify-end gap-3">
-<a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Collapse</a>
+<a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Collapse</a>
 </div>
 </td>
 </tr><tr class="border-b border-surface-container/50">
-<td class="p-6" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-4 mb-4 shadow-sm"><div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">#01</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">Dr. A. Chen</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">CARMO</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface"><span style="font-weight: normal;" class="">Nee Soon Medical Centre</span></span></div></div><div class="pt-6 border-t border-surface-container"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span><p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p></div></div></td>
+<td class="p-6" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-4 mb-4 shadow-sm"><div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface"><span class="" style="font-weight: normal;">#01</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface"><span class="" style="font-weight: normal;">Dr. A. Chen</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface"><span class="" style="font-weight: normal;">CARMO</span></span></div><div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface"><span class="" style="font-weight: normal;">Nee Soon Medical Centre</span></span></div></div><div class="pt-6 border-t border-surface-container"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span><p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p></div></div></td>
 </tr>
-
 <tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
 <td class="py-4 px-4">
 <div class="flex flex-col">
@@ -455,17 +459,13 @@
 </td><td class="py-4 px-4"><div class="flex flex-col"><span class="">10 Jan 2023</span></div></td>
 <td class="py-4 px-4">Cat A - OCS / SCS</td>
 <td class="py-4 px-4">
-<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Unfit</span>
+<span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider text-on-surface-variant">Unfit</span>
 </td>
-
-<td class="py-4 px-4"><span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Inactive</span></td><td class="py-4 text-right px-4">
+<td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Inactive</span></td><td class="py-4 text-right px-4">
 <div class="flex justify-end gap-3">
-<a onclick="toggleFFIRow(this);return false;" class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+<a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
 </div>
 </td>
-</tr>
-<tr class="ffi-detail-row" style="display:none">
-<td class="px-4 pb-4 pt-0" colspan="6"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-0 shadow-sm"><p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Cat A – OCS / SCS</p><p class="font-body-sm text-body-sm text-on-surface-variant">Serviceman assessed as unfit. FFI expired 10 Jan 2023. No further action required.</p></div></td>
 </tr>
 </tbody>
 </table>
@@ -481,7 +481,7 @@
 
 </main>
 
-<!-- ============= SCREEN 2 : FFI CREATE NEW (2+3+4 merged) ============= -->
+<!-- ============= SCREEN 2: FFI CREATE NEW ============= -->
 <main id="screen-ffi-create" class="screen bg-surface-container-low">
 
 <div class="flex-1 p-4">
@@ -492,7 +492,7 @@
 <!-- Primary Identity Section -->
 <div class="flex flex-col gap-3">
 <div class="flex items-center gap-4 flex-wrap">
-<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<h2 class="text-4xl font-black tracking-tight text-white">Tan Ah Teck</h2>
 <div class="flex gap-2">
 </div>
 </div>
@@ -501,7 +501,8 @@
 <div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
-<div class="flex items-center gap-2 font-semibold">
+<div class="flex items-center gap-2 font-semibold ml-2">
+
                                 S1234567A
                             </div>
 </div>
@@ -509,6 +510,7 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 Male
                             </div>
 </div>
@@ -516,6 +518,7 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 26
                             </div>
 </div>
@@ -523,29 +526,43 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 08-Sep-1997
                             </div>
 </div>
-<!-- Column 5: Type of Service -->
+<!-- Service History Toggle Section -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE TYPE</span>
 <div class="flex items-center gap-2 font-semibold">
+        
         NSF
     </div>
+</div><div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">RANK</span>
+<div class="flex items-center gap-2 font-semibold">
+    CPT
+  </div>
 </div>
 <!-- Column 6: Unit -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
 <div class="flex items-center gap-2 font-semibold">
+        
         3 SIR
     </div>
 </div>
 <!-- Column 7: Vocation -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">VOCATION</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 Infantry Specialist
                             </div>
+</div><!-- Column 8: Rank -->
+<!-- Column 9: Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE</span>
+<div class="flex items-center gap-2 font-semibold bg-secondary text-white px-2 py-0.5 w-fit rounded-lg">Army</div>
 </div></div>
 </div>
 </div>
@@ -635,16 +652,122 @@
 <!-- Facility and Type Section -->
 <!-- Disagree Interaction Section -->
 <!-- Outcome Selection Container -->
-<div class="space-y-3" id="outcome-selection-container"><label class="block font-label-caps text-slate-500 mb-4 tracking-widest">SELECT OUTCOME <span class="text-error">*</span></label><div class="grid grid-cols-1 md:grid-cols-4 gap-4"><!-- Fit Card --><label class="cursor-pointer group" for="outcome-fit"><input class="hidden peer" id="outcome-fit" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-primary peer-checked:bg-primary/5 hover:border-primary/30"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">check_circle</span></div><div id="ring-fit" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-fit" class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Fit</span><p class="text-[12px] text-slate-500 leading-tight">Meets all clinical requirements</p><div class="mt-2"><span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-tighter border border-emerald-100"><span class="material-symbols-outlined text-[12px]">auto_awesome</span> CDS SUGGESTED</span></div></div></div></label><!-- Unfit Card --><label class="cursor-pointer group" for="outcome-unfit"><input class="hidden peer" id="outcome-unfit" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-error peer-checked:bg-red-50/50 hover:border-error/30"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-error"><span class="material-symbols-outlined">cancel</span></div><div id="ring-unfit" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-unfit" class="w-2.5 h-2.5 rounded-full bg-error opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Unfit</span><p class="text-[12px] text-slate-500 leading-tight">Does not meet requirements</p></div></div></label><!-- Request Waiver Card --><label class="cursor-pointer group" for="outcome-waiver"><input class="hidden peer" id="outcome-waiver" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-primary peer-checked:bg-primary/5 hover:border-primary/30"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-primary"><span class="material-symbols-outlined">assignment_late</span></div><div id="ring-waiver" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-waiver" class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Request Waiver</span><p class="text-[12px] text-slate-500 leading-tight">Submit for Higher Authority Review</p></div></div></label><!-- Pending Card --><label class="cursor-pointer group" for="outcome-pending"><input class="hidden peer" id="outcome-pending" name="outcome" type="radio"/><div class="h-full flex flex-col p-5 border-2 rounded-xl transition-all border-outline-variant peer-checked:border-slate-600 peer-checked:bg-slate-50 hover:border-slate-400"><div class="flex items-start justify-between mb-3"><div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600"><span class="material-symbols-outlined">schedule</span></div><div id="ring-pending" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors"><div id="dot-pending" class="w-2.5 h-2.5 rounded-full bg-slate-600 opacity-0 transition-opacity"></div></div></div><div class="flex flex-col gap-1"><span class="text-body-md font-bold text-slate-900">Pending</span><p class="text-[12px] text-slate-500 leading-tight">Awaiting further investigation</p></div></div></label></div></div>
+<div class="space-y-3" id="outcome-selection-container"><label class="block font-label-caps text-slate-500 mb-4 tracking-widest">SELECT OUTCOME <span class="text-error">*</span></label>
+<input class="hidden" id="outcome-fit" name="outcome" type="radio" checked="checked">
+<input class="hidden" id="outcome-unfit" name="outcome" type="radio">
+<input class="hidden" id="outcome-waiver" name="outcome" type="radio">
+<input class="hidden" id="outcome-pending" name="outcome" type="radio">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch"><label class="cursor-pointer group flex flex-col" for="outcome-fit">
+<div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="fit-box">
+<div class="flex flex-col h-full">
+<div class="flex items-center justify-between mb-4">
+<div class="w-6 h-6 rounded-full border-2 border-on-secondary-container flex items-center justify-center transition-colors" id="fit-radio">
+<div class="w-2 h-2 rounded-full bg-on-secondary-container opacity-0"></div>
+</div><span class="status-badge text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px] ml-auto">CDS SUGGESTED</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="text-lg font-bold text-slate-900">Fit</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed">Meets all clinical requirements</p>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group flex flex-col" for="outcome-unfit">
+<div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="unfit-box">
+<div class="flex flex-col h-full">
+<div class="mb-4">
+<div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-error" id="unfit-radio">
+<div class="w-2 h-2 rounded-full bg-error opacity-0"></div>
+</div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-error">cancel</span>
+<span class="text-lg font-bold text-slate-900">Unfit</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed">Does not meet requirements</p>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group flex flex-col" for="outcome-waiver">
+<div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="waiver-box">
+<div class="flex flex-col h-full">
+<div class="mb-4">
+<div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors" id="waiver-radio"><div class="w-2 h-2 rounded-full bg-primary opacity-0"></div></div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary">assignment_late</span>
+<span class="text-lg font-bold text-slate-900">Request Waiver</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed">Submit for higher review</p>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group flex flex-col" for="outcome-pending"><div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant group-has-[:checked]:border-slate-600 group-has-[:checked]:bg-slate-50 hover:bg-slate-50" id="pending-box"><div class="flex flex-col h-full"><div class="mb-4"><div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-slate-600" id="pending-radio"><div class="w-2 h-2 rounded-full bg-slate-600 opacity-0 group-has-[:checked]:opacity-100"></div></div></div><div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-slate-600">schedule</span><span class="text-lg font-bold text-slate-900">Pending</span></div><p class="text-xs text-slate-600 leading-relaxed">Awaiting further results</p></div></div></label></div></div>
 <!-- Additional Notes / Remarks Section -->
 <!-- Conditional Justification Section (visible when outcome disagrees with CDS 'Fit') -->
 
-<div class="mt-8 space-y-6 p-6 bg-surface-container-low border border-outline-variant rounded-xl" id="waiver-details-section" style="display:none"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary text-[20px]">assignment_late</span><h3 class="text-label-caps font-bold text-on-surface-variant uppercase tracking-widest">Waiver Request Details</h3></div><div class="space-y-4"><div class="space-y-2"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Conditions Affecting Overseas Deployment <span class="text-error">*</span></label><textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Describe conditions..." rows="3"></textarea></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="space-y-2"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 1 <span class="text-error">*</span></label><input class="w-full border border-outline-variant rounded-xl px-5 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white shadow-sm" type="text"></div><div class="space-y-2"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 2 <span class="text-error">*</span></label><input class="w-full border border-outline-variant rounded-xl px-5 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white shadow-sm" type="text"></div></div><div class="space-y-3"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Proposed Outcome <span class="text-error">*</span></label><div class="flex flex-wrap gap-6"><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed-outcome" type="radio"><span class="text-body-md text-on-surface">Fit for deployment</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed-outcome" type="radio"><span class="text-body-md text-on-surface">Unfit for deployment</span></label></div></div><div class="space-y-3"><label class="block font-label-caps text-slate-600 uppercase tracking-widest">Raise Waiver To <span class="text-error">*</span></label><div class="flex flex-wrap gap-6"><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">CAMO</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">CARMO</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">CNMO</span></label><label class="flex items-center gap-2 cursor-pointer"><input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise-to" type="radio"><span class="text-body-md text-on-surface">Comd MMI</span></label></div></div></div></div>
-<div class="mt-8 space-y-6 p-6 bg-surface-container border border-outline-variant rounded-xl" id="pending-details-section" style="display:none"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary text-[20px]">pending_actions</span><h3 class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest">Pending Details</h3></div><div class="space-y-4"><div><label class="block font-label-caps text-slate-500 mb-3 tracking-widest">PENDING OUTCOME <span class="text-error">*</span></label><div class="flex flex-wrap gap-3"><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 1</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 2</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 3</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 4</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 5</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 6</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input id="pending-others-radio" class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Others</span></label></div></div><div id="pending-others-container" class="space-y-2" style="display:none"><label class="block font-label-caps text-slate-500 tracking-widest">OTHERS (PLEASE SPECIFY) <span class="text-error">*</span></label><textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Enter details for pending status..." rows="3"></textarea></div></div></div>
-<div id="justification-section" class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl" style="display:none">
-<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-4">Justification Remarks <span class="text-error">*</span></h3>
-<textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Provide clinical reasoning for this outcome..." rows="4"></textarea>
+<div class="mt-8 space-y-6 p-6 bg-surface-container-low border border-outline-variant rounded-xl" id="waiver-details-section" style="display:none">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">assignment_late</span>
+<h3 class="text-headline-section text-on-surface font-bold">Waiver Request Details</h3>
 </div>
+<div class="grid grid-cols-1 gap-6">
+<div class="space-y-2">
+<label class="block font-label-caps text-slate-600 uppercase tracking-widest">Conditions affecting overseas deployment <span class="text-error">*</span></label>
+<textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white" placeholder="Describe conditions..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 1 <span class="text-error">*</span></label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white" placeholder="Enter details..." type="text">
+</div>
+<div class="space-y-2">
+<label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 2 <span class="text-error">*</span></label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white" placeholder="Enter details..." type="text">
+</div>
+</div>
+<div class="space-y-3">
+<label class="block font-label-caps text-slate-600 uppercase tracking-widest">Proposed Outcome <span class="text-error">*</span></label>
+<div class="flex flex-wrap gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed_outcome" type="radio">
+<span class="text-body-md">Fit for deployment</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed_outcome" type="radio">
+<span class="text-body-md">Unfit for deployment</span>
+</label>
+</div>
+</div>
+<div class="space-y-3">
+<label class="block font-label-caps text-slate-600 uppercase tracking-widest">Raise Waiver to <span class="text-error">*</span></label>
+<div class="flex flex-wrap gap-6">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise_waiver_to" type="radio">
+<span class="text-body-md">CAMO</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise_waiver_to" type="radio">
+<span class="text-body-md">CARMO</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise_waiver_to" type="radio">
+<span class="text-body-md">CNMO</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="raise_waiver_to" type="radio">
+<span class="text-body-md">Comd MMI</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-6 p-6 bg-surface-container border border-outline-variant rounded-xl" id="pending-details-section" style="display:none"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary text-[20px]">pending_actions</span><h3 class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest">Pending Details</h3></div><div class="space-y-4"><div><label class="block font-label-caps text-slate-500 mb-3 tracking-widest">PENDING OUTCOME <span class="text-error">*</span></label><div class="flex flex-wrap gap-3"><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 1</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 2</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 3</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 4</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 5</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Sample 6</span></label><label class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"><input id="pending-others-radio" class="w-4 h-4 text-primary focus:ring-primary border-slate-300" name="pending-outcome" type="radio"><span class="text-sm font-medium text-slate-700">Others</span></label></div></div><div id="pending-others-container" style="display:none" class="space-y-2"><label class="block font-label-caps text-slate-500 tracking-widest">OTHERS (PLEASE SPECIFY) <span class="text-error">*</span></label><textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Enter details for pending status..." rows="3"></textarea></div></div></div>
+<div id="justification-section" class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl" style="display:none"><div class="space-y-3">
+<label class="block font-label-caps text-slate-600 uppercase tracking-widest">Justification Remarks <span class="text-error">*</span></label>
+<textarea class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-error/10 focus:border-error transition-all text-body-md font-body-md resize-none bg-white shadow-sm" placeholder="Provide detailed clinical reasoning for this decision, including specific patient factors or clinical findings that override the system recommendation..." rows="4"></textarea>
+</div></div>
 </form>
 </div>
 <!-- Guidance Note -->
@@ -655,12 +778,10 @@
 <div class="bg-white border-t border-outline-variant px-container-padding z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] py-2 px-6">
 <div class="max-w-7xl mx-auto flex items-center justify-end">
 <div class="flex gap-4">
-<button class="px-6 py-2.5 text-primary font-bold hover:bg-primary/5 rounded-lg transition-all" type="button">
-                Save Draft
-            </button>
+<button class="px-6 py-2.5 text-primary font-bold hover:bg-primary/5 rounded-lg transition-all" type="button">Save Draft</button>
 <button class="px-10 py-2.5 bg-primary text-white font-bold rounded-lg shadow-sm hover:bg-primary-container active:scale-[0.98] transition-all flex items-center gap-2" form="ffi-form" type="submit">
 <span class="material-symbols-outlined text-sm">check_circle</span>
-<span class="" id="submit-btn-text">Submit</span>
+<span id="submit-btn-text">Submit</span>
 </button>
 </div>
 </div>
@@ -668,7 +789,7 @@
 
 </main>
 
-<!-- ============= SCREEN 3 : MAINTAIN HA REVIEW ============= -->
+<!-- ============= SCREEN 3: MAINTAIN HA REVIEW ============= -->
 <main id="screen-ffi-ha" class="screen bg-background">
 
 <!-- Patient Context Header -->
@@ -677,7 +798,7 @@
 <!-- Primary Identity Section -->
 <div class="flex flex-col gap-3">
 <div class="flex items-center gap-4 flex-wrap">
-<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<h2 class="text-4xl font-black tracking-tight text-white">Tan Ah Teck</h2>
 <div class="flex gap-2">
 </div>
 </div>
@@ -686,7 +807,8 @@
 <div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
-<div class="flex items-center gap-2 font-semibold">
+<div class="flex items-center gap-2 font-semibold ml-2">
+
                                 S1234567A
                             </div>
 </div>
@@ -694,6 +816,7 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 Male
                             </div>
 </div>
@@ -701,6 +824,7 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 26
                             </div>
 </div>
@@ -708,29 +832,43 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 08-Sep-1997
                             </div>
 </div>
-<!-- Column 5: Type of Service -->
+<!-- Service History Toggle Section -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE TYPE</span>
 <div class="flex items-center gap-2 font-semibold">
+        
         NSF
     </div>
+</div><div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">RANK</span>
+<div class="flex items-center gap-2 font-semibold">
+    CPT
+  </div>
 </div>
 <!-- Column 6: Unit -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
 <div class="flex items-center gap-2 font-semibold">
+        
         3 SIR
     </div>
 </div>
 <!-- Column 7: Vocation -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">VOCATION</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 Infantry Specialist
                             </div>
+</div><!-- Column 8: Rank -->
+<!-- Column 9: Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE</span>
+<div class="flex items-center gap-2 font-semibold bg-secondary text-white px-2 py-0.5 w-fit rounded-lg">Army</div>
 </div></div>
 </div>
 </div>
@@ -741,9 +879,7 @@
 <span class="hover:underline cursor-pointer">FFI</span>
 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
 <span class="font-medium text-slate-900">Maintain Higher Authority Review</span>
-</nav><header class="mb-stack-gap-lg">
-<h1 class="font-headline-section text-headline-section text-on-surface">Maintain Higher Authority Review</h1>
-</header>
+</nav>
 <!-- Submission Details Section (Replacing old row) -->
 <div class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm">
 <div class="p-stack-gap-lg border-b border-surface-container bg-surface-container-low">
@@ -835,28 +971,28 @@
 
 </main>
 
-<!-- ============= SCREEN 4 : MAINTAIN VALIDITY ============= -->
+<!-- ============= SCREEN 4: MAINTAIN VALIDITY ============= -->
 <main id="screen-ffi-validity" class="screen bg-surface-container-low">
 
 <div class="flex-1 p-container-padding">
 <div class="max-w-7xl mx-auto flex flex-col gap-grid-gutter">
 <!-- Patient Context Header (Updated to match SCREEN_106) -->
-<div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5 mx-0 mt-0 mb-0">
+<div class="rounded-xl text-white flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-r from-primary-container to-primary shadow-md border border-white/10 p-5">
 <div class="flex flex-col gap-6">
 <!-- Primary Identity Section -->
 <div class="flex flex-col gap-3">
 <div class="flex items-center gap-4 flex-wrap">
-<h2 class="text-4xl font-black tracking-tight text-white">CPL (NS) Tan Ah Teck</h2>
+<h2 class="text-4xl font-black tracking-tight text-white">Tan Ah Teck</h2>
 <div class="flex gap-2">
 </div>
 </div>
 </div>
 <!-- Information Grid -->
-<div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm">
-<!-- Column 1: NRIC -->
+<div class="grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-10 gap-y-4 text-sm"><!-- Column 1: NRIC -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">NRIC</span>
-<div class="flex items-center gap-2 font-semibold">
+<div class="flex items-center gap-2 font-semibold ml-2">
+
                                 S1234567A
                             </div>
 </div>
@@ -864,6 +1000,7 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">GENDER</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 Male
                             </div>
 </div>
@@ -871,6 +1008,7 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">AGE</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 26
                             </div>
 </div>
@@ -878,31 +1016,44 @@
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">DOB</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 08-Sep-1997
                             </div>
 </div>
-<!-- Column 5: Type of Service -->
+<!-- Service History Toggle Section -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">TYPE OF SERVICE</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE TYPE</span>
 <div class="flex items-center gap-2 font-semibold">
+        
         NSF
     </div>
+</div><div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">RANK</span>
+<div class="flex items-center gap-2 font-semibold">
+    CPT
+  </div>
 </div>
 <!-- Column 6: Unit -->
 <div class="flex flex-col gap-1">
 <span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">UNIT</span>
 <div class="flex items-center gap-2 font-semibold">
+        
         3 SIR
     </div>
 </div>
 <!-- Column 7: Vocation -->
 <div class="flex flex-col gap-1">
-<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">Vocation</span>
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">VOCATION</span>
 <div class="flex items-center gap-2 font-semibold">
+
                                 Infantry Specialist
                             </div>
-</div>
-</div>
+</div><!-- Column 8: Rank -->
+<!-- Column 9: Service -->
+<div class="flex flex-col gap-1">
+<span class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest">SERVICE</span>
+<div class="flex items-center gap-2 font-semibold bg-secondary text-white px-2 py-0.5 w-fit rounded-lg">Army</div>
+</div></div>
 </div>
 </div>
 <!-- Page Header -->
@@ -1017,47 +1168,23 @@
 
 </main>
 
+</div><!-- end main wrapper -->
+
 <script>
-
-// ── MSI expand / collapse ─────────────────────────────────────────────────────
-function toggleSection(id, btn) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  var expanding = el.style.display === 'none';
-  el.style.display = expanding ? '' : 'none';
-  btn.dataset.state = expanding ? 'expanded' : 'collapsed';
-  var label = btn.querySelector('.btn-label');
-  var icon  = btn.querySelector('.material-symbols-outlined');
-  if (label) label.textContent = expanding ? btn.dataset.collapse : btn.dataset.expand;
-  if (icon)  icon.textContent  = expanding ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-}
-
-// ── FFI row expand / collapse ────────────────────────────────────────────────
-function toggleFFIRow(btn) {
-  var tr   = btn.closest('tr');
-  var next = tr ? tr.nextElementSibling : null;
-  if (!next) return;
-  var showing = next.style.display !== 'none';
-  next.style.display = showing ? 'none' : '';
-  btn.textContent = showing ? 'Expand' : 'Collapse';
-}
-
-// ── navigation ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════
 var SCREENS = ['msi','ffi-create','ffi-ha','ffi-validity'];
 var ffiOpen = true;
 
 function navigateTo(id) {
-  // hide all screens via inline style (bypasses any CSS/Tailwind conflicts)
-  SCREENS.forEach(function(s){
+  SCREENS.forEach(function(s) {
     var el = document.getElementById('screen-' + s);
     if (el) el.style.display = 'none';
   });
-  // show target
-  var target = document.getElementById('screen-' + id);
-  if (target) target.style.display = 'block';
-
-  updateSidebarActive(id);
-
+  var t = document.getElementById('screen-' + id);
+  if (t) t.style.display = 'block';
+  updateNavActive(id);
   if (id.startsWith('ffi-') && !ffiOpen) {
     ffiOpen = true;
     document.getElementById('ffi-submenu').style.display = '';
@@ -1065,19 +1192,19 @@ function navigateTo(id) {
   }
 }
 
-function updateSidebarActive(id) {
+function updateNavActive(id) {
   var navMsi = document.getElementById('nav-msi');
-  var base = 'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ';
-  ['nav-ffi-create','nav-ffi-ha','nav-ffi-validity'].forEach(function(fid){
+  var base = 'nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ';
+  ['nav-ffi-create','nav-ffi-ha','nav-ffi-validity'].forEach(function(fid) {
     var el = document.getElementById(fid);
-    if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer text-slate-500 hover:text-primary hover:bg-slate-50';
+    if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-slate-500 hover:text-primary hover:bg-slate-50';
   });
   if (id === 'msi') {
     navMsi.className = base + 'bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm';
   } else {
     navMsi.className = base + 'text-slate-500 hover:text-slate-900 hover:bg-slate-100';
     var el = document.getElementById('nav-' + id);
-    if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer text-primary font-bold bg-white border-r-4 border-primary shadow-sm';
+    if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-primary font-bold bg-white border-r-4 border-primary shadow-sm';
   }
 }
 
@@ -1087,96 +1214,128 @@ function toggleFFI() {
   document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
 }
 
-// ── FFI outcome form logic ────────────────────────────────────────────────────
-// ── Outcome card visual selection (ring + dot) ────────────────────────────────
-function updateOutcomeCards() {
-  var opts = [
-    { id: 'fit',     color: '#003d9b' },
-    { id: 'unfit',   color: '#ba1a1a' },
-    { id: 'waiver',  color: '#003d9b' },
-    { id: 'pending', color: '#475569' }
-  ];
-  opts.forEach(function(o) {
-    var radio = document.getElementById('outcome-' + o.id);
-    var ring  = document.getElementById('ring-'    + o.id);
-    var dot   = document.getElementById('dot-'     + o.id);
-    if (!radio || !ring || !dot) return;
-    if (radio.checked) {
-      ring.style.borderColor = o.color;
-      dot.style.opacity = '1';
-    } else {
-      ring.style.borderColor = '';
-      dot.style.opacity = '0';
-    }
+// ═══════════════════════════════════════════════════════════════
+// SIDEBAR COLLAPSE
+// ═══════════════════════════════════════════════════════════════
+document.getElementById('toggle-sidebar').addEventListener('click', function() {
+  var sidebar    = document.getElementById('sidebar');
+  var mainContent= document.getElementById('main-content');
+  var topHeader  = document.getElementById('top-header');
+  var toggleIcon = this.querySelector('span');
+  var isCollapsed = sidebar.classList.toggle('sidebar-collapsed');
+  mainContent.classList.toggle('content-expanded');
+  topHeader.classList.toggle('header-expanded');
+  // Keep fixed screens aligned with sidebar state
+  var newLeft = isCollapsed ? '5rem' : '256px';
+  SCREENS.forEach(function(s) {
+    var el = document.getElementById('screen-' + s);
+    if (el) el.style.left = newLeft;
   });
-}
+  toggleIcon.textContent = isCollapsed ? 'chevron_right' : 'chevron_left';
+});
 
-// ── "OTHERS (PLEASE SPECIFY)" visibility inside Pending Details ───────────────
-function updatePendingOthers() {
-  var othersRadio = document.getElementById('pending-others-radio');
-  var container   = document.getElementById('pending-others-container');
-  if (!othersRadio || !container) return;
-  container.style.display = othersRadio.checked ? '' : 'none';
-}
-
-// ── Main outcome logic ────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// FFI FORM LOGIC
+// ═══════════════════════════════════════════════════════════════
 function updateFFIOutcome() {
-  var fit     = document.getElementById('outcome-fit');
-  var unfit   = document.getElementById('outcome-unfit');
-  var waiver  = document.getElementById('outcome-waiver');
-  var pending = document.getElementById('outcome-pending');
-  if (!fit) return;
+  var fitEl    = document.getElementById('outcome-fit');
+  var unfitEl  = document.getElementById('outcome-unfit');
+  var waiverEl = document.getElementById('outcome-waiver');
+  var pendingEl= document.getElementById('outcome-pending');
+  if (!fitEl) return;
 
-  var waiverSec  = document.getElementById('waiver-details-section');
-  var pendingSec = document.getElementById('pending-details-section');
-  var justSec    = document.getElementById('justification-section');
-  var submitText = document.getElementById('submit-btn-text');
+  var fitC = fitEl.checked, unfitC = unfitEl&&unfitEl.checked,
+      waiverC = waiverEl&&waiverEl.checked, pendingC = pendingEl&&pendingEl.checked;
 
-  // Hide all conditional panels first
-  if (waiverSec)  waiverSec.style.display = 'none';
-  if (pendingSec) pendingSec.style.display = 'none';
-  if (justSec)    justSec.style.display   = 'none';
+  // ── Card visual states ─────────────────────────────────────────
+  var states = [
+    { id:'fit',     checked:fitC,     border:'border-on-secondary-container', bg:'bg-secondary-container/10', dot:'bg-on-secondary-container' },
+    { id:'unfit',   checked:unfitC,   border:'border-error', bg:'bg-error-container/20', dot:'bg-error' },
+    { id:'waiver',  checked:waiverC,  border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
+    { id:'pending', checked:pendingC, border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
+  ];
+  states.forEach(function(s) {
+    var box = document.getElementById(s.id+'-box');
+    var dot = document.querySelector('#'+s.id+'-radio > div');
+    if (box) box.className = 'flex items-center gap-3 p-3 border rounded-lg transition-all '+(s.checked ? s.border+' '+s.bg : 'border-outline-variant');
+    if (dot) dot.style.opacity = s.checked ? '1' : '0';
+  });
 
-  // Sync card dot/ring visuals
-  updateOutcomeCards();
+  // ── Conditional sections ──────────────────────────────────────
+  var wSec = document.getElementById('waiver-details-section');
+  var pSec = document.getElementById('pending-details-section');
+  var jSec = document.getElementById('justification-section');
+  var subTx= document.getElementById('submit-btn-text');
+  if (wSec)  wSec.style.display  = 'none';
+  if (pSec)  pSec.style.display  = 'none';
+  if (jSec)  jSec.style.display  = 'none';
 
-  if (fit.checked) {
-    if (submitText) submitText.textContent = 'Submit Consultation';
-
-  } else if (unfit && unfit.checked) {
-    // Show justification remarks (no CDS warning)
-    if (justSec)    justSec.style.display  = '';
-    if (submitText) submitText.textContent = 'Submit for Review';
-
-  } else if (waiver && waiver.checked) {
-    // Waiver details only — no CDS disagreement section
-    if (waiverSec)  waiverSec.style.display = '';
-    if (submitText) submitText.textContent  = 'Submit for Review';
-
-  } else if (pending && pending.checked) {
-    // Pending details only — no CDS disagreement section
-    if (pendingSec) pendingSec.style.display = '';
-    if (submitText) submitText.textContent   = 'Submit for Review';
-    // Also reset "Others" sub-section
+  if (fitC) {
+    if (subTx) subTx.textContent = 'Submit Consultation';
+  } else if (unfitC) {
+    if (jSec)  jSec.style.display  = '';
+    if (subTx) subTx.textContent = 'Submit for Review';
+  } else if (waiverC) {
+    if (wSec)  wSec.style.display  = '';
+    if (subTx) subTx.textContent = 'Submit for Review';
+  } else if (pendingC) {
+    if (pSec)  pSec.style.display  = '';
+    if (subTx) subTx.textContent = 'Submit for Review';
     updatePendingOthers();
   }
 }
 
-// ── init ──────────────────────────────────────────────────────────────────────
+function updatePendingOthers() {
+  var r = document.getElementById('pending-others-radio');
+  var c = document.getElementById('pending-others-container');
+  if (r && c) c.style.display = r.checked ? '' : 'none';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FFI OUTCOMES TABLE — row expand/collapse (MSI screen)
+// ═══════════════════════════════════════════════════════════════
+function toggleFFIRow(btn) {
+  var tr   = btn.closest('tr');
+  var next = tr ? tr.nextElementSibling : null;
+  if (!next) return;
+  var showing = next.style.display !== 'none';
+  next.style.display = showing ? 'none' : '';
+  btn.textContent = showing ? 'Expand' : 'Collapse';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
-  ['outcome-fit','outcome-unfit','outcome-waiver','outcome-pending'].forEach(function(id){
+  // Wire FFI outcome radios
+  ['outcome-fit','outcome-unfit','outcome-waiver','outcome-pending'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener('change', updateFFIOutcome);
   });
-  // Wire Pending-outcome radios for Others sub-section
-  document.querySelectorAll('[name="pending-outcome"]').forEach(function(r){
+  // Wire pending-outcome sub-radios
+  document.querySelectorAll('[name="pending-outcome"]').forEach(function(r) {
     r.addEventListener('change', updatePendingOthers);
   });
+
+  // Wire FFI table row toggles on MSI screen
+  var ffiTable = document.querySelector('#screen-msi .overflow-x-auto table tbody');
+  if (ffiTable) {
+    ffiTable.querySelectorAll('a').forEach(function(a) {
+      var txt = a.textContent.trim();
+      if (txt === 'Expand' || txt === 'Collapse') {
+        a.onclick = function(e) {
+          e.preventDefault();
+          toggleFFIRow(this);
+          return false;
+        };
+      }
+    });
+  }
+
   updateFFIOutcome();
   updatePendingOthers();
-  navigateTo('msi');   // show MSI Profile on load
+  navigateTo('msi');
 });
 </script>
-</div><!-- end main wrapper -->
 </body>
 </html>
