@@ -1403,10 +1403,10 @@
                 <table class="w-full text-left border-collapse">
                   <thead>
                     <tr class="border-b border-outline-variant bg-surface-container-lowest">
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PES Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PES / MGS</th>
                       <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
                       <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS / MGS Grid (10x10)</th>
                       <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
                       <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
                       <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
@@ -1416,55 +1416,8 @@
 
                     <!-- Active Row (Collapsible Details) -->
                     <tr class="border-b border-surface-container/50">
-                      <td class="py-4 px-4">A</td>
-                      <td class="py-4 px-4"><span class="">12 Oct 2023</span></td>
-                      <td class="py-4 px-4"><span class="">NA</span></td>
-                      <td class="py-4 px-4"><span class="">11111111</span></td>
-                      <td class="py-4 px-4">Permanent</td>
-                      <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
-                      <td class="py-4 text-right px-4">
-                        <div class="flex gap-3">
-                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Expand</a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="border-b border-surface-container/50 hidden">
-                      <td class="pt-6" colspan="10">
-                        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
-                          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
-                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
-                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
-                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
-                          </div>
-                          <div class="pt-6 border-t border-surface-container">
-                            <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
-                            <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!-- MGS -->
-                <table class="w-full text-left border-collapse mt-4">
-                  <thead>
-                    <tr class="border-b border-outline-variant bg-surface-container-lowest">
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">MGS Status</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
-                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="font-body-sm text-body-sm text-on-surface">
-
-                    <!-- Active Row (Collapsible Details) -->
-                    <tr class="border-b border-surface-container/50">
-                      <td class="py-4 px-4">123456789</td>
-                      <td class="py-4 px-4"><span class="">12 Nov 2026</span></td>
+                      <td class="py-4 px-4">FIT (Temp)</td>
+                      <td class="py-4 px-4"><span class="">08 Oct 2025</span></td>
                       <td class="py-4 px-4"><span class="">NA</span></td>
                       <td class="py-4 px-4"><span class="">1111111111</span></td>
                       <td class="py-4 px-4">Permanent</td>
@@ -1493,6 +1446,7 @@
                     </tr>
                   </tbody>
                 </table>
+                
               </div>
               <div id="history-subsection">
                 <div
@@ -1526,10 +1480,10 @@
                   <table class="w-full text-left border-collapse">
                     <thead>
                       <tr class="border-b border-outline-variant bg-surface-container-lowest">
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PES Status</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PES / MGS</th>
                         <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
                         <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS / MGS Grid (10x10)</th>
                         <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
                         <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
                         <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
@@ -1539,9 +1493,9 @@
 
                       <!-- Active Row (Collapsible Details) -->
                       <tr class="border-b border-surface-container/50">
-                        <td class="py-4 px-4">A</td>
+                        <td class="py-4 px-4">PES A</td>
                         <td class="py-4 px-4"><span class="">12 Oct 2023</span></td>
-                        <td class="py-4 px-4"><span class="">NA</span></td>
+                        <td class="py-4 px-4"><span class="">11 Oct 2024</span></td>
                         <td class="py-4 px-4"><span class="">11111111</span></td>
                         <td class="py-4 px-4">Permanent</td>
                         <td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Expired</span></td>
@@ -1569,53 +1523,7 @@
                       </tr>
                     </tbody>
                   </table>
-                <!-- MGS -->
-                  <table class="w-full text-left border-collapse mt-4">
-                    <thead>
-                      <tr class="border-b border-outline-variant bg-surface-container-lowest">
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">MGS Status</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
-                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody class="font-body-sm text-body-sm text-on-surface">
-
-                      <!-- Active Row (Collapsible Details) -->
-                      <tr class="border-b border-surface-container/50">
-                        <td class="py-4 px-4">123456789</td>
-                        <td class="py-4 px-4"><span class="">12 Nov 2026</span></td>
-                        <td class="py-4 px-4"><span class="">NA</span></td>
-                        <td class="py-4 px-4"><span class="">1111111111</span></td>
-                        <td class="py-4 px-4">Permanent</td>
-                        <td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Expired</span></td>
-                        <td class="py-4 text-right px-4">
-                          <div class="flex gap-3">
-                            <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Expand</a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr class="border-b border-surface-container/50 hidden">
-                        <td class="pt-6" colspan="10">
-                          <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
-                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
-                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
-                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
-                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
-                            </div>
-                            <div class="pt-6 border-t border-surface-container">
-                              <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
-                              <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                
                 </div>
               </div>
               </div>
@@ -1684,7 +1592,8 @@
                     Recommended MGS Score
                   </div>
                 </div>
-                <div
+                <div class="text-4xl font-bold text-primary text-center">FIT</div>
+                <!-- <div
                   class="flex justify-center gap-2 font-data-tabular text-data-tabular"
                 >
                   <div class="flex flex-col items-center">
@@ -1757,12 +1666,12 @@
                       >1</span
                     >
                   </div>
-                </div>
+                </div> -->
               </label>
             </div>
 
             <!-- PES GRADING -->
-            <div class="grid grid-cols-2 gap-8 mt-2">
+            <!-- <div class="grid grid-cols-2 gap-8 mt-2">
               <div class="relative">
                 <input
                   checked=""
@@ -1776,13 +1685,13 @@
                   for="pes-choice"
                 >
                   <div class="flex items-center gap-2 mb-1">
-                    <!-- <div
+                    <div
                       class="cds-radio-indicator w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center transition-all"
                     >
                       <div
                         class="cds-radio-inner w-1.5 h-1.5 rounded-full bg-transparent scale-0 transition-transform"
                       ></div>
-                    </div> -->
+                    </div>
                     <div
                       class="font-label-caps text-label-caps text-on-surface-variant uppercase"
                     >
@@ -1805,13 +1714,13 @@
                   for="pulheems-choice"
                 >
                   <div class="flex items-center justify-center gap-2 mb-3">
-                    <!-- <div
+                    <div
                       class="cds-radio-indicator w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center transition-all"
                     >
                       <div
                         class="cds-radio-inner w-1.5 h-1.5 rounded-full bg-transparent scale-0 transition-transform"
                       ></div>
-                    </div> -->
+                    </div>
                     <div
                       class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
                     >
@@ -1880,7 +1789,7 @@
                   </div>
                 </label>
               </div>
-            </div>
+            </div> -->
           </section>
           <div class="w-full mt-4">
             <div
@@ -1981,11 +1890,11 @@
                     <div class="flex flex-col">
                       <span
                         class="font-data-tabular text-data-tabular text-on-surface"
-                        >Propose Suggestion</span
+                        >Propose Alternative</span
                       >
                       <span
                         class="font-body-sm text-body-sm text-on-surface-variant"
-                        >Suggest changes to assessment</span
+                        >Alternative from CDS recommendation</span
                       >
                     </div>
                   </label>
@@ -2373,9 +2282,9 @@
                      </div>
                      <div class="flex items-center gap-2 mb-1">
                         <span class="material-symbols-outlined text-secondary">check_circle</span>
-                        <span class="text-lg font-bold text-slate-900">Approve</span>
+                        <span class="text-lg font-bold text-slate-900">FIT</span>
                      </div>
-                     <p class="text-xs text-slate-600 leading-relaxed">Agree with recommended results</p>
+                     <p class="text-xs text-slate-600 leading-relaxed">Agree with CDS Recommendation</p>
                   </div>
                </div>
             </label>
@@ -2391,7 +2300,7 @@
                         <span class="material-symbols-outlined text-primary">assignment_late</span>
                         <span class="text-lg font-bold text-slate-900">Propose Suggestion</span>
                      </div>
-                     <p class="text-xs text-slate-600 leading-relaxed">Suggest alternative review</p>
+                     <p class="text-xs text-slate-600 leading-relaxed">Alternative from CDS recommendation</p>
                   </div>
                </div>
             </label>
