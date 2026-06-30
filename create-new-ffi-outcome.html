@@ -1,0 +1,2128 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MSI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        #sidebar {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #main-content {
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #top-header {
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-collapsed {
+            width: 5rem !important;
+        }
+        .sidebar-collapsed .nav-text {
+          display: none;
+        }
+        .sidebar-collapsed .logo-container {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            justify-content: center;
+        }
+        .sidebar-collapsed .logo-image {
+            width: 2.5rem;
+            height: 2.5rem;
+            min-width: 2.5rem;
+        }
+        .sidebar-collapsed .nav-item {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .sidebar-collapsed .sidebar-toggle-btn span {
+            transform: rotate(180deg);
+        }
+        .sidebar-collapsed .logo-wrapper {
+            display: none;
+        }
+        .content-expanded {
+            margin-left: 5rem !important;
+        }
+        .header-expanded {
+            left: 5rem !important;
+        }
+
+        /* Vocation field expansion styles */
+        .vocation-container.expanded .vocation-text {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+        }
+        .vocation-container.expanded .chevron-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dae2ff",
+                        "surface-tint": "#0c56d0",
+                        "primary-container": "#2a56b4",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#b02300",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-fixed": "#ffdad2",
+                        "primary": "#003d9b",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#cadaff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#005235",
+                        "outline-variant": "#c3c6d6",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#1d3052",
+                        "on-background": "#041b3c",
+                        "inverse-primary": "#b2c5ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-secondary-container": "#00714b",
+                        "on-surface-variant": "#434654",
+                        "background": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#71dba6",
+                        "tertiary": "#851800",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#e8edff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#c4d2ff",
+                        "on-tertiary-fixed-variant": "#8b1a00",
+                        "tertiary-fixed-dim": "#ffb4a3",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary-container": "#8af5be",
+                        "on-surface": "#041b3c",
+                        "surface-container-high": "#e0e8ff",
+                        "outline": "#737685",
+                        "surface-container-highest": "#d7e2ff",
+                        "on-tertiary-fixed": "#3d0600",
+                        "on-primary-fixed": "#001848",
+                        "surface-variant": "#d7e2ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#8df7c1",
+                        "on-tertiary-container": "#ffc6b9",
+                        "secondary": "#006c47"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-gap-sm": "4px",
+                        "stack-gap-md": "8px",
+                        "stack-gap-lg": "16px",
+                        "grid-gutter": "16px",
+                        "baseline": "4px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-section": ["Inter"],
+                        "display-context": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "data-tabular": ["Inter"],
+                        "status-badge": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-section": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-context": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "status-badge": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden">
+<!-- SideNavBar -->
+    <aside
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider"
+      id="sidebar"
+    >
+      <div class="px-6 mb-8 logo-container flex items-center">
+        <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper"
+          >
+            <img
+              alt="MSI Logo"
+              class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+            />
+          </div>
+          <button
+            class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2"
+            id="toggle-sidebar"
+            title="Toggle Sidebar"
+          >
+            <span
+              class="material-symbols-outlined text-[24px] transition-transform duration-300"
+              >chevron_left</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] shrink-0"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="nav-text whitespace-nowrap">MSI Profile</span>
+        </a>
+        <div class="flex flex-col gap-1">
+        <div onclick="toggleFFI()" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer gap-3">
+            <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[20px] shrink-0">medical_services</span>
+            <span class="nav-text font-bold whitespace-nowrap">FFI</span>
+        </div>
+        <span id="ffi-chevron" class="material-symbols-outlined text-[18px] text-slate-400 nav-text">keyboard_arrow_down</span>
+        </div>
+        <div
+            id="ffi-submenu"
+            class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-ffi-create"
+              href="create-new-ffi-outcome.html"
+              class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE NEW</a
+            >
+            <a
+              id="nav-ffi-ha"
+              href="higher-authority-review.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MAINTAIN HIGHER AUTHORITY REVIEW</a
+            >
+            <a
+              id="nav-ffi-validity"
+              href="maintain-validity.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap" 
+              >MAINTAIN VALIDITY</a
+            >
+          </div>
+        </div>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >category</span
+          >
+          <span class="nav-text whitespace-nowrap"
+            >PES/ MGS Classification</span
+          >
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="medical-board.html"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >gavel</span
+          >
+          <span class="nav-text whitespace-nowrap">Medical Board Review</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >analytics</span
+          >
+          <span class="nav-text whitespace-nowrap">ACE</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >monitor_heart</span
+          >
+          <span class="nav-text whitespace-nowrap">PEMS</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >description</span
+          >
+          <span class="nav-text whitespace-nowrap">NUMC</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >list</span
+          >
+          <span class="nav-text whitespace-nowrap">Patient List</span>
+        </a>
+      </div>
+      <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >settings</span
+          >
+          <span class="nav-text whitespace-nowrap">Settings</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >logout</span
+          >
+          <span class="nav-text whitespace-nowrap">Logout</span>
+        </a>
+      </div>
+    </aside>
+<!-- Main Content Wrapper -->
+<div class="ml-64 h-full flex flex-col bg-background" id="main-content">
+<!-- TopNavBar from SCREEN_159 -->
+<header class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all" id="top-header">
+<div class="flex items-center gap-6 flex-1"><div class="flex"><div class="flex items-baseline gap-2 bg-surface-container-low px-3 py-1 rounded-lg">
+  <div class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-2 self-center" aria-hidden="true"></div><span class="text-on-surface font-bold text-[24px] leading-none tracking-tight">Tan Ah Teck</span>
+  <span class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-2">S1234567A</span>
+</div></div></div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+</button>
+<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2">
+<span class="material-symbols-outlined text-[22px]">help</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none">DR ryan goh</span>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
+
+    <!-- ALL IN ONE PATIENT BANNER -->
+        <template class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-3 px-6"
+          >
+            <div class="flex flex-col w-full gap-4">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                      Tan Ah Teck
+                    </h2> -->
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >NRIC</span
+                  >
+                  <div class="font-bold text-sm">S1234567A</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION</span
+                  >
+                  <div class="font-bold text-sm">Medically Fit for Service</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >Dental Status</span
+                  >
+                  <div class="font-bold text-sm">XXX</div>
+                </div>
+
+                <!-- P tag variation -->
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >P-Tag</span
+                  >
+                  <span
+                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                    style="background-color: #c41802"
+                    >P
+                  </span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >R2-Tag</span
+                  >
+                  <span
+                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                    style="background-color: #c41802"
+                    >R2
+                  </span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >R3-Tag</span
+                  >
+                  <span
+                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                    style="background-color: #c41802"
+                    >R3
+                  </span>
+                </div> -->
+              </div>
+              <div class="flex flex-col w-full gap-3 back">
+                <div
+                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                >
+                  <div class="flex flex-col w-24 gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >SERVICE</span
+                    >
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="bg-secondary text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        id="banner-service-tag"
+                        >Army</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-32 gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >SERVICE TYPE</span
+                    >
+                    <div class="font-bold text-sm" id="banner-service-type">
+                      NSman
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-20 gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >RANK</span
+                    >
+                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                  </div>
+                  <div class="flex flex-col w-32 gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >UNIT</span
+                    >
+                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                  </div>
+                  <div class="flex flex-col flex-1 gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >VOCATION</span
+                    >
+                    <div
+                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                      id="vocation-toggle"
+                    >
+                      <span class="vocation-text truncate" id="banner-vocation"
+                        >Combat Medic Specialist</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex gap-2"></div>
+                </div>
+                <div
+                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                >
+                  <div class="flex flex-col w-24 gap-1">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="bg-blue-700 text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        >Navy</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-32 gap-1">
+                    <div class="font-bold text-sm">DXO</div>
+                  </div>
+                  <div class="flex flex-col w-20 gap-1">
+                    <div class="font-bold text-sm">ME2</div>
+                  </div>
+                  <div class="flex flex-col w-32 gap-1">
+                    <div class="font-bold text-sm">RSS Supreme</div>
+                  </div>
+                  <div class="flex flex-col flex-1 gap-1">
+                    <div
+                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    >
+                      <span class="vocation-text truncate"
+                        >Naval Safety Officer</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex gap-2"></div>
+                </div>
+                <div
+                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                >
+                  <div class="flex flex-col w-24 gap-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-white/60 font-bold text-sm px-3 py-0.5"
+                        >-</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-32 gap-1">
+                    <div class="font-bold text-sm text-white">-</div>
+                  </div>
+                  <div class="flex flex-col w-20 gap-1">
+                    <div class="font-bold text-sm text-white">-</div>
+                  </div>
+                  <div class="flex flex-col w-32 gap-1">
+                    <div class="font-bold text-sm text-white">-</div>
+                  </div>
+                  <div class="flex flex-col flex-1 gap-1">
+                    <div
+                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    >
+                      <span class="vocation-text truncate text-white">-</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <!-- ALL IN ONE PATIENT BANNER -->
+
+          <!-- DROPDOWN PATIENT BANNER  -->
+          <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                      Tan Ah Teck
+                    </h2> -->
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >NRIC</span
+                  >
+                  <div class="font-bold text-sm">S1234567A</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION</span
+                  >
+                  <div class="font-bold text-sm">Medically Fit for Service</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">XXX</div>
+                </div>
+
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
+                  >
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span id="record-counter" class="text-xs text-white/70 font-medium">
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option class="text-on-surface bg-white" selected="selected" value="record1">
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
+                        Service Record 3
+                      </option> -->
+                    </select>
+                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
+                      expand_more
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- DROPDOWN PATIENT BANNER  -->
+
+          <section
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            id="ngemr-info-section"
+          >
+            <div
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none">sync_saved_locally</span>
+                NGEMR Information
+              </h2>
+            </div>
+            <div class="flex flex-col gap-8 p-6">
+              <!-- Information Subsection -->
+              <div id="ngemr-review-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    FFI Selection
+                  </h3>
+                </div>
+                <div class="flex flex-col gap-4 px-6">
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >FFI Type</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Overseas</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Category</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Sample 1</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Sub Category</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Sample 2</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Current and Historical FFI Outcome -->
+          <section
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            id="current-history-section"
+          >
+            <div
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none">clinical_notes</span>
+                Current and Historical FFI Outcome
+              </h2>
+            </div>
+            
+            <div class="flex flex-col gap-8 p-6">
+              <div class="overflow-x-auto">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Active
+                  </h3>
+                </div>
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-outline-variant bg-surface-container-lowest">
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">FFI Issue Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">FFI Expiry Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">FFI Type</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Outcome</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody class="font-body-sm text-body-sm text-on-surface">
+                    <!-- Active Row 1 -->
+                    <tr class="border-b border-surface-container/50">
+                      <td class="py-4 px-4"><span class="">15 May 2024</span></td>
+                      <td class="py-4 px-4"><span class="">15 May 2029</span></td>
+                      <td class="py-4 px-4">Cat B - Military Freefall</td>
+                      <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-error-container text-error">Pending</span></td>
+                      <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                      <td class="py-4 text-right px-4">
+                        <div class="flex gap-3">
+                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <!-- Active Row 2 -->
+                    <tr class="border-b border-surface-container/50">
+                      <td class="py-4 px-4"><span class="">14 Jan 2024</span></td>
+                      <td class="py-4 px-4">
+                        <span class="">14 Jan 2028</span>
+                        <span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 w-fit block">Expiring</span>
+                      </td>
+                      <td class="py-4 px-4">Cat A - OCS / SCS</td>
+                      <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Fit</span></td>
+                      <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                      <td class="py-4 text-right px-4">
+                        <div class="flex gap-3">
+                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <!-- Active Row 3 (Collapsible Details) -->
+                    <tr class="border-b border-surface-container/50">
+                      <td class="py-4 px-4"><span class="">12 Oct 2023</span></td>
+                      <td class="py-4 px-4"><span class="">12 Oct 2028</span></td>
+                      <td class="py-4 px-4">Cat A - OCS / SCS</td>
+                      <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Waiver granted</span></td>
+                      <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                      <td class="py-4 text-right px-4">
+                        <div class="flex gap-3">
+                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Collapse</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-surface-container/50">
+                      <td class="pt-6" colspan="6">
+                        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
+                          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
+                          </div>
+                          <div class="pt-6 border-t border-surface-container">
+                            <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
+                            <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div id="history-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t flex justify-between items-center cursor-pointer hover:bg-surface-container transition-colors"
+                  id="history-toggle-header"
+                  onclick="
+                    const content = document.getElementById(
+                      'history-table-container',
+                    );
+                    const icon = document.getElementById('history-chevron');
+                    content.classList.toggle('hidden');
+                    icon.style.transform = content.classList.contains('hidden')
+                      ? 'rotate(0deg)'
+                      : 'rotate(180deg)';
+                  "
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Inactive
+                  </h3>
+                  <span
+                    class="material-symbols-outlined text-outline text-[20px] transition-transform duration-200"
+                    id="history-chevron"
+                    style="transform: rotate(0deg)"
+                    >expand_more</span
+                  >
+                </div>
+                <div class="p-0 hidden" id="history-table-container">
+                  <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-outline-variant bg-surface-container-lowest">
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">FFI Issue Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">FFI Expiry Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">FFI Type</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Outcome</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody class="font-body-sm text-body-sm text-on-surface">
+                    <!-- INACTIVE ROW -->
+                    <tr class="inactive-row border-b border-surface-container/50">
+                      <td class="py-4 px-4"><span class="">10 Jan 2021</span></td>
+                      <td class="py-4 px-4"><span class="">10 Jan 2023</span></td>
+                      <td class="py-4 px-4">Cat A - OCS / SCS</td>
+                      <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider text-on-surface-variant">Unfit</span></td>
+                      <td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Inactive</span></td>
+                      <td class="py-4 text-right px-4">
+                        <div class="flex gap-3">
+                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- History Section -->
+          <section
+            class="border rounded-lg p-6 relative shadow-sm bg-green-50 border-green-300 mt-4"
+          >
+            <div class="absolute top-4 right-6">
+              <span
+                class="font-status-badge text-status-badge bg-green-100 text-green-800 px-3 py-1 rounded-full shadow-sm flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >auto_awesome</span
+                >
+                CDS Suggestion
+              </span>
+            </div>
+            <h2
+              class="font-headline-section text-headline-section text-on-surface m-0 mb-4 flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined text-[28px] leading-none"
+                >psychology</span
+              >
+              Clinical Decision Support Recommendation
+            </h2>
+            <div class="text-on-secondary-container/90">
+               <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Medical Requirements for XXX Course:</p>
+               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+                     <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+                     <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">PES Status</span>
+                        <span class="font-bold text-slate-900">PES X</span>
+                     </div>
+                  </div>
+                  <div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+                     <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+                     <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">Height</span>
+                        <span class="font-bold text-slate-900">XXX cm</span>
+                     </div>
+                  </div>
+                  <div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+                     <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+                     <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">Weight</span>
+                        <span class="font-bold text-slate-900">XXX kg</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+          </section>
+
+          <!-- Endorsement Decision Section -->
+          <div class="w-full mt-4">
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm flex flex-col overflow-hidden"
+            >
+              <div
+                class="bg-surface-container-low px-6 py-4 border-b border-outline-variant"
+              >
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[28px] leading-none">gavel</span>
+                  Select Decision
+                </h2>
+              </div>
+
+              <div class="flex flex-col p-4 ">
+                <div class="space-y-3" id="outcome-selection-container">
+         <!-- <label class="block font-label-caps text-slate-500 mb-4 tracking-widest">SELECT OUTCOME <span class="text-error">*</span></label> -->
+         <input checked="checked" class="hidden" id="outcome-fit" name="outcome" type="radio">
+         <input class="hidden" id="outcome-unfit" name="outcome" type="radio">
+         <input class="hidden" id="outcome-waiver" name="outcome" type="radio">
+         <input class="hidden" id="outcome-pending" name="outcome" type="radio">
+         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
+            <label class="cursor-pointer group flex flex-col" for="outcome-fit">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="fit-box">
+                  <div class="flex flex-col h-full">
+                     <div class="flex items-center justify-between mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-on-secondary-container flex items-center justify-center transition-colors" id="fit-radio">
+                           <div class="w-2 h-2 rounded-full bg-on-secondary-container opacity-0"></div>
+                        </div>
+                        <span class="status-badge text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px] ml-auto">CDS SUGGESTED</span>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-secondary">check_circle</span>
+                        <span class="text-lg font-bold text-slate-900">Fit</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Meets all clinical requirements</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-unfit">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="unfit-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-error" id="unfit-radio">
+                           <div class="w-2 h-2 rounded-full bg-error opacity-0"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-error">cancel</span>
+                        <span class="text-lg font-bold text-slate-900">Unfit</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Does not meet requirements</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-waiver">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-primary bg-primary/5" id="waiver-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-primary" id="waiver-radio">
+                           <div class="w-2 h-2 rounded-full bg-primary opacity-100"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-primary">assignment_late</span>
+                        <span class="text-lg font-bold text-slate-900">Request Waiver</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Submit for higher review</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-pending">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant group-has-[:checked]:border-slate-600 group-has-[:checked]:bg-slate-50 hover:bg-slate-50" id="pending-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-slate-600" id="pending-radio">
+                           <div class="w-2 h-2 rounded-full bg-slate-600 opacity-0 group-has-[:checked]:opacity-100"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-slate-600">schedule</span>
+                        <span class="text-lg font-bold text-slate-900">Pending</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Awaiting further results</p>
+                  </div>
+               </div>
+            </label>
+         </div>
+      </div>
+      <div class="mt-8 space-y-6 p-6 bg-surface-container-low border border-outline-variant rounded-xl" id="waiver-details-section">
+         <div class="flex items-center gap-2 mb-4">
+            <h3
+               class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest"
+               >
+               Waiver Request Details
+            </h3>
+         </div>
+         <div class="grid grid-cols-1 gap-6">
+            <div class="space-y-2">
+               <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Conditions affecting overseas deployment <span class="text-error">*</span></label>
+               <textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white" placeholder="Describe conditions..." rows="3"></textarea>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <div class="space-y-2">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 1 <span class="text-error">*</span></label>
+                  <input class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white" placeholder="Enter details..." type="text">
+               </div>
+               <div class="space-y-2">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 2 <span class="text-error">*</span></label>
+                  <input class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white" placeholder="Enter details..." type="text">
+               </div>
+            </div>
+            <div class="space-y-3">
+               <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Proposed Outcome <span class="text-error">*</span></label>
+               <div class="flex flex-wrap gap-4">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                  <input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed_outcome" type="radio">
+                  <span class="text-body-md">Fit for deployment</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                  <input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed_outcome" type="radio">
+                  <span class="text-body-md">Unfit for deployment</span>
+                  </label>
+               </div>
+            </div>
+            <div class="space-y-6">
+               <div class="space-y-3">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">
+                  <span class="text-error"><font color="#475569">Required to be vetted? </font>*</span>
+                  </label>
+                  <div class="flex items-center gap-6 text-body-md">
+                     <label class="flex items-center gap-2 cursor-pointer">
+                     <input type="radio" name="required-vetting" value="yes" class="w-4 height-4 text-primary border-slate-300 focus:ring-primary/20">
+                     <span class="text-slate-700">Yes</span>
+                     </label>
+                     <label class="flex items-center gap-2 cursor-pointer">
+                     <input type="radio" name="required-vetting" value="no" class="w-4 height-4 text-primary border-slate-300 focus:ring-primary/20">
+                     <span class="text-slate-700">No</span>
+                     </label>
+                  </div>
+               </div>
+               <div id="vetted-by-section" class="space-y-3 relative hidden">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">
+                  <span class="text-error"><font color="#475569">TO BE VETTED BY </font>*</span>
+                  </label>
+                  <div class="flex flex-row gap-4">
+                     <div class="relative md:w-1/2">
+                        <select id="appointment-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none">
+                           <option value="" disabled="" selected="">Select...</option>
+                           <option value="Appointment 1">Appointment 1, Air Force</option>
+                           <option value="Appointment 2">Appointment 2, Army</option>
+                           <option value="Appointment 3">Appointment 3, Navy</option>
+                        </select>
+                     </div>
+                     <div class="flex items-center gap-4 w-fit">
+                        <div id="suggestion-badge" class="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full border border-slate-200 shadow-sm transition-all duration-200">
+                           <div class="flex items-center gap-1.5 text-sm">
+                              <span class="font-semibold text-slate-500" id="suggestion-label">SUGGESTION:</span>
+                              <span id="suggestion-text" class="text-slate-400 transition-colors duration-200">Appointment 2, Army</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="space-y-3 relative">
+               <label class="block font-label-caps text-slate-600 uppercase tracking-widest"><span class="text-error"><font color="#475569">TO BE APPROVED BY </font>*</span></label>
+               <div class="flex flex-row gap-4">
+                  <div class="relative md:w-1/2">
+                     <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none">
+                        <option value="" disabled="" selected="">Select...</option>
+                        <option value="CAMO">CAMO</option>
+                        <option value="CARMO">CARMO</option>
+                        <option value="CNMO">CNMO</option>
+                        <option value="Comd MMI">Comd MMI</option>
+                     </select>
+                  </div>
+                  <div class="flex items-center gap-4 w-fit">
+                     <div id="approved-badge" class="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full border border-slate-200 shadow-sm transition-all duration-200">
+                        <div class="flex items-center gap-1.5 text-sm">
+                           <span id="approved-label" class="font-semibold text-slate-500">SUGGESTION:</span>
+                           <span id="approved-text" class="text-slate-400 transition-colors duration-200">CARMO</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div
+         class="mt-8 space-y-6 p-6 bg-surface-container-low border border-outline-variant rounded-xl"
+         id="pending-details-section"
+         style="display: none"
+         >
+         <div class="flex items-center gap-2 mb-2">
+            <h3
+               class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest"
+               >
+               Pending Details
+            </h3>
+         </div>
+         <div class="space-y-4">
+            <div>
+               <label
+                  class="block font-label-caps text-slate-500 mb-3 tracking-widest"
+                  >PENDING OUTCOME
+               <span class="text-error">*</span></label
+                  >
+               <div class="flex flex-wrap gap-2">
+                  <label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 1</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 2</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 3</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 4</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 5</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 6</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     id="pending-others-radio"
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Others</span
+                     ></label
+                     >
+               </div>
+            </div>
+            <div
+               id="pending-others-container"
+               style="display: none"
+               class="space-y-2"
+               >
+               <label
+                  class="block font-label-caps text-slate-500 tracking-widest"
+                  >OTHERS (PLEASE SPECIFY)
+               <span class="text-error">*</span></label
+                  ><textarea
+                  class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm"
+                  placeholder="Enter details for pending status..."
+                  rows="3"
+                  ></textarea>
+            </div>
+         </div>
+      </div>
+      <div
+         id="justification-section"
+         class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl"
+         style="display: none"
+         >
+         <div class="flex items-center gap-2 mb-2">
+            <h3
+               class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest mb-4"
+               >
+               Rejection Details
+            </h3>
+         </div>
+         <div class="space-y-3">
+            <label
+               class="block font-label-caps text-slate-600 uppercase tracking-widest"
+               >Justification Remarks
+            <span class="text-error">*</span></label>
+            <textarea
+               class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-error/10 focus:border-error transition-all text-body-md font-body-md resize-none bg-white shadow-sm"
+               placeholder="Provide detailed clinical reasoning for this decision, including specific patient factors or clinical findings that override the system recommendation..."
+               rows="4"
+               ></textarea>
+         </div>
+      </div>
+              </div>
+              
+              <div
+                class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-end items-center gap-3"
+              >
+                <button
+                  class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm"
+                >
+                  Save Draft
+                </button>
+                <a href="submitted-form.html">
+                  <button
+                    class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
+                  >
+                    Submit
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+
+<!-- Navigation Breadcrumb -->
+<!-- <div class="flex items-center gap-2 text-sm text-slate-500">
+<span class="material-symbols-outlined text-sm">home</span>
+<span class="">FFI</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-semibold">Create New</span>
+</div> -->
+<!-- Focused Entry Card -->
+<!-- <div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden mb-12"> -->
+<!-- Card Header -->
+<!-- <div class="bg-slate-50 px-8 border-b border-outline-variant flex justify-between items-center py-3">
+<div>
+<h2 class="text-xl font-bold text-slate-900 tracking-tight">New FFI Outcome Form</h2>
+<p class="text-sm text-slate-500 mt-1">Please complete all required clinical assessment fields below.</p>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded uppercase tracking-widest">In Progress</span>
+</div>
+</div> -->
+<!-- Form Content -->
+<template class="p-4">
+   <form class="space-y-4" id="ffi-form">
+      <!-- CDS Recommendation Box -->
+      <div class="bg-surface-container border border-outline-variant rounded-xl p-6 mb-8">
+         <div class="flex items-center gap-2 mb-6">
+            <span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+            <h3 class="text-label-caps font-bold text-on-surface-variant uppercase tracking-widest">FFI Selection Details</h3>
+         </div>
+         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-1">
+               <span class="text-label-caps text-slate-500 uppercase">FFI Type</span>
+               <div class="text-body-md font-semibold text-on-surface">Overseas</div>
+            </div>
+            <div class="flex flex-col gap-1 md:border-l md:border-outline-variant md:pl-8">
+               <span class="text-label-caps text-slate-500 uppercase">Category</span>
+               <div class="text-body-md font-semibold text-on-surface">Sample 1</div>
+            </div>
+            <div class="flex flex-col gap-1 md:border-l md:border-outline-variant md:pl-8">
+               <span class="text-label-caps text-slate-500 uppercase">Sub-Category</span>
+               <div class="text-body-md font-semibold text-on-surface">Sample 1</div>
+            </div>
+         </div>
+      </div>
+      <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-6 flex items-start gap-6 mb-8 shadow-sm">
+         <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-secondary shrink-0 shadow-sm">
+            <span class="material-symbols-outlined text-[28px]">psychology</span>
+         </div>
+         <div class="flex-1">
+            <div class="flex items-center justify-between mb-4">
+               <h3 class="text-headline-section text-on-secondary-container flex items-center gap-2">
+                  Clinical Decision Support Recommendation: 
+                  <span class="bg-secondary-container text-on-secondary-container border border-secondary/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">FIT</span>
+               </h3>
+               <span class="status-badge text-emerald-700 bg-white px-3 py-1 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px]">CDS SUGGESTION</span>
+            </div>
+            <div class="text-on-secondary-container/90">
+               <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Medical Requirements for XXX Course:</p>
+               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+                     <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+                     <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">PES Status</span>
+                        <span class="font-bold text-slate-900">PES X</span>
+                     </div>
+                  </div>
+                  <div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+                     <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+                     <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">Height</span>
+                        <span class="font-bold text-slate-900">XXX cm</span>
+                     </div>
+                  </div>
+                  <div class="flex items-center gap-3 bg-white/60 p-3 rounded-lg border border-emerald-100/50">
+                     <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+                     <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase leading-none mb-1">Weight</span>
+                        <span class="font-bold text-slate-900">XXX kg</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Outcome Selection Container -->
+      <div class="space-y-3" id="outcome-selection-container">
+         <label class="block font-label-caps text-slate-500 mb-4 tracking-widest">SELECT OUTCOME <span class="text-error">*</span></label>
+         <input checked="checked" class="hidden" id="outcome-fit" name="outcome" type="radio">
+         <input class="hidden" id="outcome-unfit" name="outcome" type="radio">
+         <input class="hidden" id="outcome-waiver" name="outcome" type="radio">
+         <input class="hidden" id="outcome-pending" name="outcome" type="radio">
+         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
+            <label class="cursor-pointer group flex flex-col" for="outcome-fit">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="fit-box">
+                  <div class="flex flex-col h-full">
+                     <div class="flex items-center justify-between mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-on-secondary-container flex items-center justify-center transition-colors" id="fit-radio">
+                           <div class="w-2 h-2 rounded-full bg-on-secondary-container opacity-0"></div>
+                        </div>
+                        <span class="status-badge text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px] ml-auto">CDS SUGGESTED</span>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-secondary">check_circle</span>
+                        <span class="text-lg font-bold text-slate-900">Fit</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Meets all clinical requirements</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-unfit">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="unfit-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-error" id="unfit-radio">
+                           <div class="w-2 h-2 rounded-full bg-error opacity-0"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-error">cancel</span>
+                        <span class="text-lg font-bold text-slate-900">Unfit</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Does not meet requirements</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-waiver">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-primary bg-primary/5" id="waiver-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-primary" id="waiver-radio">
+                           <div class="w-2 h-2 rounded-full bg-primary opacity-100"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-primary">assignment_late</span>
+                        <span class="text-lg font-bold text-slate-900">Request Waiver</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Submit for higher review</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-pending">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant group-has-[:checked]:border-slate-600 group-has-[:checked]:bg-slate-50 hover:bg-slate-50" id="pending-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-slate-600" id="pending-radio">
+                           <div class="w-2 h-2 rounded-full bg-slate-600 opacity-0 group-has-[:checked]:opacity-100"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-slate-600">schedule</span>
+                        <span class="text-lg font-bold text-slate-900">Pending</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Awaiting further results</p>
+                  </div>
+               </div>
+            </label>
+         </div>
+      </div>
+      <div class="mt-8 space-y-6 p-6 bg-surface-container-low border border-outline-variant rounded-xl" id="waiver-details-section">
+         <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary">assignment_late</span>
+            <h3 class="text-headline-section text-on-surface font-bold">Waiver Request Details</h3>
+         </div>
+         <div class="grid grid-cols-1 gap-6">
+            <div class="space-y-2">
+               <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Conditions affecting overseas deployment <span class="text-error">*</span></label>
+               <textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white" placeholder="Describe conditions..." rows="3"></textarea>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <div class="space-y-2">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 1 <span class="text-error">*</span></label>
+                  <input class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white" placeholder="Enter details..." type="text">
+               </div>
+               <div class="space-y-2">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Sample 2 <span class="text-error">*</span></label>
+                  <input class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white" placeholder="Enter details..." type="text">
+               </div>
+            </div>
+            <div class="space-y-3">
+               <label class="block font-label-caps text-slate-600 uppercase tracking-widest">Proposed Outcome <span class="text-error">*</span></label>
+               <div class="flex flex-wrap gap-4">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                  <input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed_outcome" type="radio">
+                  <span class="text-body-md">Fit for deployment</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                  <input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="proposed_outcome" type="radio">
+                  <span class="text-body-md">Unfit for deployment</span>
+                  </label>
+               </div>
+            </div>
+            <div class="space-y-6">
+               <div class="space-y-3">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">
+                  <span class="text-error"><font color="#475569">Required to be vetted?</font>*</span>
+                  </label>
+                  <div class="flex items-center gap-6 text-body-md">
+                     <label class="flex items-center gap-2 cursor-pointer">
+                     <input type="radio" name="required-vetting" value="yes" class="w-4 height-4 text-primary border-slate-300 focus:ring-primary/20">
+                     <span class="text-slate-700">Yes</span>
+                     </label>
+                     <label class="flex items-center gap-2 cursor-pointer">
+                     <input type="radio" name="required-vetting" value="no" class="w-4 height-4 text-primary border-slate-300 focus:ring-primary/20">
+                     <span class="text-slate-700">No</span>
+                     </label>
+                  </div>
+               </div>
+               <div id="vetted-by-section" class="space-y-3 relative hidden">
+                  <label class="block font-label-caps text-slate-600 uppercase tracking-widest">
+                  <span class="text-error"><font color="#475569">VETTED BY</font>*</span>
+                  </label>
+                  <div class="flex flex-row gap-4">
+                     <div class="relative md:w-1/2">
+                        <select id="appointment-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none">
+                           <option value="" disabled="" selected="">Select...</option>
+                           <option value="Appointment 1">Appointment 1, Air Force</option>
+                           <option value="Appointment 2">Appointment 2, Army</option>
+                           <option value="Appointment 3">Appointment 3, Navy</option>
+                        </select>
+                     </div>
+                     <div class="flex items-center gap-4 w-fit">
+                        <div id="suggestion-badge" class="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full border border-slate-200 shadow-sm transition-all duration-200">
+                           <div class="flex items-center gap-1.5 text-sm">
+                              <span class="font-semibold text-slate-500" id="suggestion-label">SUGGESTION:</span>
+                              <span id="suggestion-text" class="text-slate-400 transition-colors duration-200">Appointment 2, Army</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="space-y-3 relative">
+               <label class="block font-label-caps text-slate-600 uppercase tracking-widest"><span class="text-error"><font color="#475569">APPROVED BY</font>*</span></label>
+               <div class="flex flex-row gap-4">
+                  <div class="relative md:w-1/2">
+                     <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none">
+                        <option value="" disabled="" selected="">Select...</option>
+                        <option value="CAMO">CAMO</option>
+                        <option value="CARMO">CARMO</option>
+                        <option value="CNMO">CNMO</option>
+                        <option value="Comd MMI">Comd MMI</option>
+                     </select>
+                  </div>
+                  <div class="flex items-center gap-4 w-fit">
+                     <div id="approved-badge" class="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full border border-slate-200 shadow-sm transition-all duration-200">
+                        <div class="flex items-center gap-1.5 text-sm">
+                           <span id="approved-label" class="font-semibold text-slate-500">SUGGESTION:</span>
+                           <span id="approved-text" class="text-slate-400 transition-colors duration-200">CARMO</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div
+         class="mt-8 space-y-6 p-6 bg-surface-container border border-outline-variant rounded-xl"
+         id="pending-details-section"
+         style="display: none"
+         >
+         <div class="flex items-center gap-2 mb-2">
+            <span
+               class="material-symbols-outlined text-primary text-[20px]"
+               >pending_actions</span
+               >
+            <h3
+               class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest"
+               >
+               Pending Details
+            </h3>
+         </div>
+         <div class="space-y-4">
+            <div>
+               <label
+                  class="block font-label-caps text-slate-500 mb-3 tracking-widest"
+                  >PENDING OUTCOME
+               <span class="text-error">*</span></label
+                  >
+               <div class="flex flex-wrap gap-3">
+                  <label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 1</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 2</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 3</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 4</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 5</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Sample 6</span
+                     ></label
+                     ><label
+                     class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant bg-white cursor-pointer hover:bg-slate-50 transition-colors"
+                     ><input
+                     id="pending-others-radio"
+                     class="w-4 h-4 text-primary focus:ring-primary border-slate-300"
+                     name="pending-outcome"
+                     type="radio"
+                     /><span class="text-sm font-medium text-slate-700"
+                     >Others</span
+                     ></label
+                     >
+               </div>
+            </div>
+            <div
+               id="pending-others-container"
+               style="display: none"
+               class="space-y-2"
+               >
+               <label
+                  class="block font-label-caps text-slate-500 tracking-widest"
+                  >OTHERS (PLEASE SPECIFY)
+               <span class="text-error">*</span></label
+                  ><textarea
+                  class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white shadow-sm"
+                  placeholder="Enter details for pending status..."
+                  rows="3"
+                  ></textarea>
+            </div>
+         </div>
+      </div>
+      <div
+         id="justification-section"
+         class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl"
+         style="display: none"
+         >
+         <div class="space-y-3">
+            <label
+               class="block font-label-caps text-slate-600 uppercase tracking-widest"
+               >Justification Remarks
+            <span class="text-error">*</span></label>
+            <textarea
+               class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-error/10 focus:border-error transition-all text-body-md font-body-md resize-none bg-white shadow-sm"
+               placeholder="Provide detailed clinical reasoning for this decision, including specific patient factors or clinical findings that override the system recommendation..."
+               rows="4"
+               ></textarea>
+         </div>
+      </div>
+   </form>
+</template>
+</div>
+  </div>
+</div>
+<!-- Sticky Footer -->
+<!-- <div class="fixed bottom-0 left-0 w-full bg-white border-t border-outline-variant px-container-padding z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] py-2 px-6">
+    <div class="max-w-7xl mx-auto flex items-center justify-end">
+        <div class="flex gap-4">
+            <button class="px-6 py-2.5 text-primary font-bold hover:bg-primary/5 rounded-lg transition-all" type="button">
+                Save Draft
+            </button>
+            <a class="px-10 py-2.5 bg-primary text-white font-bold rounded-lg shadow-sm hover:bg-primary-container active:scale-[0.98] transition-all flex items-center gap-2" form="ffi-form" type="submit"
+            href="submitted-form.html">
+              <span class="material-symbols-outlined text-sm">check_circle</span>
+              <span id="submit-btn-text">Submit</span>
+            </a>
+        </div>
+    </div>
+</div> -->
+</main>
+</div>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+var SCREENS = ['msi','ffi-create','ffi-ha','ffi-validity'];
+var ffiOpen = true;
+
+function navigateTo(id) {
+  SCREENS.forEach(function(s) {
+    var el = document.getElementById('screen-' + s);
+    if (el) el.style.display = 'none';
+  });
+  var t = document.getElementById('screen-' + id);
+  if (t) t.style.display = 'block';
+  updateNavActive(id);
+  if (id.startsWith('ffi-') && !ffiOpen) {
+    ffiOpen = true;
+    document.getElementById('ffi-submenu').style.display = '';
+    document.getElementById('ffi-chevron').textContent = 'keyboard_arrow_up';
+  }
+}
+
+// function updateNavActive(id) {
+//   var navMsi = document.getElementById('nav-msi');
+//   var base = 'nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ';
+//   ['nav-ffi-create','nav-ffi-ha','nav-ffi-validity'].forEach(function(fid) {
+//     var el = document.getElementById(fid);
+//     if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-slate-500 hover:text-primary hover:bg-slate-50';
+//   });
+//   if (id === 'msi') {
+//     navMsi.className = base + 'bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm';
+//   } else {
+//     navMsi.className = base + 'text-slate-500 hover:text-slate-900 hover:bg-slate-100';
+//     var el = document.getElementById('nav-' + id);
+//     if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-primary font-bold bg-white border-r-4 border-primary shadow-sm';
+//   }
+// }
+
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById('service-record-select');
+      const counterEl = document.getElementById('record-counter');
+
+      selectEl.addEventListener('change', (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
+        
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
+
+function toggleFFI() {
+  ffiOpen = !ffiOpen;
+  document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
+  document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SIDEBAR COLLAPSE
+// ═══════════════════════════════════════════════════════════════
+
+    // Sidebar toggle
+    document
+    .getElementById("toggle-sidebar")
+    .addEventListener("click", function () {
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("main-content");
+        const topHeader = document.getElementById("top-header");
+        const toggleIcon = this.querySelector("span");
+
+        const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+        mainContent.classList.toggle("content-expanded");
+        topHeader.classList.toggle("header-expanded");
+
+        if (isCollapsed) {
+        toggleIcon.textContent = "chevron_right";
+        } else {
+        toggleIcon.textContent = "chevron_left";
+        }
+    });
+
+// ═══════════════════════════════════════════════════════════════
+// FFI FORM LOGIC
+// ═══════════════════════════════════════════════════════════════
+function updateFFIOutcome() {
+  var fitEl    = document.getElementById('outcome-fit');
+  var unfitEl  = document.getElementById('outcome-unfit');
+  var waiverEl = document.getElementById('outcome-waiver');
+  var pendingEl= document.getElementById('outcome-pending');
+  if (!fitEl) return;
+
+  var fitC = fitEl.checked, unfitC = unfitEl&&unfitEl.checked,
+      waiverC = waiverEl&&waiverEl.checked, pendingC = pendingEl&&pendingEl.checked;
+
+  // ── Card visual states ─────────────────────────────────────────
+  var states = [
+    { id:'fit',     checked:fitC,     border:'border-on-secondary-container', bg:'bg-secondary-container/10', dot:'bg-on-secondary-container' },
+    { id:'unfit',   checked:unfitC,   border:'border-error', bg:'bg-error-container/20', dot:'bg-error' },
+    { id:'waiver',  checked:waiverC,  border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
+    { id:'pending', checked:pendingC, border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
+  ];
+  states.forEach(function(s) {
+    var box = document.getElementById(s.id+'-box');
+    var dot = document.querySelector('#'+s.id+'-radio > div');
+    if (box) box.className = 'flex items-center gap-3 p-3 border rounded-lg transition-all '+(s.checked ? s.border+' '+s.bg : 'border-outline-variant');
+    if (dot) dot.style.opacity = s.checked ? '1' : '0';
+  });
+
+  // ── Conditional sections ──────────────────────────────────────
+  var wSec = document.getElementById('waiver-details-section');
+  var pSec = document.getElementById('pending-details-section');
+  var jSec = document.getElementById('justification-section');
+  var subTx= document.getElementById('submit-btn-text');
+  if (wSec)  wSec.style.display  = 'none';
+  if (pSec)  pSec.style.display  = 'none';
+  if (jSec)  jSec.style.display  = 'none';
+
+  if (fitC) {
+    if (subTx) subTx.textContent = 'Submit Consultation';
+  } else if (unfitC) {
+    if (jSec)  jSec.style.display  = '';
+    if (subTx) subTx.textContent = 'Submit for Review';
+  } else if (waiverC) {
+    if (wSec)  wSec.style.display  = '';
+    if (subTx) subTx.textContent = 'Submit for Review';
+  } else if (pendingC) {
+    if (pSec)  pSec.style.display  = '';
+    if (subTx) subTx.textContent = 'Submit for Review';
+    updatePendingOthers();
+  }
+}
+
+function updatePendingOthers() {
+  var r = document.getElementById('pending-others-radio');
+  var c = document.getElementById('pending-others-container');
+  if (r && c) c.style.display = r.checked ? '' : 'none';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FFI OUTCOMES TABLE — row expand/collapse (MSI screen)
+// ═══════════════════════════════════════════════════════════════
+function toggleFFIRow(btn) {
+  var tr   = btn.closest('tr');
+  var next = tr ? tr.nextElementSibling : null;
+  if (!next) return;
+  var showing = next.style.display !== 'none';
+  next.style.display = showing ? 'none' : '';
+  btn.textContent = showing ? 'Expand' : 'Collapse';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  // Wire FFI outcome radios
+  ['outcome-fit','outcome-unfit','outcome-waiver','outcome-pending'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('change', updateFFIOutcome);
+  });
+  // Wire pending-outcome sub-radios
+  document.querySelectorAll('[name="pending-outcome"]').forEach(function(r) {
+    r.addEventListener('change', updatePendingOthers);
+  });
+
+  // Wire FFI table row toggles on MSI screen
+  var ffiTable = document.querySelector('#screen-msi .overflow-x-auto table tbody');
+  if (ffiTable) {
+    ffiTable.querySelectorAll('a').forEach(function(a) {
+      var txt = a.textContent.trim();
+      if (txt === 'Expand' || txt === 'Collapse') {
+        a.onclick = function(e) {
+          e.preventDefault();
+          toggleFFIRow(this);
+          return false;
+        };
+      }
+    });
+  }
+
+  updateFFIOutcome();
+  updatePendingOthers();
+  navigateTo('msi');
+});
+
+// Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          // tagClass: "bg-[#002B5C]", // navy blue
+          tagClass: "bg-blue-700"
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: ""
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
+        }
+      });
+
+      document.querySelectorAll('input[name="required-vetting"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+          const vettedSection = document.getElementById('vetted-by-section');
+          if (e.target.value === 'yes') {
+            vettedSection.classList.remove('hidden');
+          } else {
+            vettedSection.classList.add('hidden');
+          }
+        });
+      });
+
+      // Suggestion Container
+      document.getElementById('appointment-select').addEventListener('change', function() {
+          const badge = document.getElementById('suggestion-badge');
+          const label = document.getElementById('suggestion-label');
+          const text = document.getElementById('suggestion-text');
+          
+          if (this.value === 'Appointment 2') {
+              // Option 2 is selected: Turn Emerald
+              badge.classList.replace('bg-slate-100', 'bg-emerald-100');
+              badge.classList.replace('border-slate-200', 'border-emerald-200');
+              
+              label.classList.replace('text-slate-500', 'text-on-secondary-container');
+              
+              text.classList.remove('text-slate-400');
+              text.classList.add('text-on-secondary-container');
+          } else {
+              // Anything else: Stay/Turn Gray
+              badge.classList.replace('bg-emerald-100', 'bg-slate-100');
+              badge.classList.replace('border-emerald-200', 'border-slate-200');
+              
+              label.classList.replace('text-on-secondary-container', 'text-slate-500');
+              
+              text.classList.remove('text-on-secondary-container');
+              text.classList.add('text-slate-400');
+          }
+      });
+      document.getElementById('approved-select').addEventListener('change', function() {
+          const badge = document.getElementById('approved-badge');
+          const label = document.getElementById('approved-label');
+          const text = document.getElementById('approved-text');
+          
+          if (this.value === 'CARMO') {
+              // CARMO is selected: Turn Emerald
+              badge.classList.replace('bg-slate-100', 'bg-emerald-100');
+              badge.classList.replace('border-slate-200', 'border-emerald-200');
+              
+              label.classList.replace('text-slate-500', 'text-on-secondary-container');
+              
+              text.classList.remove('text-slate-400');
+              text.classList.add('text-on-secondary-container');
+          } else {
+              // Anything else: Stay/Turn Gray
+              badge.classList.replace('bg-emerald-100', 'bg-slate-100');
+              badge.classList.replace('border-emerald-200', 'border-slate-200');
+              
+              label.classList.replace('text-on-secondary-container', 'text-slate-500');
+              
+              text.classList.remove('text-on-secondary-container');
+              text.classList.add('text-slate-400');
+          }
+      });
+</script>
+</body></html>

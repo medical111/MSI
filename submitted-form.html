@@ -1,0 +1,713 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MSI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c3c6d6",
+              "on-tertiary-container": "#ffc6b9",
+              "surface-dim": "#cadaff",
+              secondary: "#006c47",
+              "on-tertiary-fixed": "#3d0600",
+              "primary-fixed": "#dae2ff",
+              "on-secondary-container": "#00714b",
+              background: "#f9f9ff",
+              tertiary: "#851800",
+              "primary-fixed-dim": "#b2c5ff",
+              "surface-container": "#e8edff",
+              "on-secondary-fixed": "#002113",
+              "on-background": "#041b3c",
+              "tertiary-fixed": "#ffdad2",
+              outline: "#737685",
+              "inverse-surface": "#1d3052",
+              "tertiary-container": "#b02300",
+              "secondary-fixed-dim": "#71dba6",
+              error: "#ba1a1a",
+              surface: "#f9f9ff",
+              "on-primary-fixed": "#001848",
+              "tertiary-fixed-dim": "#ffb4a3",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#edf0ff",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#c4d2ff",
+              "on-surface": "#041b3c",
+              "on-tertiary-fixed-variant": "#8b1a00",
+              "secondary-fixed": "#8df7c1",
+              "surface-bright": "#f9f9ff",
+              "inverse-primary": "#b2c5ff",
+              primary: "#003d9b",
+              "surface-tint": "#0c56d0",
+              "on-primary": "#ffffff",
+              "surface-variant": "#d7e2ff",
+              "surface-container-highest": "#d7e2ff",
+              "surface-container-high": "#e0e8ff",
+              "primary-container": "#2a56b4",
+              "on-primary-fixed-variant": "#0040a2",
+              "secondary-container": "#8af5be",
+              "surface-container-low": "#f1f3ff",
+              "on-surface-variant": "#434654",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#005235",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "stack-gap-md": "8px",
+              "stack-gap-sm": "4px",
+              "stack-gap-lg": "16px",
+              "container-padding": "24px",
+              "grid-gutter": "16px",
+              baseline: "4px",
+            },
+            fontFamily: {
+              "headline-section": ["Inter"],
+              "body-md": ["Inter"],
+              "status-badge": ["Inter"],
+              "data-tabular": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-context": ["Inter"],
+              "body-sm": ["Inter"],
+            },
+            fontSize: {
+              "headline-section": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "status-badge": [
+                "12px",
+                { lineHeight: "16px", fontWeight: "600" },
+              ],
+              "data-tabular": [
+                "14px",
+                { lineHeight: "20px", fontWeight: "500" },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-context": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
+
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface antialiased h-screen overflow-hidden"
+  >
+    <!-- SideNavBar -->
+    <aside
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider"
+      id="sidebar"
+    >
+      <div class="px-6 mb-8 logo-container flex items-center">
+        <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper"
+          >
+            <img
+              alt="MSI Logo"
+              class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+            />
+          </div>
+          <button
+            class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2"
+            id="toggle-sidebar"
+            title="Toggle Sidebar"
+          >
+            <span
+              class="material-symbols-outlined text-[24px] transition-transform duration-300"
+              >chevron_left</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] shrink-0"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="nav-text whitespace-nowrap">MSI Profile</span>
+        </a>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text font-bold whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="ffi-submenu"
+            style="display: none"
+            class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-ffi-create"
+              href="create-new-ffi-outcome.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE NEW</a
+            >
+            <a
+              id="nav-ffi-ha"
+              href="higher-authority-review.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MAINTAIN HIGHER AUTHORITY REVIEW</a
+            >
+            <a
+              id="nav-ffi-validity"
+              href="maintain-validity.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >MAINTAIN VALIDITY</a
+            >
+          </div>
+        </div>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >category</span
+          >
+          <span class="nav-text whitespace-nowrap"
+            >PES/ MGS Classification</span
+          >
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="medical-board.html"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >gavel</span
+          >
+          <span class="nav-text whitespace-nowrap">Medical Board Review</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >analytics</span
+          >
+          <span class="nav-text whitespace-nowrap">ACE</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >monitor_heart</span
+          >
+          <span class="nav-text whitespace-nowrap">PEMS</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >description</span
+          >
+          <span class="nav-text whitespace-nowrap">NUMC</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >list</span
+          >
+          <span class="nav-text whitespace-nowrap">Patient List</span>
+        </a>
+      </div>
+      <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >settings</span
+          >
+          <span class="nav-text whitespace-nowrap">Settings</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >logout</span
+          >
+          <span class="nav-text whitespace-nowrap">Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <div class="ml-64 h-full flex flex-col bg-background" id="main-content">
+      <!-- TopNavBar -->
+      <!-- TopNavBar -->
+      <header
+        class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
+        id="top-header"
+      >
+        <div class="flex items-center gap-6 flex-1">
+          <div class="flex">
+            <div
+              class="flex items-baseline gap-2 bg-surface-container-low px-3 py-1 rounded-lg"
+            >
+              <div
+                aria-hidden="true"
+                class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-2 self-center"
+              ></div>
+              <span
+                class="text-on-surface font-bold text-[24px] leading-none tracking-tight"
+                >Tan Ah Teck</span
+              >
+              <span
+                class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-2"
+                >S1234567A</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
+          </button>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2"
+          >
+            <span class="material-symbols-outlined text-[22px]">help</span>
+          </button>
+          <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+          <div class="flex flex-col items-center gap-1">
+            <span
+              class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none"
+              >DR ryan goh</span
+            >
+          </div>
+        </div>
+      </header>
+      <!-- Canvas -->
+      <main
+        class="flex flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low items-center justify-center"
+      >
+        <div class="max-w-[600px] mx-auto flex flex-col gap-grid-gutter">
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-6 text-center"
+          >
+            <!-- Guaranteed perfect circle structure -->
+            <div
+              class="w-24 h-24 min-w-[96px] max-w-[96px] min-h-[96px] max-h-[96px] bg-green-600 rounded-[100px] mx-auto mb-8 relative shadow-sm"
+            >
+              <span
+                class="material-symbols-outlined text-[48px] text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none"
+                style="font-variation-settings: &quot;wght&quot; 700"
+              >
+                check
+              </span>
+            </div>
+            <h2
+              class="font-headline-section text-[28px] leading-tight text-on-background mb-4"
+            >
+              Form Submitted!
+            </h2>
+            <p
+              class="font-body-md text-body-md text-on-surface-variant mb-6 max-w-sm mx-auto"
+            >
+              The medical assessment for
+              <span class="font-bold text-on-background">Tan Ah Teck</span>
+              has been successfully recorded.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+              <div
+                class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full"
+              >
+                <span class="material-symbols-outlined text-[16px] text-primary"
+                  >schedule</span
+                >
+                <span class="text-[12px] font-semibold text-primary"
+                  >Submitted on 30 June 2026, 14:32</span
+                >
+              </div>
+              <!-- <div
+                class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full"
+              >
+                <span class="material-symbols-outlined text-[16px] text-primary"
+                  >description</span
+                >
+                <span class="text-[12px] font-semibold text-primary"
+                  >Ref: #MO-88219</span
+                >
+              </div> -->
+            </div>
+            <div class="flex flex-col gap-4 items-center">
+              <a href="index.html">
+                <button
+                  class="bg-primary text-on-primary px-8 py-3.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-all shadow-md active:scale-95 flex items-center gap-2"
+                >
+                  <span class="">Return to MSI Profile</span>
+                </button>
+              </a>
+              <button
+                class="text-on-surface-variant hover:text-primary font-medium text-xs transition-colors flex items-center gap-1"
+              >
+                <!-- <span class="material-symbols-outlined text-[16px]">print</span>
+                <span class="">Print Submission Summary</span> -->
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div
+      id="snapdom-sandbox"
+      data-snapdom-sandbox="true"
+      aria-hidden="true"
+      style="
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        width: 0px;
+        height: 0px;
+        overflow: hidden;
+      "
+    ></div>
+    <script>
+      var SCREENS = ["msi", "ffi-create", "ffi-ha", "ffi-validity"];
+      var ffiOpen = false;
+
+      function navigateTo(id) {
+        SCREENS.forEach(function (s) {
+          var el = document.getElementById("screen-" + s);
+          if (el) el.style.display = "none";
+        });
+        var t = document.getElementById("screen-" + id);
+        if (t) t.style.display = "block";
+        updateNavActive(id);
+        if (id.startsWith("ffi-") && !ffiOpen) {
+          ffiOpen = true;
+          document.getElementById("ffi-submenu").style.display = "";
+          document.getElementById("ffi-chevron").textContent =
+            "keyboard_arrow_up";
+        }
+      }
+
+      function updateNavActive(id) {
+        var navMsi = document.getElementById("nav-msi");
+        var base =
+          "nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ";
+        ["nav-ffi-create", "nav-ffi-ha", "nav-ffi-validity"].forEach(
+          function (fid) {
+            var el = document.getElementById(fid);
+            if (el)
+              el.className =
+                "px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-slate-500 hover:text-primary hover:bg-slate-50";
+          },
+        );
+        if (id === "msi") {
+          navMsi.className =
+            base +
+            "bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm";
+        } else {
+          navMsi.className =
+            base + "text-slate-500 hover:text-slate-900 hover:bg-slate-100";
+          var el = document.getElementById("nav-" + id);
+          if (el)
+            el.className =
+              "px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-primary font-bold bg-white border-r-4 border-primary shadow-sm";
+        }
+      }
+
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
+
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+          }
+        });
+
+      // Vocation expand/collapse logic
+      const vocationToggle = document.getElementById("vocation-toggle");
+      if (vocationToggle) {
+        vocationToggle.addEventListener("click", function () {
+          this.classList.toggle("expanded");
+        });
+      }
+
+      // Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          tagClass: "bg-[#002B5C]", // navy blue
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: "",
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "-",
+          );
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
+
+          // --- Sync with Military Overview Accordion ---
+          // const record1Accordion = document.getElementById("overview-record-1");
+          // const record2Accordion = document.getElementById("overview-record-2");
+          // const record1Label =
+          //   record1Accordion?.querySelector("span:first-child");
+          // const record2Label =
+          //   record2Accordion?.querySelector("span:first-child");
+
+          // if (e.target.value === "record1") {
+          //   if (record1Accordion) record1Accordion.open = true;
+          //   if (record2Accordion) record2Accordion.open = false;
+          //   if (record1Label) {
+          //     record1Label.classList.add("text-primary");
+          //     record1Label.classList.remove("text-on-surface-variant/70");
+          //   }
+          //   if (record2Label) {
+          //     record2Label.classList.remove("text-primary");
+          //     record2Label.classList.add("text-on-surface-variant/70");
+          //   }
+          // } else {
+          //   if (record2Accordion) record2Accordion.open = true;
+          //   if (record1Accordion) record1Accordion.open = false;
+          //   if (record2Label) {
+          //     record2Label.classList.add("text-primary");
+          //     record2Label.classList.remove("text-on-surface-variant/70");
+          //   }
+          //   if (record1Label) {
+          //     record1Label.classList.remove("text-primary");
+          //     record1Label.classList.add("text-on-surface-variant/70");
+          //   }
+          // }
+        }
+      });
+      function toggleInactiveRecords() {
+        const btn = document.getElementById("toggleRecordsBtn");
+        const inactiveRows = document.querySelectorAll(".inactive-row");
+
+        // Track current state based on button text
+        const isHidden = btn.textContent.trim() === "Load More Records";
+
+        inactiveRows.forEach((row) => {
+          if (isHidden) {
+            row.classList.remove("hidden");
+          } else {
+            row.classList.add("hidden");
+          }
+        });
+
+        // Toggle the button text label
+        btn.textContent = isHidden ? "Hide Records" : "Load More Records";
+      }
+    </script>
+  </body>
+</html>

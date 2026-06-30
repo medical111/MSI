@@ -1,0 +1,2929 @@
+<!doctype html>
+<html
+  class="light"
+  lang="en"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MSI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#003d9b",
+              "inverse-on-surface": "#edf0ff",
+              "on-surface": "#041b3c",
+              "inverse-surface": "#1d3052",
+              background: "#f9f9ff",
+              tertiary: "#851800",
+              "tertiary-container": "#b02300",
+              "surface-variant": "#d7e2ff",
+              "surface-container": "#e8edff",
+              surface: "#f9f9ff",
+              "on-secondary-fixed": "#002113",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#d7e2ff",
+              "tertiary-fixed": "#ffdad2",
+              "primary-container": "#2a56b4",
+              "primary-fixed": "#dae2ff",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#00714b",
+              "on-tertiary-fixed": "#3d0600",
+              error: "#ba1a1a",
+              "surface-dim": "#cadaff",
+              "on-secondary-fixed-variant": "#005235",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#0040a2",
+              "surface-tint": "#0c56d0",
+              "surface-container-high": "#e0e8ff",
+              "primary-fixed-dim": "#b2c5ff",
+              "on-tertiary-container": "#ffc6b9",
+              "on-primary-container": "#c4d2ff",
+              "surface-bright": "#f9f9ff",
+              "on-tertiary-fixed-variant": "#8b1a00",
+              "on-error-container": "#93000a",
+              "on-background": "#041b3c",
+              "secondary-container": "#8af5be",
+              "inverse-primary": "#b2c5ff",
+              "secondary-fixed": "#8df7c1",
+              secondary: "#006c47",
+              "surface-container-low": "#f1f3ff",
+              outline: "#737685",
+              "surface-container-lowest": "#ffffff",
+              "outline-variant": "#c3c6d6",
+              "on-primary-fixed": "#001848",
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#71dba6",
+              "on-surface-variant": "#434654",
+              "tertiary-fixed-dim": "#ffb4a3",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "stack-gap-lg": "16px",
+              "stack-gap-sm": "4px",
+              "stack-gap-md": "8px",
+              "grid-gutter": "16px",
+              baseline: "4px",
+              "container-padding": "24px",
+            },
+            fontFamily: {
+              "body-sm": ["Inter"],
+              "headline-section": ["Inter"],
+              "display-context": ["Inter"],
+              "data-tabular": ["Inter"],
+              "body-md": ["Inter"],
+              "status-badge": ["Inter"],
+              "label-caps": ["Inter"],
+            },
+            fontSize: {
+              "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+              "headline-section": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-context": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "data-tabular": [
+                "14px",
+                { lineHeight: "20px", fontWeight: "500" },
+              ],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "status-badge": [
+                "12px",
+                { lineHeight: "16px", fontWeight: "600" },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .material-symbols-outlined {
+          font-variation-settings:
+            "FILL" 0,
+            "wght" 400,
+            "GRAD" 0,
+            "opsz" 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+          font-variation-settings:
+            "FILL" 1,
+            "wght" 400,
+            "GRAD" 0,
+            "opsz" 24;
+        }
+      }
+
+      /* State logic for Waiver Request Visibility */
+      #waiver-active:checked ~ #override-section {
+        display: block;
+      }
+      #waiver-active:not(:checked) ~ #override-section {
+        display: none;
+      }
+
+      /* Validity dependent date picker visibility */
+      #validity-period:has(option[value="temporary"]:checked)
+        + #expiry-date-container {
+        display: block;
+      }
+      #validity-period:not(:has(option[value="temporary"]:checked))
+        + #expiry-date-container {
+        display: none;
+      }
+
+      /* Selection logic for CDS Recommendations */
+      .cds-selection-checkbox:checked + .cds-selection-card {
+        @apply bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100;
+      }
+      .cds-selection-checkbox:checked + .cds-selection-card .cds-radio-indicator {
+        @apply border-primary bg-primary;
+      }
+      .cds-selection-checkbox:checked + .cds-selection-card .cds-radio-inner {
+        @apply scale-100 bg-white;
+      }
+
+      /* Segmented control state styles */
+      .assessment-toggle-btn.active {
+        @apply bg-white shadow-sm text-primary;
+      }
+      .assessment-toggle-btn:not(.active) {
+        @apply text-on-surface-variant hover:bg-surface-container transition-colors;
+      }
+
+      /* Readonly input styling for CDS mode */
+      .mo-input-mode-cds .score-input {
+        @apply bg-surface-container border-outline-variant cursor-not-allowed pointer-events-none;
+      }
+      .mo-input-mode-manual .score-input {
+        @apply bg-white border-outline-variant focus:ring-1 focus:ring-primary;
+      }
+    </style>
+    <style>
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      /* .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      } */
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
+
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md h-screen overflow-hidden"
+  >
+    <!-- SideNavBar -->
+    <aside
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider"
+      id="sidebar"
+    >
+      <div class="px-6 mb-8 logo-container flex items-center">
+        <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper"
+          >
+            <img
+              alt="MSI Logo"
+              class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+            />
+          </div>
+          <button
+            class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2"
+            id="toggle-sidebar"
+            title="Toggle Sidebar"
+          >
+            <span
+              class="material-symbols-outlined text-[24px] transition-transform duration-300"
+              >chevron_left</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] shrink-0"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="nav-text whitespace-nowrap">MSI Profile</span>
+        </a>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text font-bold whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="ffi-submenu"
+            style="display: none;"
+            class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-ffi-create"
+              href="create-new-ffi-outcome.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE NEW</a
+            >
+            <a
+              id="nav-ffi-ha"
+              href="higher-authority-review.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MAINTAIN HIGHER AUTHORITY REVIEW</a
+            >
+            <a
+              id="nav-ffi-validity"
+              href="maintain-validity.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >MAINTAIN VALIDITY</a
+            >
+          </div>
+        </div>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >category</span
+          >
+          <span class="nav-text whitespace-nowrap"
+            >PES/ MGS Classification</span
+          >
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200"
+          href="medical-board.html"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >gavel</span
+          >
+          <span class="nav-text whitespace-nowrap">Medical Board Review</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >analytics</span
+          >
+          <span class="nav-text whitespace-nowrap">ACE</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >monitor_heart</span
+          >
+          <span class="nav-text whitespace-nowrap">PEMS</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >description</span
+          >
+          <span class="nav-text whitespace-nowrap">NUMC</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >list</span
+          >
+          <span class="nav-text whitespace-nowrap">Patient List</span>
+        </a>
+      </div>
+      <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >settings</span
+          >
+          <span class="nav-text whitespace-nowrap">Settings</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >logout</span
+          >
+          <span class="nav-text whitespace-nowrap">Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- TopNavBar -->
+    <header
+      class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
+      id="top-header"
+    >
+      <div class="flex items-center gap-6 flex-1">
+        <div class="flex">
+          <div
+            class="flex items-baseline gap-2 bg-surface-container-low px-3 py-1 rounded-lg"
+          >
+            <div
+              aria-hidden="true"
+              class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-2 self-center"
+            ></div>
+            <span
+              class="text-on-surface font-bold text-[24px] leading-none tracking-tight"
+              >Tan Ah Teck</span
+            >
+            <span
+              class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-2"
+              >S1234567A</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative"
+        >
+          <span class="material-symbols-outlined text-[22px]"
+            >notifications</span
+          >
+          <span
+            class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+          ></span>
+        </button>
+        <button
+          class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2"
+        >
+          <span class="material-symbols-outlined text-[22px]">help</span>
+        </button>
+        <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+        <div class="flex flex-col items-center gap-1">
+          <span
+            class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none"
+            >DR ryan goh</span
+          >
+        </div>
+      </div>
+    </header>
+    <div class="ml-64 h-full flex flex-col bg-background" id="main-content">
+      <!-- Main Content -->
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
+          <!-- ALL IN ONE PATIENT BANNER -->
+          <template class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+            <!-- Patient Context Header (Updated) -->
+            <div
+              class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-3 px-6"
+            >
+              <div class="flex flex-col w-full gap-4">
+                <div class="flex justify-end items-start w-full">
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-4">
+                      <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                        Tan Ah Teck
+                      </h2> -->
+                      <div class="flex gap-2 h-[24px] items-center">
+                        <span
+                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          style="background-color: #c41802"
+                          >P</span
+                        >
+                        <span
+                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          style="background-color: #c41802"
+                          >R2</span
+                        >
+                        <span
+                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          style="background-color: #c41802"
+                          >R3</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-nowrap items-start justify-between w-full gap-4"
+                >
+                  <!-- <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >NRIC</span
+                    >
+                    <div class="font-bold text-sm">S1234567A</div>
+                  </div> -->
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >GENDER</span
+                    >
+                    <div class="font-bold text-sm">Male</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >AGE</span
+                    >
+                    <div class="font-bold text-sm">26</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >DOB</span
+                    >
+                    <div class="font-bold text-sm">08-Sep-1997</div>
+                  </div>
+                  <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION</span
+                  >
+                    <div class="font-bold text-sm">Medically Fit for Service</div>
+                  </div> -->
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >MGS DISPOSITION Code</span
+                    >
+                    <div class="font-bold text-sm">FIT (Temp)</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >PES</span
+                    >
+                    <div class="font-bold text-sm">-</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >A CODE</span
+                    >
+                    <div class="font-bold text-sm">A1</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >Dental Status</span
+                    >
+                    <div class="font-bold text-sm">XXX</div>
+                  </div>
+
+                  <!-- P tag variation -->
+                  <!-- <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >P-Tag</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >P
+                    </span>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >R2-Tag</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >R2
+                    </span>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >R3-Tag</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >R3
+                    </span>
+                  </div> -->
+                </div>
+                <div class="flex flex-col w-full gap-3 back">
+                  <div
+                    class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                  >
+                    <div class="flex flex-col w-24 gap-1">
+                      <span
+                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                        >SERVICE</span
+                      >
+                      <div class="flex items-center gap-2">
+                        <span
+                          class="bg-secondary text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          id="banner-service-tag"
+                          >Army</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex flex-col w-32 gap-1">
+                      <span
+                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                        >SERVICE TYPE</span
+                      >
+                      <div class="font-bold text-sm" id="banner-service-type">
+                        NSman
+                      </div>
+                    </div>
+                    <div class="flex flex-col w-20 gap-1">
+                      <span
+                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                        >RANK</span
+                      >
+                      <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                    </div>
+                    <div class="flex flex-col w-32 gap-1">
+                      <span
+                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                        >UNIT</span
+                      >
+                      <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                    </div>
+                    <div class="flex flex-col flex-1 gap-1">
+                      <span
+                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                        >VOCATION</span
+                      >
+                      <div
+                        class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                        id="vocation-toggle"
+                      >
+                        <span class="vocation-text truncate" id="banner-vocation"
+                          >Infantry Specialist</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex gap-2"></div>
+                  </div>
+                  <div
+                    class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                  >
+                    <div class="flex flex-col w-24 gap-1">
+                      <div class="flex items-center gap-2">
+                        <span
+                          class="bg-blue-700 text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          >Navy</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex flex-col w-32 gap-1">
+                      <div class="font-bold text-sm">DXO</div>
+                    </div>
+                    <div class="flex flex-col w-20 gap-1">
+                      <div class="font-bold text-sm">ME2</div>
+                    </div>
+                    <div class="flex flex-col w-32 gap-1">
+                      <div class="font-bold text-sm">RSS Supreme</div>
+                    </div>
+                    <div class="flex flex-col flex-1 gap-1">
+                      <div
+                        class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                      >
+                        <span class="vocation-text truncate"
+                          >Naval Safety Officer</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex gap-2"></div>
+                  </div>
+                  <div
+                    class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                  >
+                    <div class="flex flex-col w-24 gap-1">
+                      <div class="flex items-center gap-2">
+                        <span class="text-white/60 font-bold text-sm px-3 py-0.5"
+                          >-</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex flex-col w-32 gap-1">
+                      <div class="font-bold text-sm text-white">-</div>
+                    </div>
+                    <div class="flex flex-col w-20 gap-1">
+                      <div class="font-bold text-sm text-white">-</div>
+                    </div>
+                    <div class="flex flex-col w-32 gap-1">
+                      <div class="font-bold text-sm text-white">-</div>
+                    </div>
+                    <div class="flex flex-col flex-1 gap-1">
+                      <div
+                        class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                      >
+                        <span class="vocation-text truncate text-white">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+            <!-- ALL IN ONE PATIENT BANNER -->
+
+            <!-- DROPDOWN PATIENT BANNER  -->
+            <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+            <!-- Patient Context Header (Updated) -->
+            <div
+              class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+            >
+              <div class="flex flex-col gap-4 w-full">
+                <div class="flex justify-end items-start w-full">
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-4">
+                      <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                        Tan Ah Teck
+                      </h2> -->
+                      <div class="flex gap-2 h-[24px] items-center">
+                        <span
+                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          style="background-color: #c41802"
+                          >P</span
+                        >
+                        <span
+                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          style="background-color: #c41802"
+                          >R2</span
+                        >
+                        <span
+                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                          style="background-color: #c41802"
+                          >R3</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                <div
+                  class="flex flex-nowrap items-start justify-between w-full gap-4"
+                >
+                  <!-- <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >NRIC</span
+                    >
+                    <div class="font-bold text-sm">S1234567A</div>
+                  </div> -->
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >GENDER</span
+                    >
+                    <div class="font-bold text-sm">Male</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >AGE</span
+                    >
+                    <div class="font-bold text-sm">26</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >DOB</span
+                    >
+                    <div class="font-bold text-sm">08-Sep-1997</div>
+                  </div>
+                  <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION</span
+                  >
+                    <div class="font-bold text-sm">Medically Fit for Service</div>
+                  </div> -->
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >MGS DISPOSITION Code</span
+                    >
+                    <div class="font-bold text-sm">FIT (Temp)</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >PES</span
+                    >
+                    <div class="font-bold text-sm">-</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >A CODE</span
+                    >
+                    <div class="font-bold text-sm">A1</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >DENTAL STATUS</span
+                    >
+                    <div class="font-bold text-sm">XXX</div>
+                  </div>
+
+                  <div class="flex flex-col gap-1"></div>
+                </div>
+                <div
+                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+                >
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >SERVICE</span
+                    >
+                    <div class="w-fit">
+                      <span
+                        class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                        id="banner-service-tag"
+                        >Army</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >SERVICE TYPE</span
+                    >
+                    <div class="font-bold text-sm" id="banner-service-type">
+                      NSman
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >RANK</span
+                    >
+                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >UNIT</span
+                    >
+                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span
+                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                      >VOCATION</span
+                    >
+                    <div
+                      class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
+                      id="vocation-toggle"
+                    >
+                      <span class="vocation-text truncate" id="banner-vocation"
+                        >Infantry Specialist</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-1 ml-auto">
+                  <span id="record-counter" class="text-xs text-white/70 font-medium">
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option class="text-on-surface bg-white" selected="selected" value="record1">
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
+                        Service Record 3
+                      </option> -->
+                    </select>
+                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
+                      expand_more
+                    </span>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <!-- DROPDOWN PATIENT BANNER  -->
+
+            <!--NGEMR INFORMATION-->
+          <section
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            id="ngemr-info-section"
+          >
+            <div
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none">sync_saved_locally</span>
+                NGEMR Information
+              </h2>
+            </div>
+            <div class="flex flex-col gap-8 p-6">
+              <!-- Information Subsection -->
+              <div id="ngemr-review-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Medical Board Selection
+                  </h3>
+                </div>
+                <div class="flex flex-col gap-4 px-6">
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Medical Board</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Routine Board</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Submitting Medical Centre</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Medical Classification Centre</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Reasons for Review</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Determine PES Status</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Active Excuses Subsection -->
+              <div id="ngemr-excuses-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Active Excuses
+                  </h3>
+                </div>
+                <div class="p-0">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr
+                        class="border-b border-outline-variant bg-surface-container-lowest"
+                      >
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Excuses
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Start Date
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          End Date
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                    >
+                      <tr
+                        class=""
+                      >
+                        <td class="py-3 px-6 font-medium">
+                          Excuse Upper Limbs
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          20 Jan 2026
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          20 Jun 2026
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Examinations Subsection -->
+              <div id="ngemr-examinations-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Examinations
+                  </h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
+                  <div class="flex flex-col gap-3">
+                    <h4
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    >
+                      Physical Examination
+                    </h4>
+                    <span
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                      >-</span
+                    >
+                  </div>
+                  <div class="flex flex-col gap-3">
+                    <h4
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    >
+                      Mental State Examination
+                    </h4>
+                    <span
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                      >-</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Investigations / Corroborative Reports Subsection -->
+              <div id="ngemr-investigations-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Investigations / Corroborative Reports
+                  </h3>
+                </div>
+                <div class="px-6">
+                  <span
+                    class="font-data-tabular text-data-tabular text-on-surface"
+                    >-</span
+                  >
+                </div>
+              </div>
+              <!-- Specialist Opinion Subsection -->
+              <div id="ngemr-specialist-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Specialist Opinion
+                  </h3>
+                </div>
+                <div class="p-0">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr
+                        class="border-b border-outline-variant bg-surface-container-lowest"
+                      >
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Date
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Specialist
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Assessment
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                    >
+                      <tr
+                        class=""
+                      >
+                        <td
+                          class="py-3 px-6 text-on-surface-variant align-top"
+                          rowspan="3"
+                        >
+                          10 Jan 2026
+                        </td>
+                        <td class="py-3 px-6 font-medium">Dr John Doe</td>
+                        <td
+                          class="py-3 px-6 text-on-surface-variant align-top"
+                          rowspan="3"
+                        >
+                          Patient presents with severe acute tendonitis of the
+                          dominant right wrist, secondary to repetitive strain.
+                          There is a significant reduction in grip strength
+                          (measured at 40% of normal baseline) and localized
+                          swelling.
+                        </td>
+                      </tr>
+                      <tr
+                        class=""
+                      >
+                        <td class="py-1 px-6 text-xs text-on-surface-variant">
+                          Consultant Orthopedic Surgeon &amp; Hand Specialist
+                        </td>
+                      </tr>
+                      <tr
+                        class=""
+                      >
+                        <td class="py-1 px-6 text-xs text-outline">
+                          ABC Hospital
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Current Medical Classification -->
+          <section
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            id="current-history-section"
+          >
+            <div
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none">clinical_notes</span>
+                Current and Historical Medical Information
+              </h2>
+            </div>
+
+            <!-- <div class="flex flex-col gap-4 p-6">
+              <div id="current-classification-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Active
+                  </h3>
+                </div>
+                <div class="p-6 flex flex-wrap gap-12 items-center">
+                  <div class="grid grid-cols-4 gap-y-4 gap-x-8 w-full">
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Current PES</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >PES A</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Current PULHEEMS</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >11111111</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Validity</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Permanent</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Date of Expiry</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >N/A</span
+                      >
+                    </div>
+                    <div
+                      class="col-span-4 border-t border-outline-variant my-2"
+                    ></div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Current MGS Status</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >123456789</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Current MGS Score</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >1111111111</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Validity</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Permanent</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Date of Expiry</span
+                      ><span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >N/A</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="history-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t flex justify-between items-center cursor-pointer hover:bg-surface-container transition-colors"
+                  id="history-toggle-header"
+                  onclick="
+                    const content = document.getElementById(
+                      'history-table-container',
+                    );
+                    const icon = document.getElementById('history-chevron');
+                    content.classList.toggle('hidden');
+                    icon.style.transform = content.classList.contains('hidden')
+                      ? 'rotate(0deg)'
+                      : 'rotate(180deg)';
+                  "
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Inactive
+                  </h3>
+                  <span
+                    class="material-symbols-outlined text-outline text-[20px] transition-transform duration-200"
+                    id="history-chevron"
+                    style="transform: rotate(0deg)"
+                    >expand_more</span
+                  >
+                </div>
+                <div class="p-0 hidden" id="history-table-container">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr
+                        class="border-b border-outline-variant bg-surface-container-lowest"
+                      >
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Onset Date
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Problem / Diagnosis
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Visit ID
+                        </th>
+                        <th
+                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Assessment / Plan
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                    >
+                      <tr
+                        class="border-b border-outline-variant"
+                      >
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          12 Oct 2023
+                        </td>
+                        <td class="py-3 px-6 font-medium">
+                          Cardiac insufficiency following cardiac surgery
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          V10234
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          Review specialist reports; evaluate current ejection
+                          fraction and symptoms.
+                        </td>
+                      </tr>
+                      <tr
+                        class="border-b border-outline-variant"
+                      >
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          05 Sep 2023
+                        </td>
+                        <td class="py-3 px-6 font-medium">Sinus arrest</td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          V10235
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          Monitor ECG results; confirm pacemaker status if
+                          applicable.
+                        </td>
+                      </tr>
+                      <tr
+                        class=""
+                      >
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          10 Jan 2018
+                        </td>
+                        <td class="py-3 px-6 font-medium">
+                          Essential (primary) hypertension
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          V10236
+                        </td>
+                        <td class="py-3 px-6 text-on-surface-variant">
+                          Review historical BP logs; currently managed and
+                          stable.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- PES -->
+            <div class="flex flex-col gap-8 p-6">
+              <div class="overflow-x-auto">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Active
+                  </h3>
+                </div>
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-outline-variant bg-surface-container-lowest">
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PES Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody class="font-body-sm text-body-sm text-on-surface">
+
+                    <!-- Active Row (Collapsible Details) -->
+                    <tr class="border-b border-surface-container/50">
+                      <td class="py-4 px-4">A</td>
+                      <td class="py-4 px-4"><span class="">12 Oct 2023</span></td>
+                      <td class="py-4 px-4"><span class="">NA</span></td>
+                      <td class="py-4 px-4"><span class="">11111111</span></td>
+                      <td class="py-4 px-4">Permanent</td>
+                      <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                      <td class="py-4 text-right px-4">
+                        <div class="flex gap-3">
+                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Expand</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-surface-container/50 hidden">
+                      <td class="pt-6" colspan="10">
+                        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
+                          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
+                          </div>
+                          <div class="pt-6 border-t border-surface-container">
+                            <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
+                            <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- MGS -->
+                <table class="w-full text-left border-collapse mt-4">
+                  <thead>
+                    <tr class="border-b border-outline-variant bg-surface-container-lowest">
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">MGS Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+                      <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody class="font-body-sm text-body-sm text-on-surface">
+
+                    <!-- Active Row (Collapsible Details) -->
+                    <tr class="border-b border-surface-container/50">
+                      <td class="py-4 px-4">123456789</td>
+                      <td class="py-4 px-4"><span class="">12 Nov 2026</span></td>
+                      <td class="py-4 px-4"><span class="">NA</span></td>
+                      <td class="py-4 px-4"><span class="">1111111111</span></td>
+                      <td class="py-4 px-4">Permanent</td>
+                      <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                      <td class="py-4 text-right px-4">
+                        <div class="flex gap-3">
+                          <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Expand</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-surface-container/50 hidden">
+                      <td class="pt-6" colspan="10">
+                        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
+                          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
+                            <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
+                          </div>
+                          <div class="pt-6 border-t border-surface-container">
+                            <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
+                            <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div id="history-subsection">
+                <div
+                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t flex justify-between items-center cursor-pointer hover:bg-surface-container transition-colors"
+                  id="history-toggle-header"
+                  onclick="
+                    const content = document.getElementById(
+                      'history-table-container',
+                    );
+                    const icon = document.getElementById('history-chevron');
+                    content.classList.toggle('hidden');
+                    icon.style.transform = content.classList.contains('hidden')
+                      ? 'rotate(0deg)'
+                      : 'rotate(180deg)';
+                  "
+                >
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Inactive
+                  </h3>
+                  <span
+                    class="material-symbols-outlined text-outline text-[20px] transition-transform duration-200"
+                    id="history-chevron"
+                    style="transform: rotate(0deg)"
+                    >expand_more</span
+                  >
+                </div>
+                <!-- PES -->
+                <div class="p-0 hidden" id="history-table-container">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr class="border-b border-outline-variant bg-surface-container-lowest">
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PES Status</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="font-body-sm text-body-sm text-on-surface">
+
+                      <!-- Active Row (Collapsible Details) -->
+                      <tr class="border-b border-surface-container/50">
+                        <td class="py-4 px-4">A</td>
+                        <td class="py-4 px-4"><span class="">12 Oct 2023</span></td>
+                        <td class="py-4 px-4"><span class="">NA</span></td>
+                        <td class="py-4 px-4"><span class="">11111111</span></td>
+                        <td class="py-4 px-4">Permanent</td>
+                        <td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Expired</span></td>
+                        <td class="py-4 text-right px-4">
+                          <div class="flex gap-3">
+                            <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Expand</a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b border-surface-container/50 hidden">
+                        <td class="pt-6" colspan="10">
+                          <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
+                            </div>
+                            <div class="pt-6 border-t border-surface-container">
+                              <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
+                              <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <!-- MGS -->
+                  <table class="w-full text-left border-collapse mt-4">
+                    <thead>
+                      <tr class="border-b border-outline-variant bg-surface-container-lowest">
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">MGS Status</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Expiry Date</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">PUHLEEMS</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Validity</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+                        <th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="font-body-sm text-body-sm text-on-surface">
+
+                      <!-- Active Row (Collapsible Details) -->
+                      <tr class="border-b border-surface-container/50">
+                        <td class="py-4 px-4">123456789</td>
+                        <td class="py-4 px-4"><span class="">12 Nov 2026</span></td>
+                        <td class="py-4 px-4"><span class="">NA</span></td>
+                        <td class="py-4 px-4"><span class="">1111111111</span></td>
+                        <td class="py-4 px-4">Permanent</td>
+                        <td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Expired</span></td>
+                        <td class="py-4 text-right px-4">
+                          <div class="flex gap-3">
+                            <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Expand</a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b border-surface-container/50 hidden">
+                        <td class="pt-6" colspan="10">
+                          <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-2 shadow-sm">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
+                              <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
+                            </div>
+                            <div class="pt-6 border-t border-surface-container">
+                              <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
+                              <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              </div>
+            </div>
+          </section>
+          <!-- History Section -->
+
+          <!-- Section 2: Clinical Decision Support -->
+          <section
+            class="border rounded-lg p-6 relative shadow-sm bg-green-50 border-green-300 mt-4"
+          >
+            <div class="absolute top-4 right-6">
+              <span
+                class="font-status-badge text-status-badge bg-green-100 text-green-800 px-3 py-1 rounded-full shadow-sm flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >auto_awesome</span
+                >
+                CDS Suggestion
+              </span>
+            </div>
+            <h2
+              class="font-headline-section text-headline-section text-on-surface m-0 mb-4 flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined text-[28px] leading-none"
+                >psychology</span
+              >
+              Clinical Decision Support Recommendation
+            </h2>
+            <div
+              class="mb-6 bg-green-100/50 border-l-4 border-green-500 p-3 rounded-r"
+            >
+              <p
+                class="text-green-800 font-medium text-sm flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[18px]">info</span>
+                Based on diagnosed condition:
+                <span class="font-bold">'Cardiac insufficiency'</span>
+              </p>
+            </div>
+
+            <!-- MGS GRADING -->
+            <div class="relative">
+              <input
+                checked=""
+                class="sr-only peer cds-selection-checkbox"
+                id="mgs-choice"
+                name="cds-choice"
+                type="checkbox"
+              />
+              <label
+                class="cds-selection-card block border border-outline-variant rounded p-4 mb-6 bg-green-100/30 cursor-pointer transition-all hover:bg-green-100/50"
+                for="mgs-choice"
+              >
+                <div class="flex items-center justify-center gap-2 mb-3">
+                  <!-- <div
+                    class="cds-radio-indicator w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center transition-all"
+                  >
+                    <div
+                      class="cds-radio-inner w-1.5 h-1.5 rounded-full bg-transparent scale-0 transition-transform"
+                    ></div>
+                  </div> -->
+                  <div
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                  >
+                    Recommended MGS Score
+                  </div>
+                </div>
+                <div
+                  class="flex justify-center gap-2 font-data-tabular text-data-tabular"
+                >
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">CR</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">N</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">P</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">A</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">U</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">L</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">H</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">V</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">C</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="text-outline text-xs mb-1">S</span
+                    ><span
+                      class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                      >1</span
+                    >
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <!-- PES GRADING -->
+            <div class="grid grid-cols-2 gap-8 mt-2">
+              <div class="relative">
+                <input
+                  checked=""
+                  class="sr-only peer cds-selection-checkbox"
+                  id="pes-choice"
+                  name="cds-choice"
+                  type="checkbox"
+                />
+                <label
+                  class="cds-selection-card block border border-outline-variant rounded p-4 flex flex-col justify-center items-center bg-green-100/30 cursor-pointer h-full transition-all hover:bg-green-100/50"
+                  for="pes-choice"
+                >
+                  <div class="flex items-center gap-2 mb-1">
+                    <!-- <div
+                      class="cds-radio-indicator w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center transition-all"
+                    >
+                      <div
+                        class="cds-radio-inner w-1.5 h-1.5 rounded-full bg-transparent scale-0 transition-transform"
+                      ></div>
+                    </div> -->
+                    <div
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    >
+                      Recommended PES
+                    </div>
+                  </div>
+                  <div class="text-4xl font-bold text-primary">E9</div>
+                </label>
+              </div>
+              <div class="relative">
+                <input
+                  checked=""
+                  class="sr-only peer cds-selection-checkbox"
+                  id="pulheems-choice"
+                  name="cds-choice"
+                  type="checkbox"
+                />
+                <label
+                  class="cds-selection-card block border border-outline-variant rounded p-4 flex flex-col justify-center bg-green-100/30 cursor-pointer h-full transition-all hover:bg-green-100/50"
+                  for="pulheems-choice"
+                >
+                  <div class="flex items-center justify-center gap-2 mb-3">
+                    <!-- <div
+                      class="cds-radio-indicator w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center transition-all"
+                    >
+                      <div
+                        class="cds-radio-inner w-1.5 h-1.5 rounded-full bg-transparent scale-0 transition-transform"
+                      ></div>
+                    </div> -->
+                    <div
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                    >
+                      Recommended PULHEEMS
+                    </div>
+                  </div>
+                  <div
+                    class="flex justify-center gap-2 font-data-tabular text-data-tabular"
+                  >
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">P</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">U</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">L</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">H</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">E</span
+                      ><span
+                        class="w-8 h-8 rounded bg-error-container text-on-error-container font-bold flex items-center justify-center border border-error"
+                        >5</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">E</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">M</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <span class="text-outline text-xs mb-1">S</span
+                      ><span
+                        class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-outline-variant"
+                        >1</span
+                      >
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </section>
+          <div class="w-full mt-4">
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 flex flex-col md:flex-row items-center justify-between gap-6"
+            >
+              <div class="flex flex-col gap-1">
+                <span
+                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                  >Boarding in Absence / Presence <span class="text-error">*</span></span
+                >
+              </div>
+              <div class="flex gap-4">
+                <label
+                  class="flex items-center gap-3 px-6 py-3 rounded-lg border border-outline-variant cursor-pointer hover:bg-surface transition-all peer-checked:border-primary peer-checked:bg-primary/5"
+                >
+                  <input
+                    class="text-primary focus:ring-primary h-4 w-4 border-outline"
+                    name="boarding-mode"
+                    type="radio"
+                    value="MBIA"
+                  /><span
+                    class="font-data-tabular text-data-tabular text-on-surface"
+                    >MBIA</span
+                  >
+                </label>
+                <label
+                  class="flex items-center gap-3 px-6 py-3 rounded-lg border border-outline-variant cursor-pointer hover:bg-surface transition-all peer-checked:border-primary peer-checked:bg-primary/5"
+                >
+                  <input
+                    class="text-primary focus:ring-primary h-4 w-4 border-outline"
+                    name="boarding-mode"
+                    type="radio"
+                    value="MBIP"
+                  /><span
+                    class="font-data-tabular text-data-tabular text-on-surface"
+                    >MBIP</span
+                  >
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Select Decision Section -->
+          <template class="w-full mt-4">
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm flex flex-col overflow-hidden"
+            >
+              <div
+                class="bg-surface-container-low px-6 py-4 border-b border-outline-variant"
+              >
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[28px] leading-none">gavel</span>
+                  Select Decision
+                </h2>
+              </div>
+              <div class="p-6 flex flex-col md:flex-row gap-6">
+                <!-- Left Side: Selection Actions -->
+                <div class="flex flex-col gap-3 md:w-1/2">
+                  <span
+                    class="font-data-tabular text-data-tabular text-on-surface mb-1"
+                    >Select Action</span
+                  >
+                  <label
+                    class="flex items-start gap-3 p-3 rounded border cursor-pointer hover:bg-primary/5 transition-colors border-outline-variant"
+                    id="label-agree"
+                  >
+                    <input
+                      checked=""
+                      class="mt-1 text-primary focus:ring-primary h-4 w-4 border-outline"
+                      name="decision"
+                      onchange="toggleEndorsementInteractivity(this.value)"
+                      type="radio"
+                      value="agree"
+                    />
+                    <div class="flex flex-col">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Agree with MO Proposal</span
+                      >
+                      <span
+                        class="font-body-sm text-body-sm text-on-surface-variant"
+                        >Endorse PES E9, PULHEEMS 11115111</span
+                      >
+                    </div>
+                  </label>
+                  <label
+                    class="flex items-start gap-3 p-3 rounded border cursor-pointer hover:bg-primary/5 transition-colors border-primary bg-primary/5"
+                    id="label-suggest"
+                  >
+                    <input
+                      class="mt-1 text-primary focus:ring-primary h-4 w-4 border-outline"
+                      name="decision"
+                      onchange="toggleEndorsementInteractivity(this.value)"
+                      type="radio"
+                      value="suggest"
+                    />
+                    <div class="flex flex-col">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Propose Suggestion</span
+                      >
+                      <span
+                        class="font-body-sm text-body-sm text-on-surface-variant"
+                        >Suggest changes to assessment</span
+                      >
+                    </div>
+                  </label>
+                  <label
+                    class="flex items-start gap-3 p-3 rounded border border-outline-variant cursor-pointer hover:bg-error-container/20 transition-colors"
+                    id="label-reject"
+                  >
+                    <input
+                      class="mt-1 text-error focus:ring-error h-4 w-4 border-outline"
+                      name="decision"
+                      onchange="toggleEndorsementInteractivity(this.value)"
+                      type="radio"
+                      value="reject"
+                    />
+                    <div class="flex flex-col">
+                      <span
+                        class="font-data-tabular text-data-tabular text-error"
+                        >Reject Submission</span
+                      >
+                      <span
+                        class="font-body-sm text-body-sm text-on-surface-variant"
+                        >Return to MO for revision</span
+                      >
+                    </div>
+                  </label>
+                </div>
+                <!-- Right Side: Dynamic Content -->
+                <div class="flex flex-col md:w-1/2 min-h-[300px]">
+                  <!-- Case 1 & 3: Authority Remarks (Default) -->
+                  <div
+                    class="flex flex-col gap-4 hidden"
+                    id="remarks-container"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Authority Remarks
+                      <span class="text-error">*</span>
+                    </h3>
+                    <textarea
+                      class="form-textarea rounded border-outline-variant h-full min-h-[250px] text-xs"
+                      placeholder="Provide remarks for decision..."
+                    ></textarea>
+                  </div>
+                  <!-- Case 2: Medical Officer Assessment (Suggestion Mode) -->
+                  <div
+                    class="flex flex-col gap-4 mo-input-mode-manual"
+                    id="mo-assessment-panel"
+                  >
+                    <div class="flex items-center justify-between">
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        Proposed Adjustments <span class="text-error">*</span>
+                      </h3>
+                    </div>
+                    <div
+                      class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant w-fit"
+                    >
+                      <button
+                        class="assessment-toggle-btn px-3 py-1 text-[10px] font-bold rounded uppercase tracking-wider"
+                        id="btn-cds-toggle"
+                        onclick="toggleAssessmentMode('cds', this)"
+                      >
+                        CDS Suggestion
+                      </button>
+                      <button
+                        class="assessment-toggle-btn px-3 py-1 text-[10px] font-bold rounded uppercase tracking-wider active"
+                        id="btn-manual-toggle"
+                        onclick="toggleAssessmentMode('manual', this)"
+                      >
+                        Manual
+                      </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="flex flex-col gap-1">
+                        <label
+                          class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+                          >Proposed Validity</label
+                        >
+                        <select
+                          class="score-input form-select rounded border-outline-variant text-xs py-1.5"
+                          id="assessment-validity"
+                          onchange="handleValidityChange(this.value)"
+                        >
+                          <option value="" disabled="">Select Validity</option>
+                          <option value="permanent">Permanent</option>
+                          <option value="temporary">Temporary</option>
+                        </select>
+                        <div class="mt-2 hidden" id="duration-input-container">
+                          <div class="flex items-center gap-2">
+                            <input
+                              class="score-input form-input rounded border-outline-variant text-xs py-1.5 w-20"
+                              id="assessment-duration"
+                              placeholder="0"
+                              type="number"
+                            />
+                            <span
+                              class="text-[10px] font-bold text-on-surface-variant uppercase"
+                              >months</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--MGS SCORE-->
+                    <div class="flex flex-col gap-2">
+                      <label
+                        class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+                        >Proposed MGS Score</label
+                      >
+                      <div class="flex flex-wrap gap-1.5" id="mgs-inputs">
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >CR</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >N</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >P</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >A</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >U</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >L</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >H</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >V</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >C</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >S</span
+                          ><input
+                            class="score-input mgs-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--MGS SCORE-->
+
+
+                    <!--PES SCORE-->
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="flex flex-col gap-1">
+                        <label
+                        class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+                        >Proposed PES Status</label
+                        >
+                        <select
+                        class="score-input form-select rounded border-outline-variant text-xs py-1.5"
+                        id="assessment-pes-status"
+                        >
+                          <option value="" disabled="">Select PES Status</option>
+                          <option value="A">A</option>
+                          <option value="B1">B1</option>
+                          <option value="B2">B2</option>
+                          <option value="B3">B3</option>
+                          <option value="B4">B4</option>
+                          <option value="BP">BP</option>
+                          <option value="C2">C2</option>
+                          <option value="C9">C9</option>
+                          <option value="D">D</option>
+                          <option value="E1">E1</option>
+                          <option selected="" value="E9">E9</option>
+                          <option value="F">F</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                      <label
+                        class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+                        >Proposed PULHEEMS</label
+                      >
+                      <div class="flex flex-wrap gap-1.5" id="pulheems-inputs">
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >P</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >U</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >L</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >H</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >E</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border rounded border-outline-variant"
+                            id="pul-e-5"
+                            type="text"
+                            value="5"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >E</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >M</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8">
+                          <span class="text-[9px] text-outline font-bold"
+                            >S</span
+                          ><input
+                            class="score-input pul-input w-full text-center p-1 text-xs border border-outline-variant rounded"
+                            type="text"
+                            value="1"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--PES SCORE-->
+
+                    <div class="flex flex-col gap-1">
+                      <label
+                        class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+                        >Authority Remarks<span class="text-error">*</span></label
+                      >
+                      <textarea
+                        class="form-textarea rounded border-outline-variant h-20 text-xs"
+                        id="assessment-rationale"
+                        placeholder="Explain suggested changes..."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-end items-center gap-3"
+              >
+                <button
+                  class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm"
+                >
+                  Save Draft
+                </button>
+                <a href="submitted-form.html">
+                  <button
+                    class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
+                  >
+                    Submit
+                  </button>
+                </a>
+              </div>
+            </div>
+          </template>
+          <div class="w-full mt-4">
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm flex flex-col overflow-hidden"
+            >
+              <div
+                class="bg-surface-container-low px-6 py-4 border-b border-outline-variant"
+              >
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[28px] leading-none">gavel</span>
+                  Select Decision
+                </h2>
+              </div>
+
+              <div class="flex flex-col p-4 ">
+                <div class="space-y-3" id="outcome-selection-container">
+         <!-- <label class="block font-label-caps text-slate-500 mb-4 tracking-widest">SELECT OUTCOME <span class="text-error">*</span></label> -->
+         <input checked="checked" class="hidden" id="outcome-fit" name="outcome" type="radio">
+         <input class="hidden" id="outcome-waiver" name="outcome" type="radio">
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+            <label class="cursor-pointer group flex flex-col" for="outcome-fit">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="fit-box">
+                  <div class="flex flex-col h-full w-full">
+                     <div class="flex items-center justify-between mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-on-secondary-container flex items-center justify-center transition-colors" id="fit-radio">
+                           <div class="w-2 h-2 rounded-full bg-on-secondary-container opacity-0"></div>
+                        </div>
+                        <span class="status-badge text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px] ml-auto">CDS SUGGESTED</span>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-secondary">check_circle</span>
+                        <span class="text-lg font-bold text-slate-900">Approve</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Agree with recommended results</p>
+                  </div>
+               </div>
+            </label>
+            <label class="cursor-pointer group flex flex-col" for="outcome-waiver">
+               <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-primary bg-primary/5" id="waiver-box">
+                  <div class="flex flex-col h-full">
+                     <div class="mb-4">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-primary" id="waiver-radio">
+                           <div class="w-2 h-2 rounded-full bg-primary opacity-100"></div>
+                        </div>
+                     </div>
+                     <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-primary">assignment_late</span>
+                        <span class="text-lg font-bold text-slate-900">Propose Suggestion</span>
+                     </div>
+                     <p class="text-xs text-slate-600 leading-relaxed">Suggest alternative review</p>
+                  </div>
+               </div>
+            </label>
+            
+         </div>
+      </div>
+      
+      
+      <div
+         id="propose-suggestion-section"
+         class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl grid grid-cols-1 gap-6"
+         
+         style="display: none"
+         >
+         <div class="flex items-center gap-2 mb-2">
+            <h3
+               class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest"
+               >
+               Propose Suggestion
+            </h3>
+         </div>
+         <div class="space-y-3 relative">
+              <label class="block font-label-caps text-slate-600 uppercase tracking-widest"><span class="text-error"><font color="#475569">Recommend PES </font>*</span></label>
+              <div class="flex flex-row gap-4">
+                <div class="relative md:w-1/2">
+                    <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none">
+                      <option value="" disabled="" selected="">Select...</option>
+                      <option value="A">A</option>
+                      <option value="B1">B1</option>
+                      <option value="B2">B2</option>
+                      <option value="B3">B3</option>
+                      <option value="B4">B4</option>
+                      <option value="BP">BP</option>
+                      <option value="C2">C2</option>
+                      <option value="C9">C9</option>
+                      <option value="D">D</option>
+                      <option value="E1">E1</option>
+                      <option value="E9">E9</option>
+                      <option value="F">F</option>
+                    </select>
+                </div>
+              </div>
+          </div>
+          <div class="space-y-3 relative">
+              <label class="block font-label-caps text-slate-600 uppercase tracking-widest"><span class="text-error"><font color="#475569">Recommend MGS </font>*</span></label>
+              <div class="flex flex-row gap-4">
+                <div class="relative md:w-1/2">
+                    <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
+                    onchange=handleTempDuration(this.value)>
+                      <option value="" disabled="" selected="">Select...</option>
+                      <option value="FIT">FIT</option>
+                      <option value="FIT (Temp)">FIT (Temp)</option>
+                      <option value="BP">BP</option>
+                      <option value="D[0]">D[0]</option>
+                      <option value="D1">D1</option>
+                      <option value="UNFIT">UNFIT</option>
+                    </select>
+                </div>
+              </div>
+              <div class="mt-2 hidden" id="temp-duration-input-container">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="text-[10px] font-bold text-on-surface-variant uppercase"
+                    >Temp Unfit for</span
+                  >
+                  <input
+                    class="score-input form-input rounded border-outline-variant text-xs py-1.5 w-20"
+                    id="assessment-duration"
+                    placeholder="0"
+                    type="number"
+                  />
+                  <span
+                    class="text-[10px] font-bold text-on-surface-variant uppercase"
+                    >months</span
+                  >
+                </div>
+              </div>
+          </div>
+         <div class="space-y-3">
+            <label
+               class="block font-label-caps text-slate-600 uppercase tracking-widest"
+               >Justification Remarks
+            <span class="text-error">*</span></label>
+            <textarea
+               class="w-full border border-outline-variant rounded-xl px-5 py-4 focus:ring-4 focus:ring-error/10 focus:border-error transition-all text-body-md font-body-md resize-none bg-white shadow-sm"
+               placeholder="Provide detailed reasoning for this decision..."
+               rows="4"
+               ></textarea>
+         </div>
+        </div>
+              </div>
+              
+              <div
+                class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-end items-center gap-3"
+              >
+                <button
+                  class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm"
+                >
+                  Save Draft
+                </button>
+                <a href="submitted-form.html">
+                  <button
+                    class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
+                  >
+                    Submit
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+      </main>
+    </div>
+    <script>
+      const CDS_VALUES = {
+        pes: "E9",
+        validity: "permanent",
+        mgs: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1"],
+        pul: ["1", "1", "1", "1", "5", "1", "1", "1"],
+      };
+
+      function toggleEndorsementInteractivity(value) {
+        const remarksContainer = document.getElementById("remarks-container");
+        const assessmentPanel = document.getElementById("mo-assessment-panel");
+
+        // Reset label styles
+        const labels = ["agree", "suggest", "reject"];
+        labels.forEach((id) => {
+          const el = document.getElementById(`label-${id}`);
+          el.classList.remove(
+            "border-primary",
+            "bg-primary/5",
+            "bg-error-container/20",
+            "border-error",
+          );
+          el.classList.add("border-outline-variant");
+        });
+
+        const activeLabel = document.getElementById(`label-${value}`);
+
+        if (value === "suggest") {
+          remarksContainer.classList.add("hidden");
+          assessmentPanel.classList.remove("hidden");
+          activeLabel.classList.add("border-primary", "bg-primary/5");
+          activeLabel.classList.remove("border-outline-variant");
+          // Ensure Suggestion Mode resets to CDS on selection
+          const cdsBtn = document.getElementById("btn-cds-toggle");
+          if (cdsBtn) toggleAssessmentMode("cds", cdsBtn);
+        } else if (value === "reject") {
+          remarksContainer.classList.remove("hidden");
+          assessmentPanel.classList.add("hidden");
+          activeLabel.classList.add("border-error", "bg-error-container/20");
+          activeLabel.classList.remove("border-outline-variant");
+        } else {
+          remarksContainer.classList.remove("hidden");
+          assessmentPanel.classList.add("hidden");
+          activeLabel.classList.add("border-primary", "bg-primary/5");
+          activeLabel.classList.remove("border-outline-variant");
+        }
+      }
+
+      function handleValidityChange(value) {
+        const durationContainer = document.getElementById(
+          "duration-input-container",
+        );
+        if (value === "temporary") {
+          durationContainer.classList.remove("hidden");
+        } else {
+          durationContainer.classList.add("hidden");
+        }
+      }
+
+      function handleTempDuration(value) {
+        const durationContainer = document.getElementById(
+          "temp-duration-input-container",
+        );
+        if (value === "D1") {
+          durationContainer.classList.remove("hidden");
+        } else {
+          durationContainer.classList.add("hidden");
+        }
+      }
+
+      function toggleAssessmentMode(mode, btn) {
+        const panel = document.getElementById("mo-assessment-panel");
+        const container = btn.closest(".flex.bg-surface-container-low");
+        const buttons = container.querySelectorAll(".assessment-toggle-btn");
+        const inputs = panel.querySelectorAll(".score-input");
+
+        const pesSelect = document.getElementById("assessment-pes-status");
+        const validitySelect = document.getElementById("assessment-validity");
+        const mgsInputs = panel.querySelectorAll(".mgs-input");
+        const pulInputs = panel.querySelectorAll(".pul-input");
+        const rationale = document.getElementById("assessment-rationale");
+        const pulE8Input = document.getElementById("pul-e-5");
+
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (mode === "cds") {
+          panel.classList.remove("mo-input-mode-manual");
+          panel.classList.add("mo-input-mode-cds");
+
+          pesSelect.value = CDS_VALUES.pes;
+          validitySelect.value = CDS_VALUES.validity;
+          handleValidityChange(CDS_VALUES.validity);
+          mgsInputs.forEach((input, i) => (input.value = CDS_VALUES.mgs[i]));
+          pulInputs.forEach((input, i) => {
+            input.value = CDS_VALUES.pul[i];
+            // Restore highlights if it was manual
+            if (input.id === "pul-e-5") {
+              input.classList.add(
+                "border-error",
+                "bg-error-container",
+                "text-on-error-container",
+                "font-bold",
+              );
+              input.classList.remove("border-outline-variant");
+            }
+          });
+          rationale.value =
+            "Based on clinical decision support recommendation for Cardiac insufficiency.";
+
+          inputs.forEach((input) => {
+            input.readOnly = true;
+            if (input.tagName === "SELECT") input.disabled = true;
+          });
+        } else {
+          panel.classList.remove("mo-input-mode-cds");
+          panel.classList.add("mo-input-mode-manual");
+
+          // Clear fields for manual entry
+          pesSelect.value = "";
+          validitySelect.value = "";
+          // handleValidityChange("permanent");
+          mgsInputs.forEach((input) => (input.value = ""));
+          pulInputs.forEach((input) => {
+            input.value = "";
+            // Remove the special styling from the 8 box when clearing for manual
+            if (input.id === "pul-e-5") {
+              input.classList.remove(
+                "border-error",
+                "bg-error-container",
+                "text-on-error-container",
+                "font-bold",
+              );
+              input.classList.add("border-outline-variant");
+            }
+          });
+          rationale.value = "";
+
+          inputs.forEach((input) => {
+            input.readOnly = false;
+            if (input.tagName === "SELECT") input.disabled = false;
+          });
+        }
+      }
+
+      // Initialize state on load
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkedDecision = document.querySelector(
+          'input[name="decision"]:checked',
+        );
+        if (checkedDecision) {
+          toggleEndorsementInteractivity(checkedDecision.value);
+        }
+      });
+    </script>
+    <script>
+      var SCREENS = ["msi", "ffi-create", "ffi-ha", "ffi-validity"];
+      var ffiOpen = false;
+
+      function updateNavActive(id) {
+        var navMsi = document.getElementById("nav-msi");
+        var base =
+          "nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ";
+        ["nav-ffi-create", "nav-ffi-ha", "nav-ffi-validity"].forEach(
+          function (fid) {
+            var el = document.getElementById(fid);
+            if (el)
+              el.className =
+                "px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-slate-500 hover:text-primary hover:bg-slate-50";
+          },
+        );
+        if (id === "msi") {
+          navMsi.className =
+            base +
+            "bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm";
+        } else {
+          navMsi.className =
+            base + "text-slate-500 hover:text-slate-900 hover:bg-slate-100";
+          var el = document.getElementById("nav-" + id);
+          if (el)
+            el.className =
+              "px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-primary font-bold bg-white border-r-4 border-primary shadow-sm";
+        }
+      }
+
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById('service-record-select');
+      const counterEl = document.getElementById('record-counter');
+
+      selectEl.addEventListener('change', (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
+        
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
+
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
+
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+          }
+        });
+
+      // Vocation expand/collapse logic
+      const vocationToggle = document.getElementById("vocation-toggle");
+      if (vocationToggle) {
+        vocationToggle.addEventListener("click", function () {
+          this.classList.toggle("expanded");
+        });
+      }
+
+      // Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          // tagClass: "bg-[#002B5C]", // navy blue
+          tagClass: "bg-blue-700"
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: "",
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
+
+          // --- Sync with Military Overview Accordion ---
+          // const record1Accordion = document.getElementById("overview-record-1");
+          // const record2Accordion = document.getElementById("overview-record-2");
+          // const record1Label =
+          //   record1Accordion?.querySelector("span:first-child");
+          // const record2Label =
+          //   record2Accordion?.querySelector("span:first-child");
+
+          // if (e.target.value === "record1") {
+          //   if (record1Accordion) record1Accordion.open = true;
+          //   if (record2Accordion) record2Accordion.open = false;
+          //   if (record1Label) {
+          //     record1Label.classList.add("text-primary");
+          //     record1Label.classList.remove("text-on-surface-variant/70");
+          //   }
+          //   if (record2Label) {
+          //     record2Label.classList.remove("text-primary");
+          //     record2Label.classList.add("text-on-surface-variant/70");
+          //   }
+          // } else {
+          //   if (record2Accordion) record2Accordion.open = true;
+          //   if (record1Accordion) record1Accordion.open = false;
+          //   if (record2Label) {
+          //     record2Label.classList.add("text-primary");
+          //     record2Label.classList.remove("text-on-surface-variant/70");
+          //   }
+          //   if (record1Label) {
+          //     record1Label.classList.remove("text-primary");
+          //     record1Label.classList.add("text-on-surface-variant/70");
+          //   }
+          // }
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Wire FFI outcome radios
+        ['outcome-fit','outcome-unfit','outcome-waiver','outcome-pending'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.addEventListener('change', updateFFIOutcome);
+        });
+
+        // Wire FFI table row toggles on MSI screen
+        var ffiTable = document.querySelector('#screen-msi .overflow-x-auto table tbody');
+        if (ffiTable) {
+          ffiTable.querySelectorAll('a').forEach(function(a) {
+            var txt = a.textContent.trim();
+            if (txt === 'Expand' || txt === 'Collapse') {
+              a.onclick = function(e) {
+                e.preventDefault();
+                toggleFFIRow(this);
+                return false;
+              };
+            }
+          });
+        }
+
+        updateFFIOutcome();
+      });
+
+      function updateFFIOutcome() {
+        var fitEl    = document.getElementById('outcome-fit');
+        var unfitEl  = document.getElementById('outcome-unfit');
+        var waiverEl = document.getElementById('outcome-waiver');
+        var pendingEl= document.getElementById('outcome-pending');
+        if (!fitEl) return;
+
+        var fitC = fitEl.checked, unfitC = unfitEl&&unfitEl.checked,
+            waiverC = waiverEl&&waiverEl.checked, pendingC = pendingEl&&pendingEl.checked;
+
+        // ── Card visual states ─────────────────────────────────────────
+        var states = [
+          { id:'fit',     checked:fitC,     border:'border-on-secondary-container', bg:'bg-secondary-container/10', dot:'bg-on-secondary-container' },
+          { id:'unfit',   checked:unfitC,   border:'border-error', bg:'bg-error-container/20', dot:'bg-error' },
+          { id:'waiver',  checked:waiverC,  border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
+          { id:'pending', checked:pendingC, border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
+        ];
+        states.forEach(function(s) {
+          var box = document.getElementById(s.id+'-box');
+          var dot = document.querySelector('#'+s.id+'-radio > div');
+          if (box) box.className = 'flex items-center gap-3 p-3 border rounded-lg transition-all '+(s.checked ? s.border+' '+s.bg : 'border-outline-variant');
+          if (dot) dot.style.opacity = s.checked ? '1' : '0';
+        });
+
+        // ── Conditional sections ──────────────────────────────────────
+        var wSec = document.getElementById('propose-suggestion-section');
+        var pSec = document.getElementById('pending-details-section');
+        var jSec = document.getElementById('justification-section');
+        var subTx= document.getElementById('submit-btn-text');
+        if (wSec)  wSec.style.display  = 'none';
+        if (pSec)  pSec.style.display  = 'none';
+        if (jSec)  jSec.style.display  = 'none';
+
+        if (fitC) {
+          if (subTx) subTx.textContent = 'Submit Consultation';
+        } else if (unfitC) {
+          if (jSec)  jSec.style.display  = '';
+          if (subTx) subTx.textContent = 'Submit for Review';
+        } else if (waiverC) {
+          if (wSec)  wSec.style.display  = '';
+          if (subTx) subTx.textContent = 'Submit for Review';
+        } else if (pendingC) {
+          if (pSec)  pSec.style.display  = '';
+          if (subTx) subTx.textContent = 'Submit for Review';
+        }
+      }
+    </script>
+  </body>
+</html>
