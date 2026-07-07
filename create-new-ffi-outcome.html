@@ -224,6 +224,12 @@
               >MAINTAIN HIGHER AUTHORITY REVIEW</a
             >
             <a
+              id="nav-ffi-ha"
+              href="medical-officer-acknowledgement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MEDICAL OFFICER ACKNOWLEDGEMENT</a
+            >
+            <a
               id="nav-ffi-validity"
               href="maintain-validity.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap" 
@@ -312,25 +318,50 @@
 <!-- Main Content Wrapper -->
 <div class="ml-64 h-full flex flex-col bg-background" id="main-content">
 <!-- TopNavBar from SCREEN_159 -->
-<header class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all" id="top-header">
-<div class="flex items-center gap-6 flex-1"><div class="flex"><div class="flex items-baseline gap-2 bg-surface-container-low px-3 py-1 rounded-lg">
-  <div class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-2 self-center" aria-hidden="true"></div><span class="text-on-surface font-bold text-[24px] leading-none tracking-tight">Tan Ah Teck</span>
-  <span class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-2">S1234567A</span>
-</div></div></div>
-<div class="flex items-center gap-2">
-<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative">
-<span class="material-symbols-outlined text-[22px]">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
-</button>
-<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2">
-<span class="material-symbols-outlined text-[22px]">help</span>
-</button>
-<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
-<div class="flex flex-col items-center gap-1">
-<span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none">DR ryan goh</span>
-</div>
-</div>
-</header>
+      <header
+        class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
+        id="top-header"
+      >
+        <div class="flex items-center gap-2 flex-1">
+          <div class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]">
+            <div
+              aria-hidden="true"
+              class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
+            ></div>
+            NGEMR
+          </div>
+          <div>
+            <div
+              class="flex items-end gap-2 bg-surface-container-low px-3 py-1 rounded-lg h-[32px]"
+            >
+              <span
+                class="text-on-surface font-bold text-[24px] leading-none tracking-tight"
+                >Tan Ah Teck</span
+              >
+              <span
+                class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-1"
+                >S1234567A</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center">
+            <span class="material-symbols-outlined text-[22px]">notifications</span>
+            <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+          </button>
+          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center">
+            <span class="material-symbols-outlined text-[22px]">help</span>
+          </button>
+          <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+          <div class="flex flex-col items-center gap-1">
+            <span
+              class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none"
+              >DR ryan goh</span
+            >
+          </div>
+        </div>
+      </header>
 <!-- Canvas -->
 <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
 
@@ -421,17 +452,17 @@
                 </div>
                 <div class="flex flex-col gap-1">
                   <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >Dental Status</span
                   >
-                  <div class="font-bold text-sm">A1</div>
+                  <div class="font-bold text-sm">D1</div>
                 </div>
                 <div class="flex flex-col gap-1">
                   <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >Dental Status</span
+                    >A CODE</span
                   >
-                  <div class="font-bold text-sm">XXX</div>
+                  <div class="font-bold text-sm">A1</div>
                 </div>
 
                 <!-- P tag variation -->
@@ -675,17 +706,17 @@
                 </div>
                 <div class="flex flex-col gap-1">
                   <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >DENTAL STATUS</span
                   >
-                  <div class="font-bold text-sm">A1</div>
+                  <div class="font-bold text-sm">D1</div>
                 </div>
                 <div class="flex flex-col gap-1">
                   <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DENTAL STATUS</span
+                    >A CODE</span
                   >
-                  <div class="font-bold text-sm">XXX</div>
+                  <div class="font-bold text-sm">A1</div>
                 </div>
 
                 <div class="flex flex-col gap-1"></div>
@@ -1378,26 +1409,28 @@
       </div>
               </div>
               
-              <div
-                class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-end items-center gap-3"
-              >
-                <button
-                  class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
-                >
-                  Cancel
-                </button>
-                <button
-                  class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm"
-                >
-                  Save Draft
-                </button>
-                <a href="submitted-form.html">
-                  <button
-                    class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
-                  >
-                    Submit
+              <div class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-between items-center">
+                
+                <!-- Left Side: Autosave Status Indicator -->
+                <div id="autosave-status" class="text-xs font-medium text-slate-600 flex items-center gap-1.5 transition-all duration-300">
+                  <span class="material-symbols-outlined text-base text-emerald-600 leading-none">check_circle</span> 
+                  All changes saved
+                </div>
+
+                <!-- Right Side: Action Buttons -->
+                <div class="flex items-center gap-3">
+                  <button class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm">
+                    Cancel
                   </button>
-                </a>
+                  <button class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm">
+                    Save Draft
+                  </button>
+                  <a href="submitted-form.html">
+                    <button class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2">
+                      Submit
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -2124,5 +2157,52 @@ document.addEventListener('DOMContentLoaded', function() {
               text.classList.add('text-slate-400');
           }
       });
+
+      // Grab our UI elements
+      const statusEl = document.getElementById('autosave-status');
+      const formContainer = document.getElementById('outcome-selection-container').closest('.flex-col');
+
+      // This variable will hold our debounce timer
+      let autosaveTimeout;
+
+      // Define the UI states
+      function setSavingState() {
+        statusEl.className = "text-xs font-medium text-slate-400 flex items-center gap-1.5";
+        statusEl.innerHTML = `
+          <svg class="animate-spin h-3.5 w-3.5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Saving changes...
+        `;
+      }
+
+      function setSavedState() {
+        statusEl.className = "text-xs font-medium text-slate-600 flex items-center gap-1.5 transition-all duration-300";
+        statusEl.innerHTML = `
+          <span class="material-symbols-outlined text-base text-emerald-600 leading-none">check_circle</span> 
+          All changes saved
+        `;
+      }
+
+      // Autosave Logic
+      function handleInputChange() {
+        // Immediately switch the UI to "Saving..." when they interact
+        setSavingState();
+
+        // Clear the old timer if they are still typing/clicking
+        clearTimeout(autosaveTimeout);
+
+        // Set a new timer
+        autosaveTimeout = setTimeout(() => {
+
+          // Change UI to "Saved"
+          setSavedState();
+          
+        }, 2000); 
+      }
+      // 'input' catches keystrokes in textareas/inputs; 'change' catches radio button/select adjustments
+      formContainer.addEventListener('input', handleInputChange);
+      formContainer.addEventListener('change', handleInputChange);
 </script>
 </body></html>
