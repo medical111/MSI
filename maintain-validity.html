@@ -16,6 +16,11 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -252,10 +257,22 @@
             class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
             <a
-              id="nav-ffi-create"
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
               href="create-new-ffi-outcome.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
-              >CREATE NEW</a
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
             >
             <a
               id="nav-ffi-ha"
@@ -264,7 +281,7 @@
               >MAINTAIN HIGHER AUTHORITY REVIEW</a
             >
             <a
-              id="nav-ffi-ha"
+              id="nav-ffi-mo-acknowledgement"
               href="medical-officer-acknowledgement.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
               >MEDICAL OFFICER ACKNOWLEDGEMENT</a
@@ -404,456 +421,192 @@
       </header>
       <!-- Main Content -->
       <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
-        <!-- ALL IN ONE PATIENT BANNER -->
-        <template class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-          <!-- Patient Context Header (Updated) -->
-          <div
-            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-3 px-6"
-          >
-            <div class="flex flex-col w-full gap-4">
-              <div class="flex justify-end items-start w-full">
-                <div class="flex flex-col gap-2">
-                  <div class="flex items-center gap-4">
-                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                      Tan Ah Teck
-                    </h2> -->
-                    <div class="flex gap-2 h-[24px] items-center">
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >P</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R2</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R3</span
-                      >
-                    </div>
+        <!-- DROPDOWN PATIENT BANNER  -->
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+        <!-- Patient Context Header (Updated) -->
+        <div
+          class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+        >
+          <div class="flex flex-col gap-4 w-full">
+            <div class="flex justify-end items-start w-full">
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-4">
+                  <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                    Tan Ah Teck
+                  </h2> -->
+                  <div class="flex gap-2 h-[24px] items-center">
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >P</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >R2</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >R3</span
+                    >
                   </div>
                 </div>
               </div>
-              <div
-                class="flex flex-nowrap items-start justify-between w-full gap-4"
-              >
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >NRIC</span
-                  >
-                  <div class="font-bold text-sm">S1234567A</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >GENDER</span
-                  >
-                  <div class="font-bold text-sm">Male</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >AGE</span
-                  >
-                  <div class="font-bold text-sm">26</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DOB</span
-                  >
-                  <div class="font-bold text-sm">08-Sep-1997</div>
-                </div>
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                  <div class="font-bold text-sm">Medically Fit for Service</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION Code</span
-                  >
-                  <div class="font-bold text-sm">FIT (Temp)</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >PES</span
-                  >
-                  <div class="font-bold text-sm">-</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
+            </div>  
+            <div
+              class="flex flex-nowrap items-start justify-between w-full gap-4"
+            >
+              <!-- <div class="flex flex-col gap-1">
+                <span
                   class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >Dental Status</span
-                  >
-                  <div class="font-bold text-sm">D1</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
-                  >
-                  <div class="font-bold text-sm">A1</div>
-                </div>
+                  >NRIC</span
+                >
+                <div class="font-bold text-sm">S1234567A</div>
+              </div> -->
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >GENDER</span
+                >
+                <div class="font-bold text-sm">Male</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >AGE</span
+                >
+                <div class="font-bold text-sm">26</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >DOB</span
+                >
+                <div class="font-bold text-sm">08-Sep-1997</div>
+              </div>
+              <!-- <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >MGS DISPOSITION</span
+                >
+                <div class="font-bold text-sm">Medically Fit for Service</div>
+              </div> -->
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >MGS DISPOSITION Code</span
+                >
+                <div class="font-bold text-sm">FIT (Temp)</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >PES</span
+                >
+                <div class="font-bold text-sm">-</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >DENTAL STATUS</span
+                >
+                <div class="font-bold text-sm">D1 (Expired)</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >A CODE</span
+                >
+                <div class="font-bold text-sm">A1</div>
+              </div>
 
-                <!-- P tag variation -->
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >P-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >P
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >R2-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R2
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >R3-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R3
-                  </span>
-                </div> -->
-              </div>
-              <div class="flex flex-col w-full gap-3 back">
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE</span
-                    >
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="bg-secondary text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        id="banner-service-tag"
-                        >Army</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE TYPE</span
-                    >
-                    <div class="font-bold text-sm" id="banner-service-type">
-                      NSman
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >RANK</span
-                    >
-                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >UNIT</span
-                    >
-                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >VOCATION</span
-                    >
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                      id="vocation-toggle"
-                    >
-                      <span class="vocation-text truncate" id="banner-vocation"
-                        >Combat Medic Specialist</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex gap-2"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="bg-blue-700 text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        >Navy</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm">DXO</div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <div class="font-bold text-sm">ME2</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm">RSS Supreme</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                    >
-                      <span class="vocation-text truncate"
-                        >Naval Safety Officer</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex gap-2"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <div class="flex items-center gap-2">
-                      <span class="text-white/60 font-bold text-sm px-3 py-0.5"
-                        >-</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                    >
-                      <span class="vocation-text truncate text-white">-</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="flex flex-col gap-1"></div>
             </div>
-          </template>
-          <!-- ALL IN ONE PATIENT BANNER -->
-
-          <!-- DROPDOWN PATIENT BANNER  -->
-          <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-          <!-- Patient Context Header (Updated) -->
-          <div
-            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-          >
-            <div class="flex flex-col gap-4 w-full">
-              <div class="flex justify-end items-start w-full">
-                <div class="flex flex-col gap-2">
-                  <div class="flex items-center gap-4">
-                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                      Tan Ah Teck
-                    </h2> -->
-                    <div class="flex gap-2 h-[24px] items-center">
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >P</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R2</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R3</span
-                      >
-                    </div>
-                  </div>
+            <div
+              class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+            >
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >SERVICE</span
+                >
+                <div class="w-fit">
+                  <span
+                    class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                    id="banner-service-tag"
+                    >Army</span
+                  >
                 </div>
-              </div>  
-              <div
-                class="flex flex-nowrap items-start justify-between w-full gap-4"
-              >
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >NRIC</span
-                  >
-                  <div class="font-bold text-sm">S1234567A</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >GENDER</span
-                  >
-                  <div class="font-bold text-sm">Male</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >AGE</span
-                  >
-                  <div class="font-bold text-sm">26</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DOB</span
-                  >
-                  <div class="font-bold text-sm">08-Sep-1997</div>
-                </div>
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                  <div class="font-bold text-sm">Medically Fit for Service</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION Code</span
-                  >
-                  <div class="font-bold text-sm">FIT (Temp)</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >PES</span
-                  >
-                  <div class="font-bold text-sm">-</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DENTAL STATUS</span
-                  >
-                  <div class="font-bold text-sm">D1</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
-                  >
-                  <div class="font-bold text-sm">A1</div>
-                </div>
-
-                <div class="flex flex-col gap-1"></div>
               </div>
-              <div
-                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-              >
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >SERVICE</span
-                  >
-                  <div class="w-fit">
-                    <span
-                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                      id="banner-service-tag"
-                      >Army</span
-                    >
-                  </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >SERVICE TYPE</span
+                >
+                <div class="font-bold text-sm" id="banner-service-type">
+                  NSman
                 </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >SERVICE TYPE</span
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >RANK</span
+                >
+                <div class="font-bold text-sm" id="banner-rank">CPT</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >UNIT</span
+                >
+                <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >VOCATION</span
+                >
+                <div
+                  class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
+                  id="vocation-toggle"
+                >
+                  <span class="vocation-text truncate" id="banner-vocation"
+                    >Infantry Specialist</span
                   >
-                  <div class="font-bold text-sm" id="banner-service-type">
-                    NSman
-                  </div>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >RANK</span
-                  >
-                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >UNIT</span
-                  >
-                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >VOCATION</span
-                  >
-                  <div
-                    class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
-                    id="vocation-toggle"
-                  >
-                    <span class="vocation-text truncate" id="banner-vocation"
-                      >Infantry Specialist</span
-                    >
-                  </div>
-                </div>
-                <div class="flex flex-col gap-1 ml-auto">
-                  <span id="record-counter" class="text-xs text-white/70 font-medium">
-                    RECORD 1 OF 2
-                  </span>
+              </div>
+              <div class="flex flex-col gap-1 ml-auto">
+                <span id="record-counter" class="text-xs text-white/70 font-medium">
+                  RECORD 1 OF 2
+                </span>
 
-                  <div class="relative w-[200px]">
-                    <select
-                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                      id="service-record-select"
-                    >
-                      <option class="text-on-surface bg-white" selected="selected" value="record1">
-                        Service Record 1
-                      </option>
-                      <option class="text-on-surface bg-white" value="record2">
-                        Service Record 2
-                      </option>
-                      <!-- <option class="text-on-surface bg-white" value="record3">
-                        Service Record 3
-                      </option> -->
-                    </select>
-                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                      expand_more
-                    </span>
-                  </div>
+                <div class="relative w-[200px]">
+                  <select
+                    class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                    id="service-record-select"
+                  >
+                    <option class="text-on-surface bg-white" selected="selected" value="record1">
+                      Service Record 1
+                    </option>
+                    <option class="text-on-surface bg-white" value="record2">
+                      Service Record 2
+                    </option>
+                    <!-- <option class="text-on-surface bg-white" value="record3">
+                      Service Record 3
+                    </option> -->
+                  </select>
+                  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
+                    expand_more
+                  </span>
                 </div>
               </div>
             </div>
           </div>
-          <!-- DROPDOWN PATIENT BANNER  -->
+        </div>
+        <!-- DROPDOWN PATIENT BANNER  -->
            
             <!-- Page Header -->
-            <!-- <nav class="flex items-center gap-2 text-sm text-slate-500 mb-4">
-                <span class="material-symbols-outlined text-sm">home</span>
-                <span class="hover:underline cursor-pointer">FFI</span>
-                <span class="material-symbols-outlined text-sm"
-                >chevron_right</span
-                >
-                <span class="text-primary font-semibold"
-                >Maintain FFI Validity</span
-                >
-            </nav> -->
             <div
               class="flex justify-between items-end mb-4 border-b border-outline-variant pb-4"
             >
@@ -1043,43 +796,7 @@
         </div>
       </main>
     </div>
-    <script>
-// ═══════════════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════════════
-var SCREENS = ['msi','ffi-create','ffi-ha','ffi-validity'];
-var ffiOpen = true;
-
-function navigateTo(id) {
-  SCREENS.forEach(function(s) {
-    var el = document.getElementById('screen-' + s);
-    if (el) el.style.display = 'none';
-  });
-  var t = document.getElementById('screen-' + id);
-  if (t) t.style.display = 'block';
-  updateNavActive(id);
-  if (id.startsWith('ffi-') && !ffiOpen) {
-    ffiOpen = true;
-    document.getElementById('ffi-submenu').style.display = '';
-    document.getElementById('ffi-chevron').textContent = 'keyboard_arrow_up';
-  }
-}
-
-// function updateNavActive(id) {
-//   var navMsi = document.getElementById('nav-msi');
-//   var base = 'nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ';
-//   ['nav-ffi-create','nav-ffi-ha','nav-ffi-validity'].forEach(function(fid) {
-//     var el = document.getElementById(fid);
-//     if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-slate-500 hover:text-primary hover:bg-slate-50';
-//   });
-//   if (id === 'msi') {
-//     navMsi.className = base + 'bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm';
-//   } else {
-//     navMsi.className = base + 'text-slate-500 hover:text-slate-900 hover:bg-slate-100';
-//     var el = document.getElementById('nav-' + id);
-//     if (el) el.className = 'px-3 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer nav-text whitespace-nowrap text-primary font-bold bg-white border-r-4 border-primary shadow-sm';
-//   }
-// }
+<script>
 
 //PATIENT DROPDOWN
 const selectEl = document.getElementById('service-record-select');
@@ -1122,214 +839,79 @@ function toggleFFI() {
     });
 
 
-// ═══════════════════════════════════════════════════════════════
-// FFI FORM LOGIC
-// ═══════════════════════════════════════════════════════════════
-function updateFFIOutcome() {
-  var fitEl    = document.getElementById('outcome-fit');
-  var unfitEl  = document.getElementById('outcome-unfit');
-  var waiverEl = document.getElementById('outcome-waiver');
-  var pendingEl= document.getElementById('outcome-pending');
-  if (!fitEl) return;
-
-  var fitC = fitEl.checked, unfitC = unfitEl&&unfitEl.checked,
-      waiverC = waiverEl&&waiverEl.checked, pendingC = pendingEl&&pendingEl.checked;
-
-  // ── Card visual states ─────────────────────────────────────────
-  var states = [
-    { id:'fit',     checked:fitC,     border:'border-on-secondary-container', bg:'bg-secondary-container/10', dot:'bg-on-secondary-container' },
-    { id:'unfit',   checked:unfitC,   border:'border-error', bg:'bg-error-container/20', dot:'bg-error' },
-    { id:'waiver',  checked:waiverC,  border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
-    { id:'pending', checked:pendingC, border:'border-primary', bg:'bg-primary/5', dot:'bg-primary' },
-  ];
-  states.forEach(function(s) {
-    var box = document.getElementById(s.id+'-box');
-    var dot = document.querySelector('#'+s.id+'-radio > div');
-    if (box) box.className = 'flex items-center gap-3 p-3 border rounded-lg transition-all '+(s.checked ? s.border+' '+s.bg : 'border-outline-variant');
-    if (dot) dot.style.opacity = s.checked ? '1' : '0';
-  });
-
-  // ── Conditional sections ──────────────────────────────────────
-  var wSec = document.getElementById('waiver-details-section');
-  var pSec = document.getElementById('pending-details-section');
-  var jSec = document.getElementById('justification-section');
-  var subTx= document.getElementById('submit-btn-text');
-  if (wSec)  wSec.style.display  = 'none';
-  if (pSec)  pSec.style.display  = 'none';
-  if (jSec)  jSec.style.display  = 'none';
-
-  if (fitC) {
-    if (subTx) subTx.textContent = 'Submit Consultation';
-  } else if (unfitC) {
-    if (jSec)  jSec.style.display  = '';
-    if (subTx) subTx.textContent = 'Submit for Review';
-  } else if (waiverC) {
-    if (wSec)  wSec.style.display  = '';
-    if (subTx) subTx.textContent = 'Submit for Review';
-  } else if (pendingC) {
-    if (pSec)  pSec.style.display  = '';
-    if (subTx) subTx.textContent = 'Submit for Review';
-    updatePendingOthers();
-  }
-}
-
-function updatePendingOthers() {
-  var r = document.getElementById('pending-others-radio');
-  var c = document.getElementById('pending-others-container');
-  if (r && c) c.style.display = r.checked ? '' : 'none';
-}
-
-// ═══════════════════════════════════════════════════════════════
-// FFI OUTCOMES TABLE — row expand/collapse (MSI screen)
-// ═══════════════════════════════════════════════════════════════
-function toggleFFIRow(btn) {
-  var tr   = btn.closest('tr');
-  var next = tr ? tr.nextElementSibling : null;
-  if (!next) return;
-  var showing = next.style.display !== 'none';
-  next.style.display = showing ? 'none' : '';
-  btn.textContent = showing ? 'Expand' : 'Collapse';
-}
-
-// ═══════════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', function() {
-  // Wire FFI outcome radios
-  ['outcome-fit','outcome-unfit','outcome-waiver','outcome-pending'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.addEventListener('change', updateFFIOutcome);
-  });
-  // Wire pending-outcome sub-radios
-  document.querySelectorAll('[name="pending-outcome"]').forEach(function(r) {
-    r.addEventListener('change', updatePendingOthers);
-  });
-
-  // Wire FFI table row toggles on MSI screen
-  var ffiTable = document.querySelector('#screen-msi .overflow-x-auto table tbody');
-  if (ffiTable) {
-    ffiTable.querySelectorAll('a').forEach(function(a) {
-      var txt = a.textContent.trim();
-      if (txt === 'Expand' || txt === 'Collapse') {
-        a.onclick = function(e) {
-          e.preventDefault();
-          toggleFFIRow(this);
-          return false;
-        };
-      }
-    });
-  }
-
-  updateFFIOutcome();
-  updatePendingOthers();
-  navigateTo('msi');
-});
-
 // Service Record Switcher Logic
-      const serviceRecordSelect = document.getElementById(
-        "service-record-select",
-      );
+const serviceRecordSelect = document.getElementById(
+  "service-record-select",
+);
 
-      // Banner Elements
-      const bannerServiceType = document.getElementById("banner-service-type");
-      const bannerRank = document.getElementById("banner-rank");
-      const bannerUnit = document.getElementById("banner-unit");
-      const bannerVocation = document.getElementById("banner-vocation");
-      const bannerServiceTag = document.getElementById("banner-service-tag");
+// Banner Elements
+const bannerServiceType = document.getElementById("banner-service-type");
+const bannerRank = document.getElementById("banner-rank");
+const bannerUnit = document.getElementById("banner-unit");
+const bannerVocation = document.getElementById("banner-vocation");
+const bannerServiceTag = document.getElementById("banner-service-tag");
 
-      // Overview Card Elements
-      const overviewLabel1 = document.getElementById("overview-label-1");
-      const overviewLabel2 = document.getElementById("overview-label-2");
-      const overviewServiceType = document.getElementById(
-        "overview-service-type",
-      );
-      const overviewRank = document.getElementById("overview-rank");
-      const overviewUnitService = document.getElementById(
-        "overview-unit-service",
-      );
-      const overviewVocation = document.getElementById("overview-vocation");
-      const overviewBadge = document.getElementById("overview-badge");
+// Overview Card Elements
+const overviewLabel1 = document.getElementById("overview-label-1");
+const overviewLabel2 = document.getElementById("overview-label-2");
+const overviewServiceType = document.getElementById(
+  "overview-service-type",
+);
+const overviewRank = document.getElementById("overview-rank");
+const overviewUnitService = document.getElementById(
+  "overview-unit-service",
+);
+const overviewVocation = document.getElementById("overview-vocation");
+const overviewBadge = document.getElementById("overview-badge");
 
-      const bannerRecords = {
-        record1: {
-          type: "NSman",
-          rank: "CPT",
-          unit: "3 SIR",
-          vocation: "Infantry Specialist",
-          service: "Army",
-          isCurrent: true,
-          tagClass: "bg-secondary", // army green
-        },
-        record2: {
-          type: "DXO",
-          rank: "ME2",
-          unit: "RSS Supreme",
-          vocation: "Naval Safety Officer",
-          service: "Navy",
-          isCurrent: false,
-          // tagClass: "bg-[#002B5C]", // navy blue
-          tagClass: "bg-blue-700"
-        },
-        record3: {
-          type: "-",
-          rank: "-",
-          unit: "-",
-          vocation: "-",
-          service: "-",
-          isCurrent: false,
-          tagClass: ""
-        },
-      };
+const bannerRecords = {
+  record1: {
+    type: "NSman",
+    rank: "CPT",
+    unit: "3 SIR",
+    vocation: "Infantry Specialist",
+    service: "Army",
+    isCurrent: true,
+    tagClass: "bg-secondary", // army green
+  },
+  record2: {
+    type: "DXO",
+    rank: "ME2",
+    unit: "RSS Supreme",
+    vocation: "Naval Safety Officer",
+    service: "Navy",
+    isCurrent: false,
+    // tagClass: "bg-[#002B5C]", // navy blue
+    tagClass: "bg-blue-700"
+  },
+  record3: {
+    type: "-",
+    rank: "-",
+    unit: "-",
+    vocation: "-",
+    service: "-",
+    isCurrent: false,
+    tagClass: ""
+  },
+};
 
-      serviceRecordSelect.addEventListener("change", function (e) {
-        const data = bannerRecords[e.target.value];
-        if (data) {
-          // Update Banner Text
-          bannerServiceType.textContent = data.type;
-          bannerRank.textContent = data.rank;
-          bannerUnit.textContent = data.unit;
-          bannerVocation.textContent = data.vocation;
-          bannerServiceTag.textContent = data.service;
+serviceRecordSelect.addEventListener("change", function (e) {
+  const data = bannerRecords[e.target.value];
+  if (data) {
+    // Update Banner Text
+    bannerServiceType.textContent = data.type;
+    bannerRank.textContent = data.rank;
+    bannerUnit.textContent = data.unit;
+    bannerVocation.textContent = data.vocation;
+    bannerServiceTag.textContent = data.service;
 
-          // Update Service Tag Style
-          // Remove previous color classes
-          bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
-          // Add new color class
-          bannerServiceTag.classList.add(data.tagClass);
-
-          // --- Sync with Military Overview Accordion ---
-          // const record1Accordion = document.getElementById("overview-record-1");
-          // const record2Accordion = document.getElementById("overview-record-2");
-          // const record1Label =
-          //   record1Accordion?.querySelector("span:first-child");
-          // const record2Label =
-          //   record2Accordion?.querySelector("span:first-child");
-
-          // if (e.target.value === "record1") {
-          //   if (record1Accordion) record1Accordion.open = true;
-          //   if (record2Accordion) record2Accordion.open = false;
-          //   if (record1Label) {
-          //     record1Label.classList.add("text-primary");
-          //     record1Label.classList.remove("text-on-surface-variant/70");
-          //   }
-          //   if (record2Label) {
-          //     record2Label.classList.remove("text-primary");
-          //     record2Label.classList.add("text-on-surface-variant/70");
-          //   }
-          // } else {
-          //   if (record2Accordion) record2Accordion.open = true;
-          //   if (record1Accordion) record1Accordion.open = false;
-          //   if (record2Label) {
-          //     record2Label.classList.add("text-primary");
-          //     record2Label.classList.remove("text-on-surface-variant/70");
-          //   }
-          //   if (record1Label) {
-          //     record1Label.classList.remove("text-primary");
-          //     record1Label.classList.add("text-on-surface-variant/70");
-          //   }
-          // }
-        }
-      });
+    // Update Service Tag Style
+    // Remove previous color classes
+    bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
+    // Add new color class
+    bannerServiceTag.classList.add(data.tagClass);
+  }
+});
 </script>
   </body>
 </html>

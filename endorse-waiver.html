@@ -281,7 +281,7 @@
             <a
               id="nav-ffi-endorse"
               href="endorse-waiver.html"
-              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200 nav-text whitespace"
               >ENDORSE WAIVER</a
             >
             <a
@@ -293,7 +293,7 @@
             <a
               id="nav-ffi-mo-acknowledgement"
               href="medical-officer-acknowledgement.html"
-              class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200 nav-text whitespace"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text"
               >MEDICAL OFFICER ACKNOWLEDGEMENT</a
             >
             <a
@@ -931,79 +931,6 @@
               </div>
             </div>
           </section>
-          <div
-            class="bg-white border border-outline-variant rounded-lg mb-stack-gap-lg shadow-sm"
-          >
-            <div
-              class="p-stack-gap-lg border-b border-surface-container bg-surface-container-lowest"
-            >
-              <h2
-                class="font-headline-section text-headline-section text-primary"
-              >
-                Endorser Review Details
-              </h2>
-            </div>
-            <div class="p-container-padding space-y-stack-gap-lg">
-              <div class="flex flex-row gap-24">
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Endorsed by
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >Dr. John Doe</span
-                    >
-                  </div>
-                </div>
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Endorsed Date
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >25 Oct 2023, 05:32 PM</span
-                    >
-                  </div>
-                </div>
-                <!-- Approval Radios -->
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Decision
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
-                      >Endorsed</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <!-- Remarks Field -->
-              <div class="space-y-stack-gap-sm">
-                <label
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                  for="remarks"
-                  >Remarks</label
-                >
-                <div class="w-full bg-surface-container-lowest border-l-4 border-primary rounded-r-lg p-4 border border-y-outline-variant/30 border-r-outline-variant/30">
-
-                  
-                  <!-- Read-Only Content -->
-                  <p class="font-body-md text-on-surface text-sm">
-                    Upon evaluation, the individual demonstrates normal vital signs and meets all physical benchmarks, presenting no medical restrictions for overseas exercise.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- Review Form Container -->
           <div
             class="bg-white border border-outline-variant rounded-lg shadow-sm"
@@ -1014,51 +941,40 @@
               <h2
                 class="font-headline-section text-headline-section text-primary"
               >
-                Approver Review Details
+                Higher Authority Review for Endorsement
               </h2>
             </div>
             <div class="p-container-padding space-y-stack-gap-lg">
               <!-- Approval Radios -->
-              <div class="flex flex-row gap-24">
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Approved by
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
+              <div class="space-y-stack-gap-sm">
+                <p
+                  class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
+                >
+                  Decision
+                </p>
+                <div class="flex gap-stack-gap-lg">
+                  <label class="inline-flex items-center cursor-pointer group">
+                    <input
+                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                      name="decision"
+                      type="radio"
+                    />
                     <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >CARMO</span
+                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                      >Endorse</span
                     >
-                  </div>
-                </div>
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Approved Date
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
+                  </label>
+                  <label class="inline-flex items-center cursor-pointer group">
+                    <input
+                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                      name="decision"
+                      type="radio"
+                    />
                     <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >26 Oct 2023, 11:17 AM</span
+                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                      >Reject</span
                     >
-                  </div>
-                </div>
-                <!-- Approval Radios -->
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Decision
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
-                      >Approved</span
-                    >
-                  </div>
+                  </label>
                 </div>
               </div>
               <!-- Remarks Field -->
@@ -1068,29 +984,34 @@
                   for="remarks"
                   >Remarks</label
                 >
-                <div class="w-full bg-surface-container-lowest border-l-4 border-primary rounded-r-lg p-4 border border-y-outline-variant/30 border-r-outline-variant/30">
-
-                  
-                  <!-- Read-Only Content -->
-                  <p class="font-body-md text-on-surface text-sm">
-                    Following assessment, the serviceman presents with normal vital signs and no clinical contraindications for overseas duties, having fulfilled all physical fitness criteria. 
-                  </p>
-                  <p class="font-body-md text-on-surface text-sm">
-                    Medical Officer to acknowledge this assessment before proceeding. 
-                  </p>
-                </div>
+                <textarea
+                  class="w-full border border-outline-variant rounded p-stack-gap-md font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary/20 bg-surface-container-lowest"
+                  id="remarks"
+                  placeholder="Enter clinical remarks or justification for review outcome..."
+                  rows="6"
+                ></textarea>
               </div>
             </div>
             <!-- Footer Buttons -->
             <div
               class="p-stack-gap-lg border-t border-surface-container bg-surface-container-low flex justify-end gap-stack-gap-md"
             >
+              <button
+                class="px-6 py-2 border border-outline-variant text-on-surface-variant rounded font-semibold text-body-md hover:bg-surface-variant transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                class="px-8 py-2 border border-primary text-primary rounded font-semibold text-body-md hover:bg-primary/5 transition-all active:scale-95"
+              >
+                Save
+              </button>
               <a
               href="submitted-form.html">
                 <button
                   class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
                 >
-                  Acknowledge
+                  Submit
                 </button>
               </a>
             </div>

@@ -13,6 +13,11 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -249,14 +254,26 @@
           </div>
           <div
             id="ffi-submenu"
-            style="display: none;"
+            style="display: none"
             class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
             <a
-              id="nav-ffi-create"
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
               href="create-new-ffi-outcome.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
-              >CREATE NEW</a
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
             >
             <a
               id="nav-ffi-ha"
@@ -265,7 +282,7 @@
               >MAINTAIN HIGHER AUTHORITY REVIEW</a
             >
             <a
-              id="nav-ffi-ha"
+              id="nav-ffi-mo-acknowledgement"
               href="medical-officer-acknowledgement.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
               >MEDICAL OFFICER ACKNOWLEDGEMENT</a
@@ -364,7 +381,9 @@
         id="top-header"
       >
         <div class="flex items-center gap-2 flex-1">
-          <div class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
             <div
               aria-hidden="true"
               class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
@@ -387,11 +406,19 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center">
-            <span class="material-symbols-outlined text-[22px]">notifications</span>
-            <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
           </button>
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
             <span class="material-symbols-outlined text-[22px]">help</span>
           </button>
           <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
@@ -407,269 +434,8 @@
       <main
         class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
       >
-        <!-- ALL IN ONE PATIENT BANNER -->
-        <template class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-          <!-- Patient Context Header (Updated) -->
-          <div
-            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-3 px-6"
-          >
-            <div class="flex flex-col w-full gap-4">
-              <div class="flex justify-end items-start w-full">
-                <div class="flex flex-col gap-2">
-                  <div class="flex items-center gap-4">
-                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                      Tan Ah Teck
-                    </h2> -->
-                    <div class="flex gap-2 h-[24px] items-center">
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >P</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R2</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R3</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex flex-nowrap items-start justify-between w-full gap-4"
-              >
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >NRIC</span
-                  >
-                  <div class="font-bold text-sm">S1234567A</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >GENDER</span
-                  >
-                  <div class="font-bold text-sm">Male</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >AGE</span
-                  >
-                  <div class="font-bold text-sm">26</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DOB</span
-                  >
-                  <div class="font-bold text-sm">08-Sep-1997</div>
-                </div>
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                  <div class="font-bold text-sm">Medically Fit for Service</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION Code</span
-                  >
-                  <div class="font-bold text-sm">FIT (Temp)</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >PES</span
-                  >
-                  <div class="font-bold text-sm">-</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
-                  >
-                  <div class="font-bold text-sm">A1</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >Dental Status</span
-                  >
-                  <div class="font-bold text-sm">D1</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
-                  >
-                  <div class="font-bold text-sm">A1</div>
-                </div>
-                
-                <!-- P tag variation -->
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >P-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >P
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >R2-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R2
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >R3-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R3
-                  </span>
-                </div> -->
-              </div>
-              <div class="flex flex-col w-full gap-3 back">
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE</span
-                    >
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="bg-secondary text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        id="banner-service-tag"
-                        >Army</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE TYPE</span
-                    >
-                    <div class="font-bold text-sm" id="banner-service-type">
-                      NSman
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >RANK</span
-                    >
-                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >UNIT</span
-                    >
-                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >VOCATION</span
-                    >
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                      id="vocation-toggle"
-                    >
-                      <span class="vocation-text truncate" id="banner-vocation"
-                        >Combat Medic Specialist</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex gap-2"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="bg-blue-700 text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        >Navy</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm">DXO</div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <div class="font-bold text-sm">ME2</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm">RSS Supreme</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                    >
-                      <span class="vocation-text truncate"
-                        >Naval Safety Officer</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex gap-2"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <div class="flex items-center gap-2">
-                      <span class="text-white/60 font-bold text-sm px-3 py-0.5"
-                        >-</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                    >
-                      <span class="vocation-text truncate text-white">-</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </template>
-          <!-- ALL IN ONE PATIENT BANNER -->
-
-          <!-- DROPDOWN PATIENT BANNER  -->
-          <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+        <!-- DROPDOWN PATIENT BANNER  -->
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
           <!-- Patient Context Header (Updated) -->
           <div
             class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
@@ -679,8 +445,8 @@
                 <div class="flex flex-col gap-2">
                   <div class="flex items-center gap-4">
                     <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                      Tan Ah Teck
-                    </h2> -->
+                    Tan Ah Teck
+                  </h2> -->
                     <div class="flex gap-2 h-[24px] items-center">
                       <span
                         class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
@@ -700,17 +466,17 @@
                     </div>
                   </div>
                 </div>
-              </div>  
+              </div>
               <div
                 class="flex flex-nowrap items-start justify-between w-full gap-4"
               >
                 <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >NRIC</span
-                  >
-                  <div class="font-bold text-sm">S1234567A</div>
-                </div> -->
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >NRIC</span
+                >
+                <div class="font-bold text-sm">S1234567A</div>
+              </div> -->
                 <div class="flex flex-col gap-1">
                   <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
@@ -733,12 +499,12 @@
                   <div class="font-bold text-sm">08-Sep-1997</div>
                 </div>
                 <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                  <div class="font-bold text-sm">Medically Fit for Service</div>
-                </div> -->
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >MGS DISPOSITION</span
+                >
+                <div class="font-bold text-sm">Medically Fit for Service</div>
+              </div> -->
                 <div class="flex flex-col gap-1">
                   <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
@@ -755,10 +521,10 @@
                 </div>
                 <div class="flex flex-col gap-1">
                   <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >DENTAL STATUS</span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
                   >
-                  <div class="font-bold text-sm">D1</div>
+                  <div class="font-bold text-sm">D1 (Expired)</div>
                 </div>
                 <div class="flex flex-col gap-1">
                   <span
@@ -767,7 +533,6 @@
                   >
                   <div class="font-bold text-sm">A1</div>
                 </div>
-                
                 <div class="flex flex-col gap-1"></div>
               </div>
               <div
@@ -824,7 +589,10 @@
                   </div>
                 </div>
                 <div class="flex flex-col gap-1 ml-auto">
-                  <span id="record-counter" class="text-xs text-white/70 font-medium">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
                     RECORD 1 OF 2
                   </span>
 
@@ -833,17 +601,23 @@
                       class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
                       id="service-record-select"
                     >
-                      <option class="text-on-surface bg-white" selected="selected" value="record1">
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
                         Service Record 1
                       </option>
                       <option class="text-on-surface bg-white" value="record2">
                         Service Record 2
                       </option>
                       <!-- <option class="text-on-surface bg-white" value="record3">
-                        Service Record 3
-                      </option> -->
+                      Service Record 3
+                    </option> -->
                     </select>
-                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
                       expand_more
                     </span>
                   </div>
@@ -852,11 +626,6 @@
             </div>
           </div>
           <!-- DROPDOWN PATIENT BANNER  -->
-
-
-
-
-
 
           <!-- Patient Context Header (Updated) -->
           <!-- Bento Grid Layout -->
@@ -1291,8 +1060,7 @@
                       <div
                         class="flex items-center gap-1 text-primary font-body-sm text-body-sm"
                       >
-                        <span class="group-open:hidden"
-                          >View History</span
+                        <span class="group-open:hidden">View History</span
                         ><span class="hidden group-open:inline"
                           >Collapse History</span
                         ><span
@@ -1480,87 +1248,253 @@
                   <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                       <thead>
-                        <tr class="border-b border-surface-container bg-surface-container-low bg-surface-container/30">
-                          <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Issue Date</th>
-                          <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Expiry Date</th>
-                          <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">FFI Type</th>
-                          <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">Outcome</th>
-                          <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4">Status</th>
-                          <th class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest text-right px-4">Actions</th>
+                        <tr
+                          class="border-b border-surface-container bg-surface-container-low bg-surface-container/30"
+                        >
+                          <th
+                            class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4"
+                          >
+                            FFI Issue Date
+                          </th>
+                          <th
+                            class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4"
+                          >
+                            FFI Expiry Date
+                          </th>
+                          <th
+                            class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4"
+                          >
+                            FFI Type
+                          </th>
+                          <th
+                            class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4"
+                          >
+                            Outcome
+                          </th>
+                          <th
+                            class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest px-4"
+                          >
+                            Status
+                          </th>
+                          <th
+                            class="py-3 font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest text-right px-4"
+                          >
+                            Actions
+                          </th>
                         </tr>
                       </thead>
                       <tbody class="font-body-sm text-body-sm text-on-surface">
                         <!-- Active Row 1 -->
-                        <tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
-                          <td class="py-4 px-4"><span class="">15 May 2024</span></td>
-                          <td class="py-4 px-4"><span class="">15 May 2029</span></td>
+                        <tr
+                          class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"
+                        >
+                          <td class="py-4 px-4">
+                            <span class="">15 May 2024</span>
+                          </td>
+                          <td class="py-4 px-4">
+                            <span class="">15 May 2029</span>
+                          </td>
                           <td class="py-4 px-4">Cat B - Military Freefall</td>
-                          <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-error-container text-error">Pending</span></td>
-                          <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider bg-error-container text-error"
+                              >Pending</span
+                            >
+                          </td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Active</span
+                            >
+                          </td>
                           <td class="py-4 text-right px-4">
                             <div class="flex justify-end gap-3">
-                              <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+                              <a
+                                class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                                href="#"
+                                >Expand</a
+                              >
                             </div>
                           </td>
                         </tr>
-                        
+
                         <!-- Active Row 2 -->
-                        <tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
-                          <td class="py-4 px-4"><span class="">14 Jan 2024</span></td>
+                        <tr
+                          class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"
+                        >
+                          <td class="py-4 px-4">
+                            <span class="">14 Jan 2024</span>
+                          </td>
                           <td class="py-4 px-4">
                             <span class="">14 Jan 2028</span>
-                            <span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 w-fit block">Expiring</span>
+                            <span
+                              class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 w-fit block"
+                              >Expiring</span
+                            >
                           </td>
                           <td class="py-4 px-4">Cat A - OCS / SCS</td>
-                          <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Fit</span></td>
-                          <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Fit</span
+                            >
+                          </td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Active</span
+                            >
+                          </td>
                           <td class="py-4 text-right px-4">
                             <div class="flex justify-end gap-3">
-                              <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+                              <a
+                                class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                                href="#"
+                                >Expand</a
+                              >
                             </div>
                           </td>
                         </tr>
-                        
+
                         <!-- Active Row 3 (Collapsible Details) -->
-                        <tr class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
-                          <td class="py-4 px-4"><span class="">12 Oct 2023</span></td>
-                          <td class="py-4 px-4"><span class="">12 Oct 2028</span></td>
+                        <tr
+                          class="border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"
+                        >
+                          <td class="py-4 px-4">
+                            <span class="">12 Oct 2023</span>
+                          </td>
+                          <td class="py-4 px-4">
+                            <span class="">12 Oct 2028</span>
+                          </td>
                           <td class="py-4 px-4">Cat A - OCS / SCS</td>
-                          <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Waiver granted</span></td>
-                          <td class="py-4 px-4"><span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Active</span></td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Waiver granted</span
+                            >
+                          </td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Active</span
+                            >
+                          </td>
                           <td class="py-4 text-right px-4">
                             <div class="flex justify-end gap-3">
-                              <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#" onclick="const detailRow = this.closest('tr').nextElementSibling; const isHidden = detailRow.classList.toggle('hidden'); this.textContent = isHidden ? 'Expand' : 'Collapse';">Collapse</a>
+                              <a
+                                class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                                href="#"
+                                onclick="
+                                  const detailRow =
+                                    this.closest('tr').nextElementSibling;
+                                  const isHidden =
+                                    detailRow.classList.toggle('hidden');
+                                  this.textContent = isHidden
+                                    ? 'Expand'
+                                    : 'Collapse';
+                                "
+                                >Collapse</a
+                              >
                             </div>
                           </td>
                         </tr>
                         <tr class="border-b border-surface-container/50">
                           <td class="p-6" colspan="6">
-                            <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-4 mb-4 shadow-sm">
-                              <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                                <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span><span class="font-semibold text-on-surface" style="font-weight: normal">#01</span></div>
-                                <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span><span class="font-semibold text-on-surface" style="font-weight: normal">Dr. A. Chen</span></div>
-                                <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span><span class="font-semibold text-on-surface" style="font-weight: normal">CARMO</span></div>
-                                <div class="flex flex-col gap-1"><span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting Medical Centre</span><span class="font-semibold text-on-surface" style="font-weight: normal">Nee Soon Medical Centre</span></div>
+                            <div
+                              class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-4 mb-4 shadow-sm"
+                            >
+                              <div
+                                class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"
+                              >
+                                <div class="flex flex-col gap-1">
+                                  <span
+                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
+                                    >NGEMR FFI Note ID</span
+                                  ><span
+                                    class="font-semibold text-on-surface"
+                                    style="font-weight: normal"
+                                    >#01</span
+                                  >
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                  <span
+                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
+                                    >Last Updated By</span
+                                  ><span
+                                    class="font-semibold text-on-surface"
+                                    style="font-weight: normal"
+                                    >Dr. A. Chen</span
+                                  >
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                  <span
+                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
+                                    >Higher Authority</span
+                                  ><span
+                                    class="font-semibold text-on-surface"
+                                    style="font-weight: normal"
+                                    >CARMO</span
+                                  >
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                  <span
+                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
+                                    >Submitting Medical Centre</span
+                                  ><span
+                                    class="font-semibold text-on-surface"
+                                    style="font-weight: normal"
+                                    >Nee Soon Medical Centre</span
+                                  >
+                                </div>
                               </div>
-                              <div class="pt-6 border-t border-surface-container">
-                                <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
-                                <p class="text-body-sm text-on-surface leading-relaxed">Clinical review completed. Patient fit for deployment with minor conditions.</p>
+                              <div
+                                class="pt-6 border-t border-surface-container"
+                              >
+                                <span
+                                  class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2"
+                                  >Remarks</span
+                                >
+                                <p
+                                  class="text-body-sm text-on-surface leading-relaxed"
+                                >
+                                  Clinical review completed. Patient fit for
+                                  deployment with minor conditions.
+                                </p>
                               </div>
                             </div>
                           </td>
                         </tr>
 
                         <!-- INACTIVE ROW (Hidden by default using Tailwind's 'hidden' class) -->
-                        <tr class="inactive-row hidden border-b border-surface-container/50 hover:bg-surface-container-low transition-colors">
-                          <td class="py-4 px-4"><span class="">10 Jan 2021</span></td>
-                          <td class="py-4 px-4"><span class="">10 Jan 2023</span></td>
+                        <tr
+                          class="inactive-row hidden border-b border-surface-container/50 hover:bg-surface-container-low transition-colors"
+                        >
+                          <td class="py-4 px-4">
+                            <span class="">10 Jan 2021</span>
+                          </td>
+                          <td class="py-4 px-4">
+                            <span class="">10 Jan 2023</span>
+                          </td>
                           <td class="py-4 px-4">Cat A - OCS / SCS</td>
-                          <td class="py-4 px-4"><span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider text-on-surface-variant">Unfit</span></td>
-                          <td class="py-4 px-4"><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Inactive</span></td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider text-on-surface-variant"
+                              >Unfit</span
+                            >
+                          </td>
+                          <td class="py-4 px-4">
+                            <span
+                              class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Inactive</span
+                            >
+                          </td>
                           <td class="py-4 text-right px-4">
                             <div class="flex justify-end gap-3">
-                              <a class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" href="#">Expand</a>
+                              <a
+                                class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                                href="#"
+                                >Expand</a
+                              >
                             </div>
                           </td>
                         </tr>
@@ -1569,7 +1503,7 @@
                   </div>
                   <div class="mt-6 flex justify-center">
                     <button
-                      id="toggleRecordsBtn" 
+                      id="toggleRecordsBtn"
                       class="border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary/5 transition-all duration-200 font-semibold text-sm"
                       onclick="toggleInactiveRecords()"
                     >
@@ -1631,13 +1565,13 @@
       }
 
       //PATIENT DROPDOWN
-      const selectEl = document.getElementById('service-record-select');
-      const counterEl = document.getElementById('record-counter');
+      const selectEl = document.getElementById("service-record-select");
+      const counterEl = document.getElementById("record-counter");
 
-      selectEl.addEventListener('change', (e) => {
+      selectEl.addEventListener("change", (e) => {
         const currentIndex = e.target.selectedIndex + 1;
         const totalRecords = e.target.options.length;
-        
+
         counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
       });
 
@@ -1721,7 +1655,7 @@
           service: "Navy",
           isCurrent: false,
           // tagClass: "bg-[#002B5C]", // navy blue
-          tagClass: "bg-blue-700"
+          tagClass: "bg-blue-700",
         },
         record3: {
           type: "-",
@@ -1730,7 +1664,7 @@
           vocation: "-",
           service: "-",
           isCurrent: false,
-          tagClass: ""
+          tagClass: "",
         },
       };
 
@@ -1746,7 +1680,12 @@
 
           // Update Service Tag Style
           // Remove previous color classes
-          bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
           // Add new color class
           bannerServiceTag.classList.add(data.tagClass);
 
@@ -1784,24 +1723,23 @@
         }
       });
       function toggleInactiveRecords() {
-        const btn = document.getElementById('toggleRecordsBtn');
-        const inactiveRows = document.querySelectorAll('.inactive-row');
-        
+        const btn = document.getElementById("toggleRecordsBtn");
+        const inactiveRows = document.querySelectorAll(".inactive-row");
+
         // Track current state based on button text
-        const isHidden = btn.textContent.trim() === 'Load More Records';
-        
-        inactiveRows.forEach(row => {
+        const isHidden = btn.textContent.trim() === "Load More Records";
+
+        inactiveRows.forEach((row) => {
           if (isHidden) {
-            row.classList.remove('hidden');
+            row.classList.remove("hidden");
           } else {
-            row.classList.add('hidden');
+            row.classList.add("hidden");
           }
         });
-        
+
         // Toggle the button text label
-        btn.textContent = isHidden ? 'Hide Records' : 'Load More Records';
+        btn.textContent = isHidden ? "Hide Records" : "Load More Records";
       }
-      
     </script>
   </body>
 </html>

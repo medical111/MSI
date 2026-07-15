@@ -17,6 +17,11 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -262,10 +267,22 @@
             class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
             <a
-              id="nav-ffi-create"
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
               href="create-new-ffi-outcome.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
-              >CREATE NEW</a
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
             >
             <a
               id="nav-ffi-ha"
@@ -274,7 +291,7 @@
               >MAINTAIN HIGHER AUTHORITY REVIEW</a
             >
             <a
-              id="nav-ffi-ha"
+              id="nav-ffi-mo-acknowledgement"
               href="medical-officer-acknowledgement.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
               >MEDICAL OFFICER ACKNOWLEDGEMENT</a
@@ -414,568 +431,575 @@
       </header>
       <!-- Canvas -->
       <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
-        
-
-        <!-- ALL IN ONE PATIENT BANNER -->
-        <template class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-          <!-- Patient Context Header (Updated) -->
-          <div
-            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-3 px-6"
-          >
-            <div class="flex flex-col w-full gap-4">
-              <div class="flex justify-end items-start w-full">
-                <div class="flex flex-col gap-2">
-                  <div class="flex items-center gap-4">
-                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                      Tan Ah Teck
-                    </h2> -->
-                    <div class="flex gap-2 h-[24px] items-center">
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >P</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R2</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R3</span
-                      >
-                    </div>
+        <!-- DROPDOWN PATIENT BANNER  -->
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+        <!-- Patient Context Header (Updated) -->
+        <div
+          class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+        >
+          <div class="flex flex-col gap-4 w-full">
+            <div class="flex justify-end items-start w-full">
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-4">
+                  <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                    Tan Ah Teck
+                  </h2> -->
+                  <div class="flex gap-2 h-[24px] items-center">
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >P</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >R2</span
+                    >
+                    <span
+                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                      style="background-color: #c41802"
+                      >R3</span
+                    >
                   </div>
                 </div>
               </div>
-              <div
-                class="flex flex-nowrap items-start justify-between w-full gap-4"
-              >
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >NRIC</span
-                  >
-                  <div class="font-bold text-sm">S1234567A</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >GENDER</span
-                  >
-                  <div class="font-bold text-sm">Male</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >AGE</span
-                  >
-                  <div class="font-bold text-sm">26</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DOB</span
-                  >
-                  <div class="font-bold text-sm">08-Sep-1997</div>
-                </div>
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                  <div class="font-bold text-sm">Medically Fit for Service</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION Code</span
-                  >
-                  <div class="font-bold text-sm">FIT (Temp)</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >PES</span
-                  >
-                  <div class="font-bold text-sm">-</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >Dental Status</span
-                  >
-                  <div class="font-bold text-sm">D1</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
-                  >
-                  <div class="font-bold text-sm">A1</div>
-                </div>
-
-                <!-- P tag variation -->
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >P-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >P
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >R2-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R2
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >R3-Tag</span
-                  >
-                  <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R3
-                  </span>
-                </div> -->
-              </div>
-              <div class="flex flex-col w-full gap-3 back">
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE</span
-                    >
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="bg-secondary text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        id="banner-service-tag"
-                        >Army</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE TYPE</span
-                    >
-                    <div class="font-bold text-sm" id="banner-service-type">
-                      NSman
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >RANK</span
-                    >
-                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >UNIT</span
-                    >
-                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >VOCATION</span
-                    >
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                      id="vocation-toggle"
-                    >
-                      <span class="vocation-text truncate" id="banner-vocation"
-                        >Combat Medic Specialist</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex gap-2"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="bg-blue-700 text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        >Navy</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm">DXO</div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <div class="font-bold text-sm">ME2</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm">RSS Supreme</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                    >
-                      <span class="vocation-text truncate"
-                        >Naval Safety Officer</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex gap-2"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
-                >
-                  <div class="flex flex-col w-24 gap-1">
-                    <div class="flex items-center gap-2">
-                      <span class="text-white/60 font-bold text-sm px-3 py-0.5"
-                        >-</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col w-20 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col w-32 gap-1">
-                    <div class="font-bold text-sm text-white">-</div>
-                  </div>
-                  <div class="flex flex-col flex-1 gap-1">
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                    >
-                      <span class="vocation-text truncate text-white">-</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </template>
-          <!-- ALL IN ONE PATIENT BANNER -->
-
-          <!-- DROPDOWN PATIENT BANNER  -->
-          <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-          <!-- Patient Context Header (Updated) -->
-          <div
-            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-          >
-            <div class="flex flex-col gap-4 w-full">
-              <div class="flex justify-end items-start w-full">
-                <div class="flex flex-col gap-2">
-                  <div class="flex items-center gap-4">
-                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                      Tan Ah Teck
-                    </h2> -->
-                    <div class="flex gap-2 h-[24px] items-center">
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >P</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R2</span
-                      >
-                      <span
-                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                        style="background-color: #c41802"
-                        >R3</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div
-                class="flex flex-nowrap items-start justify-between w-full gap-4"
-              >
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >NRIC</span
-                  >
-                  <div class="font-bold text-sm">S1234567A</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >GENDER</span
-                  >
-                  <div class="font-bold text-sm">Male</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >AGE</span
-                  >
-                  <div class="font-bold text-sm">26</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DOB</span
-                  >
-                  <div class="font-bold text-sm">08-Sep-1997</div>
-                </div>
-                <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                  <div class="font-bold text-sm">Medically Fit for Service</div>
-                </div> -->
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION Code</span
-                  >
-                  <div class="font-bold text-sm">FIT (Temp)</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >PES</span
-                  >
-                  <div class="font-bold text-sm">-</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >DENTAL STATUS</span
-                  >
-                  <div class="font-bold text-sm">D1</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >A CODE</span
-                  >
-                  <div class="font-bold text-sm">A1</div>
-                </div>
-
-                <div class="flex flex-col gap-1"></div>
-              </div>
-              <div
-                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-              >
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >SERVICE</span
-                  >
-                  <div class="w-fit">
-                    <span
-                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                      id="banner-service-tag"
-                      >Army</span
-                    >
-                  </div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >SERVICE TYPE</span
-                  >
-                  <div class="font-bold text-sm" id="banner-service-type">
-                    NSman
-                  </div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >RANK</span
-                  >
-                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >UNIT</span
-                  >
-                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >VOCATION</span
-                  >
-                  <div
-                    class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
-                    id="vocation-toggle"
-                  >
-                    <span class="vocation-text truncate" id="banner-vocation"
-                      >Infantry Specialist</span
-                    >
-                  </div>
-                </div>
-                <div class="flex flex-col gap-1 ml-auto">
-                  <span id="record-counter" class="text-xs text-white/70 font-medium">
-                    RECORD 1 OF 2
-                  </span>
-
-                  <div class="relative w-[200px]">
-                    <select
-                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                      id="service-record-select"
-                    >
-                      <option class="text-on-surface bg-white" selected="selected" value="record1">
-                        Service Record 1
-                      </option>
-                      <option class="text-on-surface bg-white" value="record2">
-                        Service Record 2
-                      </option>
-                      <!-- <option class="text-on-surface bg-white" value="record3">
-                        Service Record 3
-                      </option> -->
-                    </select>
-                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                      expand_more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- DROPDOWN PATIENT BANNER  -->
-
-
-
-
-      
-        <!-- Content Area -->
-        <div >
-          <!-- <nav class="flex items-center gap-2 text-sm text-slate-500 mb-4">
-            <span class="material-symbols-outlined text-sm">home</span>
-            <span class="hover:underline cursor-pointer">FFI</span>
-            <span class="material-symbols-outlined text-sm"
-              >chevron_right</span
-            >
-            <span class="text-primary font-semibold"
-              >Maintain Higher Authority Review</span
-            >
-          </nav> -->
-          <!-- Submission Details Section (Replacing old row) -->
-          <div
-            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
-          >
+            </div>  
             <div
-              class="p-stack-gap-lg border-b border-surface-container bg-surface-container-low"
+              class="flex flex-nowrap items-start justify-between w-full gap-4"
             >
-              <h2
-                class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-              >
-                Submission Details
-              </h2>
+              <!-- <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >NRIC</span
+                >
+                <div class="font-bold text-sm">S1234567A</div>
+              </div> -->
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >GENDER</span
+                >
+                <div class="font-bold text-sm">Male</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >AGE</span
+                >
+                <div class="font-bold text-sm">26</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >DOB</span
+                >
+                <div class="font-bold text-sm">08-Sep-1997</div>
+              </div>
+              <!-- <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >MGS DISPOSITION</span
+                >
+                <div class="font-bold text-sm">Medically Fit for Service</div>
+              </div> -->
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >MGS DISPOSITION Code</span
+                >
+                <div class="font-bold text-sm">FIT (Temp)</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >PES</span
+                >
+                <div class="font-bold text-sm">-</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                >DENTAL STATUS</span
+                >
+                <div class="font-bold text-sm">D1 (Expired)</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >A CODE</span
+                >
+                <div class="font-bold text-sm">A1</div>
+              </div>
+
+              <div class="flex flex-col gap-1"></div>
             </div>
-            <div class="p-stack-gap-lg">
-              <div
-                class="grid grid-cols-1 md:grid-cols-4 gap-stack-gap-lg mb-6"
-              >
-                <div class="flex flex-col gap-1">
+            <div
+              class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+            >
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >SERVICE</span
+                >
+                <div class="w-fit">
                   <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >Submitted By</span
+                    class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                    id="banner-service-tag"
+                    >Army</span
                   >
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                    >Dr. Ryan Goh</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >Submission Date</span
-                  >
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                    >24 Oct 2023, 09:45 AM</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >FFI Type</span
-                  >
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                    >CAT A - OCS / SCS</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >CDS RECOMMENDATION</span
-                  >
-                  <span
-                    class="inline-flex items-center justify-center bg-secondary/10 text-secondary border border-secondary/20 rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
-                  >
-                    Fit
-                  </span>
                 </div>
               </div>
               <div class="flex flex-col gap-1">
                 <span
-                  class="font-label-caps text-label-caps text-outline uppercase"
-                  >Clinical Remarks (Conditions affecting overseas
-                  deployment)</span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >SERVICE TYPE</span
                 >
-                <p
-                  class="font-body-md text-body-md text-on-surface leading-relaxed"
-                >
-                  Serviceman exhibits normal vital signs and passed all physical
-                  fitness components. No clinical contraindications for OCS/SCS
-                  duties found during the assessment.
-                </p>
+                <div class="font-bold text-sm" id="banner-service-type">
+                  NSman
+                </div>
               </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >RANK</span
+                >
+                <div class="font-bold text-sm" id="banner-rank">CPT</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >UNIT</span
+                >
+                <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >VOCATION</span
+                >
+                <div
+                  class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
+                  id="vocation-toggle"
+                >
+                  <span class="vocation-text truncate" id="banner-vocation"
+                    >Infantry Specialist</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col gap-1 ml-auto">
+                <span id="record-counter" class="text-xs text-white/70 font-medium">
+                  RECORD 1 OF 2
+                </span>
+
+                <div class="relative w-[200px]">
+                  <select
+                    class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                    id="service-record-select"
+                  >
+                    <option class="text-on-surface bg-white" selected="selected" value="record1">
+                      Service Record 1
+                    </option>
+                    <option class="text-on-surface bg-white" value="record2">
+                      Service Record 2
+                    </option>
+                    <!-- <option class="text-on-surface bg-white" value="record3">
+                      Service Record 3
+                    </option> -->
+                  </select>
+                  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
+                    expand_more
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- DROPDOWN PATIENT BANNER  -->
+
+        <!-- Content Area -->
+        <div >
+          <section
+            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
+            id="msi-info-section"
+          >
+            <div>
               <div
-                class="grid grid-cols-1 md:grid-cols-4 gap-stack-gap-lg mt-6 pt-6 border-t border-surface-container"
+                class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
               >
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >Sample 1</span
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[28px] leading-none">quick_reference_all</span>
+                  MSI Information
+                </h2>
+              </div>
+              <div class="flex flex-col gap-8 p-6">
+                <!-- Information Subsection -->
+                <div id="msi-submission-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                    >-</span
-                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Submission Details
+                    </h3>
+                  </div>
+                  <div class="flex flex-col gap-4 px-6">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Submitted By</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Dr. Ryan Goh</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Submission Date</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >24 Oct 2023, 09:45 AM</span
+                        >
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >Sample 2</span
+                <div id="msi-ffi-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                    >-</span
-                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      FFI Details
+                    </h3>
+                  </div>
+                  <div class="flex flex-col gap-4 px-6">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >FFI Type</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Overseas</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Category</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Category B</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Sub Category</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >SOF Rifle of Passage</span
+                        >
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <span
-                    class="font-label-caps text-label-caps text-outline uppercase"
-                    >Proposed Outcome</span
+                <div id="msi-assignment-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
-                  <span
-                    class="bg-error text-white px-2 py-0.5 rounded uppercase font-bold text-[10px] w-fit inline-flex items-center justify-center"
-                    >Unfit for deployment</span
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Assignment Details
+                    </h3>
+                  </div>
+                  <div class="flex flex-col gap-4 px-6">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Name of Overseas Assignment</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Exercise Wallaby</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Duration of Overseas Assignment</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >3 Weeks</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Location of Overseas Assignment</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Shoalwater Bay, Australia</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Nature of Deployment</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Overseas Training Deployment</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="msi-decision-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Decision
+                    </h3>
+                  </div>
+                  <div class="flex flex-col gap-4 px-6">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >CDS Recommendation</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="inline-flex items-center justify-center bg-error text-white rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
+                          >Unfit for Deployment</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Proposed Outcome</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
+                          >Fit for Deployment</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
+            id="ngemr-info-section"
+          >
+            <div id="ngemr-review-subsection">
+              <div
+                class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+              >
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[28px] leading-none">sync_saved_locally</span>
+                  NGEMR Information
+                </h2>
+              </div>
+              <div class="flex flex-col gap-8 p-6">
+                <div id="ngemr-review-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Medical History
+                    </h3>
+                  </div>
+                  <div class="grid gap-8 px-6">
+                    <div class="flex flex-col gap-4">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Conditions affecting overseas deployment
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >Patient displays persistent mild exercise-induced bronchospasms, typically aggravated by high-humidity environments. Managed effectively via PRN inhaler therapy, but requires structured monitoring during heavy physical exertion phases.</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Medical Problems
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >Mild persistent asthma (diagnosed 2021). Controlled hypertension under current monotherapy regimen (Lisinopril 10mg daily). No acute hospitalizations reported within the past 24 months.</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Functional Status
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >No limitations specified. Full functional capacity for regular duty cycles reported.</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Physical Examination
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >Chest is clear to auscultation bilaterally. No wheezing or prolonged expiratory phase noted at rest. Cardiovascular assessment: normal S1/S2, no murmurs. Blood pressure stable at 124/78 mmHg.</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Investigations
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >Spirometry reports FEV1/FVC ratio within normal parameters (82% of predicted values). Baseline ECG demonstrates normal sinus rhythm with no ST-segment or T-wave alterations.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div
+            class="bg-white border border-outline-variant rounded-lg mb-stack-gap-lg shadow-sm"
+          >
+            <div
+              class="p-stack-gap-lg border-b border-surface-container bg-surface-container-lowest"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-primary"
+              >
+                Endorser Review Details
+              </h2>
+            </div>
+            <div class="p-container-padding space-y-stack-gap-lg">
+              <div class="flex flex-row gap-24">
+                <div class="space-y-stack-gap-sm">
+                  <p
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
+                  >
+                    Endorsed by
+                  </p>
+                  <div class="flex gap-stack-gap-lg">
+                    <span
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                      >Dr. John Doe</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-stack-gap-sm">
+                  <p
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
+                  >
+                    Endorsed Date
+                  </p>
+                  <div class="flex gap-stack-gap-lg">
+                    <span
+                      class="font-data-tabular text-data-tabular text-on-surface"
+                      >25 Oct 2023, 05:32 PM</span
+                    >
+                  </div>
+                </div>
+                <!-- Approval Radios -->
+                <div class="space-y-stack-gap-sm">
+                  <p
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
+                  >
+                    Decision
+                  </p>
+                  <div class="flex gap-stack-gap-lg">
+                    <span
+                      class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
+                      >Endorsed</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Remarks Field -->
+              <div class="space-y-stack-gap-sm">
+                <label
+                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                  for="remarks"
+                  >Remarks</label
+                >
+                <div class="w-full bg-surface-container-lowest border-l-4 border-primary rounded-r-lg p-4 border border-y-outline-variant/30 border-r-outline-variant/30">
+
+                  
+                  <!-- Read-Only Content -->
+                  <p class="font-body-md text-on-surface text-sm">
+                    Upon evaluation, the individual demonstrates normal vital signs and meets all physical benchmarks, presenting no medical restrictions for overseas exercise.
+                  </p>
                 </div>
               </div>
             </div>
@@ -990,7 +1014,7 @@
               <h2
                 class="font-headline-section text-headline-section text-primary"
               >
-                Higher Authority Review Details
+                Higher Authority Review for Approval
               </h2>
             </div>
             <div class="p-container-padding space-y-stack-gap-lg">
@@ -1058,14 +1082,13 @@
               <a
               href="submitted-form.html">
                 <button
-                class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
-              >
-                Submit
-              </button>
+                  class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
+                >
+                  Submit
+                </button>
               </a>
             </div>
-          </div>
-          <!-- Audit Info -->
+          </div>  
         </div>
       </main>
     </div>

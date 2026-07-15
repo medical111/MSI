@@ -16,6 +16,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -319,10 +324,22 @@
             class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
             <a
-              id="nav-ffi-create"
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
               href="create-new-ffi-outcome.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
-              >CREATE NEW</a
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
             >
             <a
               id="nav-ffi-ha"
@@ -331,7 +348,7 @@
               >MAINTAIN HIGHER AUTHORITY REVIEW</a
             >
             <a
-              id="nav-ffi-ha"
+              id="nav-ffi-mo-acknowledgement"
               href="medical-officer-acknowledgement.html"
               class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
               >MEDICAL OFFICER ACKNOWLEDGEMENT</a
@@ -469,449 +486,193 @@
     </header>
     <div class="ml-64 h-full flex flex-col bg-background" id="main-content">
       <!-- Main Content -->
-      <main
-        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
-      >
-          <!-- ALL IN ONE PATIENT BANNER -->
-          <template class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-            <!-- Patient Context Header (Updated) -->
-            <div
-              class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-3 px-6"
-            >
-              <div class="flex flex-col w-full gap-4">
-                <div class="flex justify-end items-start w-full">
-                  <div class="flex flex-col gap-2">
-                    <div class="flex items-center gap-4">
-                      <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                        Tan Ah Teck
-                      </h2> -->
-                      <div class="flex gap-2 h-[24px] items-center">
-                        <span
-                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          style="background-color: #c41802"
-                          >P</span
-                        >
-                        <span
-                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          style="background-color: #c41802"
-                          >R2</span
-                        >
-                        <span
-                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          style="background-color: #c41802"
-                          >R3</span
-                        >
-                      </div>
+      <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
+        <!-- DROPDOWN PATIENT BANNER  -->
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                      Tan Ah Teck
+                    </h2> -->
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
                     </div>
                   </div>
                 </div>
-                <div
-                  class="flex flex-nowrap items-start justify-between w-full gap-4"
-                >
-                  <!-- <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >NRIC</span
-                    >
-                    <div class="font-bold text-sm">S1234567A</div>
-                  </div> -->
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >GENDER</span
-                    >
-                    <div class="font-bold text-sm">Male</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >AGE</span
-                    >
-                    <div class="font-bold text-sm">26</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >DOB</span
-                    >
-                    <div class="font-bold text-sm">08-Sep-1997</div>
-                  </div>
-                  <!-- <div class="flex flex-col gap-1">
+              </div>  
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
                   <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
+                    >NRIC</span
                   >
-                    <div class="font-bold text-sm">Medically Fit for Service</div>
-                  </div> -->
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >MGS DISPOSITION Code</span
-                    >
-                    <div class="font-bold text-sm">FIT (Temp)</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >PES</span
-                    >
-                    <div class="font-bold text-sm">-</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
+                  <div class="font-bold text-sm">S1234567A</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >Dental Status</span
-                    >
-                    <div class="font-bold text-sm">D1</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >A CODE</span
-                    >
-                    <div class="font-bold text-sm">A1</div>
-                  </div>
-
-                  <!-- P tag variation -->
-                  <!-- <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >P-Tag</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >P
-                    </span>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >R2-Tag</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >R2
-                    </span>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >R3-Tag</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >R3
-                    </span>
-                  </div> -->
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
                 </div>
-                <div class="flex flex-col w-full gap-3 back">
-                  <div
-                    class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
                   >
-                    <div class="flex flex-col w-24 gap-1">
-                      <span
-                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                        >SERVICE</span
-                      >
-                      <div class="flex items-center gap-2">
-                        <span
-                          class="bg-secondary text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          id="banner-service-tag"
-                          >Army</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex flex-col w-32 gap-1">
-                      <span
-                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                        >SERVICE TYPE</span
-                      >
-                      <div class="font-bold text-sm" id="banner-service-type">
-                        NSman
-                      </div>
-                    </div>
-                    <div class="flex flex-col w-20 gap-1">
-                      <span
-                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                        >RANK</span
-                      >
-                      <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                    </div>
-                    <div class="flex flex-col w-32 gap-1">
-                      <span
-                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                        >UNIT</span
-                      >
-                      <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                    </div>
-                    <div class="flex flex-col flex-1 gap-1">
-                      <span
-                        class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                        >VOCATION</span
-                      >
-                      <div
-                        class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                        id="vocation-toggle"
-                      >
-                        <span class="vocation-text truncate" id="banner-vocation"
-                          >Infantry Specialist</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex gap-2"></div>
-                  </div>
-                  <div
-                    class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
                   >
-                    <div class="flex flex-col w-24 gap-1">
-                      <div class="flex items-center gap-2">
-                        <span
-                          class="bg-blue-700 text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          >Navy</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex flex-col w-32 gap-1">
-                      <div class="font-bold text-sm">DXO</div>
-                    </div>
-                    <div class="flex flex-col w-20 gap-1">
-                      <div class="font-bold text-sm">ME2</div>
-                    </div>
-                    <div class="flex flex-col w-32 gap-1">
-                      <div class="font-bold text-sm">RSS Supreme</div>
-                    </div>
-                    <div class="flex flex-col flex-1 gap-1">
-                      <div
-                        class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                      >
-                        <span class="vocation-text truncate"
-                          >Naval Safety Officer</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex gap-2"></div>
-                  </div>
-                  <div
-                    class="flex flex-row flex-nowrap items-center justify-start w-full gap-4"
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
+                <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >MGS DISPOSITION</span
+                >
+                  <div class="font-bold text-sm">Medically Fit for Service</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION Code</span
                   >
-                    <div class="flex flex-col w-24 gap-1">
-                      <div class="flex items-center gap-2">
-                        <span class="text-white/60 font-bold text-sm px-3 py-0.5"
-                          >-</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex flex-col w-32 gap-1">
-                      <div class="font-bold text-sm text-white">-</div>
-                    </div>
-                    <div class="flex flex-col w-20 gap-1">
-                      <div class="font-bold text-sm text-white">-</div>
-                    </div>
-                    <div class="flex flex-col w-32 gap-1">
-                      <div class="font-bold text-sm text-white">-</div>
-                    </div>
-                    <div class="flex flex-col flex-1 gap-1">
-                      <div
-                        class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                      >
-                        <span class="vocation-text truncate text-white">-</span>
-                      </div>
-                    </div>
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                  >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
+
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
+                  >
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
                   </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                <span id="record-counter" class="text-xs text-white/70 font-medium">
+                  RECORD 1 OF 2
+                </span>
+
+                <div class="relative w-[200px]">
+                  <select
+                    class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                    id="service-record-select"
+                  >
+                    <option class="text-on-surface bg-white" selected="selected" value="record1">
+                      Service Record 1
+                    </option>
+                    <option class="text-on-surface bg-white" value="record2">
+                      Service Record 2
+                    </option>
+                    <!-- <option class="text-on-surface bg-white" value="record3">
+                      Service Record 3
+                    </option> -->
+                  </select>
+                  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
+                    expand_more
+                  </span>
                 </div>
               </div>
-            </template>
-            <!-- ALL IN ONE PATIENT BANNER -->
-
-            <!-- DROPDOWN PATIENT BANNER  -->
-            <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-            <!-- Patient Context Header (Updated) -->
-            <div
-              class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-            >
-              <div class="flex flex-col gap-4 w-full">
-                <div class="flex justify-end items-start w-full">
-                  <div class="flex flex-col gap-2">
-                    <div class="flex items-center gap-4">
-                      <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
-                        Tan Ah Teck
-                      </h2> -->
-                      <div class="flex gap-2 h-[24px] items-center">
-                        <span
-                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          style="background-color: #c41802"
-                          >P</span
-                        >
-                        <span
-                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          style="background-color: #c41802"
-                          >R2</span
-                        >
-                        <span
-                          class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                          style="background-color: #c41802"
-                          >R3</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-                <div
-                  class="flex flex-nowrap items-start justify-between w-full gap-4"
-                >
-                  <!-- <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >NRIC</span
-                    >
-                    <div class="font-bold text-sm">S1234567A</div>
-                  </div> -->
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >GENDER</span
-                    >
-                    <div class="font-bold text-sm">Male</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >AGE</span
-                    >
-                    <div class="font-bold text-sm">26</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >DOB</span
-                    >
-                    <div class="font-bold text-sm">08-Sep-1997</div>
-                  </div>
-                  <!-- <div class="flex flex-col gap-1">
-                  <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
-                  >
-                    <div class="font-bold text-sm">Medically Fit for Service</div>
-                  </div> -->
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >MGS DISPOSITION Code</span
-                    >
-                    <div class="font-bold text-sm">FIT (Temp)</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >PES</span
-                    >
-                    <div class="font-bold text-sm">-</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >DENTAL STATUS</span
-                    >
-                    <div class="font-bold text-sm">D1</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >A CODE</span
-                    >
-                    <div class="font-bold text-sm">A1</div>
-                  </div>
-
-                  <div class="flex flex-col gap-1"></div>
-                </div>
-                <div
-                  class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-                >
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE</span
-                    >
-                    <div class="w-fit">
-                      <span
-                        class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                        id="banner-service-tag"
-                        >Army</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >SERVICE TYPE</span
-                    >
-                    <div class="font-bold text-sm" id="banner-service-type">
-                      NSman
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >RANK</span
-                    >
-                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >UNIT</span
-                    >
-                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <span
-                      class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                      >VOCATION</span
-                    >
-                    <div
-                      class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
-                      id="vocation-toggle"
-                    >
-                      <span class="vocation-text truncate" id="banner-vocation"
-                        >Infantry Specialist</span
-                      >
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-1 ml-auto">
-                  <span id="record-counter" class="text-xs text-white/70 font-medium">
-                    RECORD 1 OF 2
-                  </span>
-
-                  <div class="relative w-[200px]">
-                    <select
-                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                      id="service-record-select"
-                    >
-                      <option class="text-on-surface bg-white" selected="selected" value="record1">
-                        Service Record 1
-                      </option>
-                      <option class="text-on-surface bg-white" value="record2">
-                        Service Record 2
-                      </option>
-                      <!-- <option class="text-on-surface bg-white" value="record3">
-                        Service Record 3
-                      </option> -->
-                    </select>
-                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                      expand_more
-                    </span>
-                  </div>
-                </div>
-                </div>
               </div>
             </div>
-            <!-- DROPDOWN PATIENT BANNER  -->
+          </div>
+          <!-- DROPDOWN PATIENT BANNER  -->
 
-            <!--NGEMR INFORMATION-->
+          <!--NGEMR INFORMATION-->
           <section
             class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
             id="ngemr-info-section"
@@ -1039,56 +800,51 @@
               </div>
               <!-- Examinations Subsection -->
               <div id="ngemr-examinations-subsection">
-                <div
-                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                >
-                  <h3
-                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                <div id="ngemr-review-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
-                    Examinations
-                  </h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
-                  <div class="flex flex-col gap-3">
-                    <h4
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
-                      Physical Examination
-                    </h4>
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >-</span
-                    >
+                      Medical History
+                    </h3>
                   </div>
-                  <div class="flex flex-col gap-3">
-                    <h4
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >
-                      Mental State Examination
-                    </h4>
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >-</span
-                    >
+                  <div class="grid gap-8 px-6">
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Physical Examination
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >Chest is clear to auscultation bilaterally. No wheezing or prolonged expiratory phase noted at rest. Cardiovascular assessment: normal S1/S2, no murmurs. Blood pressure stable at 124/78 mmHg.</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Mental State Examination
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >-</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-3">
+                      <h4
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Investigations
+                      </h4>
+                      <span
+                        class="text-body-sm text-on-surface leading-relaxed"
+                        >Spirometry reports FEV1/FVC ratio within normal parameters (82% of predicted values). Baseline ECG demonstrates normal sinus rhythm with no ST-segment or T-wave alterations.</span
+                      >
+                    </div>
                   </div>
-                </div>
-              </div>
-              <!-- Investigations / Corroborative Reports Subsection -->
-              <div id="ngemr-investigations-subsection">
-                <div
-                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                >
-                  <h3
-                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                  >
-                    Investigations / Corroborative Reports
-                  </h3>
-                </div>
-                <div class="px-6">
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                    >-</span
-                  >
                 </div>
               </div>
               <!-- Specialist Opinion Subsection -->
@@ -1139,7 +895,7 @@
                         </td>
                         <td class="py-3 px-6 font-medium">Dr John Doe</td>
                         <td
-                          class="py-3 px-6 text-on-surface-variant align-top"
+                          class="py-3 px-6 align-top text-body-sm text-on-surface leading-relaxed"
                           rowspan="3"
                         >
                           Patient presents with severe acute tendonitis of the
@@ -1524,9 +1280,7 @@
                       </tr>
                     </tbody>
                   </table>
-                
                 </div>
-              </div>
               </div>
             </div>
           </section>
@@ -2276,7 +2030,7 @@
                <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="fit-box">
                   <div class="flex flex-col h-full w-full">
                      <div class="flex items-center justify-between mb-4">
-                        <div class="w-6 h-6 rounded-full border-2 border-on-secondary-container flex items-center justify-center transition-colors" id="fit-radio">
+                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors" id="fit-radio">
                            <div class="w-2 h-2 rounded-full bg-on-secondary-container opacity-0"></div>
                         </div>
                         <span class="status-badge text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-100 shadow-sm uppercase tracking-wider text-[10px] ml-auto">CDS SUGGESTED</span>
@@ -2324,7 +2078,7 @@
             </h3>
          </div>
          <div class="space-y-3 relative">
-              <label class="block font-label-caps text-slate-600 uppercase tracking-widest"><span class="text-error"><font color="#475569">Recommend PES </font>*</span></label>
+              <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"><span class="text-error"><font color="#475569">Recommend PES </font>*</span></label>
               <div class="flex flex-row gap-4">
                 <div class="relative md:w-1/2">
                     <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none">
@@ -2346,7 +2100,7 @@
               </div>
           </div>
           <div class="space-y-3 relative">
-              <label class="block font-label-caps text-slate-600 uppercase tracking-widest"><span class="text-error"><font color="#475569">Recommend MGS </font>*</span></label>
+              <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"><span class="text-error"><font color="#475569">Recommend MGS </font>*</span></label>
               <div class="flex flex-row gap-4">
                 <div class="relative md:w-1/2">
                     <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
@@ -2382,7 +2136,7 @@
           </div>
          <div class="space-y-3">
             <label
-               class="block font-label-caps text-slate-600 uppercase tracking-widest"
+               class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
                >Justification Remarks
             <span class="text-error">*</span></label>
             <textarea
