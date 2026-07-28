@@ -809,6 +809,8 @@ selectEl.addEventListener('change', (e) => {
   counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
 });
 
+var ffiOpen = true;
+
 function toggleFFI() {
   ffiOpen = !ffiOpen;
   document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';

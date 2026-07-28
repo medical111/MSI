@@ -614,9 +614,22 @@
                     <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col gap-1.5">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Courses and Activities</label>
+                                <div class="relative">
+                                    <select id="ffi-coursesAndActivities" class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
+                                        <option value="Courses">Courses</option>
+                                        <option value="Overseas">Overseas</option>
+                                        <option value="MP Command">MP Command</option>
+                                        <option value="Administrative">Administrative</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[20px]">expand_more</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-1.5">
                                 <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Category</label>
                                 <div class="relative">
-                                    <select id="ffi-type" class="appearance-none w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer">
+                                    <select id="ffi-categories" class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
                                         <option value="Category A">Category A</option>
                                         <option value="Category B">Category B</option>
                                     </select>
@@ -624,20 +637,29 @@
                                 </div>
                             </div>
 
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">SUB CATEGORY</label>
+                            <div id="sub-category-container" class="flex flex-col gap-1.5">
+                                <div id="sub-category-label">
+                                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">SUB CATEGORY</label>
+                                </div>
                                 <div class="relative">
-                                    <select id="sub-category" class="appearance-none w-full bg-slate-50 border border-slate-200 rounded-lg pl-3 pr-8 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
+                                    <select id="sub-category" class="appearance-none w-full bg-white border border-slate-200 rounded-lg pl-3 pr-8 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
                                         <option value="Generic">Generic</option>
                                     </select>
                                     <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[20px]">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div id="agency-investigation-container" class="flex flex-col gap-1.5 hidden">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Agency Requesting Investigation</label>
+                                <div class="relative">
+                                  <textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 transition-all text-sm font-body-md resize-none bg-white" rows="4"></textarea>
                                 </div>
                             </div>
 
                             <div class="flex flex-col gap-1.5">
                                 <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">SERVICE PROFILE</label>
                                 <div class="relative">
-                                    <select id="service-profile" class="appearance-none w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer">
+                                    <select id="service-profile" class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
                                         <option>Army</option>
                                         <option>Navy</option>
                                     </select>
@@ -680,6 +702,8 @@
     
     counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
     });
+
+    var ffiOpen = true;
 
     function toggleFFI() {
     ffiOpen = !ffiOpen;
@@ -787,14 +811,29 @@
       });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const ffiSelect = document.getElementById('ffi-type');
+            const ffiCoursesAndActivities = document.getElementById('ffi-coursesAndActivities');
+            const ffiCatSelect = document.getElementById('ffi-categories');
+            const subCatContainer = document.getElementById('sub-category-container');
+            const subCatLabel = document.getElementById('sub-category-label');
             const subCatSelect = document.getElementById('sub-category');
+            const agencyInvestigationContainer = document.getElementById('agency-investigation-container');
             const serviceSelect = document.getElementById('service-profile');
             const ordersContainer = document.getElementById('orders-container');
 
+            const coursesOptions = ['Category A', 'Category B'];
+            const catAOptions = ['Generic']
             const catBOptions = ['Joint Special Forces Selection Test', 'Rappeling Instructor Course', 'Commando Conversion Course', 'SOF Rifle of Passage', 'Ranger Course', 'Military Freefall / Tandem Jumps', 'NDU Team Building Week', 'All Airborne Courses', 'Jungle Confidence Course and Jungle Orientation Training'];
 
+            const overseasOptions = ['Overseas Exercises', 'Overseas Courses', 'Permanent Staff Posted to Overseas Bases (including Dependents)', 'Operational Overseas Missions'];
+
+            const mpOptions = ['MP Command Investigation', 'Custody', 'Release From Investigation', 'Release From Custody'];
+            const custodyOptions = ['Close Arrest', 'Detention']
+
+            const administrativeOptions = ['Recourse for BMT/Command School', 'ORD / Release from Service / Disruption of Service', 'Resumption of Service', 'Absorption into Regular Service', 'Extension of Service / Volunteers']            
+            //const administrativeOptionsPPT = ['Recourse for BMT/Command School', 'ORD / Release from Service / Disruption of Service', 'Resumption of Service', 'Absorption into Regular Service', 'Extension of Service', 'NCC', 'UAF', 'Radiation Work', 'RSN Food Handlers']
+
         const ordersData = {
+            //Courses
             'Generic': {
                 title: 'Order #1 (Standard Screening)',
                 items: [
@@ -869,7 +908,124 @@
                     { name: 'Kidney Urea/Creatinine Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
                     { name: 'Urinalysis Microscopic', icon: 'water_drop', status: 'Required', isPrimary: true }
                 ]
-            }
+            },
+            //Overseas
+            'Overseas Exercises':{
+              title: 'Order #11 (Overseas Exercises Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
+                ]
+            },
+            'Overseas Courses':{
+              title: 'Order #12 (Overseas Courses Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
+                ]
+            },
+            'Permanent Staff Posted to Overseas Bases (including Dependents)':{
+              title: 'Order #13 (Overseas Posting Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                ]
+            },
+            'Operational Overseas Missions':{
+              title: 'Order #14 (Overseas Mission Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Optional', isPrimary: false },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
+                ]
+            },
+            //MP Command
+            'MP Command Investigation':{
+              title: 'Order #15 (MP Command Investigation Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
+                ]
+            },
+            'Close Arrest':{
+              title: 'Order #16 (Close Arrest Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
+                ]
+            },
+            'Detention':{
+              title: 'Order #17 (Detention Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Echocardiogram', icon: 'favorite', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true },
+                    { name: 'Physical Mobility Review', icon: 'accessibility', status: 'Required', isPrimary: true }
+                ]
+            },
+            'Release From Investigation':{
+              title: 'Order #18 (Release From Investigation Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true },
+                ]
+            },
+            //Administrative
+            'Recourse for BMT/Command School':{
+              title: 'Order #19 (Recourse Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
+                ]
+            },
+            'ORD / Release from Service / Disruption of Service':{
+              title: 'Order #20 (Standard Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
+                ]
+            },
+            'Resumption of Service':{
+              title: 'Order #21 (Resumption of Service Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
+                ]
+            },
+            'Absorption into Service':{
+              title: 'Order #22 (Absorption into Service Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
+                ]
+            },
+            'Extension of Service / Volunteers':{
+              title: 'Order #23 (Absorption into Service Screening)',
+                items: [
+                    { name: 'Blood Test', icon: 'bloodtype', status: 'Optional', isPrimary: false },
+                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Optional', isPrimary: false },
+                    { name: 'ECG Screening', icon: 'ecg', status: 'Optional', isPrimary: false },
+                ]
+            },
+            
+
         };
 
             // Updates the tooltip "title" property so users can see full text on hover
@@ -879,11 +1035,15 @@
 
             // Function to dynamically build the HTML for the current selected state
             function renderOrders() {
+                const selectedCat = ffiCatSelect.value;
                 const selectedSub = subCatSelect.value;
                 const selectedService = serviceSelect.value;
+
+                console.log(selectedCat)
+                console.log(selectedSub)
                 
                 // Fetch configuration or fall back to a safe default if sub category has no custom configuration (e.g. ABL, ABM...)
-                const order = ordersData[selectedSub] || {
+                const order = ordersData[selectedSub] || ordersData[selectedCat] || {
                     title: `Order Summary`,
                     items: [{ name: 'Standard Routine Medical Check', icon: 'assignment', status: 'Required', isPrimary: true }]
                 };
@@ -927,27 +1087,117 @@
                 `;
             }
 
-            // Handle FFI Type Dropdown Changes
-            ffiSelect.addEventListener('change', function() {
-                subCatSelect.innerHTML = '';
+            ffiCoursesAndActivities.addEventListener('change', function(){
+              ffiCatSelect.innerHTML='';
+              subCatSelect.innerHTML = '';
+              subCatContainer.classList.remove('hidden');
+              agencyInvestigationContainer.classList.add('hidden');
 
-                // Explicit reference to ffiSelect.value to prevent scoping bugs
-                if (ffiSelect.value === 'Category B') {
-                    catBOptions.forEach(val => {
-                        const option = document.createElement('option');
-                        option.value = val;
-                        option.textContent = val;
-                        subCatSelect.appendChild(option);
-                    });
-                } else {
+              if (ffiCoursesAndActivities.value === 'Courses'){
+                subCatLabel.innerHTML= `
+                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Sub Category</label>
+                `
+                coursesOptions.forEach(val => {
+                  const option = document.createElement('option');
+                  option.value = val;
+                  option.textContent = val;
+                  ffiCatSelect.appendChild(option);
+                });
+                catAOptions.forEach(val => {
                     const option = document.createElement('option');
-                    option.value = 'Generic';
-                    option.textContent = 'Generic';
+                    option.value = val;
+                    option.textContent = val;
                     subCatSelect.appendChild(option);
+                });
+              }else if (ffiCoursesAndActivities.value === 'Overseas'){
+                overseasOptions.forEach(val => {
+                  const option = document.createElement('option');
+                  option.value = val;
+                  option.textContent = val;
+                  ffiCatSelect.appendChild(option);
+                });
+                subCatContainer.classList.add('hidden')
+              }else if (ffiCoursesAndActivities.value === 'MP Command'){
+                mpOptions.forEach(val => {
+                  const option = document.createElement('option');
+                  option.value = val;
+                  option.textContent = val;
+                  ffiCatSelect.appendChild(option);
+                  subCatContainer.classList.add('hidden')
+                  agencyInvestigationContainer.classList.remove('hidden');
+                });
+              }else {
+                administrativeOptions.forEach(val => {
+                  const option = document.createElement('option');
+                  option.value = val;
+                  option.textContent = val;
+                  ffiCatSelect.appendChild(option);
+                  subCatContainer.classList.add('hidden')
+                });
+              }
+              renderOrders()
+            });
+
+            // Handle FFI Type Dropdown Changes
+            ffiCatSelect.addEventListener('change', function() {
+              subCatSelect.innerHTML = '';
+
+              if (ffiCoursesAndActivities.value === 'Courses'){
+                subCatLabel.innerHTML= `
+                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Sub Category</label>
+                `
+                if (ffiCatSelect.value === 'Category B') {
+                  catBOptions.forEach(val => {
+                      const option = document.createElement('option');
+                      option.value = val;
+                      option.textContent = val;
+                      subCatSelect.appendChild(option);
+                  });
+                } else {
+                  catAOptions.forEach(val => {
+                      const option = document.createElement('option');
+                      option.value = val;
+                      option.textContent = val;
+                      subCatSelect.appendChild(option);
+                  });
                 }
-                
-                updateSelectTooltip();
-                renderOrders(); // Instantly update view when FFI switches
+              }else if (ffiCoursesAndActivities.value === 'MP Command'){
+                if (ffiCatSelect.value === 'Custody') { 
+                  subCatContainer.classList.remove('hidden')
+                  agencyInvestigationContainer.classList.add('hidden');
+                  custodyOptions.forEach(val => {
+                      const option = document.createElement('option');
+                      option.value = val;
+                      option.textContent = val;
+                      subCatSelect.appendChild(option);
+                  });
+
+                  subCatLabel.innerHTML= `
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Type of Custody</label>
+                  `
+                } else if (ffiCatSelect.value === 'Release From Custody') {
+                  subCatContainer.classList.remove('hidden')
+                  agencyInvestigationContainer.classList.remove('hidden');
+                  custodyOptions.forEach(val => {
+                      const option = document.createElement('option');
+                      option.value = val;
+                      option.textContent = val;
+                      subCatSelect.appendChild(option);
+                  });
+                  
+                  subCatLabel.innerHTML= `
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Release From Custody</label>
+                  `
+                }else{
+                  subCatContainer.classList.add('hidden')
+                  agencyInvestigationContainer.classList.remove('hidden');
+                }
+              }else {
+                subCatContainer.classList.add('hidden')
+              }
+              
+              updateSelectTooltip();
+              renderOrders(); // Instantly update view when FFI switches
             });
 
             // Handle Sub Category Dropdown Changes

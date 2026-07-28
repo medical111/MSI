@@ -630,7 +630,7 @@
                   class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
                 >
                   <span class="material-symbols-outlined text-[28px] leading-none">quick_reference_all</span>
-                  MSI Information
+                  Submission Details for FFI Waiver Approval
                 </h2>
               </div>
               <div class="flex flex-col gap-8 p-6">
@@ -642,7 +642,7 @@
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
-                      Submission Details
+                      Submission Information
                     </h3>
                   </div>
                   <div class="flex flex-col gap-4 px-6">
@@ -802,13 +802,19 @@
                 </div>
                 <div id="msi-operation-subsection">
                   <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    id="operation-role-header"
+                    class="flex justify-between items-center bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
                       Operation Role
                     </h3>
+                    <div 
+                      class="inline-flex items-center gap-1.5 bg-white text-primary/80 text-sm font-normal px-3 py-1 rounded border border-primary/20"
+                      >
+                        Edited by <strong class="font-semibold text-primary">Dr. John Doe</strong>
+                    </div>
                   </div>
                   <div class="grid gap-8 px-6">
                     <div class="flex flex-col gap-4">
@@ -1152,6 +1158,14 @@
       
       counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
     });
+
+    var ffiOpen = true;
+
+    function toggleFFI() {
+    ffiOpen = !ffiOpen;
+    document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
+    document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+    }
     // ═══════════════════════════════════════════════════════════════
     // SIDEBAR COLLAPSE
     // ═══════════════════════════════════════════════════════════════

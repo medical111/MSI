@@ -630,7 +630,7 @@
                   class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
                 >
                   <span class="material-symbols-outlined text-[28px] leading-none">quick_reference_all</span>
-                  MSI Information
+                  Submission Details for FFI Waiver Endorsement
                 </h2>
               </div>
               <div class="flex flex-col gap-8 p-6">
@@ -642,7 +642,7 @@
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
-                      Submission Details
+                      Submission Information
                     </h3>
                   </div>
                   <div class="flex flex-col gap-4 px-6">
@@ -802,13 +802,21 @@
                 </div>
                 <div id="msi-operation-role-subsection">
                   <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    id="operation-role-header"
+                    class="flex justify-between items-center bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
                   >
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
                       Operation Role
                     </h3>
+                    <button 
+                    id="edit-save-button"
+                    class="bg-white text-primary text-sm font-semibold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                    onclick="toggleEdit(['criticality-field', 'substitute-field'])"
+                    >
+                      Edit
+                    </button>
                   </div>
                   <div class="grid gap-8 px-6">
                     <div class="flex flex-col gap-4">
@@ -818,6 +826,7 @@
                         Criticality of Serviceman's Role
                       </h4>
                       <span
+                        id="criticality-field"
                         class="text-body-sm text-on-surface leading-relaxed"
                         >His specific role is highly important to operational readiness, as his physical capacity is fully intact and his condition presents no risk to safety. He possesses the necessary medical fitness to execute these essential duties successfully.</span
                       >
@@ -829,6 +838,7 @@
                         Can a Substitute be Found?
                       </h4>
                       <span
+                        id="substitute-field"
                         class="text-body-sm text-on-surface leading-relaxed"
                         >The serviceman is medically fit for full deployment in this important assignment. While his specialized role is critical to operations, any decision regarding the feasibility or training of an administrative substitute remains entirely under the purview of Unit Command, as there are no medical barriers to his continued deployment.</span
                       >
@@ -1079,6 +1089,14 @@
       
       counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
     });
+
+    var ffiOpen = true;
+
+    function toggleFFI() {
+    ffiOpen = !ffiOpen;
+    document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
+    document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+    }
     // ═══════════════════════════════════════════════════════════════
     // SIDEBAR COLLAPSE
     // ═══════════════════════════════════════════════════════════════
@@ -1172,40 +1190,42 @@
           bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
           // Add new color class
           bannerServiceTag.classList.add(data.tagClass);
-
-          // --- Sync with Military Overview Accordion ---
-          // const record1Accordion = document.getElementById("overview-record-1");
-          // const record2Accordion = document.getElementById("overview-record-2");
-          // const record1Label =
-          //   record1Accordion?.querySelector("span:first-child");
-          // const record2Label =
-          //   record2Accordion?.querySelector("span:first-child");
-
-          // if (e.target.value === "record1") {
-          //   if (record1Accordion) record1Accordion.open = true;
-          //   if (record2Accordion) record2Accordion.open = false;
-          //   if (record1Label) {
-          //     record1Label.classList.add("text-primary");
-          //     record1Label.classList.remove("text-on-surface-variant/70");
-          //   }
-          //   if (record2Label) {
-          //     record2Label.classList.remove("text-primary");
-          //     record2Label.classList.add("text-on-surface-variant/70");
-          //   }
-          // } else {
-          //   if (record2Accordion) record2Accordion.open = true;
-          //   if (record1Accordion) record1Accordion.open = false;
-          //   if (record2Label) {
-          //     record2Label.classList.add("text-primary");
-          //     record2Label.classList.remove("text-on-surface-variant/70");
-          //   }
-          //   if (record1Label) {
-          //     record1Label.classList.remove("text-primary");
-          //     record1Label.classList.add("text-on-surface-variant/70");
-          //   }
-          // }
         }
       });
+
+      function toggleEdit(idList) {
+        const button = document.getElementById('edit-save-button');
+
+        const firstElem = document.getElementById(idList[0]);
+        const isEditing = firstElem && firstElem.tagName === 'SPAN';
+
+        idList.forEach((id) => {
+          const currentElem = document.getElementById(id);
+          if (!currentElem) return;
+
+          if (isEditing) {
+            const textarea = document.createElement('textarea');
+            textarea.id = id;
+            textarea.value = currentElem.textContent.trim();
+            textarea.rows = 3;
+
+            textarea.className = 'w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-sm font-body-md resize-none bg-white';
+
+            currentElem.replaceWith(textarea);
+          } else {
+            const span = document.createElement('span');
+            span.id = id;
+            span.textContent = currentElem.value;
+            
+            span.className = 'text-body-sm text-on-surface leading-relaxed block';
+
+            currentElem.replaceWith(span);
+          }
+        });
+
+        // Toggle button text
+        button.textContent = isEditing ? 'Save' : 'Edit';
+      }
 
     </script>
   </body>
