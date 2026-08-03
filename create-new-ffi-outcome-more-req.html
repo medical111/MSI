@@ -170,9 +170,42 @@
     </script>
 </head>
 <body class="bg-background text-on-background font-body-md h-screen overflow-hidden">
-<!-- SideNavBar -->
+    <!-- Mobile view -->
+    <div
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-slate-900 p-8 bg-surface-container-lowest border border-outline-variant rounded-xl"
+      >
+        <div
+          class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"
+            />
+          </svg>
+        </div>
+
+        <h1 class="text-xl font-bold">Larger Screen Required</h1>
+        <p class="mt-2 text-sm text-slate-400">
+          This application requires a larger screen resolution to function
+          properly. Please open this link on a desktop or laptop.
+        </p>
+      </div>
+    </div>
+    <!-- SideNavBar -->
     <aside
-      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider"
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider hidden lg:flex"
       id="sidebar"
     >
       <div class="px-6 mb-8 logo-container flex items-center">
@@ -339,7 +372,7 @@
       </div>
     </aside>
 <!-- Main Content Wrapper -->
-<div class="ml-64 h-full flex flex-col bg-background" id="main-content">
+<div class="ml-64 h-full flex flex-col bg-background hidden lg:flex" id="main-content">
 <!-- TopNavBar from SCREEN_159 -->
       <header
         class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
@@ -823,7 +856,7 @@
               </button>
             </div>
             <div class="flex flex-col p-6">
-              <div
+              <!-- <div
                 class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm"
                 id="ngemr-info-section"
               >
@@ -917,11 +950,11 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- CDS Section -->
               <div id="cdsContainer">
                 <div
-                  class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"
+                  class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant"
                 >
                   <div class="flex justify-between items-center mb-8">
                     <h2
@@ -1586,11 +1619,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const fetchDataIcon = document.getElementById('fetchIcon');
         const fetchDataBtnText = document.getElementById('fetchDataBtnText');
 
-        const conditionsContainer = document.getElementById("conditionsContainer");
-        const medicalProblemsContainer = document.getElementById("medicalProblemsContainer");
-        const functionalContainer = document.getElementById("functionalContainer");
-        const physicalExaminationContainer = document.getElementById("physicalExaminationContainer");
-        const investigationsContainer = document.getElementById("investigationsContainer");
+        // const conditionsContainer = document.getElementById("conditionsContainer");
+        // const medicalProblemsContainer = document.getElementById("medicalProblemsContainer");
+        // const functionalContainer = document.getElementById("functionalContainer");
+        // const physicalExaminationContainer = document.getElementById("physicalExaminationContainer");
+        // const investigationsContainer = document.getElementById("investigationsContainer");
         const cdsContainer = document.getElementById('cdsContainer');
         const cdsSuggested = document.getElementById('cdsSuggested');
 
@@ -1624,26 +1657,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function renderSkeletons() { 
-          conditionsContainer.innerHTML = `
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
-          `;
-          medicalProblemsContainer.innerHTML = `
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
-          `;
-          functionalContainer.innerHTML = `
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
-          `;
-          physicalExaminationContainer.innerHTML = `
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
-          `;
-          investigationsContainer.innerHTML = `
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
-            <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
-          `;
+          // conditionsContainer.innerHTML = `
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
+          // `;
+          // medicalProblemsContainer.innerHTML = `
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
+          // `;
+          // functionalContainer.innerHTML = `
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
+          // `;
+          // physicalExaminationContainer.innerHTML = `
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
+          // `;
+          // investigationsContainer.innerHTML = `
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-full mb-1"></div>
+          //   <div class="h-[18px] rounded-[4px] bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out] w-3/4"></div>
+          // `;
           cdsContainer.innerHTML = `
           <div
             class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"
@@ -1802,11 +1835,11 @@ document.addEventListener('DOMContentLoaded', function() {
           try {
             const data = await fetchData();
            
-            conditionsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.conditions_affecting_overseas_deployment}</span>`;
-            medicalProblemsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.medical_problems}</span>`;
-            functionalContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.functional_status}</span>`;
-            physicalExaminationContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.physical_examination}</span>`;
-            investigationsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.investigations}</span>`;
+            // conditionsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.conditions_affecting_overseas_deployment}</span>`;
+            // medicalProblemsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.medical_problems}</span>`;
+            // functionalContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.functional_status}</span>`;
+            // physicalExaminationContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.physical_examination}</span>`;
+            // investigationsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.investigations}</span>`;
             cdsContainer.innerHTML =`
               <div
                 class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"
@@ -1961,11 +1994,11 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.classList.remove('pointer-events-none', 'cursor-default', 'opacity-50')
             
           } catch (error) {
-            conditionsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
-            medicalProblemsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
-            functionalContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
-            physicalExaminationContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
-            investigationsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
+            // conditionsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
+            // medicalProblemsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
+            // functionalContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
+            // physicalExaminationContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
+            // investigationsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
             cdsContainer.innerHTML = `
             <div
               class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"

@@ -114,7 +114,7 @@
                 { lineHeight: "16px", fontWeight: "600" },
               ],
               "data-tabular": [
-                "14px",
+                "13px",
                 { lineHeight: "20px", fontWeight: "500" },
               ],
               "label-caps": [
@@ -205,9 +205,42 @@
   <body
     class="bg-background text-on-surface antialiased h-screen overflow-hidden"
   >
+    <!-- Mobile view -->
+    <div
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-slate-900 p-8 bg-surface-container-lowest border border-outline-variant rounded-xl"
+      >
+        <div
+          class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"
+            />
+          </svg>
+        </div>
+
+        <h1 class="text-xl font-bold">Larger Screen Required</h1>
+        <p class="mt-2 text-sm text-slate-400">
+          This application requires a larger screen resolution to function
+          properly. Please open this link on a desktop or laptop.
+        </p>
+      </div>
+    </div>
     <!-- SideNavBar -->
     <aside
-      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider"
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider hidden lg:flex"
       id="sidebar"
     >
       <div class="px-6 mb-8 logo-container flex items-center">
@@ -248,7 +281,7 @@
         <div class="flex flex-col gap-1">
           <div
             onclick="toggleFFI()"
-            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
           >
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-[20px] shrink-0"
@@ -383,7 +416,7 @@
       </div>
     </aside>
     <!-- Main Content Wrapper -->
-    <div class="ml-64 h-full flex flex-col bg-background" id="main-content">
+    <div class="ml-64 h-full flex flex-col bg-background hidden lg:flex" id="main-content">
       <!-- TopNavBar -->
       <header
         class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
@@ -1183,15 +1216,18 @@
             const mainContent = document.getElementById("main-content");
             const topHeader = document.getElementById("top-header");
             const toggleIcon = this.querySelector("span");
+            const ffiSubmenu = document.getElementById("ffi-submenu");
 
             const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
             mainContent.classList.toggle("content-expanded");
             topHeader.classList.toggle("header-expanded");
 
             if (isCollapsed) {
-            toggleIcon.textContent = "chevron_right";
+                toggleIcon.textContent = "chevron_right";
+                ffiSubmenu.style.display = "none";
             } else {
-            toggleIcon.textContent = "chevron_left";
+                toggleIcon.textContent = "chevron_left";
+                ffiSubmenu.style.display = "";
             }
         });
     // Service Record Switcher Logic
