@@ -1119,7 +1119,7 @@
                       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
                         <label class="cursor-pointer group flex flex-col" for="outcome-fit">
                           <div class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant" id="fit-box">
-                              <div class="flex flex-col h-full">
+                              <div class="flex flex-col h-full w-full">
                                 <div class="flex items-center justify-between mb-4">
                                     <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors" id="fit-radio">
                                       <div class="w-2 h-2 rounded-full bg-on-secondary-container opacity-0"></div>
@@ -1304,9 +1304,10 @@
                               <select id="approved-select" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white">
                                 <option value="" disabled selected>Select...</option>
                                 <option value="CAMO">CAMO</option>
-                                <option value="CARMO">CARMO</option>
-                                <option value="CNMO">CNMO</option>
-                                <option value="Comd MMI">Comd MMI</option>
+                                <option value="CARMO" class="no-endorse-option hidden">CARMO</option>
+                                <option value="CNMO" class="no-endorse-option hidden">CNMO</option>
+                                <option value="Head DHS" class="no-endorse-option hidden">Head DHS</option>
+                                <option value="Comd MMI" class="no-endorse-option hidden">Comd MMI</option>
                               </select>
                               <div id="approved-personnel-section" class="hidden text-xs tracking-wide mt-4 px-4 py-2.5 bg-white rounded-xl border border-outline-variant/60 shadow-sm space-y-2">
                                 <span id="approved-personnel" class="text-slate-600 font-medium uppercase"></span>
@@ -1604,13 +1605,59 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       document.querySelectorAll('input[name="required-vetting"]').forEach((radio) => {
+        const vettedSection = document.getElementById('vetted-by-section');
+        const moreEndorseOptions = document.querySelectorAll('.no-endorse-option');
+
+        const endorseSelect = document.getElementById('endorse-select');
+        const endorsePersonnelSection = document.getElementById("endorse-personnel-section");
+        const endorseBadge = document.getElementById('suggestion-badge');
+        const endorseLabel = document.getElementById('suggestion-label');
+        const endorseText = document.getElementById('suggestion-text');
+
+        const approvedSelect = document.getElementById('approved-select');
+        const approvedPersonnelSection = document.getElementById("approved-personnel-section");
+        const approvedBadge = document.getElementById('approved-badge');
+        const approvedLabel = document.getElementById('approved-label');
+        const approvedText = document.getElementById('approved-text');
+        
         radio.addEventListener('change', (e) => {
-          const vettedSection = document.getElementById('vetted-by-section');
           if (e.target.value === 'yes') {
             vettedSection.classList.remove('hidden');
+            moreEndorseOptions.forEach((option) => {
+              option.classList.remove('hidden');
+            });
           } else {
             vettedSection.classList.add('hidden');
+            moreEndorseOptions.forEach((option) => {
+              option.classList.add('hidden');
+            });
           }
+
+          //Endorser
+          endorseSelect.value = endorseSelect.options[0].value;
+          endorseSelect.selectedIndex = 0;
+          endorsePersonnelSection.classList.add("hidden");
+
+          endorseBadge.classList.replace('bg-emerald-100', 'bg-slate-100');
+          endorseBadge.classList.replace('border-emerald-200', 'border-slate-200');
+          
+          endorseLabel.classList.replace('text-on-secondary-container', 'text-slate-500');
+          
+          endorseText.classList.remove('text-on-secondary-container');
+          endorseText.classList.add('text-slate-400');
+
+          //Approver
+          approvedSelect.value = approvedSelect.options[0].value;
+          approvedSelect.selectedIndex = 0;
+          approvedPersonnelSection.classList.add("hidden");
+
+          approvedBadge.classList.replace('bg-emerald-100', 'bg-slate-100');
+          approvedBadge.classList.replace('border-emerald-200', 'border-slate-200');
+          
+          approvedLabel.classList.replace('text-on-secondary-container', 'text-slate-500');
+          
+          approvedText.classList.remove('text-on-secondary-container');
+          approvedText.classList.add('text-slate-400');
         });
       });
 
@@ -2244,6 +2291,9 @@ document.addEventListener('DOMContentLoaded', function() {
         "CNMO":[
           {name: "Dr Tony Ong", appointment: "CNMO"},
         ],
+        "Head DIS":[
+          {name: "Dr Kelvin Chung", appointment: "Head DIS"},
+        ],
         "Comd MMI":[
           {name: "Dr Albert Yong", appointment: "Comd MMI"},
         ],
@@ -2281,8 +2331,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
 
           const approvalPersonnels = approvalNames[this.value];
-          console.log(approvalPersonnels)
-          console.log(this.value)
           const approvePersonnelList = document.getElementById('approved-personnel-list');
           if (approvalPersonnels && approvalPersonnels.length > 0) {
             // Clear previous list entries

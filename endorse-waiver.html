@@ -287,7 +287,7 @@
               <span class="material-symbols-outlined text-[20px] shrink-0"
                 >medical_services</span
               >
-              <span class="nav-text font-bold whitespace-nowrap">FFI</span>
+              <span class="nav-text whitespace-nowrap">FFI</span>
             </div>
             <span
               id="ffi-chevron"
@@ -297,7 +297,7 @@
           </div>
           <div
             id="ffi-submenu"
-            class="ffi-submenu flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
             <a
               id="nav-ffi-create-type"
@@ -348,15 +348,44 @@
             >PES/ MGS Classification</span
           >
         </a>
-        <a
-          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
-          href="medical-board.html"
-        >
-          <span class="material-symbols-outlined text-[20px] shrink-0"
-            >gavel</span
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMedboard()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
           >
-          <span class="nav-text whitespace-nowrap">Medical Board Review</span>
-        </a>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >clinical_notes</span
+              >
+              <span class="nav-text whitespace-nowrap"
+                >Medical Board</span
+              >
+            </div>
+            <span
+              id="medboard-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="medboard-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-routine-board"
+              href="medical-board.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Routine Board</a
+            >
+            <a
+              id="nav-pd-board"
+              href="medical-board-pd.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >PD Board</a
+            >
+          </div>
+        </div>
         <a
           class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
           href="#"
@@ -611,7 +640,7 @@
                 >VOCATION</span
                 >
                 <div
-                class="vocation-container flex items-center gap-1 font-bold text-sm cursor-pointer select-none group"
+                class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
                 id="vocation-toggle"
                 >
                 <span class="vocation-text truncate" id="banner-vocation"
@@ -1124,11 +1153,18 @@
     });
 
     var ffiOpen = true;
+    var medboardOpen = false;
 
     function toggleFFI() {
     ffiOpen = !ffiOpen;
     document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
     document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+    }
+
+    function toggleMedboard() {
+    medboardOpen = !medboardOpen;
+    document.getElementById('medboard-submenu').style.display = medboardOpen ? '' : 'none';
+    document.getElementById('medboard-chevron').textContent = medboardOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
     }
     // ═══════════════════════════════════════════════════════════════
     // SIDEBAR COLLAPSE
@@ -1142,6 +1178,7 @@
             const topHeader = document.getElementById("top-header");
             const toggleIcon = this.querySelector("span");
             const ffiSubmenu = document.getElementById("ffi-submenu");
+            const medboardSubmenu = document.getElementById("medboard-submenu");
 
             const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
             mainContent.classList.toggle("content-expanded");
@@ -1150,9 +1187,11 @@
             if (isCollapsed) {
               toggleIcon.textContent = "chevron_right";
               ffiSubmenu.style.display = "none";
+              medboardSubmenu.style.display = "none";
             } else {
               toggleIcon.textContent = "chevron_left";
               ffiSubmenu.style.display = "";
+              medboardSubmenu.style.display = "";
             }
         });
     // Service Record Switcher Logic
