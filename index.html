@@ -1522,11 +1522,19 @@
                               <a
                                 class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
                                 href="#"
+                                onclick="
+                                  toggleFFIOutcomeRow(this, 'ffi-detail-row-1');
+                                  return false;
+                                "
                                 >Expand</a
                               >
                             </div>
                           </td>
                         </tr>
+                        <tr
+                          id="ffi-detail-row-1"
+                          class="border-b border-surface-container/50 hidden"
+                        ></tr>
 
                         <!-- Active Row 2 -->
                         <tr
@@ -1560,11 +1568,19 @@
                               <a
                                 class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
                                 href="#"
+                                onclick="
+                                  toggleFFIOutcomeRow(this, 'ffi-detail-row-2');
+                                  return false;
+                                "
                                 >Expand</a
                               >
                             </div>
                           </td>
                         </tr>
+                        <tr
+                          id="ffi-detail-row-2"
+                          class="border-b border-surface-container/50 hidden"
+                        ></tr>
 
                         <!-- Active Row 3 (Collapsible Details) -->
                         <tr
@@ -1595,85 +1611,18 @@
                                 class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
                                 href="#"
                                 onclick="
-                                  const detailRow =
-                                    this.closest('tr').nextElementSibling;
-                                  const isHidden =
-                                    detailRow.classList.toggle('hidden');
-                                  this.textContent = isHidden
-                                    ? 'Expand'
-                                    : 'Collapse';
+                                  toggleFFIOutcomeRow(this, 'ffi-detail-row-3');
+                                  return false;
                                 "
-                                >Collapse</a
+                                >Expand</a
                               >
                             </div>
                           </td>
                         </tr>
-                        <tr class="border-b border-surface-container/50">
-                          <td class="p-6" colspan="6">
-                            <div
-                              class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mx-4 mb-4 shadow-sm"
-                            >
-                              <div
-                                class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"
-                              >
-                                <div class="flex flex-col gap-1">
-                                  <span
-                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
-                                    >NGEMR FFI Note ID</span
-                                  ><span
-                                    class="font-semibold text-on-surface"
-                                    style="font-weight: normal"
-                                    >#01</span
-                                  >
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                  <span
-                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
-                                    >Last Updated By</span
-                                  ><span
-                                    class="font-semibold text-on-surface"
-                                    style="font-weight: normal"
-                                    >Dr. A. Chen</span
-                                  >
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                  <span
-                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
-                                    >Higher Authority</span
-                                  ><span
-                                    class="font-semibold text-on-surface"
-                                    style="font-weight: normal"
-                                    >CARMO</span
-                                  >
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                  <span
-                                    class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest"
-                                    >Submitting Medical Centre</span
-                                  ><span
-                                    class="font-semibold text-on-surface"
-                                    style="font-weight: normal"
-                                    >Nee Soon Medical Centre</span
-                                  >
-                                </div>
-                              </div>
-                              <div
-                                class="pt-6 border-t border-surface-container"
-                              >
-                                <span
-                                  class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2"
-                                  >Remarks</span
-                                >
-                                <p
-                                  class="text-body-sm text-on-surface leading-relaxed"
-                                >
-                                  Clinical review completed. Patient fit for
-                                  deployment with minor conditions.
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
+                        <tr
+                          id="ffi-detail-row-3"
+                          class="border-b border-surface-container/50 hidden"
+                        ></tr>
 
                         <!-- INACTIVE ROW (Hidden by default using Tailwind's 'hidden' class) -->
                         <tr
@@ -1965,6 +1914,98 @@
 
         // Toggle the button text label
         btn.textContent = isHidden ? "Hide Records" : "Load More Records";
+      }
+
+      const ffiOutcomesRecordsData = [
+        {
+          id: "ffi-detail-row-1",
+          noteId: "#01",
+          lastUpdatedBy: "Dr. John Doe",
+          higherAuthority: "CARMO",
+          submittingMedicalCentre: "Nee Soon Medical Centre",
+          remarks:
+            "Clinical review completed. Patient fit for deployment with minor conditions.",
+        },
+        {
+          id: "ffi-detail-row-2",
+          noteId: "#02",
+          lastUpdatedBy: "Dr. Charlie Chen",
+          higherAuthority: "CARMO",
+          submittingMedicalCentre: "Nee Soon Medical Centre",
+          remarks:
+            "Pending Specialist Report from CGH Cardiology. Temporary PES C9 status extended for 3 months.",
+        },
+        {
+          id: "ffi-detail-row-3",
+          noteId: "#03",
+          lastUpdatedBy: "Dr. Tony Lim",
+          higherAuthority: "CAMO",
+          submittingMedicalCentre: "Paya Lebar Air Base Medical Centre",
+          remarks:
+            "Annual flight physical clearance approved. No restrictions for ground or flight duties.",
+        },
+      ];
+
+      function toggleFFIOutcomeRow(button, rowId) {
+        const target = document.getElementById(rowId);
+        if (!target) return;
+
+        if (button.textContent.trim() === "Expand") {
+          const record = ffiOutcomesRecordsData.find(
+            (item) => item.id === rowId,
+          );
+
+          if (record) {
+            target.innerHTML = getFFIOutcomeDetailsHTML(record);
+            target.classList.remove("hidden");
+            button.textContent = "Collapse";
+          }
+        } else {
+          // Clear content and hide on collapse
+          target.innerHTML = "";
+          target.classList.add("hidden");
+          button.textContent = "Expand";
+        }
+      }
+
+      function getFFIOutcomeDetailsHTML(data) {
+        return `
+          <td class="py-6" colspan="6">
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <div class="flex flex-col gap-1">
+                  <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">NGEMR FFI Note ID</span>
+                  <span class="font-semibold text-on-surface">${data.noteId}</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Last Updated By</span>
+                  <span class="font-semibold text-on-surface">${data.lastUpdatedBy}</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Higher Authority</span>
+                  <span class="font-semibold text-on-surface">${data.higherAuthority}</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest">Submitting MC</span>
+                  <span class="font-semibold text-on-surface">${data.submittingMedicalCentre}</span>
+                </div>
+              </div>
+              <div class="pt-6 border-t border-surface-container">
+                <span class="text-on-surface-variant font-label-caps text-[10px] uppercase tracking-widest block mb-2">Remarks</span>
+                <p class="text-body-sm text-on-surface leading-relaxed">${data.remarks}</p>
+              </div>
+              <div class="flex justify-self-end pt-6">
+                <a href="maintain-validity.html">
+                  <button
+                    class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-body-sm flex items-center gap-2"
+                  >
+                    Maintain Validity
+                  </button>
+                </a>
+              </div>
+            </div>
+          </td>
+        `;
       }
     </script>
   </body>

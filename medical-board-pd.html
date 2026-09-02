@@ -1314,7 +1314,7 @@
             </div>
           </section>
           <!--NGEMR INFORMATION-->
-          <section
+          <!-- <section
             class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
             id="ngemr-info-section"
           >
@@ -1331,7 +1331,6 @@
               </h2>
             </div>
             <div class="flex flex-col gap-8 p-6">
-              <!-- Information Subsection -->
               <div id="ngemr-review-subsection">
                 <div
                   class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
@@ -1387,61 +1386,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Active Excuses Subsection -->
-              <!-- <div id="ngemr-excuses-subsection">
-                <div
-                  class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                >
-                  <h3
-                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                  >
-                    Active Excuses
-                  </h3>
-                </div>
-                <div class="p-0">
-                  <table class="w-full text-left border-collapse">
-                    <thead>
-                      <tr
-                        class="border-b border-outline-variant bg-surface-container-lowest"
-                      >
-                        <th
-                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                        >
-                          Excuses
-                        </th>
-                        <th
-                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                        >
-                          Start Date
-                        </th>
-                        <th
-                          class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                        >
-                          End Date
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                    >
-                      <tr
-                        class=""
-                      >
-                        <td class="py-3 px-6 font-medium">
-                          Excuse Upper Limbs
-                        </td>
-                        <td class="py-3 px-6 text-on-surface-variant">
-                          20 Jan 2026
-                        </td>
-                        <td class="py-3 px-6 text-on-surface-variant">
-                          20 Jun 2026
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div> -->
-              <!-- Past Permanent Disabilities -->
               <div id="ngemr-permanent-disabilities-subsection">
                 <div
                   class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
@@ -1491,7 +1435,6 @@
                   </table>
                 </div>
               </div>
-              <!-- HR Approved Service Injury -->
               <div id="ngemr-permanent-disabilities-subsection">
                 <div
                   class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
@@ -1527,7 +1470,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Examinations Subsection -->
               <div id="ngemr-examinations-subsection">
                 <div id="ngemr-review-subsection">
                   <div
@@ -1585,7 +1527,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Specialist Opinion Subsection -->
               <div id="ngemr-specialist-subsection">
                 <div
                   class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
@@ -1656,7 +1597,7 @@
                 </div>
               </div>
             </div>
-          </section>
+          </section> -->
           <!-- Section 2: Clinical Decision Support -->
           <section
             class="border rounded-lg p-6 relative shadow-sm bg-green-50 border-green-300 mt-4"
@@ -1679,19 +1620,165 @@
               >
               Clinical Decision Support Recommendation
             </h2>
-            <!-- <div
-              class="mb-6 bg-green-100/50 border-l-4 border-green-500 p-3 rounded-r"
-            >
-              <p
-                class="text-green-800 font-medium text-sm flex items-center gap-2"
-              >
-                <span class="material-symbols-outlined text-[18px]">info</span>
-                Based on diagnosed condition:
-                <span class="font-bold">'Cardiac insufficiency'</span>
-              </p>
-            </div> -->
 
             <!-- MGS GRADING -->
+            <div class="relative mb-4">
+              <div
+                class="block border rounded p-4 mb-6 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
+              >
+                <div class="flex items-center justify-center gap-2 mb-3">
+                  <div
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                  >
+                    Recommended MGS Score (0-10)
+                  </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4" id="recommended-mgs-inputs">
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >CR</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="4"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >N</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="5"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >P</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="2"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >A</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="3"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >U</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="7"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >L</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >H</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="4"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >V</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="3"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >C</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="2"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >S</span
+                    >
+                    <input
+                      class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="6"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-8 mt-2">
+                <div class="relative">
+                  <div
+                    class="block border rounded p-4 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
+                  >
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                      <div
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Recommended Disposition
+                      </div>
+                    </div>
+                    <div class="text-2xl font-bold text-primary text-center">FIT</div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <div
+                    class="block border rounded p-4 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
+                  >
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                      <div
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        MGS Validity
+                      </div>
+                    </div>
+                    <div class="text-2xl font-bold text-primary text-center">Permanent</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PES GRADING -->
             <div class="relative">
               <div
                 class="block border rounded p-4 mb-6 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
@@ -1700,46 +1787,131 @@
                   <div
                     class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
                   >
-                    Recommended MGS Score
+                    Recommended PULHEEMS (1-5)
                   </div>
                 </div>
-                <div class="text-2xl font-bold text-primary text-center">
-                  FIT
+                <div class="flex flex-wrap justify-center gap-4" id="recommended-pulheems-inputs">
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >P</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="4"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >U</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >L</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="2"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >H</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >E</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >E</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >M</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                  <div class="flex flex-col items-center w-8 space-y-2">
+                    <span class="text-xs text-outline font-label-caps text-slate-600"
+                      >S</span
+                    >
+                    <input
+                      class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      type="number"
+                      value="1"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-8 mt-2">
+                <div class="relative">
+                  <div
+                    class="block border rounded p-4 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
+                  >
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                      <div
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Recommended PES
+                      </div>
+                    </div>
+                    <div class="text-2xl font-bold text-primary text-center">E9 L1</div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <div
+                    class="block border rounded p-4 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
+                  >
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                      <div
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        PES Validity
+                      </div>
+                    </div>
+                    <div class="text-2xl font-bold text-primary text-center">Permanent</div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <!-- PES GRADING -->
-            <!-- <div class="grid grid-cols-2 gap-8 mt-2">
-              <div class="relative">
-                <div
-                  class="block border rounded p-4 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
-                >
-                  <div class="flex items-center justify-center gap-2 mb-3">
-                    <div
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >
-                      Recommended PES
-                    </div>
-                  </div>
-                  <div class="text-2xl font-bold text-primary text-center">E9 L1</div>
-                </div>
-              </div>
-              <div class="relative">
-                <div
-                  class="block border rounded p-4 bg-white/60 border-emerald-100/50 ring-1 ring-emerald-100"
-                >
-                  <div class="flex items-center justify-center gap-2 mb-3">
-                    <div
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >
-                      Validity
-                    </div>
-                  </div>
-                  <div class="text-2xl font-bold text-primary text-center">Permanent</div>
-                </div>
-              </div>
-            </div> -->
           </section>
           <!-- Select Decision Section -->
           <div class="w-full mt-4">
@@ -1857,192 +2029,622 @@
                   class="p-6 bg-surface-container-low border border-outline-variant rounded-xl grid grid-cols-1 gap-6"
                   style="display: none"
                 >
-                  <div class="flex items-center gap-2 mb-2">
+                  <div class="flex items-center gap-2">
                     <h3
                       class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest"
                     >
                       Propose Suggestion
                     </h3>
                   </div>
-                  <div class="space-y-3 relative">
-                    <label
-                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                      ><span class="text-error"
-                        ><font color="#475569">Recommend PES </font>*</span
-                      ></label
-                    >
-                    <div class="flex flex-row gap-4">
-                      <div class="relative md:w-1/2">
-                        <select
-                          id="approved-select"
-                          class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
-                        >
-                          <option value="" disabled="" selected="">
-                            Select...
-                          </option>
-                          <option value="A">A</option>
-                          <option value="B1">B1</option>
-                          <option value="B2">B2</option>
-                          <option value="B3">B3</option>
-                          <option value="B4">B4</option>
-                          <option value="BP">BP</option>
-                          <option value="C2">C2</option>
-                          <option value="C9">C9</option>
-                          <option value="D">D</option>
-                          <option value="E1">E1</option>
-                          <option value="E9">E9</option>
-                          <option value="F">F</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="space-y-3 relative">
-                    <label
-                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                      ><span class="text-error"
-                        ><font color="#475569">Recommend MGS </font>*</span
-                      ></label
-                    >
-                    <div class="flex flex-row gap-4">
-                      <div class="relative md:w-1/2">
-                        <select
-                          id="approved-select"
-                          class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
-                          onchange="handleTempDuration(this.value)"
-                        >
-                          <option value="" disabled="" selected="">
-                            Select...
-                          </option>
-                          <option value="FIT">FIT</option>
-                          <option value="FIT (Temp)">FIT (Temp)</option>
-                          <option value="BP">BP</option>
-                          <option value="D[0]">D[0]</option>
-                          <option value="D1">D1</option>
-                          <option value="UNFIT">UNFIT</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="mt-2 hidden" id="temp-duration-input-container">
-                      <div class="flex items-center gap-2">
-                        <span
-                          class="text-[10px] font-bold text-on-surface-variant uppercase"
-                          >Temp Unfit for</span
-                        >
-                        <input
-                          class="score-input form-input rounded border-outline-variant text-xs py-1.5 w-20"
-                          id="assessment-duration"
-                          placeholder="0"
-                          type="number"
-                        />
-                        <span
-                          class="text-[10px] font-bold text-on-surface-variant uppercase"
-                          >months</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="space-y-3">
-                    <label
-                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                      >Justification Remarks
-                      <span class="text-error">*</span></label
-                    >
-                    <textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white" rows="3"></textarea>
-                  </div>
-                  <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-2">
-                      <div class="flex flex-col gap-1.5">
-                        <label
-                          class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                        >
-                          MCG Reference
-                          <span class="text-error">*</span>
-                        </label>
-                        <input
-                          class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
-                        ></input>
-                      </div>
-                    </div>
-                    <div class="col-span-1">
-                      <div class="flex flex-col gap-1.5">
-                        <label
-                          class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                        >
-                          Page
-                          <span class="text-error">*</span>
-                        </label>
-                        <input
-                          class="w-full border border-outline-variant rounded-lg px-2 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-6 bg-surface-container-low border border-outline-variant rounded-xl grid grid-cols-1 gap-6">
-                  <!-- <div class="space-y-3">
-                    <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm">
-                      Boarding in Absence / Presence <span class="text-error">*</span>
-                    </label>
-                    <div class="flex items-center gap-6 text-body-md">
-                      <label class="flex items-center gap-2 cursor-pointer group">
-                        <input type="radio" name="boarding-mode" value="mbia" class="w-4 h-4 text-primary border-slate-300 focus:ring-primary/20">
-                        <span class="text-slate-700 group-hover:text-slate-900 transition-colors">MBIA</span>
-                      </label>
-                      <label class="flex items-center gap-2 cursor-pointer group">
-                        <input type="radio" name="boarding-mode" value="mbip" class="w-4 h-4 text-primary border-slate-300 focus:ring-primary/20">
-                        <span class="text-slate-700 group-hover:text-slate-900 transition-colors">MBIP</span>
-                      </label>
-                    </div>
-                  </div> -->
-                  <div class="space-y-3">
-                    <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm">
-                     History <span class="text-error">*</span>
-                    </label>
-                    <textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white" rows="4"></textarea>
-                  </div>
-                  <div class="space-y-2">
-                    <label
-                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                    >
-                      Final Service Injury Diagnosis
-                      <span class="text-error">*</span>
-                    </label>
-                    <textarea
-                      class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div class="w-full">
-                    <div
-                      class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 gap-6"
-                    >
-                      <div class="space-y-3">
-                        <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm">
-                          Is this a Re-board? <span class="text-error">*</span>
-                        </label>
-                        <div class="flex items-center gap-6 text-body-md">
-                          <label class="flex items-center gap-2 cursor-pointer group">
-                            <input type="radio" name="re-board" value="yes" class="w-4 h-4 text-primary border-slate-300 focus:ring-primary/20">
-                            <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Yes</span>
-                          </label>
-                          <label class="flex items-center gap-2 cursor-pointer group">
-                            <input type="radio" name="re-board" value="no" class="w-4 h-4 text-primary border-slate-300 focus:ring-primary/20">
-                            <span class="text-slate-700 group-hover:text-slate-900 transition-colors">No</span>
-                          </label>
+                  
+                  <div class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 gap-6">
+                    <div class="flex flex-col gap-2">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                        ><span class="text-error"
+                          ><font color="#475569">Recommend PULHEEMS (1-5) </font>*</span
+                        ></label
+                      >
+                      <div class="flex flex-wrap gap-4" id="pulheems-inputs">
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >P</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >U</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >L</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >H</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >E</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >E</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >M</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span class="text-xs text-outline font-label-caps text-slate-600"
+                            >S</span
+                          >
+                          <input
+                            class="score-input pul-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            type="number"
+                            min="1"
+                            max="5"
+                            oninput=handlePulheemsInput(this)
+                            maxlength="1"
+                          />
                         </div>
                       </div>
-                      <div class="space-y-3">
-                        <label
-                          class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                        >
-                          Reason
-                          <span class="text-error">*</span>
-                        </label>
-                        <textarea
-                          class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
-                          rows="3"
-                        ></textarea>
+                    </div>
+                    <div class="space-y-2 relative">
+                      <div class="grid grid-cols-3 gap-6">
+                        <div class="col-span-1 space-y-2">
+                          <label
+                            class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                            ><span class="text-error"
+                              ><font color="#475569">Recommend PES </font>*</span
+                            ></label
+                          >
+                          <div class="flex flex-row">
+                            <div class="relative w-full">
+                              <select
+                                id="approved-select"
+                                class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
+                              >
+                                <option value="" disabled="" selected="">
+                                  Select...
+                                </option>
+                                <option value="A">A</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="B3">B3</option>
+                                <option value="B4">B4</option>
+                                <option value="BP">BP</option>
+                                <option value="C2">C2</option>
+                                <option value="C9">C9</option>
+                                <option value="D">D</option>
+                                <option value="E1">E1</option>
+                                <option value="E9">E9</option>
+                                <option value="F">F</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-span-1 space-y-2">
+                          <label
+                            class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                            ><span class="text-error"
+                              ><font color="#475569">L Code </font>*</span
+                            ></label
+                          >
+                          <div class="flex flex-row">
+                            <div class="relative w-full">
+                              <select
+                                id="approved-select"
+                                class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
+                              >
+                                <option value="" disabled="" selected="">
+                                  Select...
+                                </option>
+                                <option value="L1">L1</option>
+                                <option value="L2">L2</option>
+                                <option value="L3">L3</option>
+                                <option value="L9">L9</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-span-1 space-y-2">
+                          <label
+                            class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                            ><span class="text-error"
+                              ><font color="#475569">Validity </font>*</span
+                            ></label
+                          >
+                          <div class="flex flex-row">
+                            <div class="relative w-full">
+                              <select
+                                id="approved-select"
+                                class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
+                                onchange="handlePESTempDuration(this.value)"
+                              >
+                                <option value="" disabled="" selected="">
+                                  Select...
+                                </option>
+                                <option value="Permanent">Permanent</option>
+                                <option value="Temporary">Temporary</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="mt-2 hidden" id="pes-temp-duration-input-container">
+                            <div class="flex items-center gap-2">
+                              <input
+                                class="score-input form-input rounded border-outline-variant text-body-md text-center py-1.5 w-16 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                id="pes-assessment-duration"
+                                type="number"
+                              />
+                              <span
+                                class="text-[10px] font-bold text-on-surface-variant uppercase"
+                                >months</span
+                              >
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                    </div>
+                    <div class="space-y-2 relative">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                        ><span class="text-error"
+                          ><font color="#475569">Recommend MGS Score (0-10) </font>*</span
+                        ></label
+                      >
+                      <div class="grid grid-cols-3 gap-6">
+                        <div class="col-span-2 space-y-2">
+                          <div class="flex flex-wrap gap-4" id="mgs-inputs">
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >CR</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >N</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >P</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >A</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >U</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >L</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >H</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >V</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >C</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                            <div class="flex flex-col items-center w-8 space-y-2">
+                              <span class="text-xs text-outline font-label-caps text-slate-600"
+                                >S</span
+                              >
+                              <input
+                                class="score-input mgs-input h-10 w-10 rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                type="number"
+                                min="1"
+                                max="10"
+                                oninput=handleMGSInput(this)
+                                maxlength="1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-span-1 space-y-2">
+                          <label
+                            class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                            ><span class="text-error"
+                              ><font color="#475569">Validity </font>*</span
+                            ></label
+                          >
+                          <div class="flex flex-row">
+                            <div class="relative w-full">
+                              <select
+                                id="mgs-validity-select"
+                                class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
+                                onchange="handleMGSTempDuration(this.value)"
+                              >
+                                <option value="" disabled="" selected="">
+                                  Select...
+                                </option>
+                                <option value="Permanent">Permanent</option>
+                                <option value="Temporary">Temporary</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="mt-2 hidden" id="mgs-temp-duration-input-container">
+                            <div class="flex items-center gap-2">
+                              <input
+                                class="score-input form-input rounded border-outline-variant text-body-md text-center py-1.5 w-16 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                id="mgs-temp-validity-duration"
+                                type="number"
+                              />
+                              <span
+                                class="text-[10px] font-bold text-on-surface-variant uppercase"
+                                >months</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="space-y-2 relative">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                        ><span class="text-error"
+                          ><font color="#475569">Recommend MGS </font>*</span
+                        ></label
+                      >
+                      <div class="flex flex-row gap-4">
+                        <div class="relative md:w-1/2">
+                          <select
+                            id="approved-select"
+                            class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none"
+                            onchange="handleMGSTempDuration(this.value)"
+                          >
+                            <option value="" disabled="" selected="">
+                              Select...
+                            </option>
+                            <option value="FIT">FIT</option>
+                            <option value="FIT (Temp)">FIT (Temp)</option>
+                            <option value="BP">BP</option>
+                            <option value="D[0]">D[0]</option>
+                            <option value="D1">D1</option>
+                            <option value="UNFIT">UNFIT</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mt-2 hidden" id="mgs-temp-duration-input-container">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="text-[10px] font-bold text-on-surface-variant uppercase"
+                            >Temp Unfit for</span
+                          >
+                          <input
+                            class="score-input form-input rounded border-outline-variant text-body-md text-center py-1.5 w-16 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            id="mgs-assessment-duration"
+                            type="number"
+                          />
+                          <span
+                            class="text-[10px] font-bold text-on-surface-variant uppercase"
+                            >months</span
+                          >
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="flex flex-col space-y-2 relative">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                        ><span
+                          ><font color="#475569">Disposition</font></span
+                        ></label
+                      >
+                      <div id="disposition-badge">
+                        <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-slate-200 text-slate-700 w-fit inline-block">
+                          INCOMPLETE
+                        </span>
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6">
+                      <div class="col-span-2">
+                        <div class="flex flex-col space-y-2">
+                          <label
+                            class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                          >
+                            MCG Reference
+                          </label>
+                          <input
+                            class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
+                          ></input>
+                        </div>
+                      </div>
+                      <div class="col-span-1">
+                        <div class="flex flex-col space-y-2">
+                          <label
+                            class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                          >
+                            Page
+                          </label>
+                          <input
+                            class="w-full border border-outline-variant rounded-lg px-2 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
+                          ></input>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-center gap-2">
+                    <h3
+                      class="text-headline-section font-bold text-on-surface-variant uppercase tracking-widest"
+                    >
+                      Permanent Disability
+                    </h3>
+                  </div>
+                  <div class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 gap-6">
+
+                    <div class="space-y-2">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                      >
+                        Past Permament Disabilities
+                      </label>
+                      <table class="w-full text-left border-collapse border border-outline-variant rounded-lg">
+                        <colgroup>
+                          <col style="width: auto" />
+                          <col style="width: 170px" />
+                          <col style="width: 170px" />
+                          <col style="width: 30px" />
+                        </colgroup>
+                        <thead>
+                          <tr
+                            class="border-b border-outline-variant bg-surface-container-high"
+                          >
+                            <th
+                              class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              Past Permanent Diagnosis
+                            </th>
+                            <th
+                              class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              Percentage (%)
+                            </th>
+                            <th
+                              class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              Date
+                            </th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          class="font-data-tabular text-data-tabular text-on-surface bg-white"
+                        >
+                          <tr class="">
+                            <td class="py-3 px-6 font-medium">
+                              Right index finger amputation
+                            </td>
+                            <td class="py-3 px-6 text-on-surface-variant">21</td>
+                            <td class="py-3 px-6 text-on-surface-variant">
+                              10 Jan 2026
+                            </td>
+                            <td class="py-3 text-on-surface-variant">
+                              <button class="text-slate-400 hover:text-red-600 font-bold text-[20px]">×</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50" id="addPastPDBtn">Add Diagnosis</button>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 gap-6"
+                  >
+                    <div class="space-y-2">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                      >
+                        HR Approved Service Injury Diagnosis
+                      </label>
+                      <textarea
+                        class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                    <div class="space-y-2">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                      >
+                        HR Approved Service Injury Date
+                      </label>
+                      <div class="relative w-fit">
+                        <input type="date" id="service-injury-date" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white">
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 gap-6"
+                  >
+                    <div class="space-y-3">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                      >
+                        Final Service Injury Diagnosis
+                      </label>
+                      <textarea
+                        class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 gap-6"
+                  >
+                    <div class="space-y-3">
+                      <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm">
+                        Is this a Re-board?
+                      </label>
+                      <div class="flex items-center gap-6 text-body-md">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                          <input type="radio" name="re-board" value="yes" class="w-4 h-4 text-primary border-slate-300 focus:ring-primary/20">
+                          <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Yes</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                          <input type="radio" name="re-board" value="no" class="w-4 h-4 text-primary border-slate-300 focus:ring-primary/20">
+                          <span class="text-slate-700 group-hover:text-slate-900 transition-colors">No</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="space-y-3">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                      >
+                        Reason
+                      </label>
+                      <textarea
+                        class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
+                        rows="3"
+                      ></textarea>
                     </div>
                   </div>
                   <div class="w-full">
@@ -2067,7 +2669,6 @@
                               class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
                             >
                               GATIOD Reference
-                              <span class="text-error">*</span>
                             </label>
                             <input
                               class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
@@ -2080,7 +2681,6 @@
                               class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
                             >
                               Page
-                              <span class="text-error">*</span>
                             </label>
                             <input
                               class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
@@ -2177,15 +2777,193 @@
         }
       }
 
-      function handleTempDuration(value) {
+      function handlePulheemsInput(input) {
+        if (input.value !== '') {
+          const firstDigit = input.value.toString().charAt(0);
+          
+          input.value = ['1', '2', '3', '4', '5'].includes(firstDigit) ? firstDigit : '';
+
+          if (input.value !== '') {
+            const inputs = Array.from(document.querySelectorAll('.pul-input'));
+            const currentIndex = inputs.indexOf(input);
+            if (currentIndex < inputs.length - 1) {
+              inputs[currentIndex + 1].focus();
+            }
+          }
+        }
+      }
+
+      function handlePESTempDuration(value) {
         const durationContainer = document.getElementById(
-          "temp-duration-input-container",
+          "pes-temp-duration-input-container",
         );
-        if (value === "D1") {
+        if (value === "Temporary") {
           durationContainer.classList.remove("hidden");
         } else {
           durationContainer.classList.add("hidden");
         }
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        checkDisposition();
+
+        document.querySelectorAll('.mgs-input').forEach(input => {
+          input.addEventListener('input', checkDisposition);
+        });
+
+        const validitySelect = document.getElementById('mgs-validity-select');
+        if (validitySelect) {
+          validitySelect.addEventListener('change', checkDisposition);
+        }
+
+        const durationInput = document.getElementById('mgs-temp-validity-duration');
+        if (durationInput) {
+          durationInput.addEventListener('input', checkDisposition);
+        }
+      });
+
+      function handleMGSInput(input) {
+        let val = input.value.trim();
+        if (val === '') {
+          checkDisposition();
+          return;
+        }
+
+        let num = parseInt(val, 10);
+
+        // Range Check: Reject non-numbers, negative numbers, or numbers > 10
+        if (isNaN(num) || num < 0 || num > 10) {
+          input.value = val.startsWith('1') ? '1' : '';
+          num = input.value !== '' ? parseInt(input.value, 10) : NaN;
+        }
+
+        // Strip leading zeroes (e.g. '05' becomes '0')
+        if (val.length > 1 && val.startsWith('0')) {
+          input.value = '0';
+          num = 0;
+        }
+
+        // Auto-advance logic:
+        // Scores '0' and '2' through '10' advance immediately.
+        // '1' pauses to allow user to type '0' for '10'.
+        if (!isNaN(num) && (num === 0 || (num >= 2 && num <= 10))) {
+          const inputs = Array.from(document.querySelectorAll('.mgs-input'));
+          const currentIndex = inputs.indexOf(input);
+          if (currentIndex !== -1 && currentIndex < inputs.length - 1) {
+            inputs[currentIndex + 1].focus();
+          }
+        }
+
+        checkDisposition();
+      }
+      
+      function handleMGSTempDuration(value) {
+        const durationContainer = document.getElementById(
+          "mgs-temp-duration-input-container",
+        );
+        // if (value === "D1") {
+        //   durationContainer.classList.remove("hidden");
+        // } else {
+        //   durationContainer.classList.add("hidden");
+        // }
+        if (value === "Temporary") {
+          durationContainer.classList.remove("hidden");
+        } else {
+          durationContainer.classList.add("hidden");
+        }
+      }
+
+      function checkDisposition() {
+        const badgeContainer = document.getElementById('disposition-badge');
+        const mgsInputs = Array.from(document.querySelectorAll('.mgs-input'));
+        const validitySelect = document.getElementById('mgs-validity-select');
+        const durationInput = document.getElementById('mgs-temp-validity-duration');
+
+        if (!badgeContainer) return;
+
+        // Check if all score inputs are filled
+        const allMGSFilled = mgsInputs.length > 0 && mgsInputs.every(input => input.value.trim() !== '');
+
+        // Check Validity completeness
+        let validityFilled = false;
+        let durationMonths = null;
+
+        if (validitySelect && validitySelect.value !== '') {
+          if (validitySelect.value === 'Temporary') {
+            const durVal = durationInput ? durationInput.value.trim() : '';
+            if (durVal !== '') {
+              durationMonths = parseInt(durVal, 10);
+              validityFilled = !isNaN(durationMonths) && durationMonths > 0;
+            }
+          } else {
+            validityFilled = true;
+          }
+        }
+
+        const isFormComplete = allMGSFilled && validityFilled;
+
+        // 1. Incomplete State: Missing required fields
+        if (!isFormComplete) {
+          badgeContainer.innerHTML = `
+            <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-slate-200 text-slate-700 w-fit inline-block">
+              INCOMPLETE
+            </span>
+          `;
+          return;
+        }
+
+        // Parse scores to integers
+        const scores = mgsInputs.map(input => parseInt(input.value.trim(), 10));
+
+        // 2. Unfit State: Any score is 10
+        if (scores.includes(10)) {
+          badgeContainer.innerHTML = `
+            <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-error-container text-on-error-container w-fit inline-block">
+              UNFIT
+            </span>
+          `;
+          return;
+        }
+
+        const hasZeroScore = scores.includes(0);
+        const isTemporary = validitySelect.value === 'Temporary';
+
+        // 3. Score contains 0 + Temporary Validity (< 12 Months)
+        if (hasZeroScore && isTemporary && durationMonths < 12) {
+          badgeContainer.innerHTML = `
+            <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-surface-variant text-primary w-fit inline-block">
+              D[0]
+            </span>
+          `;
+          return;
+        }
+
+        // 4. Score contains 0 + Temporary Validity (≥ 12 Months)
+        if (hasZeroScore && isTemporary && durationMonths >= 12) {
+          badgeContainer.innerHTML = `
+            <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-surface-variant text-primary w-fit inline-block">
+              D1[${durationMonths}]
+            </span>
+          `;
+          return;
+        }
+
+        // 5. No 0s + Temporary Validity
+        if (!hasZeroScore && isTemporary) {
+          badgeContainer.innerHTML = `
+            <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-secondary-container text-on-secondary-container w-fit inline-block">
+              FIT (Temp)
+            </span>
+          `;
+          return;
+        }
+
+        // 6. Default: No 0s + Permanent Validity
+        badgeContainer.innerHTML = `
+          <span class="text-body-sm font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-secondary-container text-on-secondary-container w-fit inline-block">
+            FIT
+          </span>
+        `;
       }
 
       function toggleAssessmentMode(mode, btn) {

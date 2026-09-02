@@ -1,8 +1,5 @@
 <!doctype html>
-<html
-  class="light"
-  lang="en"
->
+<html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -140,70 +137,72 @@
     </script>
     <style>
       .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        #sidebar {
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #main-content {
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #top-header {
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .sidebar-collapsed {
-            width: 5rem !important;
-        }
-        .sidebar-collapsed .nav-text {
-          display: none;
-        }
-        .sidebar-collapsed .logo-container {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            justify-content: center;
-        }
-        .sidebar-collapsed .logo-image {
-            width: 2.5rem;
-            height: 2.5rem;
-            min-width: 2.5rem;
-        }
-        .sidebar-collapsed .nav-item {
-            justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .sidebar-collapsed .sidebar-toggle-btn span {
-            transform: rotate(180deg);
-        }
-        .sidebar-collapsed .logo-wrapper {
-            display: none;
-        }
-        .content-expanded {
-            margin-left: 5rem !important;
-        }
-        .header-expanded {
-            left: 5rem !important;
-        }
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
 
-        /* Vocation field expansion styles */
-        .vocation-container.expanded .vocation-text {
-            white-space: normal;
-            overflow: visible;
-            text-overflow: clip;
-        }
-        .vocation-container.expanded .chevron-icon {
-            transform: rotate(180deg);
-        }
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
-  <body
-    class="bg-background text-on-background font-body-md h-screen"
-  >
+  <body class="bg-background text-on-background font-body-md h-screen">
     <!-- Mobile view -->
     <div
       class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
@@ -278,14 +277,23 @@
           <span class="nav-text whitespace-nowrap">MSI Profile</span>
         </a>
         <div class="flex flex-col gap-1">
-        <div onclick="toggleFFI()" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
             <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-[20px] shrink-0">medical_services</span>
-            <span class="nav-text whitespace-nowrap">FFI</span>
-        </div>
-        <span id="ffi-chevron" class="material-symbols-outlined text-[18px] text-slate-400 nav-text">keyboard_arrow_down</span>
-        </div>
-        <div
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
             id="ffi-submenu"
             class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
@@ -433,14 +441,19 @@
       </div>
     </aside>
     <!-- Main Content Wrapper -->
-    <div class="ml-64 h-full flex flex-col bg-background hidden lg:flex" id="main-content">
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
       <!-- TopNavBar -->
       <header
         class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
         id="top-header"
       >
         <div class="flex items-center gap-2 flex-1">
-          <div class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
             <div
               aria-hidden="true"
               class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
@@ -463,11 +476,19 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center">
-            <span class="material-symbols-outlined text-[22px]">notifications</span>
-            <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
           </button>
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
             <span class="material-symbols-outlined text-[22px]">help</span>
           </button>
           <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
@@ -480,375 +501,465 @@
         </div>
       </header>
       <!-- Main Content -->
-      <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
         <!-- DROPDOWN PATIENT BANNER  -->
         <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-        <!-- Patient Context Header (Updated) -->
-        <div
-          class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-        >
-          <div class="flex flex-col gap-4 w-full">
-            <div class="flex justify-end items-start w-full">
-              <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-4">
-                  <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
                     Tan Ah Teck
                   </h2> -->
-                  <div class="flex gap-2 h-[24px] items-center">
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >P</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >R2</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >R3</span
-                    >
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>  
-            <div
-              class="flex flex-nowrap items-start justify-between w-full gap-4"
-            >
-              <!-- <div class="flex flex-col gap-1">
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
                 <span
                   class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                   >NRIC</span
                 >
                 <div class="font-bold text-sm">S1234567A</div>
               </div> -->
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >GENDER</span
-                >
-                <div class="font-bold text-sm">Male</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >AGE</span
-                >
-                <div class="font-bold text-sm">26</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >DOB</span
-                >
-                <div class="font-bold text-sm">08-Sep-1997</div>
-              </div>
-              <!-- <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
                 <span
                   class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                   >MGS DISPOSITION</span
                 >
                 <div class="font-bold text-sm">Medically Fit for Service</div>
               </div> -->
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >MGS DISPOSITION Code</span
-                >
-                <div class="font-bold text-sm">FIT (Temp)</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >PES</span
-                >
-                <div class="font-bold text-sm">-</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >DENTAL STATUS</span
-                >
-                <div class="font-bold text-sm">D1 (Expired)</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >A CODE</span
-                >
-                <div class="font-bold text-sm">A1</div>
-              </div>
-
-              <div class="flex flex-col gap-1"></div>
-            </div>
-            <div
-              class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-            >
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >SERVICE</span
-                >
-                <div class="w-fit">
+                <div class="flex flex-col gap-1">
                   <span
-                    class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                    id="banner-service-tag"
-                    >Army</span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MGS DISPOSITION Code</span
                   >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >SERVICE TYPE</span
-                >
-                <div class="font-bold text-sm" id="banner-service-type">
-                  NSman
-                </div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >RANK</span
-                >
-                <div class="font-bold text-sm" id="banner-rank">CPT</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >UNIT</span
-                >
-                <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >VOCATION</span
-                >
-                <div
-                  class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                  id="vocation-toggle"
-                >
-                  <span class="vocation-text truncate" id="banner-vocation"
-                    >Infantry Specialist</span
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
                   >
+                  <div class="font-bold text-sm">-</div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-1 ml-auto">
-                <span id="record-counter" class="text-xs text-white/70 font-medium">
-                  RECORD 1 OF 2
-                </span>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
 
-                <div class="relative w-[200px]">
-                  <select
-                    class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                    id="service-record-select"
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
                   >
-                    <option class="text-on-surface bg-white" selected="selected" value="record1">
-                      Service Record 1
-                    </option>
-                    <option class="text-on-surface bg-white" value="record2">
-                      Service Record 2
-                    </option>
-                    <!-- <option class="text-on-surface bg-white" value="record3">
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
                       Service Record 3
                     </option> -->
-                  </select>
-                  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                    expand_more
-                  </span>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- DROPDOWN PATIENT BANNER  -->
-           
-            <!-- Page Header -->
+          <!-- DROPDOWN PATIENT BANNER  -->
+          <section
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            id="ffi-info-section"
+          >
             <div
-              class="flex justify-between items-end mb-4 border-b border-outline-variant pb-4"
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
             >
-              <div>
-                <h1
-                  class="font-display-context text-display-context text-on-surface m-0"
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none"
+                  >quick_reference_all</span
                 >
-                  Maintain FFI Validity Form
-                </h1>
-              </div>
-              <div class="flex gap-stack-gap-md">
-                <button
-                  class="flex items-center gap-2 px-4 py-2 border border-error text-error rounded hover:bg-error-container/20 transition-colors font-data-tabular text-data-tabular bg-surface-container-lowest"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >cancel</span
-                  >
-                  Void
-                </button>
-                <button
-                  class="flex items-center gap-2 px-4 py-2 bg-error text-on-error rounded hover:bg-on-error-container transition-colors font-data-tabular text-data-tabular shadow-sm"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >block</span
-                  >
-                  Discontinue
-                </button>
+                FFI Details
+              </h2>
+            </div>
+            <div class="flex flex-col gap-8 p-6">
+              <!-- Information Subsection -->
+              <div id="ffi-selection-subsection">
+                <div class="flex flex-col gap-4 px-6">
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >FFI Type</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Overseas</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Outcome</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Fit</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Issue Date</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >11 Nov 2023</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Expiry Date</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >11 Nov 2024</span
+                      >
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- Form Content Canvas -->
+          </section>
+
+          <div class="w-full mt-4">
             <div
-              class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm flex flex-col"
+              class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm flex flex-col overflow-hidden"
             >
-              <div class="px-6 py-4 border-b border-outline-variant bg-surface">
-                <h3
-                  class="font-headline-section text-headline-section text-on-surface m-0"
-                >
-                  Details
-                </h3>
-              </div>
               <div
-                class="p-6 grid grid-cols-2 gap-x-grid-gutter gap-y-stack-gap-lg"
+                class="bg-surface-container-low px-6 py-4 border-b border-outline-variant"
               >
-                <!-- FFI Type -->
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span
+                    class="material-symbols-outlined text-[28px] leading-none"
+                    >gavel</span
                   >
-                    FFI Type
-                  </label>
+                  Select Decision
+                </h2>
+              </div>
+              <div class="flex flex-col p-4">
+                <div class="space-y-3" id="outcome-selection-container">
                   <input
-                    class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed"
-                    type="text"
-                    value="Overseas"
-                    readonly=""
-                    disabled=""
+                    checked="checked"
+                    class="hidden"
+                    id="outcome-discontinue"
+                    name="outcome"
+                    type="radio"
                   />
-                </div>
-                <!-- Category -->
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"
-                  >
-                    Category
-                  </label>
                   <input
-                    class="w-full bg-surface border border-outline-variant rounded px-3 py-2 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow"
-                    type="text"
-                    value="Sample 1"
+                    class="hidden"
+                    id="outcome-void"
+                    name="outcome"
+                    type="radio"
                   />
-                </div>
-                <!-- Outcome -->
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"
-                  >
-                    Outcome
-                  </label>
+                  <input
+                    class="hidden"
+                    id="outcome-backdate"
+                    name="outcome"
+                    type="radio"
+                  />
                   <div
-                    class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed"
+                    class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch"
                   >
-                    Fit
-                  </div>
-                </div>
-                <!-- Empty cell to push dates to next row or align them -->
-                <div class="hidden md:block"></div>
-                <!-- Issue Date -->
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"
-                  >
-                    Issue Date
-                  </label>
-                  <div class="relative">
-                    <input
-                      class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed"
-                      type="text"
-                      value="24/10/2023"
-                      readonly=""
-                      disabled=""
-                    />
-                  </div>
-                </div>
-                <!-- Expiry Date -->
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"
-                  >
-                    Expiry Date
-                  </label>
-                  <div class="relative">
-                    <input
-                      class="w-full bg-slate-100 border border-outline-variant rounded px-3 py-2 font-data-tabular text-data-tabular text-slate-600 cursor-not-allowed"
-                      type="text"
-                      value="24/10/2024"
-                      readonly=""
-                      disabled=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Administrative Actions Card -->
-            <div
-              class="bg-surface-container border border-outline-variant rounded flex flex-col relative overflow-hidden"
-            >
-              <div
-                class="absolute left-0 top-0 bottom-0 w-1 bg-surface-tint"
-              ></div>
-              <div class="px-6 py-4 flex justify-between items-center">
-                <div>
-                  <h3
-                    class="font-data-tabular text-data-tabular text-on-surface font-semibold m-0 flex items-center gap-2"
-                  >
-                    <span
-                      class="material-symbols-outlined text-[18px] text-surface-tint"
-                      >history</span
+                    <label
+                      class="cursor-pointer group flex flex-col"
+                      for="outcome-discontinue"
                     >
-                    Record Backdating
-                  </h3>
-                  <p
-                    class="font-body-sm text-body-sm text-on-surface-variant mt-1"
-                  >
-                    Authorized personnel may apply retroactive effective dates
-                    to this outcome.
-                  </p>
-                </div>
-                <button
-                  class="px-4 py-2 bg-white border border-outline-variant text-primary rounded font-data-tabular text-data-tabular hover:bg-surface transition-colors flex items-center gap-2"
-                >
-                  Submit Backdate
-                </button>
-              </div>
-              <div
-                class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest grid grid-cols-2 gap-grid-gutter items-end"
-              >
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-primary flex items-center gap-1"
-                  >
-                    Backdated Effective Date
-                  </label>
-                  <div class="relative">
-                    <input
-                      class="w-full bg-primary-fixed border border-primary-container rounded pr-3 py-2 font-data-tabular text-data-tabular text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow px-3 cursor-not-allowed opacity-50"
-                      type="date"
-                      disabled="true"
-                      readonly="true"
-                    />
+                      <div
+                        class="flex items-center gap-3 p-3 border rounded-lg transition-all border-gray-500"
+                        id="disctontinue-box"
+                      >
+                        <div class="flex flex-col h-full w-full">
+                          <div class="flex items-center justify-between mb-4">
+                            <div
+                              class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors"
+                              id="disctontinue-radio"
+                            >
+                              <div
+                                class="w-2 h-2 rounded-full bg-gray-500 opacity-0"
+                              ></div>
+                            </div>
+                          </div>
+                          <div class="flex items-center gap-2 mb-1">
+                            <span
+                              class="material-symbols-outlined text-gray-500"
+                              >do_not_disturb_on</span
+                            >
+                            <span class="text-lg font-bold text-slate-900"
+                              >Discontinue</span
+                            >
+                          </div>
+                          <p class="text-xs text-slate-600 leading-relaxed">
+                            FFI outcome discontinued
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                    <label
+                      class="cursor-pointer group flex flex-col"
+                      for="outcome-void"
+                    >
+                      <div
+                        class="flex items-center gap-3 p-3 border rounded-lg transition-all border-outline-variant"
+                        id="void-box"
+                      >
+                        <div class="flex flex-col h-full">
+                          <div class="mb-4">
+                            <div
+                              class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-error"
+                              id="void-radio"
+                            >
+                              <div
+                                class="w-2 h-2 rounded-full bg-error opacity-0"
+                              ></div>
+                            </div>
+                          </div>
+                          <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-error"
+                              >cancel</span
+                            >
+                            <span class="text-lg font-bold text-slate-900"
+                              >Void</span
+                            >
+                          </div>
+                          <p class="text-xs text-slate-600 leading-relaxed">
+                            FFI outcome removed from list of outcomes
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                    <label
+                      class="cursor-pointer group flex flex-col"
+                      for="outcome-backdate"
+                    >
+                      <div
+                        class="flex items-center gap-3 p-3 border rounded-lg transition-all border-primary bg-primary/5"
+                        id="backdate-box"
+                      >
+                        <div class="flex flex-col h-full">
+                          <div class="mb-4">
+                            <div
+                              class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center transition-colors group-has-[:checked]:border-primary"
+                              id="backdate-radio"
+                            >
+                              <div
+                                class="w-2 h-2 rounded-full bg-primary opacity-100"
+                              ></div>
+                            </div>
+                          </div>
+                          <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-primary"
+                              >history</span
+                            >
+                            <span class="text-lg font-bold text-slate-900"
+                              >Backdate</span
+                            >
+                          </div>
+                          <p class="text-xs text-slate-600 leading-relaxed">
+                            Change start date for FFI outcome
+                          </p>
+                        </div>
+                      </div>
+                    </label>
                   </div>
                 </div>
-                <div class="flex flex-col gap-stack-gap-sm">
-                  <label
-                    class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"
+                <div
+                  id="backdate-section"
+                  class="mt-8 p-6 bg-surface-container-low border border-outline-variant rounded-xl"
+                  style="display: none"
+                >
+                  <div class="space-y-3">
+                    <label
+                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                    >
+                      Backdated Effective Date <span class="text-error">*</span>
+                    </label>
+                    <div class="relative">
+                      <input
+                        class="w-fit border rounded pr-3 py-2 font-data-tabular text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow px-3"
+                        type="date"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-end items-center"
+              >
+                <div class="flex items-center gap-3">
+                  <button
+                    class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
                   >
-                    Reason for Backdating
-                  </label>
-                  <input
-                    class="w-full bg-surface border border-outline-variant rounded px-3 py-2 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow"
-                    placeholder="Required for retroactive changes"
-                    type="text"
-                  />
+                    Cancel
+                  </button>
+                  <!-- <button class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm">
+                    Save Draft
+                  </button> -->
+                  <a id="submitBtn" href="submitted-form.html">
+                    <button
+                      class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
+                    >
+                      Submit
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -856,137 +967,211 @@
         </div>
       </main>
     </div>
-<script>
+    <script>
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById("service-record-select");
+      const counterEl = document.getElementById("record-counter");
 
-//PATIENT DROPDOWN
-const selectEl = document.getElementById('service-record-select');
-const counterEl = document.getElementById('record-counter');
+      selectEl.addEventListener("change", (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
 
-selectEl.addEventListener('change', (e) => {
-  const currentIndex = e.target.selectedIndex + 1;
-  const totalRecords = e.target.options.length;
-  
-  counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
-});
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
 
-var ffiOpen = true;
-var medboardOpen = false;
+      var ffiOpen = true;
+      var medboardOpen = false;
 
-function toggleFFI() {
-  ffiOpen = !ffiOpen;
-  document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
-  document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-}
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
 
-function toggleMedboard() {
-  medboardOpen = !medboardOpen;
-  document.getElementById('medboard-submenu').style.display = medboardOpen ? '' : 'none';
-  document.getElementById('medboard-chevron').textContent = medboardOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-}
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
 
-// ═══════════════════════════════════════════════════════════════
-// SIDEBAR COLLAPSE
-// ═══════════════════════════════════════════════════════════════
-// Sidebar toggle
-    document
-    .getElementById("toggle-sidebar")
-    .addEventListener("click", function () {
-        const sidebar = document.getElementById("sidebar");
-        const mainContent = document.getElementById("main-content");
-        const topHeader = document.getElementById("top-header");
-        const toggleIcon = this.querySelector("span");
-        const ffiSubmenu = document.getElementById("ffi-submenu");
-        const medboardSubmenu = document.getElementById("medboard-submenu");
+      // ═══════════════════════════════════════════════════════════════
+      // SIDEBAR COLLAPSE
+      // ═══════════════════════════════════════════════════════════════
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
 
-        const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
-        mainContent.classList.toggle("content-expanded");
-        topHeader.classList.toggle("header-expanded");
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
 
-        if (isCollapsed) {
-          toggleIcon.textContent = "chevron_right";
-          ffiSubmenu.style.display = "none";
-          medboardSubmenu.style.display = "none";
-        } else {
-          toggleIcon.textContent = "chevron_left";
-          ffiSubmenu.style.display = "";
-          medboardSubmenu.style.display = "";
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
+        });
+
+      // Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          // tagClass: "bg-[#002B5C]", // navy blue
+          tagClass: "bg-blue-700",
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: "",
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
         }
-    });
+      });
 
+      document.addEventListener("DOMContentLoaded", function () {
+        // Wire FFI outcome radios
+        ["outcome-discontinue", "outcome-void", "outcome-backdate"].forEach(
+          function (id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener("change", updateFFIValidity);
+          },
+        );
+        updateFFIValidity();
+      });
 
-// Service Record Switcher Logic
-const serviceRecordSelect = document.getElementById(
-  "service-record-select",
-);
+      function updateFFIValidity() {
+        var discontinueEl = document.getElementById("outcome-discontinue");
+        var voidEl = document.getElementById("outcome-void");
+        var backdateEl = document.getElementById("outcome-backdate");
+        if (!discontinueEl) return;
 
-// Banner Elements
-const bannerServiceType = document.getElementById("banner-service-type");
-const bannerRank = document.getElementById("banner-rank");
-const bannerUnit = document.getElementById("banner-unit");
-const bannerVocation = document.getElementById("banner-vocation");
-const bannerServiceTag = document.getElementById("banner-service-tag");
+        var discontinueC = discontinueEl.checked,
+          voidC = voidEl && voidEl.checked,
+          backdateC = backdateEl && backdateEl.checked;
 
-// Overview Card Elements
-const overviewLabel1 = document.getElementById("overview-label-1");
-const overviewLabel2 = document.getElementById("overview-label-2");
-const overviewServiceType = document.getElementById(
-  "overview-service-type",
-);
-const overviewRank = document.getElementById("overview-rank");
-const overviewUnitService = document.getElementById(
-  "overview-unit-service",
-);
-const overviewVocation = document.getElementById("overview-vocation");
-const overviewBadge = document.getElementById("overview-badge");
+        // ── Card visual states ─────────────────────────────────────────
+        var states = [
+          {
+            id: "disctontinue",
+            checked: discontinueC,
+            border: "border-gray-400",
+            bg: "bg-gray-400/10",
+            dot: "bg-gray-400",
+          },
+          {
+            id: "void",
+            checked: voidC,
+            border: "border-error",
+            bg: "bg-error-container/20",
+            dot: "bg-error",
+          },
+          {
+            id: "backdate",
+            checked: backdateC,
+            border: "border-primary",
+            bg: "bg-primary/5",
+            dot: "bg-primary",
+          },
+        ];
+        states.forEach(function (s) {
+          var box = document.getElementById(s.id + "-box");
+          var dot = document.querySelector("#" + s.id + "-radio > div");
+          if (box)
+            box.className =
+              "flex items-center gap-3 p-3 border rounded-lg transition-all " +
+              (s.checked ? s.border + " " + s.bg : "border-outline-variant");
+          if (dot) dot.style.opacity = s.checked ? "1" : "0";
+        });
 
-const bannerRecords = {
-  record1: {
-    type: "NSman",
-    rank: "CPT",
-    unit: "3 SIR",
-    vocation: "Infantry Specialist",
-    service: "Army",
-    isCurrent: true,
-    tagClass: "bg-secondary", // army green
-  },
-  record2: {
-    type: "DXO",
-    rank: "ME2",
-    unit: "RSS Supreme",
-    vocation: "Naval Safety Officer",
-    service: "Navy",
-    isCurrent: false,
-    // tagClass: "bg-[#002B5C]", // navy blue
-    tagClass: "bg-blue-700"
-  },
-  record3: {
-    type: "-",
-    rank: "-",
-    unit: "-",
-    vocation: "-",
-    service: "-",
-    isCurrent: false,
-    tagClass: ""
-  },
-};
+        var backdateSec = document.getElementById("backdate-section");
+        if (backdateSec) backdateSec.style.display = "none";
 
-serviceRecordSelect.addEventListener("change", function (e) {
-  const data = bannerRecords[e.target.value];
-  if (data) {
-    // Update Banner Text
-    bannerServiceType.textContent = data.type;
-    bannerRank.textContent = data.rank;
-    bannerUnit.textContent = data.unit;
-    bannerVocation.textContent = data.vocation;
-    bannerServiceTag.textContent = data.service;
-
-    // Update Service Tag Style
-    // Remove previous color classes
-    bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
-    // Add new color class
-    bannerServiceTag.classList.add(data.tagClass);
-  }
-});
-</script>
+        if (backdateC) {
+          if (backdateSec) backdateSec.style.display = "";
+        }
+      }
+    </script>
   </body>
 </html>
