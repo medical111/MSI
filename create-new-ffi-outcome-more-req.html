@@ -304,15 +304,44 @@
             >PES/ MGS Classification</span
           >
         </a>
-        <a
-          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
-          href="medical-board.html"
-        >
-          <span class="material-symbols-outlined text-[20px] shrink-0"
-            >gavel</span
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMedboard()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
           >
-          <span class="nav-text whitespace-nowrap">Medical Board Review</span>
-        </a>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >clinical_notes</span
+              >
+              <span class="nav-text whitespace-nowrap"
+                >Medical Board</span
+              >
+            </div>
+            <span
+              id="medboard-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="medboard-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-routine-board"
+              href="medical-board.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create SOC</a
+            >
+            <a
+              id="nav-routine-board-note"
+              href="medical-board-note.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Medical Board Review</a
+            >
+          </div>
+        </div>
         <a
           class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
           href="#"
@@ -605,7 +634,7 @@
         <!-- DROPDOWN PATIENT BANNER  -->
 
           <section
-            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm"
             id="ffi-info-section"
           >
             <div
@@ -670,7 +699,7 @@
           </section>
           <!-- Current and Historical FFI Outcome -->
           <section
-            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4"
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm"
             id="current-history-section"
           >
             <div
@@ -829,7 +858,7 @@
               </div>
             </div>
           </section>
-          <section class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm mt-4">
+          <section class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm">
             <div
               class="flex justify-end p-3 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
             >
@@ -1386,6 +1415,7 @@
 // ═══════════════════════════════════════════════════════════════
 var SCREENS = ['msi','ffi-create','ffi-ha','ffi-validity'];
 var ffiOpen = true;
+var medboardOpen = false;
 
       //PATIENT DROPDOWN
       const selectEl = document.getElementById('service-record-select');
@@ -1402,6 +1432,11 @@ function toggleFFI() {
   ffiOpen = !ffiOpen;
   document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
   document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+}
+function toggleMedboard() {
+  medboardOpen = !medboardOpen;
+  document.getElementById('medboard-submenu').style.display = medboardOpen ? '' : 'none';
+  document.getElementById('medboard-chevron').textContent = medboardOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -1726,7 +1761,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // `;
           cdsContainer.innerHTML = `
           <div
-            class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"
+            class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant"
           >
             <div class="flex justify-between items-center mb-8">
               <h2
@@ -1889,7 +1924,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // investigationsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">${data.investigations}</span>`;
             cdsContainer.innerHTML =`
               <div
-                class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"
+                class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant"
               >
                 <div class="flex justify-between items-center mb-8">
                   <h2
@@ -2048,7 +2083,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // investigationsContainer.innerHTML = `<span class="text-body-sm text-on-surface leading-relaxed">-</span>`;
             cdsContainer.innerHTML = `
             <div
-              class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant mt-4"
+              class="border rounded-lg p-6 relative shadow-sm bg-gray-100 border-outline-variant"
             >
               <div class="flex justify-between items-center mb-8">
                 <h2
