@@ -783,7 +783,7 @@
                         <div class="w-2/3">
                           <span
                             class="font-data-tabular text-data-tabular text-on-surface"
-                            >Routine Board</span
+                            >Specialist Board (Perm Disability)</span
                           >
                         </div>
                       </div>
@@ -817,25 +817,7 @@
                                 class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
                                 >1</span
                               >
-                              <span>Determine PES Status</span>
-                            </div>
-                            <div
-                              class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
-                            >
-                              <span
-                                class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
-                                >2</span
-                              >
-                              <span>Determine MCS Status</span>
-                            </div>
-                            <div
-                              class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
-                            >
-                              <span
-                                class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
-                                >3</span
-                              >
-                              <span>Assign Excuse</span>
+                              <span>Determine Permanent Disability</span>
                             </div>
                           </div>
                         </div>
@@ -886,7 +868,7 @@
                   </div>
                 </div>
               </section>
-              <!-- Medical Board History -->
+              <!-- Current and Historical Medical Classification -->
               <section
                 class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm"
                 id="current-history-section"
@@ -2689,6 +2671,203 @@
                             class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
                           >
                             123
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- PD -->
+                  <div
+                    id="pd-soc-section"
+                    class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
+                  >
+                    <div class="col-span-2 flex flex-col gap-2">
+                      <div id="past-pd-section">
+                        <div
+                          class="py-2 border-b border-outline-variant rounded-t"
+                        >
+                          <h3
+                            class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                          >
+                            Diagnosis of Past Permanent Disabilities
+                          </h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                          <table
+                            class="w-full text-left border-collapse min-w-max"
+                          >
+                            <thead>
+                              <tr
+                                class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                              >
+                                <th
+                                  class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                                >
+                                  Diagnosis
+                                </th>
+                                <th
+                                  class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                                >
+                                  Percentage
+                                </th>
+                                <th
+                                  class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                                >
+                                  Date
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody
+                              id="past-pd-diagnosis-section"
+                              class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                            >
+                              <tr
+                                class="col-hover:bg-surface-container-hover/50 transition-colors"
+                              >
+                                <td
+                                  class="py-3.5 px-4 font-medium whitespace-nowrap"
+                                >
+                                  Right index finger amputation
+                                </td>
+                                <td class="py-3.5 px-3 text-on-surface-variant">
+                                  21%
+                                </td>
+                                <td class="py-3.5 px-3 text-on-surface-variant">
+                                  11 Sep 2026
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div>
+                        <div
+                          class="py-2 border-b border-outline-variant rounded-t"
+                        >
+                          <h3
+                            class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                          >
+                            HR Approved Service Injury
+                          </h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                          <table
+                            class="w-full text-left border-collapse min-w-max"
+                          >
+                            <thead>
+                              <tr
+                                class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                              >
+                                <th
+                                  class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                                >
+                                  Diagnosis
+                                </th>
+                                <th
+                                  class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                                >
+                                  Date
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody
+                              id="past-pd-diagnosis-section"
+                              class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                            >
+                              <tr
+                                class="hover:bg-surface-container-hover/50 transition-colors"
+                              >
+                                <td
+                                  class="py-3.5 px-4 font-medium whitespace-nowrap"
+                                >
+                                  Complete traumatic amputation of the right
+                                  index finger.
+                                </td>
+                                <td class="py-3.5 px-3 text-on-surface-variant">
+                                  11 Sep 2026
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="grid grid-cols-3 items-center gap-3">
+                        <div class="col-span-1">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >HR Approved Service Injury Date</span
+                          >
+                        </div>
+                        <div class="col-span-2">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >11 Sep 2026</span
+                          >
+                        </div>
+                      </div>
+                      <div class="col-span-2 flex flex-col gap-1">
+                        <div class="col-span-2">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Final Service Injury Diagnosis</span
+                          >
+                        </div>
+                        <div>
+                          <p
+                            class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                          >
+                            The patient has sustained a complete traumatic
+                            amputation of the right index finger at the level of
+                            the DIP joint which resulted in permanent partial
+                            anatomical loss of the distal phalanx of the
+                            dominant hand.This leads to a permanent impairment
+                            of fine motor pinch grip and localized loss of
+                            tactile sensation.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="grid grid-cols-3 items-center gap-3">
+                        <div class="col-span-1">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >PD Percentage</span
+                          >
+                        </div>
+                        <div class="col-span-2">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >21%</span
+                          >
+                        </div>
+                      </div>
+                      <div class="col-span-2 flex flex-col gap-1">
+                        <div class="col-span-2">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >GATIOD Reference</span
+                          >
+                        </div>
+                        <div>
+                          <p
+                            class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                          >
+                            Complete traumatic amputation of the right index
+                            finger.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-span-2 flex flex-col gap-1">
+                        <div class="col-span-2">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Page(s)</span
+                          >
+                        </div>
+                        <div>
+                          <p
+                            class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                          >
+                            58
                           </p>
                         </div>
                       </div>
