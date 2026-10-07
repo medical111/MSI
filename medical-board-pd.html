@@ -1134,6 +1134,11 @@
                               >
                                 L Code
                               </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                N Code
+                              </th>
                             </tr>
                           </thead>
                           <tbody
@@ -1143,7 +1148,7 @@
                               class="col-hover:bg-surface-container-hover/50 transition-colors"
                             >
                               <td
-                                colspan="12"
+                                colspan="13"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
                                 No records found. Fetch to get diagnosis.
@@ -1334,7 +1339,7 @@
                         </table>
                       </div>
                     </div>
-                    <!-- <div>
+                    <div>
                       <div
                         class="py-2 border-b border-outline-variant rounded-t"
                       >
@@ -1395,7 +1400,7 @@
                           </tbody>
                         </table>
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </section>
@@ -1629,11 +1634,6 @@
                                 PES
                               </th>
                               <th
-                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                              >
-                                L Code
-                              </th>
-                              <th
                                 class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
                               >
                                 Add to SOC
@@ -1647,7 +1647,7 @@
                               class="col-hover:bg-surface-container-hover/50 transition-colors"
                             >
                               <td
-                                colspan="12"
+                                colspan="11"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
                                 No records found. Fetch to get diagnosis.
@@ -2649,17 +2649,19 @@
             setTimeout(() => {
               resolve({
                 pes_backpain_board_date: "01 Jan 2025",
-                pes_backpain_P: 1,
-                pes_backpain_U: 1,
-                pes_backpain_L: 1,
-                pes_backpain_H: 1,
-                pes_backpain_E_R: 1,
-                pes_backpain_E_L: 1,
-                pes_backpain_M: 1,
-                pes_backpain_S: 1,
-                pes_backpain_status: "B4",
+                pes_backpain_P: "-",
+                pes_backpain_U: "-",
+                pes_backpain_L: "1",
+                pes_backpain_newL: "3",
+                pes_backpain_H: "-",
+                pes_backpain_E_R: "-",
+                pes_backpain_E_L: "-",
+                pes_backpain_M: "-",
+                pes_backpain_S: "-",
+                pes_backpain_status: "A",
                 pes_backpain_lcode: "-",
-                pes_backpain_suggested_status: ["A1"],
+                pes_backpain_ncode: "-",
+                pes_backpain_suggested_status: ["B3", "B4"],
                 mcs_backpain_board_date: "01 Jan 2025",
                 mcs_backpain_CR: 0,
                 mcs_backpain_N: 0,
@@ -2674,16 +2676,17 @@
                 mcs_backpain_suggested_disposition: "FIT",
 
                 pes_asthma_board_date: "01 Jan 2025",
-                pes_asthma_P: 1,
-                pes_asthma_U: 2,
-                pes_asthma_L: 1,
-                pes_asthma_H: 1,
-                pes_asthma_E_R: 2,
-                pes_asthma_E_L: 2,
-                pes_asthma_M: 2,
-                pes_asthma_S: 2,
-                pes_asthma_status: "C2",
+                pes_asthma_P: "2",
+                pes_asthma_U: "-",
+                pes_asthma_L: "-",
+                pes_asthma_H: "-",
+                pes_asthma_E_R: "-",
+                pes_asthma_E_L: "-",
+                pes_asthma_M: "-",
+                pes_asthma_S: "-",
+                pes_asthma_status: "B2",
                 pes_asthma_lcode: "-",
+                pes_asthma_ncode: "-",
                 pes_asthma_suggested_status: ["B1", "B2"],
                 mcs_asthma_board_date: "01 Jan 2025",
                 mcs_asthma_CR: 10,
@@ -2852,6 +2855,11 @@
                     >
                       L Code
                     </th>
+                    <th
+                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                    >
+                      N Code
+                    </th>
                   </tr>
                 </thead>
                 <tbody
@@ -2910,6 +2918,11 @@
                       class="py-3.5 px-3 text-center text-on-surface-variant"
                     >
                       <div class="mx-auto h-10 w-12 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+                    </td>
+                    <td
+                      class="py-3.5 px-3 text-center text-on-surface-variant"
+                    >
+                      <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                     </td>
                     <td
                       class="py-3.5 px-3 text-center text-on-surface-variant"
@@ -3156,7 +3169,6 @@
               </table>
             </div>
           </div>
-          <!--
           <div>
             <div
               class="py-2 border-b border-outline-variant rounded-t"
@@ -3227,7 +3239,6 @@
               </table>
             </div>
           </div>
-          -->
           `;
 
           diagnosisPESSection.innerHTML = `
@@ -3296,11 +3307,6 @@
                       PES
                     </th>
                     <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                    >
-                      L Code
-                    </th>
-                    <th
                       class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
                     >
                       Add to SOC
@@ -3360,11 +3366,6 @@
                       class="py-3.5 px-3 text-center text-on-surface-variant"
                     >
                       <div class="mx-auto h-10 w-12 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td
-                      class="py-3.5 px-3 text-center text-on-surface-variant"
-                    >
-                      <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                     </td>
                     <td
                       class="py-3.5 px-3 text-center text-on-surface-variant"
@@ -3854,6 +3855,11 @@
                       >
                         L Code
                       </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                      >
+                        N Code
+                      </th>
                     </tr>
                   </thead>
                   <tbody
@@ -3919,6 +3925,11 @@
                       >
                         ${data.pes_backpain_lcode}
                       </td>
+                      <td
+                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                      >
+                        ${data.pes_backpain_ncode}
+                      </td>
                     </tr>
                     <tr
                       class="hover:bg-surface-container-hover/50 transition-colors"
@@ -3978,6 +3989,11 @@
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
                         ${data.pes_asthma_lcode}
+                      </td>
+                      <td
+                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                      >
+                        ${data.pes_asthma_ncode}
                       </td>
                     </tr>
                   </tbody>
@@ -4279,7 +4295,6 @@
                 </table>
               </div>
             </div>
-            <!--
             <div>
               <div
                 class="py-2 border-b border-outline-variant rounded-t"
@@ -4368,7 +4383,6 @@
                 </table>
               </div>
             </div>
-            -->
             `;
 
             diagnosisPESSection.innerHTML = `
@@ -4437,11 +4451,6 @@
                         PES
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        L Code
-                      </th>
-                      <th
                         class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
                       >
                         Add to SOC
@@ -4463,9 +4472,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_P}
@@ -4477,9 +4484,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_U}
@@ -4490,13 +4495,11 @@
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
                         <input
-                          class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-red-600 font-bold"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
-                          value=${data.pes_backpain_L}
+                          value=${data.pes_backpain_newL}
                           disabled
                         />
                       </td>
@@ -4505,9 +4508,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_H}
@@ -4519,9 +4520,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_E_R}
@@ -4533,9 +4532,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_E_L}
@@ -4547,9 +4544,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_M}
@@ -4561,9 +4556,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_backpain_S}
@@ -4594,11 +4587,8 @@
                             </span>
                           </div>
                           <ul class="select-options hidden fixed z-[9999] max-h-60 w-max w-fit overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md" role="listbox">
-                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="A" data-suggested="true">
-                             <span class="text-gray-900">A</span>
-                              <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20 whitespace-nowrap flex-shrink-0">
-                                Suggested: Highest Numerical Value for PULHEEMS is 1
-                              </span>
+                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="A">
+                              <span class="text-gray-900">A</span>
                             </li>
                             <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="B1">
                               <span class="text-gray-900">B1</span>
@@ -4606,17 +4596,29 @@
                             <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="B2">
                               <span class="text-gray-900">B2</span>
                             </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="B3">
+                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="B3" data-suggested="true">
                               <span class="text-gray-900">B3</span>
+                              <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20 whitespace-nowrap flex-shrink-0">
+                                Suggested: Highest Numerical Value for PULHEEMS is 3
+                              </span>
                             </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="B4">
+                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="B4" data-suggested="true">
                               <span class="text-gray-900">B4</span>
+                              <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20 whitespace-nowrap flex-shrink-0">
+                                Suggested: Highest Numerical Value for PULHEEMS is 3
+                              </span>
                             </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="C2">
+                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="C2" data-suggested="true">
                               <span class="text-gray-900">C2</span>
+                              <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20 whitespace-nowrap flex-shrink-0">
+                                Suggested: Highest Numerical Value for PULHEEMS is 3
+                              </span>
                             </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="C9">
+                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="C9" data-suggested="true">
                               <span class="text-gray-900">C9</span>
+                              <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20 whitespace-nowrap flex-shrink-0">
+                                Suggested: Highest Numerical Value for PULHEEMS is 3
+                              </span>
                             </li>
                             <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="D">
                               <span class="text-gray-900">D</span>
@@ -4629,43 +4631,6 @@
                             </li>
                             <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="F">
                               <span class="text-gray-900">F</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="custom-select relative w-16">
-                          <button
-                            type="button"
-                            class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
-                            aria-haspopup="listbox"
-                            aria-expanded="false"
-                          >
-                            <span class="selected-text text-gray-500 flex items-center gap-1.5 truncate min-w-0 pr-1">
-                              <span class="truncate"></span>
-                            </span>
-                            <svg class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                            </svg>
-                          </button>
-                          <input type="hidden" name="approved_select" class="select-value" value="" />
-                          <ul class="select-options hidden fixed z-[9999] max-h-60 w-20 overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md" role="listbox">
-                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="-" data-suggested="true">
-                             <span class="text-gray-900">-</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L1" data-suggested="true">
-                              <span class="text-gray-900">L1</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L2" data-suggested="true">
-                              <span class="text-gray-900">L2</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L3" data-suggested="true">
-                              <span class="text-gray-900">L3</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L9" data-suggested="true">
-                              <span class="text-gray-900">L9</span>
                             </li>
                           </ul>
                         </div>
@@ -4691,9 +4656,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_P}
@@ -4705,9 +4668,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_U}
@@ -4719,9 +4680,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_L}
@@ -4733,9 +4692,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_H}
@@ -4747,9 +4704,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_E_R}
@@ -4761,9 +4716,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_E_L}
@@ -4775,9 +4728,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_M}
@@ -4789,9 +4740,7 @@
                       >
                         <input
                           class="score-input pul-input h-8 w-8 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
                           maxlength="1"
                           value=${data.pes_asthma_S}
@@ -4868,43 +4817,6 @@
                       <td
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
-                        <div class="custom-select relative w-16">
-                          <button
-                            type="button"
-                            class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
-                            aria-haspopup="listbox"
-                            aria-expanded="false"
-                          >
-                            <span class="selected-text text-gray-500 flex items-center gap-1.5 truncate min-w-0 pr-1">
-                              <span class="truncate"></span>
-                            </span>
-                            <svg class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                            </svg>
-                          </button>
-                          <input type="hidden" name="approved_select" class="select-value" value="" />
-                          <ul class="select-options hidden fixed z-[9999] max-h-60 w-20 overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md" role="listbox">
-                            <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="-" data-suggested="true">
-                             <span class="text-gray-900">-</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L1" data-suggested="true">
-                              <span class="text-gray-900">L1</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L2" data-suggested="true">
-                              <span class="text-gray-900">L2</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L3" data-suggested="true">
-                              <span class="text-gray-900">L3</span>
-                            </li>
-                            <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L9" data-suggested="true">
-                              <span class="text-gray-900">L9</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
                         <input
                           class="pes-row-checkbox rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                           style="accent-color: #003d9b"
@@ -4943,11 +4855,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -4958,11 +4867,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -4973,11 +4879,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -4988,11 +4891,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -5003,11 +4903,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -5018,11 +4915,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -5033,11 +4927,8 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
@@ -5048,17 +4939,14 @@
                         >
                         <input
                           class="score-input pul-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                          type="number"
-                          min="1"
-                          max="5"
+                          type="text"
                           oninput="handlePulheemsInput(this)"
-                          maxlength="1"
                           disabled
                         />
                       </div>
                     </div>
                   </div>
-                  <div class="grid grid-cols-3 gap-4">
+                  <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-1 space-y-2">
                       <label
                         class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
@@ -5088,10 +4976,13 @@
                           value="" 
                           onchange="renderSetItems(this.value)" 
                         />
-                        <div class="deviation-tag-container mt-1 hidden">
-                          <span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
-                            Deviation
-                          </span>
+                        <div class="flex flex-col gap-1 mt-1">
+                          <div class="deviation-tag-container hidden">
+                            <span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                              Deviation
+                            </span>
+                          </div>
+                          <div class="excuseCheck hidden"></div>
                         </div>
                         <ul class="select-options hidden fixed z-[9999] max-h-60 w-max overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md" role="listbox">
                           <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="A">
@@ -5129,48 +5020,6 @@
                           </li>
                           <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="F">
                             <span class="text-gray-900">F</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-span-1 space-y-2">
-                      <label
-                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                        ><span class="text-error"
-                          ><font color="#475569">L Code </font>*</span
-                        ></label
-                      >
-                      <div class="custom-select relative w-full">
-                        <button
-                          type="button"
-                          class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
-                          aria-haspopup="listbox"
-                          aria-expanded="false"
-                        >
-                          <span class="selected-text flex items-center gap-1.5 truncate min-w-0 pr-1">
-                            <span class="truncate">Select...</span>
-                          </span>
-                          <svg class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                          </svg>
-                        </button>
-                        <input type="hidden" name="approved_select" class="select-value" value="" />
-
-                        <ul class="select-options hidden fixed z-[9999] max-h-60 w-max overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md" role="listbox">
-                          <li class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100" data-value="-" data-suggested="true">
-                            <span class="text-gray-900">-</span>
-                          </li>
-                          <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L1" data-suggested="true">
-                            <span class="text-gray-900">L1</span>
-                          </li>
-                          <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L2" data-suggested="true">
-                            <span class="text-gray-900">L2</span>
-                          </li>
-                          <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L3" data-suggested="true">
-                            <span class="text-gray-900">L3</span>
-                          </li>
-                          <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="L9" data-suggested="true">
-                            <span class="text-gray-900">L9</span>
                           </li>
                         </ul>
                       </div>
@@ -5223,14 +5072,44 @@
                             id="pes-assessment-duration"
                             type="number"
                           />
-                          <span
-                            class="text-[10px] font-bold text-on-surface-variant uppercase"
-                            >months</span
-                          >
+                          <div class="custom-select relative w-28">
+                            <button
+                              type="button"
+                              class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
+                              aria-haspopup="listbox"
+                              aria-expanded="false"
+                            >
+                              <span class="selected-text flex items-center gap-1.5 truncate min-w-0 pr-1">
+                                <span class="truncate">Month(s)</span>
+                              </span>
+                              <svg class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                              </svg>
+                            </button>
+                            <input 
+                              type="hidden" 
+                              id="approved-select" 
+                              name="approved_select" 
+                              class="select-value" 
+                              value="Month(s)" 
+                            />
+                            <ul class="select-options hidden fixed z-[9999] max-h-60 w-max max-w-[90vw] overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md" role="listbox">
+                              <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="Month(s)">
+                                <span class="text-gray-900">Month(s)</span>
+                              </li>
+                              <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="Week(s)">
+                                <span class="text-gray-900">Week(s)</span>
+                              </li>
+                              <li class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100" data-value="Day(s)">
+                                <span class="text-gray-900">Day(s)</span>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!--
                   <div class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm">
                     <div
                       class="py-2"
@@ -5264,6 +5143,7 @@
                       </table>
                     </div>
                   </div>
+                  -->
                   <div class="gap-6">
                     <div class="flex flex-col space-y-2">
                       <label
@@ -6394,6 +6274,11 @@
                       >
                         L Code
                       </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                      >
+                        N Code
+                      </th>
                     </tr>
                   </thead>
                   <tbody
@@ -6403,7 +6288,7 @@
                       class="col-hover:bg-surface-container-hover/50 transition-colors"
                     >
                       <td
-                        colspan="12"
+                        colspan="13"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
                         No records found. Fetch to get diagnosis.
@@ -6584,7 +6469,6 @@
                 </table>
               </div>
             </div>
-            <!--
             <div>
               <div
                 class="py-2 border-b border-outline-variant rounded-t"
@@ -6645,7 +6529,6 @@
                 </table>
               </div>
             </div>
-            -->
             `;
 
             diagnosisPESSection.innerHTML = `
@@ -6714,11 +6597,6 @@
                         PES
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        L Code
-                      </th>
-                      <th
                         class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
                       >
                         Add to SOC
@@ -6733,7 +6611,7 @@
                       class="col-hover:bg-surface-container-hover/50 transition-colors"
                     >
                       <td
-                        colspan="12"
+                        colspan="11"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
                         No records found. Fetch to get diagnosis.
@@ -7026,7 +6904,9 @@
 
         const rows = tbody.querySelectorAll("tr");
         const pulheemsCount = 8;
+
         let maxPulheems = new Array(pulheemsCount).fill(null);
+        let hasDash = new Array(pulheemsCount).fill(false);
         let hasCheckedRow = false;
 
         rows.forEach((row) => {
@@ -7040,11 +6920,18 @@
               const input = cells[i + 1]
                 ? cells[i + 1].querySelector("input")
                 : null;
-              if (input && input.value.trim() !== "") {
-                const val = parseFloat(input.value);
-                if (!isNaN(val)) {
-                  if (maxPulheems[i] === null || val > maxPulheems[i]) {
-                    maxPulheems[i] = val;
+
+              if (input) {
+                const rawVal = input.value.trim();
+
+                if (rawVal === "-") {
+                  hasDash[i] = true;
+                } else if (rawVal !== "") {
+                  const val = parseFloat(rawVal);
+                  if (!isNaN(val)) {
+                    if (maxPulheems[i] === null || val > maxPulheems[i]) {
+                      maxPulheems[i] = val;
+                    }
                   }
                 }
               }
@@ -7058,8 +6945,17 @@
           const outputInputs = pulContainer.querySelectorAll("input");
           outputInputs.forEach((input, i) => {
             if (i < pulheemsCount) {
-              input.value =
-                hasCheckedRow && maxPulheems[i] !== null ? maxPulheems[i] : "";
+              if (!hasCheckedRow) {
+                input.value = "";
+              } else if (maxPulheems[i] !== null) {
+                // If numbers exist, show the maximum number
+                input.value = maxPulheems[i];
+              } else if (hasDash[i]) {
+                // If no numbers exist but a '-' was checked, show '-'
+                input.value = "-";
+              } else {
+                input.value = "";
+              }
             }
           });
         }
@@ -7186,6 +7082,80 @@
         }
       });
 
+      const excuseCheckList = {
+        A: ["Adjustment Disorder", "IPPT", "Loud Noise Environment & Location"],
+        B1: [
+          "Adjustment Disorder",
+          "IPPT",
+          "Loud Noise Environment & Location",
+        ],
+        B2: ["Adjustment Disorder", "Loud Noise Environment & Location"],
+        B3: ["Adjustment Disorder", "Loud Noise Environment & Location"],
+        B4: ["Adjustment Disorder", "Loud Noise Environment & Location"],
+        C2: [],
+        C9: [],
+        D: [],
+        E1: [],
+        E9: [],
+        F: [],
+      };
+
+      function checkExcusesForPES(selectedOption, menu, bannerElement) {
+        if (!bannerElement || !selectedOption) return;
+
+        // 1. Retrieve value from option or dataset
+        const selectedStatus =
+          selectedOption.dataset.value ||
+          selectedOption.getAttribute("data-value");
+
+        let incompatibleExcuses = [];
+        if (selectedOption.dataset.incompatibleExcuses) {
+          try {
+            incompatibleExcuses = JSON.parse(
+              selectedOption.dataset.incompatibleExcuses,
+            );
+          } catch (e) {
+            incompatibleExcuses = [];
+          }
+        } else {
+          incompatibleExcuses = excuseCheckList[selectedStatus] || [];
+        }
+
+        // 2. Unhide banner
+        bannerElement.classList.remove("hidden");
+
+        if (incompatibleExcuses.length === 0) {
+          bannerElement.classList.add("hidden");
+          bannerElement.innerHTML = "";
+        } else {
+          const listItems = incompatibleExcuses
+            .map(
+              (excuse, index) => `
+                <li class="flex items-start gap-2 py-0.5">
+                  <span class="font-semibold text-amber-900">${index + 1}.</span>
+                  <span>${excuse}</span>
+                </li>
+              `,
+            )
+            .join("");
+
+          bannerElement.className =
+            "excuseCheck p-3 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-sm";
+          bannerElement.innerHTML = `
+            <div class="text-xs font-medium text-amber-900 mb-2 flex items-center gap-1.5">
+              <span>⚠️</span>
+              <span>These excuse(s) may not be compatible with PES ${selectedStatus}:</span>
+            </div>
+            
+            <div class="max-h-[110px] overflow-y-auto pr-2 bg-amber-100/50 p-2.5 rounded border border-amber-200/60">
+              <ul class="space-y-1 text-xs text-amber-900">
+                ${listItems}
+              </ul>
+            </div>
+          `;
+        }
+      }
+
       document.addEventListener("click", (e) => {
         const trigger = e.target.closest(".select-trigger");
         const option = e.target.closest(".option-item");
@@ -7194,11 +7164,23 @@
         // 1. Toggle or Open Menu
         if (trigger && selectContainer) {
           e.stopPropagation();
-          const menu =
-            selectContainer.querySelector(".select-options") ||
-            (openMenuData && openMenuData.menu);
 
-          if (openMenuData && openMenuData.select === selectContainer) {
+          let menu = selectContainer.querySelector(".select-options");
+          if (
+            !menu &&
+            openMenuData &&
+            openMenuData.select === selectContainer
+          ) {
+            menu = openMenuData.menu;
+          }
+
+          if (!menu) return;
+
+          if (
+            openMenuData &&
+            openMenuData.select === selectContainer &&
+            !menu.classList.contains("hidden")
+          ) {
             closeAllMenus();
             return;
           }
@@ -7221,6 +7203,8 @@
           const hiddenInput = select.querySelector(".select-value");
           const deviationTag = select.querySelector(".deviation-tag-container");
 
+          const excuseCheckTag = select.querySelector(".excuseCheck");
+
           if (selectedText) {
             const clone = option.cloneNode(true);
             clone
@@ -7236,13 +7220,12 @@
             const previousValue = hiddenInput.value;
             hiddenInput.value = newValue;
 
-            // Dispatch native change event so inline onchange triggers
             if (previousValue !== newValue) {
               hiddenInput.dispatchEvent(new Event("change", { bubbles: true }));
             }
           }
 
-          // Deviation Check: checks inside openMenuData.menu for [data-suggested="true"]
+          // Deviation Check
           if (deviationTag) {
             const isSuggested =
               option.dataset.suggested === "true" ||
@@ -7256,6 +7239,10 @@
             } else {
               deviationTag.classList.add("hidden");
             }
+          }
+
+          if (excuseCheckTag) {
+            checkExcusesForPES(option, menu, excuseCheckTag);
           }
 
           closeAllMenus();
