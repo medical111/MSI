@@ -1151,7 +1151,8 @@
                                 colspan="13"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
-                                No records found. Fetch to get diagnosis.
+                                No records found. Fetch to get diagnosis and
+                                recommend an outcome.
                               </td>
                             </tr>
                           </tbody>
@@ -1254,7 +1255,8 @@
                                 colspan="12"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
-                                No records found. Fetch to get diagnosis.
+                                No records found. Fetch to get diagnosis and
+                                recommend an outcome.
                               </td>
                             </tr>
                           </tbody>
@@ -1332,7 +1334,8 @@
                                 colspan="7"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
-                                No records found. Fetch to get excuses.
+                                No records found. Fetch to get excuses and
+                                recommend an outcome.
                               </td>
                             </tr>
                           </tbody>
@@ -1394,7 +1397,8 @@
                                 colspan="5"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
-                                No records found. Fetch to get excuses.
+                                No records found. Fetch to get excuses and
+                                recommend an outcome.
                               </td>
                             </tr>
                           </tbody>
@@ -1430,7 +1434,7 @@
                   class="flex flex-col p-6 space-y-6"
                 >
                   <!-- Past Permanent Disabilities Section -->
-                  <div
+                  <!-- <div
                     id="past-pd-section"
                     class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
                   >
@@ -1487,9 +1491,9 @@
                         </table>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- HR Approved Service Injury Section -->
-                  <div
+                  <!-- <div
                     id="hr-approved-service-injury-section"
                     class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
                   >
@@ -1539,9 +1543,9 @@
                         </table>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- Final Service Injury Diagnosis Section -->
-                  <div
+                  <!-- <div
                     id="final-service-injury-diagnosis-section"
                     class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
                   >
@@ -1559,7 +1563,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- PES Section -->
                   <div
                     id="diagnosis-pes-section"
@@ -1650,7 +1654,8 @@
                                 colspan="11"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
-                                No records found. Fetch to get diagnosis.
+                                No records found. Fetch to get diagnosis and
+                                recommend an outcome.
                               </td>
                             </tr>
                           </tbody>
@@ -1753,7 +1758,8 @@
                                 colspan="12"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
-                                No records found. Fetch to get diagnosis.
+                                No records found. Fetch to get diagnosis and
+                                recommend an outcome.
                               </td>
                             </tr>
                           </tbody>
@@ -1762,7 +1768,7 @@
                     </div>
                   </div>
                   <!-- PD and GATIOD -->
-                  <div
+                  <!-- <div
                     id="pd-gatiod-section"
                     class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
                   >
@@ -1812,7 +1818,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </section>
             </div>
@@ -2633,14 +2639,14 @@
         const diagnosisMCSSection = document.getElementById(
           "diagnosis-mcs-section",
         );
-        const pastPDSection = document.getElementById("past-pd-section");
-        const hrApprovedServiceInjurySection = document.getElementById(
-          "hr-approved-service-injury-section",
-        );
-        const finalServiceInjuryDiagnosisSection = document.getElementById(
-          "final-service-injury-diagnosis-section",
-        );
-        const pdGATIODSection = document.getElementById("pd-gatiod-section");
+        // const pastPDSection = document.getElementById("past-pd-section");
+        // const hrApprovedServiceInjurySection = document.getElementById(
+        //   "hr-approved-service-injury-section",
+        // );
+        // const finalServiceInjuryDiagnosisSection = document.getElementById(
+        //   "final-service-injury-diagnosis-section",
+        // );
+        // const pdGATIODSection = document.getElementById("pd-gatiod-section");
 
         const submitBtn = document.getElementById("submitBtn");
 
@@ -2651,14 +2657,14 @@
                 pes_backpain_board_date: "01 Jan 2025",
                 pes_backpain_P: "-",
                 pes_backpain_U: "-",
-                pes_backpain_L: "1",
+                pes_backpain_L: "2",
                 pes_backpain_newL: "3",
                 pes_backpain_H: "-",
                 pes_backpain_E_R: "-",
                 pes_backpain_E_L: "-",
                 pes_backpain_M: "-",
                 pes_backpain_S: "-",
-                pes_backpain_status: "A",
+                pes_backpain_status: "B1",
                 pes_backpain_lcode: "-",
                 pes_backpain_ncode: "-",
                 pes_backpain_suggested_status: ["B3", "B4"],
@@ -2722,7 +2728,7 @@
                 excuses_ippt_irb: "No",
                 excuses_ippt_perm: "No",
                 excuses_ippt_start_date: "-",
-                excuses_ippt_duration: "1 month",
+                excuses_ippt_duration: "3 months",
                 excuses_ippt_end_date: "-",
               });
             }, 2500);
@@ -3203,6 +3209,11 @@
                     <th
                       class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
                     >
+                      Permanent
+                    </th>
+                    <th
+                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                    >
                       Duration
                     </th>
                   </tr>
@@ -3226,13 +3237,7 @@
                       <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                     </td>
                     <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
                       <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="mx-auto h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -3529,186 +3534,186 @@
           </div>
           `;
 
-          pastPDSection.innerHTML = `
-          <div>
-            <div
-              class="py-2 border-b border-outline-variant rounded-t"
-            >
-              <h3
-                class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-              >
-                Diagnosis of Past Permanent Disabilities
-              </h3>
-            </div>
-            <div class="overflow-x-auto">
-              <table
-                class="w-full text-left border-collapse min-w-max"
-              >
-                <thead>
-                  <tr
-                    class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                  >
-                    <th
-                      class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                    >
-                      Diagnosis
-                    </th>
-                    <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >
-                      Percentage
-                    </th>
-                    <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >
-                      Date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody
-                  id="past-pd-diagnosis-section"
-                  class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                >
-                  <tr
-                    class="hover:bg-surface-container-hover/50 transition-colors"
-                  >
-                    <td
-                      class="py-3.5 px-4 font-medium whitespace-nowrap"
-                    >
-                      <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-3 text-on-surface-variant">
-                      <div class="h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-3 text-on-surface-variant">
-                      <div class="h-10 w-16 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          `;
+          // pastPDSection.innerHTML = `
+          // <div>
+          //   <div
+          //     class="py-2 border-b border-outline-variant rounded-t"
+          //   >
+          //     <h3
+          //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+          //     >
+          //       Diagnosis of Past Permanent Disabilities
+          //     </h3>
+          //   </div>
+          //   <div class="overflow-x-auto">
+          //     <table
+          //       class="w-full text-left border-collapse min-w-max"
+          //     >
+          //       <thead>
+          //         <tr
+          //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+          //         >
+          //           <th
+          //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+          //           >
+          //             Diagnosis
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >
+          //             Percentage
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >
+          //             Date
+          //           </th>
+          //         </tr>
+          //       </thead>
+          //       <tbody
+          //         id="past-pd-diagnosis-section"
+          //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+          //       >
+          //         <tr
+          //           class="hover:bg-surface-container-hover/50 transition-colors"
+          //         >
+          //           <td
+          //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+          //           >
+          //             <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-3 text-on-surface-variant">
+          //             <div class="h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-3 text-on-surface-variant">
+          //             <div class="h-10 w-16 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //         </tr>
+          //       </tbody>
+          //     </table>
+          //   </div>
+          // </div>
+          // `;
 
-          hrApprovedServiceInjurySection.innerHTML = `
-          <div>
-            <div class="py-2">
-              <h3
-                class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-              >
-                HR Approved Service Injury
-              </h3>
-            </div>
-            <div class="overflow-x-auto">
-              <table
-                class="w-full text-left border-collapse min-w-max"
-              >
-                <thead>
-                  <tr
-                    class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                  >
-                    <th
-                      class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                    >
-                      Diagnosis
-                    </th>
-                    <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >
-                      Date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody
-                  id="past-pd-diagnosis-section"
-                  class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                >
-                  <tr
-                    class="hover:bg-surface-container-hover/50 transition-colors"
-                  >
-                    <td
-                      class="py-3.5 px-4 font-medium whitespace-nowrap"
-                    >
-                      <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-3 text-on-surface-variant">
-                      <div class="h-10 w-16 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          `;
+          // hrApprovedServiceInjurySection.innerHTML = `
+          // <div>
+          //   <div class="py-2">
+          //     <h3
+          //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+          //     >
+          //       HR Approved Service Injury
+          //     </h3>
+          //   </div>
+          //   <div class="overflow-x-auto">
+          //     <table
+          //       class="w-full text-left border-collapse min-w-max"
+          //     >
+          //       <thead>
+          //         <tr
+          //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+          //         >
+          //           <th
+          //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+          //           >
+          //             Diagnosis
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >
+          //             Date
+          //           </th>
+          //         </tr>
+          //       </thead>
+          //       <tbody
+          //         id="past-pd-diagnosis-section"
+          //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+          //       >
+          //         <tr
+          //           class="hover:bg-surface-container-hover/50 transition-colors"
+          //         >
+          //           <td
+          //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+          //           >
+          //             <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-3 text-on-surface-variant">
+          //             <div class="h-10 w-16 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //         </tr>
+          //       </tbody>
+          //     </table>
+          //   </div>
+          // </div>
+          // `;
 
-          finalServiceInjuryDiagnosisSection.innerHTML = `
-          <div>
-            <div class="space-y-6">
-              <div class="flex flex-col space-y-2">
-                <label
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  Final Service Injury Diagnosis
-                </label>
-                <p class="w-full text-body-md">
-                  <div class="h-10 w-full rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                </p>
-              </div>
-            </div>
-          </div>
-          `;
+          // finalServiceInjuryDiagnosisSection.innerHTML = `
+          // <div>
+          //   <div class="space-y-6">
+          //     <div class="flex flex-col space-y-2">
+          //       <label
+          //         class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+          //       >
+          //         Final Service Injury Diagnosis
+          //       </label>
+          //       <p class="w-full text-body-md">
+          //         <div class="h-10 w-full rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //       </p>
+          //     </div>
+          //   </div>
+          // </div>
+          // `;
 
-          pdGATIODSection.innerHTML = `
-          <div>
-            <div class="flex flex-col gap-4 px-6">
-              <div class="flex items-center">
-                <div class="w-1/3">
-                  <span
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >PD Percentage</span
-                  >
-                </div>
-                <div class="w-2/3">
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                  >
-                  <div class="h-6 w-1/3 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                  </span>
-                </div>
-              </div>
-              <div class="flex items-center">
-                <div class="w-1/3">
-                  <span
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >GATIOD Reference</span
-                  >
-                </div>
-                <div class="w-2/3">
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                  >
-                  <div class="h-6 w-1/3 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                  </span>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="w-1/3">
-                  <span
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                    >Page(s)</span
-                  >
-                </div>
-                <div class="w-2/3">
-                  <span
-                    class="font-data-tabular text-data-tabular text-on-surface"
-                  >
-                  <div class="h-6 w-1/3 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          `;
+          // pdGATIODSection.innerHTML = `
+          // <div>
+          //   <div class="flex flex-col gap-4 px-6">
+          //     <div class="flex items-center">
+          //       <div class="w-1/3">
+          //         <span
+          //           class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >PD Percentage</span
+          //         >
+          //       </div>
+          //       <div class="w-2/3">
+          //         <span
+          //           class="font-data-tabular text-data-tabular text-on-surface"
+          //         >
+          //         <div class="h-6 w-1/3 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //         </span>
+          //       </div>
+          //     </div>
+          //     <div class="flex items-center">
+          //       <div class="w-1/3">
+          //         <span
+          //           class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >GATIOD Reference</span
+          //         >
+          //       </div>
+          //       <div class="w-2/3">
+          //         <span
+          //           class="font-data-tabular text-data-tabular text-on-surface"
+          //         >
+          //         <div class="h-6 w-1/3 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //         </span>
+          //       </div>
+          //     </div>
+          //     <div class="flex items-start">
+          //       <div class="w-1/3">
+          //         <span
+          //           class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >Page(s)</span
+          //         >
+          //       </div>
+          //       <div class="w-2/3">
+          //         <span
+          //           class="font-data-tabular text-data-tabular text-on-surface"
+          //         >
+          //         <div class="h-6 w-1/3 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //         </span>
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
+          // `;
         }
 
         fetchCDSBtn.addEventListener("click", async () => {
@@ -4566,6 +4571,7 @@
                       <td
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
+                        <div class="flex justify-center">
                         <div class="custom-select relative w-16">
                           <button
                             type="button"
@@ -4633,6 +4639,7 @@
                               <span class="text-gray-900">F</span>
                             </li>
                           </ul>
+                          </div>
                         </div>
                       </td>
                       <td
@@ -4750,6 +4757,7 @@
                       <td
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
+                        <div class="flex justify-center">
                         <div class="custom-select relative w-16">
                           <button
                             type="button"
@@ -4812,6 +4820,7 @@
                               <span class="text-gray-900">F</span>
                             </li>
                           </ul>
+                          </div>
                         </div>
                       </td>
                       <td
@@ -4948,13 +4957,10 @@
                   </div>
                   <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-1 space-y-2">
-                      <label
-                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                        ><span class="text-error"
-                          ><font color="#475569">PES Status </font>*</span
-                        ></label
-                      >
-                      <div class="custom-select relative w-full">
+                      <label class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm">
+                        PES Status <span class="text-red-500">*</span>
+                      </label>
+                      <div class="custom-select relative w-full" data-initial-value="">
                         <button
                           type="button"
                           class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
@@ -5112,7 +5118,7 @@
                   <!--
                   <div class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm">
                     <div
-                      class="py-2"
+                      class="py-2 border-b border-outline-variant rounded-t"
                     >
                       <h3
                         class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
@@ -5120,7 +5126,7 @@
                         Compatible Excuses Based on Selected PES Status 
                       </h3>
                     </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="bg-white overflow-hidden">
                       <table class="w-full text-left border-collapse">
                         <thead class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium">
                           <tr>
@@ -5899,7 +5905,7 @@
                           class="col-hover:bg-surface-container-hover/50 transition-colors"
                         >
                           <td class="py-3.5 px-3 text-on-surface-variant">
-                            IPPT  
+                            High Intensity Activities  
                           </td>
                           <td
                             class="py-3.5 px-4 text-on-surface-variant whitespace-nowrap"
@@ -5955,190 +5961,190 @@
             </div>
             `;
 
-            pastPDSection.innerHTML = `
-            <div>
-              <div
-                class="py-2 border-b border-outline-variant rounded-t"
-              >
-                <h3
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  Diagnosis of Past Permanent Disabilities
-                </h3>
-              </div>
-              <div class="overflow-x-auto">
-                <table
-                  class="w-full text-left border-collapse min-w-max"
-                >
-                  <thead>
-                    <tr
-                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                    >
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Diagnosis
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Percentage
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    id="past-pd-diagnosis-section"
-                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                  >
-                    <tr
-                      class="hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td
-                        class="py-3.5 px-4 font-medium whitespace-nowrap"
-                      >
-                        Right finger amputation
-                      </td>
-                      <td class="py-3.5 px-3 text-on-surface-variant">
-                        21%
-                      </td>
-                      <td class="py-3.5 px-3 text-on-surface-variant">
-                        11 Sep 2026
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            `;
+            // pastPDSection.innerHTML = `
+            // <div>
+            //   <div
+            //     class="py-2 border-b border-outline-variant rounded-t"
+            //   >
+            //     <h3
+            //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //     >
+            //       Diagnosis of Past Permanent Disabilities
+            //     </h3>
+            //   </div>
+            //   <div class="overflow-x-auto">
+            //     <table
+            //       class="w-full text-left border-collapse min-w-max"
+            //     >
+            //       <thead>
+            //         <tr
+            //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+            //         >
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Diagnosis
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Percentage
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Date
+            //           </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody
+            //         id="past-pd-diagnosis-section"
+            //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+            //       >
+            //         <tr
+            //           class="hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td
+            //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+            //           >
+            //             Right finger amputation
+            //           </td>
+            //           <td class="py-3.5 px-3 text-on-surface-variant">
+            //             21%
+            //           </td>
+            //           <td class="py-3.5 px-3 text-on-surface-variant">
+            //             11 Sep 2026
+            //           </td>
+            //         </tr>
+            //       </tbody>
+            //     </table>
+            //   </div>
+            // </div>
+            // `;
 
-            hrApprovedServiceInjurySection.innerHTML = `
-            <div>
-              <div class="py-2 border-b border-outline-variant rounded-t">
-                <h3
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  HR Approved Service Injury
-                </h3>
-              </div>
-              <div class="overflow-x-auto">
-                <table
-                  class="w-full text-left border-collapse min-w-max"
-                >
-                  <thead>
-                    <tr
-                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                    >
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Diagnosis
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    id="past-pd-diagnosis-section"
-                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                  >
-                    <tr
-                      class="hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td
-                        class="py-3.5 px-4 font-medium whitespace-nowrap"
-                      >
-                        Complete traumatic amputation of the right index
-                        finger.
-                      </td>
-                      <td class="py-3.5 px-3 text-on-surface-variant">
-                        11 Sep 2026
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            `;
+            // hrApprovedServiceInjurySection.innerHTML = `
+            // <div>
+            //   <div class="py-2 border-b border-outline-variant rounded-t">
+            //     <h3
+            //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //     >
+            //       HR Approved Service Injury
+            //     </h3>
+            //   </div>
+            //   <div class="overflow-x-auto">
+            //     <table
+            //       class="w-full text-left border-collapse min-w-max"
+            //     >
+            //       <thead>
+            //         <tr
+            //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+            //         >
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Diagnosis
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Date
+            //           </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody
+            //         id="past-pd-diagnosis-section"
+            //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+            //       >
+            //         <tr
+            //           class="hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td
+            //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+            //           >
+            //             Complete traumatic amputation of the right index
+            //             finger.
+            //           </td>
+            //           <td class="py-3.5 px-3 text-on-surface-variant">
+            //             11 Sep 2026
+            //           </td>
+            //         </tr>
+            //       </tbody>
+            //     </table>
+            //   </div>
+            // </div>
+            // `;
 
-            finalServiceInjuryDiagnosisSection.innerHTML = `
-            <div>
-              <div class="space-y-6">
-                <div class="flex flex-col space-y-2">
-                  <label
-                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                  >
-                    Final Service Injury Diagnosis
-                  </label>
-                  <p class="w-full text-body-md">
-                    The patient has sustained a complete traumatic
-                    amputation of the right index finger at the level of
-                    the DIP joint which resulted in permanent partial
-                    anatomical loss of the distal phalanx of the
-                    dominant hand.This leads to a permanent impairment
-                    of fine motor pinch grip and localized loss of
-                    tactile sensation.
-                  </p>
-                </div>
-              </div>
-            </div>
-            `;
+            // finalServiceInjuryDiagnosisSection.innerHTML = `
+            // <div>
+            //   <div class="space-y-6">
+            //     <div class="flex flex-col space-y-2">
+            //       <label
+            //         class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //       >
+            //         Final Service Injury Diagnosis
+            //       </label>
+            //       <p class="w-full text-body-md">
+            //         The patient has sustained a complete traumatic
+            //         amputation of the right index finger at the level of
+            //         the DIP joint which resulted in permanent partial
+            //         anatomical loss of the distal phalanx of the
+            //         dominant hand.This leads to a permanent impairment
+            //         of fine motor pinch grip and localized loss of
+            //         tactile sensation.
+            //       </p>
+            //     </div>
+            //   </div>
+            // </div>
+            // `;
 
-            pdGATIODSection.innerHTML = `
-            <div>
-              <div class="flex flex-col gap-4 px-6">
-                <div class="flex items-center">
-                  <div class="w-1/3">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >PD Percentage</span
-                    >
-                  </div>
-                  <div class="w-2/3">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >21%</span
-                    >
-                  </div>
-                </div>
-                <div class="flex items-center">
-                  <div class="w-1/3">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >GATIOD Reference</span
-                    >
-                  </div>
-                  <div class="w-2/3">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >Complete traumatic amputation of the right index finger.</span
-                    >
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="w-1/3">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >Page(s)</span
-                    >
-                  </div>
-                  <div class="w-2/3">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >58</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            `;
+            // pdGATIODSection.innerHTML = `
+            // <div>
+            //   <div class="flex flex-col gap-4 px-6">
+            //     <div class="flex items-center">
+            //       <div class="w-1/3">
+            //         <span
+            //           class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >PD Percentage</span
+            //         >
+            //       </div>
+            //       <div class="w-2/3">
+            //         <span
+            //           class="font-data-tabular text-data-tabular text-on-surface"
+            //           >21%</span
+            //         >
+            //       </div>
+            //     </div>
+            //     <div class="flex items-center">
+            //       <div class="w-1/3">
+            //         <span
+            //           class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >GATIOD Reference</span
+            //         >
+            //       </div>
+            //       <div class="w-2/3">
+            //         <span
+            //           class="font-data-tabular text-data-tabular text-on-surface"
+            //           >Complete traumatic amputation of the right index finger.</span
+            //         >
+            //       </div>
+            //     </div>
+            //     <div class="flex items-start">
+            //       <div class="w-1/3">
+            //         <span
+            //           class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >Page(s)</span
+            //         >
+            //       </div>
+            //       <div class="w-2/3">
+            //         <span
+            //           class="font-data-tabular text-data-tabular text-on-surface"
+            //           >58</span
+            //         >
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
+            // `;
 
             submitBtn.classList.remove(
               "pointer-events-none",
@@ -6291,7 +6297,8 @@
                         colspan="13"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
-                        No records found. Fetch to get diagnosis.
+                        No records found. Fetch to get diagnosis and
+                        recommend an outcome.
                       </td>
                     </tr>
                   </tbody>
@@ -6389,7 +6396,8 @@
                         colspan="12"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
-                        No records found. Fetch to get diagnosis.
+                        No records found. Fetch to get diagnosis and
+                        recommend an outcome.
                       </td>
                     </tr>
                   </tbody>
@@ -6462,7 +6470,8 @@
                         colspan="7"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
-                        No records found. Fetch to get excuses.
+                        No records found. Fetch to get excuses and
+                        recommend an outcome.
                       </td>
                     </tr>
                   </tbody>
@@ -6522,7 +6531,8 @@
                         colspan="5"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
-                        No records found. Fetch to get excuses.
+                        No records found. Fetch to get excuses and
+                        recommend an outcome.
                       </td>
                     </tr>
                   </tbody>
@@ -6614,7 +6624,8 @@
                         colspan="11"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
-                        No records found. Fetch to get diagnosis.
+                        No records found. Fetch to get diagnosis and
+                        recommend an outcome.
                       </td>
                     </tr>
                   </tbody>
@@ -6710,7 +6721,8 @@
                         colspan="12"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
-                        No records found. Fetch to get diagnosis.
+                        No records found. Fetch to get diagnosis and recommend
+                        an outcome.
                       </td>
                     </tr>
                   </tbody>
@@ -6719,176 +6731,176 @@
             </div>
             `;
 
-            pastPDSection.innerHTML = `
-            <div>
-              <div
-                class="py-2 border-b border-outline-variant rounded-t"
-              >
-                <h3
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  Diagnosis of Past Permanent Disabilities
-                </h3>
-              </div>
-              <div class="overflow-x-auto">
-                <table
-                  class="w-full text-left border-collapse min-w-max"
-                >
-                  <thead>
-                    <tr
-                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                    >
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Diagnosis
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Percentage
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    id="past-pd-diagnosis-section"
-                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                  >
-                    <tr
-                      class="hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td
-                        colspan="3"
-                        class="py-3.5 px-4 font-medium whitespace-nowrap"
-                      >
-                        No records found. Fetch to get diagnosis.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            `;
+            // pastPDSection.innerHTML = `
+            // <div>
+            //   <div
+            //     class="py-2 border-b border-outline-variant rounded-t"
+            //   >
+            //     <h3
+            //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //     >
+            //       Diagnosis of Past Permanent Disabilities
+            //     </h3>
+            //   </div>
+            //   <div class="overflow-x-auto">
+            //     <table
+            //       class="w-full text-left border-collapse min-w-max"
+            //     >
+            //       <thead>
+            //         <tr
+            //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+            //         >
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Diagnosis
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Percentage
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Date
+            //           </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody
+            //         id="past-pd-diagnosis-section"
+            //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+            //       >
+            //         <tr
+            //           class="hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td
+            //             colspan="3"
+            //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+            //           >
+            //             No records found. Fetch to get diagnosis.
+            //           </td>
+            //         </tr>
+            //       </tbody>
+            //     </table>
+            //   </div>
+            // </div>
+            // `;
 
-            hrApprovedServiceInjurySection.innerHTML = `
-            <div>
-              <div class="py-2">
-                <h3
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  HR Approved Service Injury
-                </h3>
-              </div>
-              <div class="overflow-x-auto">
-                <table
-                  class="w-full text-left border-collapse min-w-max"
-                >
-                  <thead>
-                    <tr
-                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                    >
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Diagnosis
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    id="past-pd-diagnosis-section"
-                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                  >
-                    <tr
-                      class="hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td
-                        colspan="2"
-                        class="py-3.5 px-4 font-medium whitespace-nowrap"
-                      >
-                        No records found. Fetch to get diagnosis.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            `;
+            // hrApprovedServiceInjurySection.innerHTML = `
+            // <div>
+            //   <div class="py-2">
+            //     <h3
+            //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //     >
+            //       HR Approved Service Injury
+            //     </h3>
+            //   </div>
+            //   <div class="overflow-x-auto">
+            //     <table
+            //       class="w-full text-left border-collapse min-w-max"
+            //     >
+            //       <thead>
+            //         <tr
+            //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+            //         >
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Diagnosis
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Date
+            //           </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody
+            //         id="past-pd-diagnosis-section"
+            //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+            //       >
+            //         <tr
+            //           class="hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td
+            //             colspan="2"
+            //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+            //           >
+            //             No records found. Fetch to get diagnosis.
+            //           </td>
+            //         </tr>
+            //       </tbody>
+            //     </table>
+            //   </div>
+            // </div>
+            // `;
 
-            finalServiceInjuryDiagnosisSection.innerHTML = `
-            <div>
-              <div class="space-y-6">
-                <div class="flex flex-col space-y-2">
-                  <label
-                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                  >
-                    Final Service Injury Diagnosis
-                  </label>
-                  <p class="w-full text-body-md font-medium">
-                    No records found. Fetch to get diagnosis.
-                  </p>
-                </div>
-              </div>
-            </div>
-            `;
+            // finalServiceInjuryDiagnosisSection.innerHTML = `
+            // <div>
+            //   <div class="space-y-6">
+            //     <div class="flex flex-col space-y-2">
+            //       <label
+            //         class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //       >
+            //         Final Service Injury Diagnosis
+            //       </label>
+            //       <p class="w-full text-body-md font-medium">
+            //         No records found. Fetch to get diagnosis.
+            //       </p>
+            //     </div>
+            //   </div>
+            // </div>
+            // `;
 
-            pdGATIODSection.innerHTML = `
-            <div>
-              <div class="flex flex-col gap-4 px-6">
-                <div class="flex items-center">
-                  <div class="w-1/3">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >PD Percentage</span
-                    >
-                  </div>
-                  <div class="w-2/3">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >No records found. Fetch to get information.</span
-                    >
-                  </div>
-                </div>
-                <div class="flex items-center">
-                  <div class="w-1/3">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >GATIOD Reference</span
-                    >
-                  </div>
-                  <div class="w-2/3">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >No records found. Fetch to get information.</span
-                    >
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="w-1/3">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >Page(s)</span
-                    >
-                  </div>
-                  <div class="w-2/3">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >No records found. Fetch to get information.</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
+            //   pdGATIODSection.innerHTML = `
+            //   <div>
+            //     <div class="flex flex-col gap-4 px-6">
+            //       <div class="flex items-center">
+            //         <div class="w-1/3">
+            //           <span
+            //             class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //             >PD Percentage</span
+            //           >
+            //         </div>
+            //         <div class="w-2/3">
+            //           <span
+            //             class="font-data-tabular text-data-tabular text-on-surface"
+            //             >No records found. Fetch to get information.</span
+            //           >
+            //         </div>
+            //       </div>
+            //       <div class="flex items-center">
+            //         <div class="w-1/3">
+            //           <span
+            //             class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //             >GATIOD Reference</span
+            //           >
+            //         </div>
+            //         <div class="w-2/3">
+            //           <span
+            //             class="font-data-tabular text-data-tabular text-on-surface"
+            //             >No records found. Fetch to get information.</span
+            //           >
+            //         </div>
+            //       </div>
+            //       <div class="flex items-start">
+            //         <div class="w-1/3">
+            //           <span
+            //             class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //             >Page(s)</span
+            //           >
+            //         </div>
+            //         <div class="w-2/3">
+            //           <span
+            //             class="font-data-tabular text-data-tabular text-on-surface"
+            //             >No records found. Fetch to get information.</span
+            //           >
+            //         </div>
+            //       </div>
+            //     </div>
+            //   </div>
+            // `;
           } finally {
             fetchCDSBtn.disabled = false;
             fetchDataIcon.classList.remove("animate-spin");
@@ -6951,8 +6963,8 @@
                 // If numbers exist, show the maximum number
                 input.value = maxPulheems[i];
               } else if (hasDash[i]) {
-                // If no numbers exist but a '-' was checked, show '-'
-                input.value = "-";
+                // If no numbers exist but a '-' was checked, show '1'
+                input.value = "1";
               } else {
                 input.value = "";
               }
@@ -7083,15 +7095,11 @@
       });
 
       const excuseCheckList = {
-        A: ["Adjustment Disorder", "IPPT", "Loud Noise Environment & Location"],
-        B1: [
-          "Adjustment Disorder",
-          "IPPT",
-          "Loud Noise Environment & Location",
-        ],
-        B2: ["Adjustment Disorder", "Loud Noise Environment & Location"],
-        B3: ["Adjustment Disorder", "Loud Noise Environment & Location"],
-        B4: ["Adjustment Disorder", "Loud Noise Environment & Location"],
+        A: ["Firearms", "IPPT", "Loud Noise Environment & Location"],
+        B1: ["Firearms", "IPPT", "Loud Noise Environment & Location"],
+        B2: ["Firearms", "Loud Noise Environment & Location"],
+        B3: ["Firearms", "Loud Noise Environment & Location"],
+        B4: ["Firearms", "Loud Noise Environment & Location"],
         C2: [],
         C9: [],
         D: [],
@@ -7345,7 +7353,7 @@
                   <svg class="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                   </svg>
-                  <span class="text-sm font-medium">No Recommended Excuses for PES ${setName}</span>
+                  <span class="text-sm font-medium">No Recommended Excuses for ${setName}</span>
                 </div>
               </td>
             </tr>

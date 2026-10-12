@@ -1331,7 +1331,7 @@
                               class="col-hover:bg-surface-container-hover/50 transition-colors"
                             >
                               <td
-                                colspan="5"
+                                colspan="7"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
                                 No records found. Fetch to get excuses and
@@ -1394,7 +1394,7 @@
                               class="col-hover:bg-surface-container-hover/50 transition-colors"
                             >
                               <td
-                                colspan="7"
+                                colspan="5"
                                 class="py-3.5 px-4 font-medium whitespace-nowrap"
                               >
                                 No records found. Fetch to get excuses and
@@ -2466,14 +2466,14 @@
                 pes_backpain_board_date: "01 Jan 2025",
                 pes_backpain_P: "-",
                 pes_backpain_U: "-",
-                pes_backpain_L: "1",
+                pes_backpain_L: "2",
                 pes_backpain_newL: "3",
                 pes_backpain_H: "-",
                 pes_backpain_E_R: "-",
                 pes_backpain_E_L: "-",
                 pes_backpain_M: "-",
                 pes_backpain_S: "-",
-                pes_backpain_status: "A",
+                pes_backpain_status: "B1",
                 pes_backpain_lcode: "-",
                 pes_backpain_ncode: "-",
                 pes_backpain_suggested_status: ["B3", "B4"],
@@ -2537,7 +2537,7 @@
                 excuses_ippt_irb: "No",
                 excuses_ippt_perm: "No",
                 excuses_ippt_start_date: "-",
-                excuses_ippt_duration: "1 month",
+                excuses_ippt_duration: "3 months",
                 excuses_ippt_end_date: "-",
               });
             }, 2500);
@@ -6252,8 +6252,8 @@
                 // If numbers exist, show the maximum number
                 input.value = maxPulheems[i];
               } else if (hasDash[i]) {
-                // If no numbers exist but a '-' was checked, show '-'
-                input.value = "-";
+                // If no numbers exist but a '-' was checked, show '1'
+                input.value = "1";
               } else {
                 input.value = "";
               }
@@ -6384,15 +6384,11 @@
       });
 
       const excuseCheckList = {
-        A: ["Adjustment Disorder", "IPPT", "Loud Noise Environment & Location"],
-        B1: [
-          "Adjustment Disorder",
-          "IPPT",
-          "Loud Noise Environment & Location",
-        ],
-        B2: ["Adjustment Disorder", "Loud Noise Environment & Location"],
-        B3: ["Adjustment Disorder", "Loud Noise Environment & Location"],
-        B4: ["Adjustment Disorder", "Loud Noise Environment & Location"],
+        A: ["Firearms", "IPPT", "Loud Noise Environment & Location"],
+        B1: ["Firearms", "IPPT", "Loud Noise Environment & Location"],
+        B2: ["Firearms", "Loud Noise Environment & Location"],
+        B3: ["Firearms", "Loud Noise Environment & Location"],
+        B4: ["Firearms", "Loud Noise Environment & Location"],
         C2: [],
         C9: [],
         D: [],
@@ -6646,7 +6642,7 @@
                   <svg class="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                   </svg>
-                  <span class="text-sm font-medium">No Recommended Excuses for ${setName}</span>
+                  <span class="text-sm font-medium">No Recommended Excuses for PES ${setName}</span>
                 </div>
               </td>
             </tr>
