@@ -876,7 +876,6 @@
                     Medical Board History
                   </h2>
                 </div>
-                <!-- PES -->
                 <div class="flex flex-col gap-8 p-6">
                   <div class="overflow-x-auto">
                     <div
@@ -914,9 +913,14 @@
                             Board Date
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
                           >
                             Status
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            Action
                           </th>
                         </tr>
                       </thead>
@@ -925,17 +929,44 @@
                         <tr class="border-b border-surface-container/50">
                           <td class="py-4 px-4">Routine Board</td>
                           <td class="py-4 px-4">Nee Soon Camp MC</td>
-                          <td class="py-4 px-4">Determine MCS Status</td>
                           <td class="py-4 px-4">
-                            <span class="">08 Oct 2025</span>
+                            <div class="flex flex-col gap-2">
+                              <span>Determine MCS Status</span>
+                              <span
+                                class="bg-gray-200 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit"
+                                >+1 more</span
+                              >
+                            </div>
                           </td>
                           <td class="py-4 px-4">
-                            <span
-                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
-                              >Endorsed</span
-                            >
+                            <span>08 Oct 2025</span>
+                          </td>
+                          <td class="py-4 px-4">
+                            <div class="flex justify-center">
+                              <span
+                                class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                                >Approved</span
+                              >
+                            </div>
+                          </td>
+                          <td class="py-4 px-4">
+                            <div class="flex justify-center">
+                              <a
+                                class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                                href="#"
+                                onclick="
+                                  toggleMBHistoryRow(this, 'mb-detail-row-1');
+                                  return false;
+                                "
+                                >Expand</a
+                              >
+                            </div>
                           </td>
                         </tr>
+                        <tr
+                          id="mb-detail-row-1"
+                          class="border-b border-surface-container/50 hidden"
+                        ></tr>
                       </tbody>
                     </table>
                   </div>
@@ -968,7 +999,6 @@
                         >expand_more</span
                       >
                     </div>
-                    <!-- PES -->
                     <div class="p-0 hidden" id="history-table-container">
                       <table class="w-full text-left border-collapse">
                         <thead>
@@ -996,9 +1026,14 @@
                               Board Date
                             </th>
                             <th
-                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
                             >
                               Status
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              Action
                             </th>
                           </tr>
                         </thead>
@@ -1011,15 +1046,34 @@
                             <td class="py-4 px-4">Nee Soon Camp MC</td>
                             <td class="py-4 px-4">Determine PES Status</td>
                             <td class="py-4 px-4">
-                              <span class="">-</span>
+                              <span>-</span>
                             </td>
                             <td class="py-4 px-4">
-                              <span
-                                class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
-                                >Rejected</span
-                              >
+                              <div class="flex justify-center">
+                                <span
+                                  class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                                  >Rejected</span
+                                >
+                              </div>
+                            </td>
+                            <td class="py-4 px-4">
+                              <div class="flex gap-3 justify-center">
+                                <a
+                                  class="bg-surface-container-low text-primary text-xs font-bold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                                  href="#"
+                                  onclick="
+                                    toggleMBHistoryRow(this, 'mb-detail-row-2');
+                                    return false;
+                                  "
+                                  >Expand</a
+                                >
+                              </div>
                             </td>
                           </tr>
+                          <tr
+                            id="mb-detail-row-2"
+                            class="border-b border-surface-container/50 hidden"
+                          ></tr>
                         </tbody>
                       </table>
                     </div>
@@ -6686,6 +6740,1066 @@
             `;
           })
           .join("");
+      }
+
+      function toggleMBHistoryRow(button, rowId) {
+        const target = document.getElementById(rowId);
+        if (!target) return;
+
+        if (button.textContent.trim() === "Expand") {
+          target.innerHTML = getMBOutcomeDetailsHTML(rowId);
+          target.classList.remove("hidden");
+          button.textContent = "Collapse";
+        } else {
+          // Clear content and hide on collapse
+          target.innerHTML = "";
+          target.classList.add("hidden");
+          button.textContent = "Expand";
+        }
+      }
+
+      function getMBOutcomeDetailsHTML(id) {
+        switch (id) {
+          case "mb-detail-row-1":
+            return `
+              <td colspan="6" class="max-w-0">
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm">
+                  <div class="flex flex-col gap-6 p-5">
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t mb-2">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Medical Board Selection
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Board Type</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Routine Board</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Medical Centre</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Nee Soon Camp MC</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Reason for Boarding</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <div class="flex flex-col gap-2 mt-0.5">
+                              <div
+                                class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                              >
+                                <span
+                                  class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                                  >1</span
+                                >
+                                <span>Determine MCS Status</span>
+                              </div>
+                              <div
+                                class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                              >
+                                <span
+                                  class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                                  >2</span
+                                >
+                                <span>Assign Excuse</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Submitting MO</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Ryan Goh</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Last Updated By</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Ryan Goh</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Last Updated Date</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >08 Oct 2025, 12:34 PM</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Final MCS Score
+                        </h3>
+                      </div>
+                      <div class="overflow-x-auto">
+                        <table
+                          class="w-full text-left border-collapse min-w-max"
+                        >
+                          <thead>
+                            <tr
+                              class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                            >
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                CR
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                N
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                P
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                A
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                U
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                L
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                H
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                V
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                C
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                S
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                          >
+                            <tr
+                              class="hover:bg-surface-container-hover/50 transition-colors"
+                            >
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                10
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                0
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                4
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                0
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                3
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                0
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                0
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                2
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                0
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="grid grid-cols-3 items-center gap-3">
+                          <div class="col-span-1">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Disposition</span
+                            >
+                          </div>
+                          <div class="col-span-2">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >UNFIT</span
+                            >
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-3 items-center gap-3">
+                          <div class="col-span-1">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Validity</span
+                            >
+                          </div>
+                          <div class="col-span-2">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Permanent</span
+                            >
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-3 items-center gap-3">
+                          <div class="col-span-1">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Date of Expiry</span
+                            >
+                          </div>
+                          <div class="col-span-2">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >NA</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Justification for Proposed (Especially if there is
+                              Deviation from Guidelines)</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              The patient is recommended for a status downgrade
+                              due to the high-risk synergy of their acute asthma
+                              and recurrent low back pain. Because these combined
+                              conditions strictly limit the patient’s capacity for
+                              physical training and axial loading, they are
+                              medically unfit for front-line combat and must be
+                              restricted to combat service support roles in a
+                              controlled environment.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >MCG Reference(s)</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              Due to the high-risk synergy of their acute asthma
+                              and recurrent low back pain, they are medically
+                              unfit for front-line combat and must be restricted
+                              to combat service support roles.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Page(s)</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              123
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Assigned Excuse
+                        </h3>
+                      </div>
+                      <div class="overflow-x-auto">
+                        <table
+                          class="w-full text-left border-collapse min-w-max"
+                        >
+                          <thead>
+                            <tr
+                              class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                            >
+                              <th
+                                class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                              >
+                                Category
+                              </th>
+                              <th
+                                class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                              >
+                                Type
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                IRB Eligibility
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                Permanent
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                Start Date
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                Duration
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                End Date
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                          >
+                            <tr
+                              class="col-hover:bg-surface-container-hover/50 transition-colors"
+                            >
+                              <td
+                                class="py-3.5 px-4 font-medium whitespace-nowrap"
+                              >
+                                Hearing (MCC)
+                              </td>
+                              <td
+                                class="py-3.5 px-4 font-medium whitespace-nowrap"
+                              >
+                                Loud Noise Environment & Location
+                              </td>
+                              <td
+                                class="py-3.5 px-3 text-center text-on-surface-variant"
+                              >
+                                No
+                              </td>
+                              <td
+                                class="py-3.5 px-3 text-center text-on-surface-variant"
+                              >
+                                Yes
+                              </td>
+                              <td
+                                class="py-3.5 px-3 text-center text-on-surface-variant"
+                              >
+                                08 Oct 2025
+                              </td>
+                              <td
+                                class="py-3.5 px-3 text-center text-on-surface-variant"
+                              >
+                                -
+                              </td>
+                              <td
+                                class="py-3.5 px-3 text-center text-on-surface-variant"
+                              >
+                                -
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t mb-2">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Medical Board Decision
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Chairman</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr John Doe</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Presenting MO</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Ryan Goh</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Witnessing MO</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Jason Chia</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Decision</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Accept</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t mb-2">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Endorser Review
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Endorsed By</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Abel Low</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Endorsed Date</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >06 Oct 2025, 05:32 PM</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Decision</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Endorsed</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Remarks</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              Due to the high-risk synergy of their frequency hypersensitivity, the individual is medically unfit for loud noise environments and are restricted to hearing-safe locations only.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t mb-2">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Approver Review
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Approved By</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >CARMO</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Approved Date</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >08 Oct 2025, 12:34 PM</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Decision</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Approved</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Remarks</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              Due to the high-risk synergy of their sensorineural hearing loss and frequency hypersensitivity, the individual is medically unfit for tactical field deployments and is restricted to rear-echelon, hearing-safe locations only.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            `;
+
+          case "mb-detail-row-2":
+            return `
+              <td colspan="6" class="max-w-0">
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm">
+                  <div class="flex flex-col gap-6 p-5">
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t mb-2">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Medical Board Selection
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Board Type</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Routine Board</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Medical Centre</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Nee Soon Camp MC</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Reason for Boarding</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <div class="flex flex-col gap-2 mt-0.5">
+                              <div
+                                class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                              >
+                                <span
+                                  class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                                  >1</span
+                                >
+                                <span>Determine PES Status</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Submitting MO</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Ryan Goh</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Last Updated By</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Ryan Goh</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Last Updated Date</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >12 Jul 2025, 04:23 PM</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Final PES Score
+                        </h3>
+                      </div>
+                      <div class="overflow-x-auto">
+                        <table
+                          class="w-full text-left border-collapse min-w-max"
+                        >
+                          <thead>
+                            <tr
+                              class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                            >
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                P
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                U
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                L
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                H
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                E(R)
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                E(L)
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                M
+                              </th>
+                              <th
+                                class="py-3 px-3 text-center font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >
+                                S
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                          >
+                            <tr
+                              class="hover:bg-surface-container-hover/50 transition-colors"
+                            >
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                2
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                3
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="grid grid-cols-3 items-center gap-3">
+                          <div class="col-span-1">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >PES</span
+                            >
+                          </div>
+                          <div class="col-span-2">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >B3</span
+                            >
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-3 items-center gap-3">
+                          <div class="col-span-1">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Validity</span
+                            >
+                          </div>
+                          <div class="col-span-2">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Permanent</span
+                            >
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-3 items-center gap-3">
+                          <div class="col-span-1">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Date of Expiry</span
+                            >
+                          </div>
+                          <div class="col-span-2">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >NA</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Justification for Proposed (Especially if there is
+                              Deviation from Guidelines)</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              The patient is recommended for a status downgrade
+                              due to the high-risk synergy of their acute asthma
+                              and recurrent low back pain. Because these combined
+                              conditions strictly limit the patient’s capacity for
+                              physical training and axial loading, they are
+                              medically unfit for front-line combat and must be
+                              restricted to combat service support roles in a
+                              controlled environment.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >MCG Reference(s)</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              Due to the high-risk synergy of their acute asthma
+                              and recurrent low back pain, they are medically
+                              unfit for front-line combat and must be restricted
+                              to combat service support roles.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-span-2 flex flex-col gap-1">
+                          <div class="col-span-2">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Page(s)</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                            >
+                              123
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pb-2 border-b border-outline-variant rounded-t mb-2">
+                        <h3
+                          class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                        >
+                          Board Members
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Chairman</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr John Doe</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Presenting MO</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Ryan Goh</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Witnessing MO</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="font-data-tabular text-data-tabular text-on-surface"
+                              >Dr Jason Chia</span
+                            >
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-1/3">
+                            <span
+                              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                              >Decision</span
+                            >
+                          </div>
+                          <div class="w-2/3">
+                            <span
+                              class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                              >Reject</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            `;
+        }
       }
     </script>
   </body>
