@@ -1,8 +1,5 @@
 <!doctype html>
-<html
-  class="light"
-  lang="en"
->
+<html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -140,70 +137,72 @@
     </script>
     <style>
       .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        #sidebar {
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #main-content {
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #top-header {
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .sidebar-collapsed {
-            width: 5rem !important;
-        }
-        .sidebar-collapsed .nav-text {
-          display: none;
-        }
-        .sidebar-collapsed .logo-container {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            justify-content: center;
-        }
-        .sidebar-collapsed .logo-image {
-            width: 2.5rem;
-            height: 2.5rem;
-            min-width: 2.5rem;
-        }
-        .sidebar-collapsed .nav-item {
-            justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .sidebar-collapsed .sidebar-toggle-btn span {
-            transform: rotate(180deg);
-        }
-        .sidebar-collapsed .logo-wrapper {
-            display: none;
-        }
-        .content-expanded {
-            margin-left: 5rem !important;
-        }
-        .header-expanded {
-            left: 5rem !important;
-        }
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
 
-        /* Vocation field expansion styles */
-        .vocation-container.expanded .vocation-text {
-            white-space: normal;
-            overflow: visible;
-            text-overflow: clip;
-        }
-        .vocation-container.expanded .chevron-icon {
-            transform: rotate(180deg);
-        }
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
-  <body
-    class="bg-background text-on-background font-body-md h-screen"
-  >
+  <body class="bg-background text-on-background font-body-md h-screen">
     <!-- Mobile view -->
     <div
       class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
@@ -278,14 +277,23 @@
           <span class="nav-text whitespace-nowrap">MSI Profile</span>
         </a>
         <div class="flex flex-col gap-1">
-        <div onclick="toggleFFI()" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
             <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-[20px] shrink-0">medical_services</span>
-            <span class="nav-text whitespace-nowrap">FFI</span>
-        </div>
-        <span id="ffi-chevron" class="material-symbols-outlined text-[18px] text-slate-400 nav-text">keyboard_arrow_down</span>
-        </div>
-        <div
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
             id="ffi-submenu"
             class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
@@ -327,17 +335,54 @@
             >
           </div>
         </div>
-        <a
-          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
-          href="#"
-        >
-          <span class="material-symbols-outlined text-[20px] shrink-0"
-            >category</span
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMCC()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
           >
-          <span class="nav-text whitespace-nowrap"
-            >PES/ MGS Classification</span
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >fact_check</span
+              >
+              <span class="nav-text whitespace-nowrap">MCC</span>
+            </div>
+            <span
+              id="mcc-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="mcc-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
-        </a>
+            <a
+              id="nav-mcc-mcs-grading"
+              href="mcc-create-new-mcs-grading.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create MCS Grading</a
+            >
+            <a
+              id="nav-mcc-initial-endorser"
+              href="mcc-initial-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Initial Endorser</a
+            >
+            <a
+              id="nav-mcc-final-endorser"
+              href="mcc-final-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Final Endorser</a
+            >
+            <a
+              id="nav-mcc-comcc-endorsement"
+              href="mcc-comcc-endorsement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CO MCC Endorsement</a
+            >
+          </div>
+        </div>
         <div class="flex flex-col gap-1">
           <div
             onclick="toggleMedboard()"
@@ -347,9 +392,7 @@
               <span class="material-symbols-outlined text-[20px] shrink-0"
                 >clinical_notes</span
               >
-              <span class="nav-text whitespace-nowrap"
-                >Medical Board</span
-              >
+              <span class="nav-text whitespace-nowrap">Medical Board</span>
             </div>
             <span
               id="medboard-chevron"
@@ -435,14 +478,19 @@
       </div>
     </aside>
     <!-- Main Content Wrapper -->
-    <div class="ml-64 h-full flex flex-col bg-background hidden lg:flex" id="main-content">
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
       <!-- TopNavBar -->
       <header
         class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
         id="top-header"
       >
         <div class="flex items-center gap-2 flex-1">
-          <div class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
             <div
               aria-hidden="true"
               class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
@@ -465,11 +513,19 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center">
-            <span class="material-symbols-outlined text-[22px]">notifications</span>
-            <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
           </button>
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
             <span class="material-symbols-outlined text-[22px]">help</span>
           </button>
           <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
@@ -482,43 +538,45 @@
         </div>
       </header>
       <!-- Main Content -->
-      <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
         <!-- DROPDOWN PATIENT BANNER  -->
         <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-            <!-- Patient Context Header (Updated) -->
-            <div
+          <!-- Patient Context Header (Updated) -->
+          <div
             class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-            >
+          >
             <div class="flex flex-col gap-4 w-full">
-                <div class="flex justify-end items-start w-full">
+              <div class="flex justify-end items-start w-full">
                 <div class="flex flex-col gap-2">
-                    <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-4">
                     <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
                         Tan Ah Teck
                     </h2> -->
                     <div class="flex gap-2 h-[24px] items-center">
-                        <span
+                      <span
                         class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
                         style="background-color: #c41802"
                         >P</span
-                        >
-                        <span
+                      >
+                      <span
                         class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
                         style="background-color: #c41802"
                         >R2</span
-                        >
-                        <span
+                      >
+                      <span
                         class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
                         style="background-color: #c41802"
                         >R3</span
-                        >
+                      >
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>  
-                <div
+              </div>
+              <div
                 class="flex flex-nowrap items-start justify-between w-full gap-4"
-                >
+              >
                 <!-- <div class="flex flex-col gap-1">
                     <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
@@ -527,288 +585,355 @@
                     <div class="font-bold text-sm">S1234567A</div>
                 </div> -->
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >GENDER</span
-                    >
-                    <div class="font-bold text-sm">Male</div>
+                  >
+                  <div class="font-bold text-sm">Male</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >AGE</span
-                    >
-                    <div class="font-bold text-sm">26</div>
+                  >
+                  <div class="font-bold text-sm">26</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >DOB</span
-                    >
-                    <div class="font-bold text-sm">08-Sep-1997</div>
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
                 </div>
                 <!-- <div class="flex flex-col gap-1">
                     <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION</span
+                    >MCS DISPOSITION</span
                     >
                     <div class="font-bold text-sm">Medically Fit for Service</div>
                 </div> -->
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                    >MGS DISPOSITION Code</span
-                    >
-                    <div class="font-bold text-sm">FIT (Temp)</div>
+                    >MCS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >PES</span
-                    >
-                    <div class="font-bold text-sm">-</div>
+                  >
+                  <div class="font-bold text-sm">-</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >DENTAL STATUS</span
-                    >
-                    <div class="font-bold text-sm">D1 (Expired)</div>
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >A CODE</span
-                    >
-                    <div class="font-bold text-sm">A1</div>
+                  >
+                  <div class="font-bold text-sm">A1</div>
                 </div>
 
                 <div class="flex flex-col gap-1"></div>
-                </div>
-                <div
+              </div>
+              <div
                 class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-                >
+              >
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >SERVICE</span
-                    >
-                    <div class="w-fit">
+                  >
+                  <div class="w-fit">
                     <span
-                        class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                        id="banner-service-tag"
-                        >Army</span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
                     >
-                    </div>
+                  </div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >SERVICE TYPE</span
-                    >
-                    <div class="font-bold text-sm" id="banner-service-type">
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
                     NSman
-                    </div>
+                  </div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >RANK</span
-                    >
-                    <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >UNIT</span
-                    >
-                    <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <span
+                  <span
                     class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                     >VOCATION</span
-                    >
-                    <div
+                  >
+                  <div
                     class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
                     id="vocation-toggle"
-                    >
+                  >
                     <span class="vocation-text truncate" id="banner-vocation"
-                        >Infantry Specialist</span
+                      >Infantry Specialist</span
                     >
-                    </div>
+                  </div>
                 </div>
                 <div class="flex flex-col gap-1 ml-auto">
-                    <span id="record-counter" class="text-xs text-white/70 font-medium">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
                     RECORD 1 OF 2
-                    </span>
+                  </span>
 
-                    <div class="relative w-[200px]">
+                  <div class="relative w-[200px]">
                     <select
-                        class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                        id="service-record-select"
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
                     >
-                        <option class="text-on-surface bg-white" selected="selected" value="record1">
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
                         Service Record 1
-                        </option>
-                        <option class="text-on-surface bg-white" value="record2">
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
                         Service Record 2
-                        </option>
-                        <!-- <option class="text-on-surface bg-white" value="record3">
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
                         Service Record 3
                         </option> -->
                     </select>
-                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                        expand_more
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
                     </span>
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
+          </div>
+          <!-- DROPDOWN PATIENT BANNER  -->
+
+          <div class="grid grid-cols-12 gap-grid-gutter mt-4">
+            <div class="col-span-12 lg:col-span-4 flex flex-col gap-4">
+              <h3 class="font-headline-section text-on-surface">
+                Create New FFI Type
+              </h3>
+              <div
+                class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+              >
+                <div class="flex flex-col gap-4">
+                  <div class="flex flex-col gap-1.5">
+                    <label
+                      class="text-[10px] font-bold text-slate-500 uppercase tracking-wider"
+                      >Courses and Activities</label
+                    >
+                    <div class="relative">
+                      <select
+                        id="ffi-coursesAndActivities"
+                        class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate"
+                      >
+                        <option value="Courses">Courses</option>
+                        <option value="Overseas">Overseas</option>
+                        <option value="MP Command">MP Command</option>
+                        <option value="Administrative">Administrative</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-1.5">
+                    <label
+                      class="text-[10px] font-bold text-slate-500 uppercase tracking-wider"
+                      >Category</label
+                    >
+                    <div class="relative">
+                      <select
+                        id="ffi-categories"
+                        class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate"
+                      >
+                        <option value="Category A">Category A</option>
+                        <option value="Category B">Category B</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div
+                    id="sub-category-container"
+                    class="flex flex-col gap-1.5"
+                  >
+                    <div id="sub-category-label">
+                      <label
+                        class="text-[10px] font-bold text-slate-500 uppercase tracking-wider"
+                        >SUB CATEGORY</label
+                      >
+                    </div>
+                    <div class="relative">
+                      <select
+                        id="sub-category"
+                        class="appearance-none w-full bg-white border border-slate-200 rounded-lg pl-3 pr-8 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate"
+                      >
+                        <option value="Generic">Generic</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div
+                    id="agency-investigation-container"
+                    class="flex flex-col gap-1.5 hidden"
+                  >
+                    <label
+                      class="text-[10px] font-bold text-slate-500 uppercase tracking-wider"
+                      >Agency Requesting Investigation</label
+                    >
+                    <div class="relative">
+                      <textarea
+                        class="w-full border border-outline-variant rounded-lg px-4 py-3 transition-all text-sm font-body-md resize-none bg-white"
+                        rows="4"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-1.5">
+                    <label
+                      class="text-[10px] font-bold text-slate-500 uppercase tracking-wider"
+                      >SERVICE PROFILE</label
+                    >
+                    <div class="relative">
+                      <select
+                        id="service-profile"
+                        class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate"
+                      >
+                        <option>Army</option>
+                        <option>Navy</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <a
+                    href="submitted-form.html"
+                    class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm gap-2 text-center"
+                  >
+                    Submit FFI Type
+                  </a>
+                </div>
+              </div>
             </div>
-            <!-- DROPDOWN PATIENT BANNER  -->
-            
-            <div class="grid grid-cols-12 gap-grid-gutter mt-4">
-                <div class="col-span-12 lg:col-span-4 flex flex-col gap-4">
-                    <h3 class="font-headline-section text-on-surface">
-                        Create New FFI Type
-                    </h3>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Courses and Activities</label>
-                                <div class="relative">
-                                    <select id="ffi-coursesAndActivities" class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
-                                        <option value="Courses">Courses</option>
-                                        <option value="Overseas">Overseas</option>
-                                        <option value="MP Command">MP Command</option>
-                                        <option value="Administrative">Administrative</option>
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Category</label>
-                                <div class="relative">
-                                    <select id="ffi-categories" class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
-                                        <option value="Category A">Category A</option>
-                                        <option value="Category B">Category B</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div id="sub-category-container" class="flex flex-col gap-1.5">
-                                <div id="sub-category-label">
-                                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">SUB CATEGORY</label>
-                                </div>
-                                <div class="relative">
-                                    <select id="sub-category" class="appearance-none w-full bg-white border border-slate-200 rounded-lg pl-3 pr-8 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
-                                        <option value="Generic">Generic</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div id="agency-investigation-container" class="flex flex-col gap-1.5 hidden">
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Agency Requesting Investigation</label>
-                                <div class="relative">
-                                  <textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 transition-all text-sm font-body-md resize-none bg-white" rows="4"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">SERVICE PROFILE</label>
-                                <div class="relative">
-                                    <select id="service-profile" class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer truncate">
-                                        <option>Army</option>
-                                        <option>Navy</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <a href="submitted-form.html" class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm gap-2 text-center">
-                                Submit FFI Type
-                            </a>
-                        </div>
-                    </div>
+            <div class="col-span-12 lg:col-span-8 flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-section text-on-surface">Order</h3>
+              </div>
+              <div id="orders-container" class="flex flex-col gap-3">
+                <div
+                  class="bg-white rounded-xl border border-slate-200 p-8 text-center shadow-sm text-slate-400"
+                >
+                  <span class="material-symbols-outlined text-4xl mb-2"
+                    >search</span
+                  >
+                  <p class="text-sm">
+                    Select filters and click search to view order
+                  </p>
                 </div>
-
-                <div class="col-span-12 lg:col-span-8 flex flex-col gap-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-headline-section text-on-surface">Order</h3>
-                    </div>
-                    <div id="orders-container" class="flex flex-col gap-3">
-                        <div class="bg-white rounded-xl border border-slate-200 p-8 text-center shadow-sm text-slate-400">
-                            <span class="material-symbols-outlined text-4xl mb-2">search</span>
-                            <p class="text-sm">Select filters and click search to view order</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
           </div>
         </div>
       </main>
     </div>
     <script>
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById("service-record-select");
+      const counterEl = document.getElementById("record-counter");
 
-    //PATIENT DROPDOWN
-    const selectEl = document.getElementById('service-record-select');
-    const counterEl = document.getElementById('record-counter');
+      selectEl.addEventListener("change", (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
 
-    selectEl.addEventListener('change', (e) => {
-    const currentIndex = e.target.selectedIndex + 1;
-    const totalRecords = e.target.options.length;
-    
-    counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
-    });
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
 
-    var ffiOpen = true;
-    var medboardOpen = false;
+      var ffiOpen = true;
+      var mccOpen = false;
+      var medboardOpen = false;
 
-    function toggleFFI() {
-    ffiOpen = !ffiOpen;
-    document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
-    document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-    }
-    function toggleMedboard() {
-      medboardOpen = !medboardOpen;
-      document.getElementById("medboard-submenu").style.display = medboardOpen
-        ? ""
-        : "none";
-      document.getElementById("medboard-chevron").textContent = medboardOpen
-        ? "keyboard_arrow_up"
-        : "keyboard_arrow_down";
-    }
-    // ═══════════════════════════════════════════════════════════════
-    // SIDEBAR COLLAPSE
-    // ═══════════════════════════════════════════════════════════════
-    // Sidebar toggle
-    document
-    .getElementById("toggle-sidebar")
-    .addEventListener("click", function () {
-        const sidebar = document.getElementById("sidebar");
-        const mainContent = document.getElementById("main-content");
-        const topHeader = document.getElementById("top-header");
-        const toggleIcon = this.querySelector("span");
-        const ffiSubmenu = document.getElementById("ffi-submenu");
-        const medboardSubmenu = document.getElementById("medboard-submenu");
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMCC() {
+        mccOpen = !mccOpen;
+        document.getElementById("mcc-submenu").style.display = mccOpen
+          ? ""
+          : "none";
+        document.getElementById("mcc-chevron").textContent = mccOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // ═══════════════════════════════════════════════════════════════
+      // SIDEBAR COLLAPSE
+      // ═══════════════════════════════════════════════════════════════
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
 
-        const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
-        mainContent.classList.toggle("content-expanded");
-        topHeader.classList.toggle("header-expanded");
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
 
-        if (isCollapsed) {
-          toggleIcon.textContent = "chevron_right";
-          ffiSubmenu.style.display = "none";
-          medboardSubmenu.style.display = "none";
-        } else {
-          toggleIcon.textContent = "chevron_left";
-          ffiSubmenu.style.display = "";
-          medboardSubmenu.style.display = "";
-        }
-    });
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
+        });
 
-
-    // Service Record Switcher Logic
+      // Service Record Switcher Logic
       const serviceRecordSelect = document.getElementById(
         "service-record-select",
       );
@@ -851,7 +976,7 @@
           service: "Navy",
           isCurrent: false,
           // tagClass: "bg-[#002B5C]", // navy blue
-          tagClass: "bg-blue-700"
+          tagClass: "bg-blue-700",
         },
         record3: {
           type: "-",
@@ -860,7 +985,7 @@
           vocation: "-",
           service: "-",
           isCurrent: false,
-          tagClass: ""
+          tagClass: "",
         },
       };
 
@@ -876,256 +1001,660 @@
 
           // Update Service Tag Style
           // Remove previous color classes
-          bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
           // Add new color class
           bannerServiceTag.classList.add(data.tagClass);
-
         }
       });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const ffiCoursesAndActivities = document.getElementById('ffi-coursesAndActivities');
-            const ffiCatSelect = document.getElementById('ffi-categories');
-            const subCatContainer = document.getElementById('sub-category-container');
-            const subCatLabel = document.getElementById('sub-category-label');
-            const subCatSelect = document.getElementById('sub-category');
-            const agencyInvestigationContainer = document.getElementById('agency-investigation-container');
-            const serviceSelect = document.getElementById('service-profile');
-            const ordersContainer = document.getElementById('orders-container');
+      document.addEventListener("DOMContentLoaded", function () {
+        const ffiCoursesAndActivities = document.getElementById(
+          "ffi-coursesAndActivities",
+        );
+        const ffiCatSelect = document.getElementById("ffi-categories");
+        const subCatContainer = document.getElementById(
+          "sub-category-container",
+        );
+        const subCatLabel = document.getElementById("sub-category-label");
+        const subCatSelect = document.getElementById("sub-category");
+        const agencyInvestigationContainer = document.getElementById(
+          "agency-investigation-container",
+        );
+        const serviceSelect = document.getElementById("service-profile");
+        const ordersContainer = document.getElementById("orders-container");
 
-            const coursesOptions = ['Category A', 'Category B'];
-            const catAOptions = ['Generic']
-            const catBOptions = ['Joint Special Forces Selection Test', 'Rappeling Instructor Course', 'Commando Conversion Course', 'SOF Rifle of Passage', 'Ranger Course', 'Military Freefall / Tandem Jumps', 'NDU Team Building Week', 'All Airborne Courses', 'Jungle Confidence Course and Jungle Orientation Training'];
+        const coursesOptions = ["Category A", "Category B"];
+        const catAOptions = ["Generic"];
+        const catBOptions = [
+          "Joint Special Forces Selection Test",
+          "Rappeling Instructor Course",
+          "Commando Conversion Course",
+          "SOF Rifle of Passage",
+          "Ranger Course",
+          "Military Freefall / Tandem Jumps",
+          "NDU Team Building Week",
+          "All Airborne Courses",
+          "Jungle Confidence Course and Jungle Orientation Training",
+        ];
 
-            const overseasOptions = ['Overseas Exercises', 'Overseas Courses', 'Permanent Staff Posted to Overseas Bases (including Dependents)', 'Operational Overseas Missions'];
+        const overseasOptions = [
+          "Overseas Exercises",
+          "Overseas Courses",
+          "Permanent Staff Posted to Overseas Bases (including Dependents)",
+          "Operational Overseas Missions",
+        ];
 
-            const mpOptions = ['MP Command Investigation', 'Custody', 'Release From Investigation', 'Release From Custody'];
-            const custodyOptions = ['Close Arrest', 'Detention']
+        const mpOptions = [
+          "MP Command Investigation",
+          "Custody",
+          "Release From Investigation",
+          "Release From Custody",
+        ];
+        const custodyOptions = ["Close Arrest", "Detention"];
 
-            const administrativeOptions = ['Recourse for BMT/Command School', 'ORD / Release from Service / Disruption of Service', 'Resumption of Service', 'Absorption into Regular Service', 'Extension of Service / Volunteers']            
-            //const administrativeOptionsPPT = ['Recourse for BMT/Command School', 'ORD / Release from Service / Disruption of Service', 'Resumption of Service', 'Absorption into Regular Service', 'Extension of Service', 'NCC', 'UAF', 'Radiation Work', 'RSN Food Handlers']
+        const administrativeOptions = [
+          "Recourse for BMT/Command School",
+          "ORD / Release from Service / Disruption of Service",
+          "Resumption of Service",
+          "Absorption into Regular Service",
+          "Extension of Service / Volunteers",
+        ];
+        //const administrativeOptionsPPT = ['Recourse for BMT/Command School', 'ORD / Release from Service / Disruption of Service', 'Resumption of Service', 'Absorption into Regular Service', 'Extension of Service', 'NCC', 'UAF', 'Radiation Work', 'RSN Food Handlers']
 
         const ordersData = {
-            //Courses
-            'Generic': {
-                title: 'Order #1 (Standard Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Joint Special Forces Selection Test': {
-                title: 'Order #2 (Cardiology Focus)',
-                items: [
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Echocardiogram', icon: 'favorite', status: 'Required', isPrimary: true },
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Rappeling Instructor Course': {
-                title: 'Order #3 (Respiratory Profile)',
-                items: [
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Spirometry Lung Function', icon: 'air', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Commando Conversion Course': {
-                title: 'Order #4 (Metabolic Screening)',
-                items: [
-                    { name: 'Fasting Blood Glucose', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true },
-                    { name: 'HbA1c Evaluation', icon: 'monitoring', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'SOF Rifle of Passage': {
-                title: 'Order #5 (Audiometry Extension)',
-                items: [
-                    { name: 'Hearing Audiometry', icon: 'hearing', status: 'Required', isPrimary: true },
-                    { name: 'ENT Specialist Review', icon: 'medical_services', status: 'Required', isPrimary: true }
-                ]
-            },
-            'Ranger Course': {
-                title: 'Order #6 (Visual Acuity Profile)',
-                items: [
-                    { name: 'Detailed Vision Mapping', icon: 'visibility', status: 'Required', isPrimary: true },
-                    { name: 'Color Blindness Lantern Test', icon: 'palette', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Military Freefall / Tandem Jumps': {
-                title: 'Order #7 (Orthopedic Baseline)',
-                items: [
-                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Physical Mobility Review', icon: 'accessibility', status: 'Required', isPrimary: true }
-                ]
-            },
-            'NDU Team Building Week': {
-                title: 'Order #8 (Dental Maxillofacial)',
-                items: [
-                    { name: 'Dental Charting', icon: 'dentistry', status: 'Required', isPrimary: true },
-                    { name: 'Panoramic Dental X-Ray', icon: 'radiology', status: 'Required', isPrimary: true }
-                ]
-            },
-            'All Airborne Courses': {
-                title: 'Order #9 (G6PD Verification)',
-                items: [
-                    { name: 'G6PD Enzyme Assay', icon: 'biotech', status: 'Required', isPrimary: true },
-                    { name: 'Full Blood Count', icon: 'bloodtype', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Jungle Confidence Course and Jungle Orientation Training': {
-                title: 'Order #10 (Renal Function Profile)',
-                items: [
-                    { name: 'Kidney Urea/Creatinine Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Urinalysis Microscopic', icon: 'water_drop', status: 'Required', isPrimary: true }
-                ]
-            },
-            //Overseas
-            'Overseas Exercises':{
-              title: 'Order #11 (Overseas Exercises Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Overseas Courses':{
-              title: 'Order #12 (Overseas Courses Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
-                ]
-            },
-            'Permanent Staff Posted to Overseas Bases (including Dependents)':{
-              title: 'Order #13 (Overseas Posting Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                ]
-            },
-            'Operational Overseas Missions':{
-              title: 'Order #14 (Overseas Mission Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Optional', isPrimary: false },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
-                ]
-            },
-            //MP Command
-            'MP Command Investigation':{
-              title: 'Order #15 (MP Command Investigation Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
-                ]
-            },
-            'Close Arrest':{
-              title: 'Order #16 (Close Arrest Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
-                ]
-            },
-            'Detention':{
-              title: 'Order #17 (Detention Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Echocardiogram', icon: 'favorite', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true },
-                    { name: 'Physical Mobility Review', icon: 'accessibility', status: 'Required', isPrimary: true }
-                ]
-            },
-            'Release From Investigation':{
-              title: 'Order #18 (Release From Investigation Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true },
-                ]
-            },
-            //Administrative
-            'Recourse for BMT/Command School':{
-              title: 'Order #19 (Recourse Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
-                ]
-            },
-            'ORD / Release from Service / Disruption of Service':{
-              title: 'Order #20 (Standard Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Required', isPrimary: true }
-                ]
-            },
-            'Resumption of Service':{
-              title: 'Order #21 (Resumption of Service Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                    { name: 'Spine & Joint X-Ray', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'Urine Test', icon: 'water_drop', status: 'Optional', isPrimary: false }
-                ]
-            },
-            'Absorption into Service':{
-              title: 'Order #22 (Absorption into Service Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Required', isPrimary: true },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Required', isPrimary: true },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Required', isPrimary: true },
-                ]
-            },
-            'Extension of Service / Volunteers':{
-              title: 'Order #23 (Absorption into Service Screening)',
-                items: [
-                    { name: 'Blood Test', icon: 'bloodtype', status: 'Optional', isPrimary: false },
-                    { name: 'Chest X-Ray Test', icon: 'radiology', status: 'Optional', isPrimary: false },
-                    { name: 'ECG Screening', icon: 'ecg', status: 'Optional', isPrimary: false },
-                ]
-            },
-            
-
+          //Courses
+          Generic: {
+            title: "Order #1 (Standard Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Joint Special Forces Selection Test": {
+            title: "Order #2 (Cardiology Focus)",
+            items: [
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Echocardiogram",
+                icon: "favorite",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Rappeling Instructor Course": {
+            title: "Order #3 (Respiratory Profile)",
+            items: [
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Spirometry Lung Function",
+                icon: "air",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Commando Conversion Course": {
+            title: "Order #4 (Metabolic Screening)",
+            items: [
+              {
+                name: "Fasting Blood Glucose",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "HbA1c Evaluation",
+                icon: "monitoring",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "SOF Rifle of Passage": {
+            title: "Order #5 (Audiometry Extension)",
+            items: [
+              {
+                name: "Hearing Audiometry",
+                icon: "hearing",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ENT Specialist Review",
+                icon: "medical_services",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Ranger Course": {
+            title: "Order #6 (Visual Acuity Profile)",
+            items: [
+              {
+                name: "Detailed Vision Mapping",
+                icon: "visibility",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Color Blindness Lantern Test",
+                icon: "palette",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Military Freefall / Tandem Jumps": {
+            title: "Order #7 (Orthopedic Baseline)",
+            items: [
+              {
+                name: "Spine & Joint X-Ray",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Physical Mobility Review",
+                icon: "accessibility",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "NDU Team Building Week": {
+            title: "Order #8 (Dental Maxillofacial)",
+            items: [
+              {
+                name: "Dental Charting",
+                icon: "dentistry",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Panoramic Dental X-Ray",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "All Airborne Courses": {
+            title: "Order #9 (G6PD Verification)",
+            items: [
+              {
+                name: "G6PD Enzyme Assay",
+                icon: "biotech",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Full Blood Count",
+                icon: "bloodtype",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Jungle Confidence Course and Jungle Orientation Training": {
+            title: "Order #10 (Renal Function Profile)",
+            items: [
+              {
+                name: "Kidney Urea/Creatinine Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urinalysis Microscopic",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          //Overseas
+          "Overseas Exercises": {
+            title: "Order #11 (Overseas Exercises Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Overseas Courses": {
+            title: "Order #12 (Overseas Courses Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Permanent Staff Posted to Overseas Bases (including Dependents)": {
+            title: "Order #13 (Overseas Posting Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Operational Overseas Missions": {
+            title: "Order #14 (Overseas Mission Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Optional",
+                isPrimary: false,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          //MP Command
+          "MP Command Investigation": {
+            title: "Order #15 (MP Command Investigation Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Spine & Joint X-Ray",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Close Arrest": {
+            title: "Order #16 (Close Arrest Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          Detention: {
+            title: "Order #17 (Detention Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Echocardiogram",
+                icon: "favorite",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Physical Mobility Review",
+                icon: "accessibility",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Release From Investigation": {
+            title: "Order #18 (Release From Investigation Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          //Administrative
+          "Recourse for BMT/Command School": {
+            title: "Order #19 (Recourse Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Spine & Joint X-Ray",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "ORD / Release from Service / Disruption of Service": {
+            title: "Order #20 (Standard Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Spine & Joint X-Ray",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Resumption of Service": {
+            title: "Order #21 (Resumption of Service Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Spine & Joint X-Ray",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Urine Test",
+                icon: "water_drop",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
+          "Absorption into Service": {
+            title: "Order #22 (Absorption into Service Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Required",
+                isPrimary: true,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Required",
+                isPrimary: true,
+              },
+            ],
+          },
+          "Extension of Service / Volunteers": {
+            title: "Order #23 (Absorption into Service Screening)",
+            items: [
+              {
+                name: "Blood Test",
+                icon: "bloodtype",
+                status: "Optional",
+                isPrimary: false,
+              },
+              {
+                name: "Chest X-Ray Test",
+                icon: "radiology",
+                status: "Optional",
+                isPrimary: false,
+              },
+              {
+                name: "ECG Screening",
+                icon: "ecg",
+                status: "Optional",
+                isPrimary: false,
+              },
+            ],
+          },
         };
 
-            // Updates the tooltip "title" property so users can see full text on hover
-            function updateSelectTooltip() {
-                subCatSelect.setAttribute('title', subCatSelect.value || '');
-            }
+        // Updates the tooltip "title" property so users can see full text on hover
+        function updateSelectTooltip() {
+          subCatSelect.setAttribute("title", subCatSelect.value || "");
+        }
 
-            // Function to dynamically build the HTML for the current selected state
-            function renderOrders() {
-                const selectedCat = ffiCatSelect.value;
-                const selectedSub = subCatSelect.value;
-                const selectedService = serviceSelect.value;
-                
-                // Fetch configuration or fall back to a safe default if sub category has no custom configuration (e.g. ABL, ABM...)
-                const order = ordersData[selectedSub] || ordersData[selectedCat] || {
-                    title: `Order Summary`,
-                    items: [{ name: 'Standard Routine Medical Check', icon: 'assignment', status: 'Required', isPrimary: true }]
-                };
+        // Function to dynamically build the HTML for the current selected state
+        function renderOrders() {
+          const selectedCat = ffiCatSelect.value;
+          const selectedSub = subCatSelect.value;
+          const selectedService = serviceSelect.value;
 
-                // Generate HTML structure based on target configurations
-                let itemsHTML = '';
-                order.items.forEach((item, index) => {
-                    const isLast = index === order.items.length - 1;
-                    const borderClass = isLast ? '' : 'border-b border-slate-100';
-                    const badgeClass = item.isPrimary ? 'bg-primary text-white' : 'bg-surface-variant text-primary';
+          // Fetch configuration or fall back to a safe default if sub category has no custom configuration (e.g. ABL, ABM...)
+          const order = ordersData[selectedSub] ||
+            ordersData[selectedCat] || {
+              title: `Order Summary`,
+              items: [
+                {
+                  name: "Standard Routine Medical Check",
+                  icon: "assignment",
+                  status: "Required",
+                  isPrimary: true,
+                },
+              ],
+            };
 
-                    itemsHTML += `
+          // Generate HTML structure based on target configurations
+          let itemsHTML = "";
+          order.items.forEach((item, index) => {
+            const isLast = index === order.items.length - 1;
+            const borderClass = isLast ? "" : "border-b border-slate-100";
+            const badgeClass = item.isPrimary
+              ? "bg-primary text-white"
+              : "bg-surface-variant text-primary";
+
+            itemsHTML += `
                         <div class="flex items-center justify-between p-4 ${borderClass} hover:bg-slate-50 transition-colors">
                             <div class="flex items-center gap-3">
                                 <span class="material-symbols-outlined text-slate-400 text-[20px]">${item.icon}</span>
@@ -1134,9 +1663,9 @@
                             <span class="${badgeClass} px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">${item.status}</span>
                         </div>
                     `;
-                });
+          });
 
-                ordersContainer.innerHTML = `
+          ordersContainer.innerHTML = `
                     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden animate-fadeIn">
                         <div class="p-4 flex items-center justify-between bg-slate-50 border-b border-slate-200">
                             <div class="flex items-center gap-4">
@@ -1155,136 +1684,136 @@
                         </div>
                     </div>
                 `;
-            }
+        }
 
-            ffiCoursesAndActivities.addEventListener('change', function(){
-              ffiCatSelect.innerHTML='';
-              subCatSelect.innerHTML = '';
-              subCatContainer.classList.remove('hidden');
-              agencyInvestigationContainer.classList.add('hidden');
+        ffiCoursesAndActivities.addEventListener("change", function () {
+          ffiCatSelect.innerHTML = "";
+          subCatSelect.innerHTML = "";
+          subCatContainer.classList.remove("hidden");
+          agencyInvestigationContainer.classList.add("hidden");
 
-              if (ffiCoursesAndActivities.value === 'Courses'){
-                subCatLabel.innerHTML= `
+          if (ffiCoursesAndActivities.value === "Courses") {
+            subCatLabel.innerHTML = `
                   <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Sub Category</label>
-                `
-                coursesOptions.forEach(val => {
-                  const option = document.createElement('option');
-                  option.value = val;
-                  option.textContent = val;
-                  ffiCatSelect.appendChild(option);
-                });
-                catAOptions.forEach(val => {
-                    const option = document.createElement('option');
-                    option.value = val;
-                    option.textContent = val;
-                    subCatSelect.appendChild(option);
-                });
-              }else if (ffiCoursesAndActivities.value === 'Overseas'){
-                overseasOptions.forEach(val => {
-                  const option = document.createElement('option');
-                  option.value = val;
-                  option.textContent = val;
-                  ffiCatSelect.appendChild(option);
-                });
-                subCatContainer.classList.add('hidden')
-              }else if (ffiCoursesAndActivities.value === 'MP Command'){
-                mpOptions.forEach(val => {
-                  const option = document.createElement('option');
-                  option.value = val;
-                  option.textContent = val;
-                  ffiCatSelect.appendChild(option);
-                  subCatContainer.classList.add('hidden')
-                  agencyInvestigationContainer.classList.remove('hidden');
-                });
-              }else {
-                administrativeOptions.forEach(val => {
-                  const option = document.createElement('option');
-                  option.value = val;
-                  option.textContent = val;
-                  ffiCatSelect.appendChild(option);
-                  subCatContainer.classList.add('hidden')
-                });
-              }
-              renderOrders()
+                `;
+            coursesOptions.forEach((val) => {
+              const option = document.createElement("option");
+              option.value = val;
+              option.textContent = val;
+              ffiCatSelect.appendChild(option);
             });
-
-            // Handle FFI Type Dropdown Changes
-            ffiCatSelect.addEventListener('change', function() {
-              subCatSelect.innerHTML = '';
-
-              if (ffiCoursesAndActivities.value === 'Courses'){
-                subCatLabel.innerHTML= `
-                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Sub Category</label>
-                `
-                if (ffiCatSelect.value === 'Category B') {
-                  catBOptions.forEach(val => {
-                      const option = document.createElement('option');
-                      option.value = val;
-                      option.textContent = val;
-                      subCatSelect.appendChild(option);
-                  });
-                } else {
-                  catAOptions.forEach(val => {
-                      const option = document.createElement('option');
-                      option.value = val;
-                      option.textContent = val;
-                      subCatSelect.appendChild(option);
-                  });
-                }
-              }else if (ffiCoursesAndActivities.value === 'MP Command'){
-                if (ffiCatSelect.value === 'Custody') { 
-                  subCatContainer.classList.remove('hidden')
-                  agencyInvestigationContainer.classList.add('hidden');
-                  custodyOptions.forEach(val => {
-                      const option = document.createElement('option');
-                      option.value = val;
-                      option.textContent = val;
-                      subCatSelect.appendChild(option);
-                  });
-
-                  subCatLabel.innerHTML= `
-                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Type of Custody</label>
-                  `
-                } else if (ffiCatSelect.value === 'Release From Custody') {
-                  subCatContainer.classList.remove('hidden')
-                  agencyInvestigationContainer.classList.remove('hidden');
-                  custodyOptions.forEach(val => {
-                      const option = document.createElement('option');
-                      option.value = val;
-                      option.textContent = val;
-                      subCatSelect.appendChild(option);
-                  });
-                  
-                  subCatLabel.innerHTML= `
-                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Release From Custody</label>
-                  `
-                }else{
-                  subCatContainer.classList.add('hidden')
-                  agencyInvestigationContainer.classList.remove('hidden');
-                }
-              }else {
-                subCatContainer.classList.add('hidden')
-              }
-              
-              updateSelectTooltip();
-              renderOrders(); // Instantly update view when FFI switches
+            catAOptions.forEach((val) => {
+              const option = document.createElement("option");
+              option.value = val;
+              option.textContent = val;
+              subCatSelect.appendChild(option);
             });
-
-            // Handle Sub Category Dropdown Changes
-            subCatSelect.addEventListener('change', function() {
-                updateSelectTooltip();
-                renderOrders(); // Instantly update view
+          } else if (ffiCoursesAndActivities.value === "Overseas") {
+            overseasOptions.forEach((val) => {
+              const option = document.createElement("option");
+              option.value = val;
+              option.textContent = val;
+              ffiCatSelect.appendChild(option);
             });
-
-            // Handle Service Profile Changes
-            serviceSelect.addEventListener('change', function() {
-                renderOrders(); // Instantly update view
+            subCatContainer.classList.add("hidden");
+          } else if (ffiCoursesAndActivities.value === "MP Command") {
+            mpOptions.forEach((val) => {
+              const option = document.createElement("option");
+              option.value = val;
+              option.textContent = val;
+              ffiCatSelect.appendChild(option);
+              subCatContainer.classList.add("hidden");
+              agencyInvestigationContainer.classList.remove("hidden");
             });
-
-            // Initial runs to prepare the screen state on page load
-            updateSelectTooltip();
-            renderOrders();
+          } else {
+            administrativeOptions.forEach((val) => {
+              const option = document.createElement("option");
+              option.value = val;
+              option.textContent = val;
+              ffiCatSelect.appendChild(option);
+              subCatContainer.classList.add("hidden");
+            });
+          }
+          renderOrders();
         });
+
+        // Handle FFI Type Dropdown Changes
+        ffiCatSelect.addEventListener("change", function () {
+          subCatSelect.innerHTML = "";
+
+          if (ffiCoursesAndActivities.value === "Courses") {
+            subCatLabel.innerHTML = `
+                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Sub Category</label>
+                `;
+            if (ffiCatSelect.value === "Category B") {
+              catBOptions.forEach((val) => {
+                const option = document.createElement("option");
+                option.value = val;
+                option.textContent = val;
+                subCatSelect.appendChild(option);
+              });
+            } else {
+              catAOptions.forEach((val) => {
+                const option = document.createElement("option");
+                option.value = val;
+                option.textContent = val;
+                subCatSelect.appendChild(option);
+              });
+            }
+          } else if (ffiCoursesAndActivities.value === "MP Command") {
+            if (ffiCatSelect.value === "Custody") {
+              subCatContainer.classList.remove("hidden");
+              agencyInvestigationContainer.classList.add("hidden");
+              custodyOptions.forEach((val) => {
+                const option = document.createElement("option");
+                option.value = val;
+                option.textContent = val;
+                subCatSelect.appendChild(option);
+              });
+
+              subCatLabel.innerHTML = `
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Type of Custody</label>
+                  `;
+            } else if (ffiCatSelect.value === "Release From Custody") {
+              subCatContainer.classList.remove("hidden");
+              agencyInvestigationContainer.classList.remove("hidden");
+              custodyOptions.forEach((val) => {
+                const option = document.createElement("option");
+                option.value = val;
+                option.textContent = val;
+                subCatSelect.appendChild(option);
+              });
+
+              subCatLabel.innerHTML = `
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Release From Custody</label>
+                  `;
+            } else {
+              subCatContainer.classList.add("hidden");
+              agencyInvestigationContainer.classList.remove("hidden");
+            }
+          } else {
+            subCatContainer.classList.add("hidden");
+          }
+
+          updateSelectTooltip();
+          renderOrders(); // Instantly update view when FFI switches
+        });
+
+        // Handle Sub Category Dropdown Changes
+        subCatSelect.addEventListener("change", function () {
+          updateSelectTooltip();
+          renderOrders(); // Instantly update view
+        });
+
+        // Handle Service Profile Changes
+        serviceSelect.addEventListener("change", function () {
+          renderOrders(); // Instantly update view
+        });
+
+        // Initial runs to prepare the screen state on page load
+        updateSelectTooltip();
+        renderOrders();
+      });
     </script>
   </body>
 </html>

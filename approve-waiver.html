@@ -1,9 +1,5 @@
 <!doctype html>
-<html
-  class="light"
-  lang="en"
-
->
+<html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -141,65 +137,69 @@
     </script>
     <style>
       .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        #sidebar {
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #main-content {
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #top-header {
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .sidebar-collapsed {
-            width: 5rem !important;
-        }
-        .sidebar-collapsed .nav-text {
-          display: none;
-        }
-        .sidebar-collapsed .logo-container {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            justify-content: center;
-        }
-        .sidebar-collapsed .logo-image {
-            width: 2.5rem;
-            height: 2.5rem;
-            min-width: 2.5rem;
-        }
-        .sidebar-collapsed .nav-item {
-            justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .sidebar-collapsed .sidebar-toggle-btn span {
-            transform: rotate(180deg);
-        }
-        .sidebar-collapsed .logo-wrapper {
-            display: none;
-        }
-        .content-expanded {
-            margin-left: 5rem !important;
-        }
-        .header-expanded {
-            left: 5rem !important;
-        }
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
 
-        /* Vocation field expansion styles */
-        .vocation-container.expanded .vocation-text {
-            white-space: normal;
-            overflow: visible;
-            text-overflow: clip;
-        }
-        .vocation-container.expanded .chevron-icon {
-            transform: rotate(180deg);
-        }
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
   <body
@@ -337,17 +337,54 @@
             >
           </div>
         </div>
-        <a
-          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
-          href="#"
-        >
-          <span class="material-symbols-outlined text-[20px] shrink-0"
-            >category</span
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMCC()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
           >
-          <span class="nav-text whitespace-nowrap"
-            >PES/ MGS Classification</span
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >fact_check</span
+              >
+              <span class="nav-text whitespace-nowrap">MCC</span>
+            </div>
+            <span
+              id="mcc-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="mcc-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
-        </a>
+            <a
+              id="nav-mcc-mcs-grading"
+              href="mcc-create-new-mcs-grading.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create MCS Grading</a
+            >
+            <a
+              id="nav-mcc-initial-endorser"
+              href="mcc-initial-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Initial Endorser</a
+            >
+            <a
+              id="nav-mcc-final-endorser"
+              href="mcc-final-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Final Endorser</a
+            >
+            <a
+              id="nav-mcc-comcc-endorsement"
+              href="mcc-comcc-endorsement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CO MCC Endorsement</a
+            >
+          </div>
+        </div>
         <div class="flex flex-col gap-1">
           <div
             onclick="toggleMedboard()"
@@ -443,14 +480,19 @@
       </div>
     </aside>
     <!-- Main Content Wrapper -->
-    <div class="ml-64 h-full flex flex-col bg-background hidden lg:flex" id="main-content">
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
       <!-- TopNavBar -->
       <header
         class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
         id="top-header"
       >
         <div class="flex items-center gap-2 flex-1">
-          <div class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
             <div
               aria-hidden="true"
               class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
@@ -473,11 +515,19 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center">
-            <span class="material-symbols-outlined text-[22px]">notifications</span>
-            <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
           </button>
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
             <span class="material-symbols-outlined text-[22px]">help</span>
           </button>
           <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
@@ -490,588 +540,689 @@
         </div>
       </header>
       <!-- Canvas -->
-      <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
         <!-- DROPDOWN PATIENT BANNER  -->
         <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-        <!-- Patient Context Header (Updated) -->
-        <div
-          class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-        >
-          <div class="flex flex-col gap-4 w-full">
-            <div class="flex justify-end items-start w-full">
-              <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-4">
-                  <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
                     Tan Ah Teck
                   </h2> -->
-                  <div class="flex gap-2 h-[24px] items-center">
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >P</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >R2</span
-                    >
-                    <span
-                      class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                      style="background-color: #c41802"
-                      >R3</span
-                    >
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>  
-            <div
-              class="flex flex-nowrap items-start justify-between w-full gap-4"
-            >
-              <!-- <div class="flex flex-col gap-1">
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
                 <span
                   class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                   >NRIC</span
                 >
                 <div class="font-bold text-sm">S1234567A</div>
               </div> -->
-              <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
                 <span
                   class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >GENDER</span
-                >
-                <div class="font-bold text-sm">Male</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >AGE</span
-                >
-                <div class="font-bold text-sm">26</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >DOB</span
-                >
-                <div class="font-bold text-sm">08-Sep-1997</div>
-              </div>
-              <!-- <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >MGS DISPOSITION</span
+                  >MCS DISPOSITION</span
                 >
                 <div class="font-bold text-sm">Medically Fit for Service</div>
               </div> -->
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >MGS DISPOSITION Code</span
-                >
-                <div class="font-bold text-sm">FIT (Temp)</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >PES</span
-                >
-                <div class="font-bold text-sm">-</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >DENTAL STATUS</span
-                >
-                <div class="font-bold text-sm">D1 (Expired)</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >A CODE</span
-                >
-                <div class="font-bold text-sm">A1</div>
-              </div>
-
-              <div class="flex flex-col gap-1"></div>
-            </div>
-            <div
-              class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-            >
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >SERVICE</span
-                >
-                <div class="w-fit">
+                <div class="flex flex-col gap-1">
                   <span
-                    class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                    id="banner-service-tag"
-                    >Army</span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION Code</span
                   >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >SERVICE TYPE</span
-                >
-                <div class="font-bold text-sm" id="banner-service-type">
-                  NSman
-                </div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >RANK</span
-                >
-                <div class="font-bold text-sm" id="banner-rank">CPT</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >UNIT</span
-                >
-                <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span
-                  class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                  >VOCATION</span
-                >
-                <div
-                  class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                  id="vocation-toggle"
-                >
-                  <span class="vocation-text truncate" id="banner-vocation"
-                    >Infantry Specialist</span
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
                   >
+                  <div class="font-bold text-sm">-</div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-1 ml-auto">
-                <span id="record-counter" class="text-xs text-white/70 font-medium">
-                  RECORD 1 OF 2
-                </span>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
 
-                <div class="relative w-[200px]">
-                  <select
-                    class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                    id="service-record-select"
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
                   >
-                    <option class="text-on-surface bg-white" selected="selected" value="record1">
-                      Service Record 1
-                    </option>
-                    <option class="text-on-surface bg-white" value="record2">
-                      Service Record 2
-                    </option>
-                    <!-- <option class="text-on-surface bg-white" value="record3">
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
                       Service Record 3
                     </option> -->
-                  </select>
-                  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                    expand_more
-                  </span>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- DROPDOWN PATIENT BANNER  -->
+          <!-- DROPDOWN PATIENT BANNER  -->
 
-        <!-- Content Area -->
-        <div >
-          <section
-            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
-            id="msi-info-section"
-          >
-            <div>
+          <!-- Content Area -->
+          <div>
+            <section
+              class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
+              id="msi-info-section"
+            >
+              <div>
+                <div
+                  class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+                >
+                  <h2
+                    class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[28px] leading-none"
+                      >quick_reference_all</span
+                    >
+                    Submission Details for FFI Waiver Approval
+                  </h2>
+                </div>
+                <div class="flex flex-col gap-8 p-6">
+                  <!-- Information Subsection -->
+                  <div id="msi-submission-subsection">
+                    <div
+                      class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    >
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        Submission Information
+                      </h3>
+                    </div>
+                    <div class="flex flex-col gap-4 px-6">
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Submitted By</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >Dr. Ryan Goh</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Submission Date</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >24 Oct 2023, 09:45 AM</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="msi-ffi-subsection">
+                    <div
+                      class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    >
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        FFI Details
+                      </h3>
+                    </div>
+                    <div class="flex flex-col gap-4 px-6">
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >FFI Type</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >Overseas</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Category</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >Category B</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Sub Category</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >SOF Rifle of Passage</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="msi-assignment-subsection">
+                    <div
+                      class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    >
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        Assignment Details
+                      </h3>
+                    </div>
+                    <div class="flex flex-col gap-4 px-6">
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Name of Overseas Assignment</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >Exercise Wallaby</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Duration of Overseas Assignment</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >3 Weeks</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Location of Overseas Assignment</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >Shoalwater Bay, Australia</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Nature of Deployment</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="font-data-tabular text-data-tabular text-on-surface"
+                            >Overseas Training Deployment</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="msi-operation-subsection">
+                    <div
+                      id="operation-role-header"
+                      class="flex justify-between items-center bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    >
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        Operation Role
+                      </h3>
+                      <div
+                        class="inline-flex items-center gap-1.5 bg-white text-primary/80 text-sm font-normal px-3 py-1 rounded border border-primary/20"
+                      >
+                        Edited by
+                        <strong class="font-semibold text-primary"
+                          >Dr. John Doe</strong
+                        >
+                      </div>
+                    </div>
+                    <div class="grid gap-8 px-6">
+                      <div class="flex flex-col gap-4">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Criticality of Serviceman's Role
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >His specific role is highly important to operational
+                          readiness, as his physical capacity is fully intact
+                          and his condition presents no risk to safety. He
+                          possesses the necessary medical fitness to execute
+                          these essential duties successfully.</span
+                        >
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Can a Substitute be Found?
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >The serviceman is medically fit for full deployment
+                          in this important assignment. While his specialized
+                          role is critical to operations, any decision regarding
+                          the feasibility or training of an administrative
+                          substitute remains entirely under the purview of Unit
+                          Command, as there are no medical barriers to his
+                          continued deployment.</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div id="msi-decision-subsection">
+                    <div
+                      class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    >
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        Decision
+                      </h3>
+                    </div>
+                    <div class="flex flex-col gap-4 px-6">
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >CDS Recommendation</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="inline-flex items-center justify-center bg-error text-white rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
+                            >Unfit for Deployment</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-1/3">
+                          <span
+                            class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >Proposed Outcome</span
+                          >
+                        </div>
+                        <div class="w-2/3">
+                          <span
+                            class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
+                            >Fit for Deployment</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
+              id="ngemr-info-section"
+            >
+              <div id="ngemr-review-subsection">
+                <div
+                  class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+                >
+                  <h2
+                    class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[28px] leading-none"
+                      >sync_saved_locally</span
+                    >
+                    NGEMR Information
+                  </h2>
+                </div>
+                <div class="flex flex-col gap-8 p-6">
+                  <div id="ngemr-review-subsection">
+                    <div
+                      class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    >
+                      <h3
+                        class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                      >
+                        Medical History
+                      </h3>
+                    </div>
+                    <div class="grid gap-8 px-6">
+                      <div class="flex flex-col gap-4">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Conditions affecting overseas deployment
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >Patient displays persistent mild exercise-induced
+                          bronchospasms, typically aggravated by high-humidity
+                          environments. Managed effectively via PRN inhaler
+                          therapy, but requires structured monitoring during
+                          heavy physical exertion phases.</span
+                        >
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Medical Problems
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >Mild persistent asthma (diagnosed 2021). Controlled
+                          hypertension under current monotherapy regimen
+                          (Lisinopril 10mg daily). No acute hospitalizations
+                          reported within the past 24 months.</span
+                        >
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Functional Status
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >No limitations specified. Full functional capacity
+                          for regular duty cycles reported.</span
+                        >
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Physical Examination
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >Chest is clear to auscultation bilaterally. No
+                          wheezing or prolonged expiratory phase noted at rest.
+                          Cardiovascular assessment: normal S1/S2, no murmurs.
+                          Blood pressure stable at 124/78 mmHg.</span
+                        >
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <h4
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >
+                          Investigations
+                        </h4>
+                        <span
+                          class="text-body-sm text-on-surface leading-relaxed"
+                          >Spirometry reports FEV1/FVC ratio within normal
+                          parameters (82% of predicted values). Baseline ECG
+                          demonstrates normal sinus rhythm with no ST-segment or
+                          T-wave alterations.</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div
+              class="bg-white border border-outline-variant rounded-lg mb-stack-gap-lg shadow-sm"
+            >
               <div
                 class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
               >
                 <h2
                   class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
                 >
-                  <span class="material-symbols-outlined text-[28px] leading-none">quick_reference_all</span>
-                  Submission Details for FFI Waiver Approval
+                  <span
+                    class="material-symbols-outlined text-[28px] leading-none"
+                    >fact_check</span
+                  >
+                  Endorser Review Details
                 </h2>
               </div>
-              <div class="flex flex-col gap-8 p-6">
-                <!-- Information Subsection -->
-                <div id="msi-submission-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+              <div class="p-container-padding space-y-stack-gap-lg">
+                <div class="flex flex-row gap-24">
+                  <div class="space-y-stack-gap-sm">
+                    <p
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
                     >
-                      Submission Information
-                    </h3>
-                  </div>
-                  <div class="flex flex-col gap-4 px-6">
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Submitted By</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Dr. Ryan Goh</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Submission Date</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >24 Oct 2023, 09:45 AM</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="msi-ffi-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                    >
-                      FFI Details
-                    </h3>
-                  </div>
-                  <div class="flex flex-col gap-4 px-6">
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >FFI Type</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Overseas</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Category</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Category B</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Sub Category</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >SOF Rifle of Passage</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="msi-assignment-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                    >
-                      Assignment Details
-                    </h3>
-                  </div>
-                  <div class="flex flex-col gap-4 px-6">
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Name of Overseas Assignment</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Exercise Wallaby</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Duration of Overseas Assignment</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >3 Weeks</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Location of Overseas Assignment</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Shoalwater Bay, Australia</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Nature of Deployment</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Overseas Training Deployment</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="msi-operation-subsection">
-                  <div
-                    id="operation-role-header"
-                    class="flex justify-between items-center bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                    >
-                      Operation Role
-                    </h3>
-                    <div 
-                      class="inline-flex items-center gap-1.5 bg-white text-primary/80 text-sm font-normal px-3 py-1 rounded border border-primary/20"
-                      >
-                        Edited by <strong class="font-semibold text-primary">Dr. John Doe</strong>
-                    </div>
-                  </div>
-                  <div class="grid gap-8 px-6">
-                    <div class="flex flex-col gap-4">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Criticality of Serviceman's Role
-                      </h4>
+                      Endorsed by
+                    </p>
+                    <div class="flex gap-stack-gap-lg">
                       <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >His specific role is highly important to operational readiness, as his physical capacity is fully intact and his condition presents no risk to safety. He possesses the necessary medical fitness to execute these essential duties successfully.</span
-                      >
-                    </div>
-                    <div class="flex flex-col gap-3">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Can a Substitute be Found?
-                      </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >The serviceman is medically fit for full deployment in this important assignment. While his specialized role is critical to operations, any decision regarding the feasibility or training of an administrative substitute remains entirely under the purview of Unit Command, as there are no medical barriers to his continued deployment.</span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Dr. John Doe</span
                       >
                     </div>
                   </div>
-                </div>
-                <div id="msi-decision-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  <div class="space-y-stack-gap-sm">
+                    <p
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
+                    >
+                      Endorsed Date
+                    </p>
+                    <div class="flex gap-stack-gap-lg">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >25 Oct 2023, 05:32 PM</span
+                      >
+                    </div>
+                  </div>
+                  <!-- Approval Radios -->
+                  <div class="space-y-stack-gap-sm">
+                    <p
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
                     >
                       Decision
-                    </h3>
+                    </p>
+                    <div class="flex gap-stack-gap-lg">
+                      <span
+                        class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
+                        >Endorsed</span
+                      >
+                    </div>
                   </div>
-                  <div class="flex flex-col gap-4 px-6">
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >CDS Recommendation</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="inline-flex items-center justify-center bg-error text-white rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
-                          >Unfit for Deployment</span
-                        >
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Proposed Outcome</span
-                        >
-                      </div>
-                      <div class="w-2/3">
-                        <span
-                          class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
-                          >Fit for Deployment</span
-                        >
-                      </div>
-                    </div>
+                </div>
+                <!-- Remarks Field -->
+                <div class="space-y-stack-gap-sm">
+                  <label
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    for="remarks"
+                    >Remarks</label
+                  >
+                  <div
+                    class="w-full bg-surface-container-lowest border-l-4 border-primary rounded-r-lg p-4 border border-y-outline-variant/30 border-r-outline-variant/30"
+                  >
+                    <!-- Read-Only Content -->
+                    <p class="font-body-md text-on-surface text-sm">
+                      Upon evaluation, the individual demonstrates normal vital
+                      signs and meets all physical benchmarks, presenting no
+                      medical restrictions for overseas exercise.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-          <section
-            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
-            id="ngemr-info-section"
-          >
-            <div id="ngemr-review-subsection">
+            <!-- Review Form Container -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg shadow-sm"
+            >
               <div
                 class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
               >
                 <h2
                   class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
                 >
-                  <span class="material-symbols-outlined text-[28px] leading-none">sync_saved_locally</span>
-                  NGEMR Information
+                  <span
+                    class="material-symbols-outlined text-[28px] leading-none"
+                    >assignment_turned_in</span
+                  >
+                  Higher Authority Review for Approval
                 </h2>
               </div>
-              <div class="flex flex-col gap-8 p-6">
-                <div id="ngemr-review-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                    >
-                      Medical History
-                    </h3>
-                  </div>
-                  <div class="grid gap-8 px-6">
-                    <div class="flex flex-col gap-4">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Conditions affecting overseas deployment
-                      </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Patient displays persistent mild exercise-induced bronchospasms, typically aggravated by high-humidity environments. Managed effectively via PRN inhaler therapy, but requires structured monitoring during heavy physical exertion phases.</span
-                      >
-                    </div>
-                    <div class="flex flex-col gap-3">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Medical Problems
-                      </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Mild persistent asthma (diagnosed 2021). Controlled hypertension under current monotherapy regimen (Lisinopril 10mg daily). No acute hospitalizations reported within the past 24 months.</span
-                      >
-                    </div>
-                    <div class="flex flex-col gap-3">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Functional Status
-                      </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >No limitations specified. Full functional capacity for regular duty cycles reported.</span
-                      >
-                    </div>
-                    <div class="flex flex-col gap-3">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Physical Examination
-                      </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Chest is clear to auscultation bilaterally. No wheezing or prolonged expiratory phase noted at rest. Cardiovascular assessment: normal S1/S2, no murmurs. Blood pressure stable at 124/78 mmHg.</span
-                      >
-                    </div>
-                    <div class="flex flex-col gap-3">
-                      <h4
-                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >
-                        Investigations
-                      </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Spirometry reports FEV1/FVC ratio within normal parameters (82% of predicted values). Baseline ECG demonstrates normal sinus rhythm with no ST-segment or T-wave alterations.</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <div
-            class="bg-white border border-outline-variant rounded-lg mb-stack-gap-lg shadow-sm"
-          >
-            <div
-              class="p-stack-gap-lg border-b border-surface-container bg-surface-container-lowest"
-            >
-              <h2
-                class="font-headline-section text-headline-section text-primary"
-              >
-                Endorser Review Details
-              </h2>
-            </div>
-            <div class="p-container-padding space-y-stack-gap-lg">
-              <div class="flex flex-row gap-24">
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Endorsed by
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >Dr. John Doe</span
-                    >
-                  </div>
-                </div>
-                <div class="space-y-stack-gap-sm">
-                  <p
-                    class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                  >
-                    Endorsed Date
-                  </p>
-                  <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="font-data-tabular text-data-tabular text-on-surface"
-                      >25 Oct 2023, 05:32 PM</span
-                    >
-                  </div>
-                </div>
+              <div class="p-container-padding space-y-stack-gap-lg">
                 <!-- Approval Radios -->
                 <div class="space-y-stack-gap-sm">
                   <p
@@ -1080,188 +1231,148 @@
                     Decision
                   </p>
                   <div class="flex gap-stack-gap-lg">
-                    <span
-                      class="inline-flex items-center justify-center bg-secondary-container text-on-secondary-container rounded px-2 py-0.5 w-fit font-status-badge text-status-badge uppercase"
-                      >Endorsed</span
+                    <label
+                      class="inline-flex items-center cursor-pointer group"
                     >
+                      <input
+                        class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                        name="decision"
+                        type="radio"
+                      />
+                      <span
+                        class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                        >Approve</span
+                      >
+                    </label>
+                    <label
+                      class="inline-flex items-center cursor-pointer group"
+                    >
+                      <input
+                        class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                        name="decision"
+                        type="radio"
+                      />
+                      <span
+                        class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                        >Reject</span
+                      >
+                    </label>
                   </div>
                 </div>
-              </div>
-              <!-- Remarks Field -->
-              <div class="space-y-stack-gap-sm">
-                <label
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                  for="remarks"
-                  >Remarks</label
-                >
-                <div class="w-full bg-surface-container-lowest border-l-4 border-primary rounded-r-lg p-4 border border-y-outline-variant/30 border-r-outline-variant/30">
-
-                  
-                  <!-- Read-Only Content -->
-                  <p class="font-body-md text-on-surface text-sm">
-                    Upon evaluation, the individual demonstrates normal vital signs and meets all physical benchmarks, presenting no medical restrictions for overseas exercise.
-                  </p>
+                <!-- Remarks Field -->
+                <div class="space-y-stack-gap-sm">
+                  <label
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    for="remarks"
+                    >Remarks</label
+                  >
+                  <textarea
+                    class="w-full border border-outline-variant rounded p-stack-gap-md font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary/20 bg-surface-container-lowest"
+                    id="remarks"
+                    placeholder="Enter clinical remarks or justification for review outcome..."
+                    rows="6"
+                  ></textarea>
                 </div>
+              </div>
+              <!-- Footer Buttons -->
+              <div
+                class="p-stack-gap-lg border-t border-surface-container bg-surface-container-low flex justify-end gap-stack-gap-md"
+              >
+                <button
+                  class="px-6 py-2 border border-outline-variant text-on-surface-variant rounded font-semibold text-body-md hover:bg-surface-variant transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="px-8 py-2 border border-primary text-primary rounded font-semibold text-body-md hover:bg-primary/5 transition-all active:scale-95"
+                >
+                  Save
+                </button>
+                <a href="submitted-form.html">
+                  <button
+                    class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
+                  >
+                    Submit
+                  </button>
+                </a>
               </div>
             </div>
           </div>
-          <!-- Review Form Container -->
-          <div
-            class="bg-white border border-outline-variant rounded-lg shadow-sm"
-          >
-            <div
-              class="p-stack-gap-lg border-b border-surface-container bg-surface-container-lowest"
-            >
-              <h2
-                class="font-headline-section text-headline-section text-primary"
-              >
-                Higher Authority Review for Approval
-              </h2>
-            </div>
-            <div class="p-container-padding space-y-stack-gap-lg">
-              <!-- Approval Radios -->
-              <div class="space-y-stack-gap-sm">
-                <p
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
-                >
-                  Decision
-                </p>
-                <div class="flex gap-stack-gap-lg">
-                  <label class="inline-flex items-center cursor-pointer group">
-                    <input
-                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
-                      name="decision"
-                      type="radio"
-                    />
-                    <span
-                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
-                      >Approve</span
-                    >
-                  </label>
-                  <label class="inline-flex items-center cursor-pointer group">
-                    <input
-                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
-                      name="decision"
-                      type="radio"
-                    />
-                    <span
-                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
-                      >Reject</span
-                    >
-                  </label>
-                </div>
-              </div>
-              <!-- Remarks Field -->
-              <div class="space-y-stack-gap-sm">
-                <label
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                  for="remarks"
-                  >Remarks</label
-                >
-                <textarea
-                  class="w-full border border-outline-variant rounded p-stack-gap-md font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary/20 bg-surface-container-lowest"
-                  id="remarks"
-                  placeholder="Enter clinical remarks or justification for review outcome..."
-                  rows="6"
-                ></textarea>
-              </div>
-            </div>
-            <!-- Footer Buttons -->
-            <div
-              class="p-stack-gap-lg border-t border-surface-container bg-surface-container-low flex justify-end gap-stack-gap-md"
-            >
-              <button
-                class="px-6 py-2 border border-outline-variant text-on-surface-variant rounded font-semibold text-body-md hover:bg-surface-variant transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                class="px-8 py-2 border border-primary text-primary rounded font-semibold text-body-md hover:bg-primary/5 transition-all active:scale-95"
-              >
-                Save
-              </button>
-              <a
-              href="submitted-form.html">
-                <button
-                  class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
-                >
-                  Submit
-                </button>
-              </a>
-            </div>
-          </div>  
         </div>
       </main>
     </div>
-
-    <div
-      id="snapdom-sandbox"
-      data-snapdom-sandbox="true"
-      aria-hidden="true"
-      style="
-        position: absolute;
-        left: -9999px;
-        top: -9999px;
-        width: 0px;
-        height: 0px;
-        overflow: hidden;
-      "
-    ></div>
     <script>
-    //PATIENT DROPDOWN
-    const selectEl = document.getElementById('service-record-select');
-    const counterEl = document.getElementById('record-counter');
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById("service-record-select");
+      const counterEl = document.getElementById("record-counter");
 
-    selectEl.addEventListener('change', (e) => {
-      const currentIndex = e.target.selectedIndex + 1;
-      const totalRecords = e.target.options.length;
-      
-      counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
-    });
+      selectEl.addEventListener("change", (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
 
-    var ffiOpen = true;
-    var medboardOpen = false;
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
 
-    function toggleFFI() {
-      ffiOpen = !ffiOpen;
-      document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
-      document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-    }
-    
-    function toggleMedboard() {
-      medboardOpen = !medboardOpen;
-      document.getElementById('medboard-submenu').style.display = medboardOpen ? '' : 'none';
-      document.getElementById('medboard-chevron').textContent = medboardOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-    }
-    // ═══════════════════════════════════════════════════════════════
-    // SIDEBAR COLLAPSE
-    // ═══════════════════════════════════════════════════════════════
-    // Sidebar toggle
-    document
+      var ffiOpen = true;
+      var mccOpen = false;
+      var medboardOpen = false;
+
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMCC() {
+        mccOpen = !mccOpen;
+        document.getElementById("mcc-submenu").style.display = mccOpen
+          ? ""
+          : "none";
+        document.getElementById("mcc-chevron").textContent = mccOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // ═══════════════════════════════════════════════════════════════
+      // SIDEBAR COLLAPSE
+      // ═══════════════════════════════════════════════════════════════
+      // Sidebar toggle
+      document
         .getElementById("toggle-sidebar")
         .addEventListener("click", function () {
-            const sidebar = document.getElementById("sidebar");
-            const mainContent = document.getElementById("main-content");
-            const topHeader = document.getElementById("top-header");
-            const toggleIcon = this.querySelector("span");
-            const ffiSubmenu = document.getElementById("ffi-submenu");
-            const medboardSubmenu = document.getElementById("medboard-submenu");
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
 
-            const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
-            mainContent.classList.toggle("content-expanded");
-            topHeader.classList.toggle("header-expanded");
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
 
-            if (isCollapsed) {
-              toggleIcon.textContent = "chevron_right";
-              ffiSubmenu.style.display = "none";
-              medboardSubmenu.style.display = "none";
-            } else {
-              toggleIcon.textContent = "chevron_left";
-              ffiSubmenu.style.display = "";
-              medboardSubmenu.style.display = "";
-            }
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
         });
-    // Service Record Switcher Logic
+      // Service Record Switcher Logic
       const serviceRecordSelect = document.getElementById(
         "service-record-select",
       );
@@ -1304,7 +1415,7 @@
           service: "Navy",
           isCurrent: false,
           // tagClass: "bg-[#002B5C]", // navy blue
-          tagClass: "bg-blue-700"
+          tagClass: "bg-blue-700",
         },
         record3: {
           type: "-",
@@ -1313,7 +1424,7 @@
           vocation: "-",
           service: "-",
           isCurrent: false,
-          tagClass: ""
+          tagClass: "",
         },
       };
 
@@ -1329,7 +1440,12 @@
 
           // Update Service Tag Style
           // Remove previous color classes
-          bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
           // Add new color class
           bannerServiceTag.classList.add(data.tagClass);
 
@@ -1366,7 +1482,6 @@
           // }
         }
       });
-
     </script>
   </body>
 </html>

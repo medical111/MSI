@@ -1,0 +1,2560 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MSI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c3c6d6",
+              "on-tertiary-container": "#ffc6b9",
+              "surface-dim": "#cadaff",
+              secondary: "#006c47",
+              "on-tertiary-fixed": "#3d0600",
+              "primary-fixed": "#dae2ff",
+              "on-secondary-container": "#00714b",
+              background: "#f9f9ff",
+              tertiary: "#851800",
+              "primary-fixed-dim": "#b2c5ff",
+              "surface-container": "#e8edff",
+              "on-secondary-fixed": "#002113",
+              "on-background": "#041b3c",
+              "tertiary-fixed": "#ffdad2",
+              outline: "#737685",
+              "inverse-surface": "#1d3052",
+              "tertiary-container": "#b02300",
+              "secondary-fixed-dim": "#71dba6",
+              error: "#ba1a1a",
+              surface: "#f9f9ff",
+              "on-primary-fixed": "#001848",
+              "tertiary-fixed-dim": "#ffb4a3",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#edf0ff",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#c4d2ff",
+              "on-surface": "#041b3c",
+              "on-tertiary-fixed-variant": "#8b1a00",
+              "secondary-fixed": "#8df7c1",
+              "surface-bright": "#f9f9ff",
+              "inverse-primary": "#b2c5ff",
+              primary: "#003d9b",
+              "surface-tint": "#0c56d0",
+              "on-primary": "#ffffff",
+              "surface-variant": "#d7e2ff",
+              "surface-container-highest": "#d7e2ff",
+              "surface-container-high": "#e0e8ff",
+              "primary-container": "#2a56b4",
+              "on-primary-fixed-variant": "#0040a2",
+              "secondary-container": "#8af5be",
+              "surface-container-low": "#f1f3ff",
+              "on-surface-variant": "#434654",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#005235",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "stack-gap-md": "8px",
+              "stack-gap-sm": "4px",
+              "stack-gap-lg": "16px",
+              "container-padding": "24px",
+              "grid-gutter": "16px",
+              baseline: "4px",
+            },
+            fontFamily: {
+              "headline-section": ["Inter"],
+              "body-md": ["Inter"],
+              "status-badge": ["Inter"],
+              "data-tabular": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-context": ["Inter"],
+              "body-sm": ["Inter"],
+            },
+            fontSize: {
+              "headline-section": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "status-badge": [
+                "12px",
+                { lineHeight: "16px", fontWeight: "600" },
+              ],
+              "data-tabular": [
+                "13px",
+                { lineHeight: "20px", fontWeight: "500" },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-context": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
+
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface antialiased h-screen overflow-hidden"
+  >
+    <!-- Mobile view -->
+    <div
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-slate-900 p-8 bg-surface-container-lowest border border-outline-variant rounded-xl"
+      >
+        <div
+          class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"
+            />
+          </svg>
+        </div>
+
+        <h1 class="text-xl font-bold">Larger Screen Required</h1>
+        <p class="mt-2 text-sm text-slate-400">
+          This application requires a larger screen resolution to function
+          properly. Please open this link on a desktop or laptop.
+        </p>
+      </div>
+    </div>
+    <!-- SideNavBar -->
+    <aside
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider hidden lg:flex"
+      id="sidebar"
+    >
+      <div class="px-6 mb-8 logo-container flex items-center">
+        <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper"
+          >
+            <img
+              alt="MSI Logo"
+              class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+            />
+          </div>
+          <button
+            class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2"
+            id="toggle-sidebar"
+            title="Toggle Sidebar"
+          >
+            <span
+              class="material-symbols-outlined text-[24px] transition-transform duration-300"
+              >chevron_left</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] shrink-0"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="nav-text whitespace-nowrap">MSI Profile</span>
+        </a>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="ffi-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
+              href="create-new-ffi-outcome.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
+            >
+            <a
+              id="nav-ffi-ha"
+              href="approve-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >APPROVE WAIVER</a
+            >
+            <a
+              id="nav-ffi-mo-acknowledgement"
+              href="medical-officer-acknowledgement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MEDICAL OFFICER ACKNOWLEDGEMENT</a
+            >
+            <a
+              id="nav-ffi-validity"
+              href="maintain-validity.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >MAINTAIN VALIDITY</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMCC()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >fact_check</span
+              >
+              <span class="nav-text whitespace-nowrap">MCC</span>
+            </div>
+            <span
+              id="mcc-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_up</span
+            >
+          </div>
+          <div
+            id="mcc-submenu"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-mcc-mcs-grading"
+              href="mcc-create-new-mcs-grading.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create MCS Grading</a
+            >
+            <a
+              id="nav-mcc-initial-endorser"
+              href="mcc-initial-endorser.html"
+              class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200 nav-text whitespace-nowrap"
+              >Initial Endorser</a
+            >
+            <a
+              id="nav-mcc-final-endorser"
+              href="mcc-final-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Final Endorser</a
+            >
+            <a
+              id="nav-mcc-comcc-endorsement"
+              href="mcc-comcc-endorsement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CO MCC Endorsement</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMedboard()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >clinical_notes</span
+              >
+              <span class="nav-text whitespace-nowrap">Medical Board</span>
+            </div>
+            <span
+              id="medboard-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="medboard-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-routine-board"
+              href="medical-board.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create SOC</a
+            >
+            <a
+              id="nav-routine-board-note"
+              href="medical-board-note.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Medical Board Review</a
+            >
+          </div>
+        </div>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >analytics</span
+          >
+          <span class="nav-text whitespace-nowrap">ACE</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >monitor_heart</span
+          >
+          <span class="nav-text whitespace-nowrap">PEMS</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >description</span
+          >
+          <span class="nav-text whitespace-nowrap">NUMC</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >list</span
+          >
+          <span class="nav-text whitespace-nowrap">Patient List</span>
+        </a>
+      </div>
+      <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >settings</span
+          >
+          <span class="nav-text whitespace-nowrap">Settings</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >logout</span
+          >
+          <span class="nav-text whitespace-nowrap">Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
+      <!-- TopNavBar -->
+      <header
+        class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
+        id="top-header"
+      >
+        <div class="flex items-center gap-2 flex-1">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
+            <div
+              aria-hidden="true"
+              class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
+            ></div>
+            NGEMR
+          </div>
+          <div>
+            <div
+              class="flex items-end gap-2 bg-surface-container-low px-3 py-1 rounded-lg h-[32px]"
+            >
+              <span
+                class="text-on-surface font-bold text-[24px] leading-none tracking-tight"
+                >Tan Ah Teck</span
+              >
+              <span
+                class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-1"
+                >S1234567A</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
+          </button>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]">help</span>
+          </button>
+          <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+          <div class="flex flex-col items-center gap-1">
+            <span
+              class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none"
+              >DR ryan goh</span
+            >
+          </div>
+        </div>
+      </header>
+      <!-- Canvas -->
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
+        <!-- DROPDOWN PATIENT BANNER  -->
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                    Tan Ah Teck
+                </h2> -->
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
+
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
+                  >
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
+                    Service Record 3
+                    </option> -->
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- DROPDOWN PATIENT BANNER  -->
+
+        <!-- Content Area -->
+        <div class="mt-4">
+          <section
+            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
+            id="msi-info-section"
+          >
+            <div>
+              <div
+                class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+              >
+                <h2
+                  class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+                >
+                  <span
+                    class="material-symbols-outlined text-[28px] leading-none"
+                    >quick_reference_all</span
+                  >
+                  Submission From Proposing MO
+                </h2>
+              </div>
+              <div class="flex flex-col gap-8 p-6">
+                <!-- Information Subsection -->
+                <div id="mcc-submission-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Submission Information
+                    </h3>
+                  </div>
+                  <div class="flex flex-col gap-4 px-6">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Submitted By</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Dr. Ryan Goh</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Submission Date</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >24 Oct 2023, 09:45 AM</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="mcc-proposed-excuses-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant rounded-t"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Proposed Excuses From MCS Grading
+                    </h3>
+                  </div>
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-max">
+                      <thead>
+                        <tr
+                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                        >
+                          <th
+                            class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Category
+                          </th>
+                          <th
+                            class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Type
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            IRB Eligibility
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            Permanent
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            Duration
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                      >
+                        <tr
+                          class="col-hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Adjustment Disorder
+                          </td>
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Firearms
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            No
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            Yes
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            -
+                          </td>
+                        </tr>
+                        <tr
+                          class="col-hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            MCC
+                          </td>
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            IPPT
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            No
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            No
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            3 months
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="mcc--diagnosis-mcs-grading-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant rounded-t"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Diagnosis of MCS
+                    </h3>
+                  </div>
+                  <div class="overflow-x-auto">
+                    <table
+                      id="mcs-table"
+                      class="w-full text-left border-collapse min-w-max"
+                    >
+                      <thead>
+                        <tr
+                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                        >
+                          <th
+                            class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Diagnosis
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            CR
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            N
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            P
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            A
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            U
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            L
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            H
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            V
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            C
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                          >
+                            S
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
+                          >
+                            Add for Grading
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        id="diagnosis-mcs-records-section"
+                        class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                      >
+                        <tr
+                          class="hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Back Pain
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="4"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="3"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            Yes
+                          </td>
+                        </tr>
+                        <tr
+                          class="hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Acute Asthma
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="0"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="2"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="number"
+                              min="0"
+                              max="10"
+                              value="1"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            Yes
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="mcc-recommended-outcome-subsection">
+                  <div
+                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant rounded-t"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Recommended Outcome
+                    </h3>
+                  </div>
+                  <div class="space-y-2 relative">
+                    <div class="overflow-x-auto">
+                      <table class="w-full text-left border-collapse min-w-max">
+                        <thead>
+                          <tr
+                            class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                          >
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              CR
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              N
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              P
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              A
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              U
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              L
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              H
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              V
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              C
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            >
+                              S
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                        >
+                          <tr
+                            class="hover:bg-surface-container-hover/50 transition-colors"
+                          >
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              0
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              4
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              3
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              2
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-span-2 flex flex-col gap-2">
+                    <div class="grid grid-cols-3 items-center gap-3">
+                      <div class="col-span-1">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Disposition</span
+                        >
+                      </div>
+                      <div class="col-span-2">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >D[0]</span
+                        >
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-3 items-center gap-3">
+                      <div class="col-span-1">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Validity</span
+                        >
+                      </div>
+                      <div class="col-span-2">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >Permanent</span
+                        >
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-3 items-center gap-3">
+                      <div class="col-span-1">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Date of Expiry</span
+                        >
+                      </div>
+                      <div class="col-span-2">
+                        <span
+                          class="font-data-tabular text-data-tabular text-on-surface"
+                          >NA</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Reason for Pending for D[0]</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <div class="flex flex-col gap-2 mt-0.5">
+                          <div
+                            class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                          >
+                            <span
+                              class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                              >1</span
+                            >
+                            <span>Option 5</span>
+                          </div>
+                          <div
+                            class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                          >
+                            <span
+                              class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                              >2</span
+                            >
+                            <span>Option 6</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-2 flex flex-col gap-1">
+                      <div class="col-span-2">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Justification for Proposed (Especially if there is
+                          Deviation from Guidelines)</span
+                        >
+                      </div>
+                      <div>
+                        <p
+                          class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                        >
+                          The patient is recommended for a status downgrade due
+                          to the high-risk synergy of their acute asthma and
+                          recurrent low back pain. Because these combined
+                          conditions strictly limit the patient’s capacity for
+                          physical training and axial loading, they are
+                          medically unfit for front-line combat and must be
+                          restricted to combat service support roles in a
+                          controlled environment.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-span-2 flex flex-col gap-1">
+                      <div class="col-span-2">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >MCG Reference(s)</span
+                        >
+                      </div>
+                      <div>
+                        <p
+                          class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                        >
+                          Due to the high-risk synergy of their acute asthma and
+                          recurrent low back pain, they are medically unfit for
+                          front-line combat and must be restricted to combat
+                          service support roles.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-span-2 flex flex-col gap-1">
+                      <div class="col-span-2">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Page(s)</span
+                        >
+                      </div>
+                      <div>
+                        <p
+                          class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                        >
+                          123
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Review Form Container -->
+          <div
+            class="bg-white border border-outline-variant rounded-lg shadow-sm"
+          >
+            <div
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none"
+                  >fact_check</span
+                >
+                Higher Authority Review for Initial Endorsement
+              </h2>
+            </div>
+            <div class="p-container-padding space-y-stack-gap-lg">
+              <!-- Approval Radios -->
+              <div class="space-y-stack-gap-sm">
+                <p
+                  class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2"
+                >
+                  Decision
+                </p>
+                <div class="flex gap-stack-gap-lg">
+                  <label class="inline-flex items-center cursor-pointer group">
+                    <input
+                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                      name="decision"
+                      type="radio"
+                    />
+                    <span
+                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                      >Accept</span
+                    >
+                  </label>
+                  <label class="inline-flex items-center cursor-pointer group">
+                    <input
+                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                      name="decision"
+                      type="radio"
+                      id="modify-mcs"
+                    />
+                    <span
+                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                      >Modify and Endorse</span
+                    >
+                  </label>
+                  <label class="inline-flex items-center cursor-pointer group">
+                    <input
+                      class="w-4 h-4 text-primary border-outline focus:ring-primary/20"
+                      name="decision"
+                      type="radio"
+                    />
+                    <span
+                      class="ml-2 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors"
+                      >Reject</span
+                    >
+                  </label>
+                </div>
+              </div>
+              <div
+                id="modify-mcs-section"
+                class="flex flex-col bg-surface-container-low border border-outline-variant rounded-lg shadow-sm p-4 gap-6 hidden"
+              >
+                <div class="space-y-2">
+                  <label
+                    class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                    ><span class="text-error"
+                      ><font color="#475569">MCS Score </font>*</span
+                    ></label
+                  >
+                  <div class="grid gap-6">
+                    <div class="space-y-2">
+                      <div class="flex flex-wrap gap-4" id="mcs-inputs">
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >CR</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            0
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >N</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            1
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >P</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            4
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >A</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            1
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >U</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            1
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >L</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            3
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >H</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            1
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >V</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            1
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >C</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            2
+                          </p>
+                        </div>
+                        <div class="flex flex-col items-center w-8 space-y-2">
+                          <span
+                            class="text-xs text-outline font-label-caps text-slate-600"
+                            >S</span
+                          >
+                          <p
+                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent flex items-center justify-center"
+                          >
+                            1
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col space-y-2 relative">
+                  <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-1 space-y-2">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                        ><span class="text-error"
+                          ><font color="#475569">Disposition </font>*</span
+                        ></label
+                      >
+                      <div class="custom-select relative w-full">
+                        <button
+                          type="button"
+                          class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
+                          aria-haspopup="listbox"
+                          aria-expanded="false"
+                        >
+                          <span
+                            class="selected-text flex items-center gap-1.5 truncate min-w-0 pr-1"
+                          >
+                            <span class="truncate">D[0]</span>
+                          </span>
+                          <svg
+                            class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                        <input
+                          type="hidden"
+                          name="approved_select"
+                          class="select-value"
+                          value=""
+                        />
+                        <div class="deviation-tag-container mt-1 hidden">
+                          <span
+                            class="inline-flex items-center rounded-md bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20"
+                          >
+                            Deviation
+                          </span>
+                        </div>
+                        <ul
+                          class="select-options hidden fixed z-[9999] max-h-60 w-max w-fit overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md"
+                          role="listbox"
+                        >
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="FIT"
+                          >
+                            <span class="text-gray-900">FIT</span>
+                          </li>
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="FIT (Temp)"
+                          >
+                            <span class="text-gray-900">FIT (Temp)</span>
+                          </li>
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="BP"
+                          >
+                            <span class="text-gray-900">BP</span>
+                          </li>
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="D[0]"
+                            data-suggested="true"
+                          >
+                            <span class="text-gray-900">D[0]</span>
+                            <span
+                              class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20 whitespace-nowrap flex-shrink-0"
+                            >
+                              Suggested: Domain score contains 0
+                            </span>
+                          </li>
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="D1"
+                          >
+                            <span class="text-gray-900">D1</span>
+                          </li>
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="UNFIT"
+                          >
+                            <span class="text-gray-900">UNFIT</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-span-1 space-y-2">
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                        ><span class="text-error"
+                          ><font color="#475569">Validity </font>*</span
+                        ></label
+                      >
+                      <div class="custom-select relative w-full">
+                        <button
+                          type="button"
+                          class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
+                          aria-haspopup="listbox"
+                          aria-expanded="false"
+                        >
+                          <span
+                            class="selected-text flex items-center gap-1.5 truncate min-w-0 pr-1"
+                          >
+                            <span class="truncate">Permanent</span>
+                          </span>
+                          <svg
+                            class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                        <input
+                          type="hidden"
+                          id="approved-select"
+                          name="approved_select"
+                          class="select-value"
+                          value=""
+                          onchange="handleMCSTempDuration(this.value)"
+                        />
+                        <ul
+                          class="select-options hidden fixed z-[9999] max-h-60 w-max max-w-[90vw] overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md"
+                          role="listbox"
+                        >
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="Permanent"
+                          >
+                            <span class="text-gray-900">Permanent</span>
+                          </li>
+                          <li
+                            class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            data-value="Temporary"
+                          >
+                            <span class="text-gray-900">Temporary</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        class="mt-2 hidden"
+                        id="mcs-temp-duration-input-container"
+                      >
+                        <div class="flex items-center gap-2">
+                          <input
+                            class="score-input form-input rounded border-outline-variant text-body-md text-center py-1.5 w-16 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            id="mcs-temp-validity-duration"
+                            type="number"
+                          />
+                          <span
+                            class="text-[10px] font-bold text-on-surface-variant uppercase"
+                            >months</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="mcs-temp-unfit-reason"
+                  class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm"
+                >
+                  <div class="py-2">
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Pending:
+                    </h3>
+                  </div>
+                  <div class="grid grid-cols-4 gap-4">
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Lab Result</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >X-Ray Result</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Dental Review</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Psychiatrist Review</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 5</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 6</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 7</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 8</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 9</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 10</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 11</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-medium text-slate-700"
+                        >Option 12</span
+                      >
+                    </label>
+                    <label
+                      class="col-span-full flex items-center gap-3 p-2.5 mt-2 pt-4 border-t border-dashed border-slate-200 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer select-none"
+                    >
+                      <input
+                        type="checkbox"
+                        id="chk-other"
+                        name="option"
+                        class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                      />
+                      <span class="text-sm font-semibold text-slate-800"
+                        >Others
+                        <span class="font-normal text-slate-500"
+                          >(please specify)</span
+                        ></span
+                      >
+                    </label>
+                    <div
+                      id="other-reason-container"
+                      class="col-span-full hidden pl-7 pt-1 transition-all"
+                    >
+                      <textarea
+                        id="other-reason-text"
+                        class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md resize-none bg-white"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm"
+                >
+                  <div class="py-2 border-b border-outline-variant rounded-t">
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Compatible Excuses Based on MCS Score
+                    </h3>
+                  </div>
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-max">
+                      <thead>
+                        <tr
+                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                        >
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >
+                            Excuse
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >
+                            Reasons
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                      >
+                        <tr
+                          class="col-hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-3 text-on-surface-variant">
+                            High Intensity Activities
+                          </td>
+                          <td
+                            class="py-3.5 px-4 text-on-surface-variant whitespace-nowrap"
+                          >
+                            Recommend to issue 'High Intensity Activities'
+                            excuse as P Domain Score for Back Pain is 4.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="gap-6">
+                  <div class="flex flex-col space-y-2">
+                    <label
+                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                    >
+                      <span class="text-error">
+                        <font color="#475569"
+                          >Justification for Proposed (for Deviation from
+                          Guidelines) </font
+                        >*
+                      </span>
+                    </label>
+                    <textarea
+                      class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md resize-none bg-white"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="gap-6">
+                  <div class="flex flex-col space-y-2">
+                    <label
+                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                    >
+                      MCG Reference(s)
+                    </label>
+                    <textarea
+                      class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md resize-none bg-white"
+                      rows="2"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="gap-6">
+                  <div class="flex flex-col space-y-2">
+                    <label
+                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
+                    >
+                      Page(s)
+                    </label>
+                    <input
+                      class="w-1/2 border border-outline-variant rounded-lg px-2 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Remarks Field -->
+              <div class="space-y-stack-gap-sm">
+                <label
+                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                  for="remarks"
+                  >Remarks</label
+                >
+                <textarea
+                  class="w-full border border-outline-variant rounded p-stack-gap-md font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary/20 bg-surface-container-lowest"
+                  id="remarks"
+                  placeholder="Enter clinical remarks or justification for review outcome..."
+                  rows="6"
+                ></textarea>
+              </div>
+            </div>
+            <!-- Footer Buttons -->
+            <div
+              class="p-stack-gap-lg border-t border-surface-container bg-surface-container-low flex justify-end gap-stack-gap-md"
+            >
+              <button
+                class="px-6 py-2 border border-outline-variant text-on-surface-variant rounded font-semibold text-body-md hover:bg-surface-variant transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                class="px-8 py-2 border border-primary text-primary rounded font-semibold text-body-md hover:bg-primary/5 transition-all active:scale-95"
+              >
+                Save
+              </button>
+              <a href="submitted-form.html">
+                <button
+                  class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
+                >
+                  Submit
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById("service-record-select");
+      const counterEl = document.getElementById("record-counter");
+
+      selectEl.addEventListener("change", (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
+
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
+
+      var ffiOpen = false;
+      var mccOpen = true;
+      var medboardOpen = false;
+
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMCC() {
+        mccOpen = !mccOpen;
+        document.getElementById("mcc-submenu").style.display = mccOpen
+          ? ""
+          : "none";
+        document.getElementById("mcc-chevron").textContent = mccOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // ═══════════════════════════════════════════════════════════════
+      // SIDEBAR COLLAPSE
+      // ═══════════════════════════════════════════════════════════════
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
+
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
+
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
+        });
+      // Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          // tagClass: "bg-[#002B5C]", // navy blue
+          tagClass: "bg-blue-700",
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: "",
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
+        }
+      });
+
+      function toggleEdit(idList) {
+        const button = document.getElementById("edit-save-button");
+
+        const firstElem = document.getElementById(idList[0]);
+        const isEditing = firstElem && firstElem.tagName === "SPAN";
+
+        idList.forEach((id) => {
+          const currentElem = document.getElementById(id);
+          if (!currentElem) return;
+
+          if (isEditing) {
+            const textarea = document.createElement("textarea");
+            textarea.id = id;
+            textarea.value = currentElem.textContent.trim();
+            textarea.rows = 3;
+
+            textarea.className =
+              "w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-sm font-body-md resize-none bg-white";
+
+            currentElem.replaceWith(textarea);
+          } else {
+            const span = document.createElement("span");
+            span.id = id;
+            span.textContent = currentElem.value;
+
+            span.className =
+              "text-body-sm text-on-surface leading-relaxed block";
+
+            currentElem.replaceWith(span);
+          }
+        });
+
+        // Toggle button text
+        button.textContent = isEditing ? "Save" : "Edit";
+      }
+
+      const radios = document.querySelectorAll('input[name="decision"]');
+      const modifyMCS = document.getElementById("modify-mcs");
+      const modifyMCSSection = document.getElementById("modify-mcs-section");
+
+      radios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (modifyMCS.checked) {
+            modifyMCSSection.classList.remove("hidden");
+          } else {
+            modifyMCSSection.classList.add("hidden");
+          }
+        });
+      });
+
+      let openMenuData = null;
+
+      function closeAllMenus() {
+        if (openMenuData) {
+          const { menu, trigger, select } = openMenuData;
+          menu.classList.add("hidden");
+          trigger.setAttribute("aria-expanded", "false");
+          select.appendChild(menu);
+          openMenuData = null;
+        }
+      }
+
+      function positionMenu(trigger, menu) {
+        const rect = trigger.getBoundingClientRect();
+
+        menu.style.top = `${rect.bottom + 4}px`;
+        menu.style.minWidth = `${rect.width}px`;
+
+        // Teleport temporarily off-screen to measure natural width
+        menu.style.left = "-9999px";
+        const menuWidth = menu.offsetWidth;
+
+        // Calculate right-aligned position relative to trigger
+        const rightAlignedLeft = rect.right - menuWidth;
+        menu.style.left = `${Math.max(8, rightAlignedLeft)}px`;
+      }
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (openMenuData) {
+            positionMenu(openMenuData.trigger, openMenuData.menu);
+          }
+        },
+        true,
+      );
+
+      window.addEventListener("resize", () => {
+        if (openMenuData) {
+          positionMenu(openMenuData.trigger, openMenuData.menu);
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        const trigger = e.target.closest(".select-trigger");
+        const option = e.target.closest(".option-item");
+        const selectContainer = e.target.closest(".custom-select");
+
+        // 1. Toggle or Open Menu
+        if (trigger && selectContainer) {
+          e.stopPropagation();
+
+          let menu = selectContainer.querySelector(".select-options");
+          if (
+            !menu &&
+            openMenuData &&
+            openMenuData.select === selectContainer
+          ) {
+            menu = openMenuData.menu;
+          }
+
+          if (!menu) return;
+
+          if (
+            openMenuData &&
+            openMenuData.select === selectContainer &&
+            !menu.classList.contains("hidden")
+          ) {
+            closeAllMenus();
+            return;
+          }
+
+          closeAllMenus();
+
+          document.body.appendChild(menu);
+          menu.classList.remove("hidden");
+          trigger.setAttribute("aria-expanded", "true");
+
+          openMenuData = { select: selectContainer, trigger, menu };
+          positionMenu(trigger, menu);
+          return;
+        }
+
+        // 2. Select Option
+        if (option && openMenuData) {
+          const { select, menu } = openMenuData;
+          const selectedText = select.querySelector(".selected-text");
+          const hiddenInput = select.querySelector(".select-value");
+          const deviationTag = select.querySelector(".deviation-tag-container");
+          const unfitReasonSection = document.getElementById(
+            "mcs-temp-unfit-reason",
+          );
+
+          if (selectedText) {
+            const clone = option.cloneNode(true);
+            clone
+              .querySelectorAll(".rounded-full")
+              .forEach((badge) => badge.remove());
+            selectedText.innerHTML = clone.innerHTML.trim();
+            selectedText.classList.remove("text-gray-500");
+          }
+
+          if (hiddenInput) {
+            const newValue =
+              option.dataset.value || option.getAttribute("data-value");
+            const previousValue = hiddenInput.value;
+            hiddenInput.value = newValue;
+
+            if (previousValue !== newValue) {
+              hiddenInput.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+          }
+
+          // Deviation Check
+          if (deviationTag) {
+            const isSuggested =
+              option.dataset.suggested === "true" ||
+              option.getAttribute("data-suggested") === "true";
+            const suggestedOption = menu.querySelector(
+              '[data-suggested="true"]',
+            );
+
+            if (suggestedOption && !isSuggested) {
+              deviationTag.classList.remove("hidden");
+            } else {
+              deviationTag.classList.add("hidden");
+            }
+          }
+
+          if (option.getAttribute("data-value") === "D[0]") {
+            unfitReasonSection.classList.remove("hidden");
+          } else {
+            unfitReasonSection.classList.add("hidden");
+          }
+
+          closeAllMenus();
+          return;
+        }
+
+        // 3. Close on Outside Click
+        if (!e.target.closest(".select-options")) {
+          closeAllMenus();
+        }
+      });
+
+      const chkOther = document.getElementById("chk-other");
+      const otherContainer = document.getElementById("other-reason-container");
+      const otherText = document.getElementById("other-reason-text");
+
+      chkOther.addEventListener("change", (e) => {
+        if (e.target.checked) {
+          otherContainer.classList.remove("hidden");
+          otherText.focus();
+        } else {
+          otherContainer.classList.add("hidden");
+          otherText.value = "";
+        }
+      });
+
+      function handleMCSTempDuration(value) {
+        const durationContainer = document.getElementById(
+          "mcs-temp-duration-input-container",
+        );
+        // if (value === "D1") {
+        //   durationContainer.classList.remove("hidden");
+        // } else {
+        //   durationContainer.classList.add("hidden");
+        // }
+        if (value === "Temporary") {
+          durationContainer.classList.remove("hidden");
+        } else {
+          durationContainer.classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>

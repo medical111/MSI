@@ -1,9 +1,5 @@
 <!doctype html>
-<html
-  class="light"
-  lang="en"
-
->
+<html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -141,65 +137,69 @@
     </script>
     <style>
       .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        #sidebar {
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #main-content {
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #top-header {
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .sidebar-collapsed {
-            width: 5rem !important;
-        }
-        .sidebar-collapsed .nav-text {
-          display: none;
-        }
-        .sidebar-collapsed .logo-container {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            justify-content: center;
-        }
-        .sidebar-collapsed .logo-image {
-            width: 2.5rem;
-            height: 2.5rem;
-            min-width: 2.5rem;
-        }
-        .sidebar-collapsed .nav-item {
-            justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .sidebar-collapsed .sidebar-toggle-btn span {
-            transform: rotate(180deg);
-        }
-        .sidebar-collapsed .logo-wrapper {
-            display: none;
-        }
-        .content-expanded {
-            margin-left: 5rem !important;
-        }
-        .header-expanded {
-            left: 5rem !important;
-        }
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
 
-        /* Vocation field expansion styles */
-        .vocation-container.expanded .vocation-text {
-            white-space: normal;
-            overflow: visible;
-            text-overflow: clip;
-        }
-        .vocation-container.expanded .chevron-icon {
-            transform: rotate(180deg);
-        }
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
   <body
@@ -337,17 +337,54 @@
             >
           </div>
         </div>
-        <a
-          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
-          href="#"
-        >
-          <span class="material-symbols-outlined text-[20px] shrink-0"
-            >category</span
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMCC()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
           >
-          <span class="nav-text whitespace-nowrap"
-            >PES/ MGS Classification</span
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >fact_check</span
+              >
+              <span class="nav-text whitespace-nowrap">MCC</span>
+            </div>
+            <span
+              id="mcc-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="mcc-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
           >
-        </a>
+            <a
+              id="nav-mcc-mcs-grading"
+              href="mcc-create-new-mcs-grading.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create MCS Grading</a
+            >
+            <a
+              id="nav-mcc-initial-endorser"
+              href="mcc-initial-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Initial Endorser</a
+            >
+            <a
+              id="nav-mcc-final-endorser"
+              href="mcc-final-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Final Endorser</a
+            >
+            <a
+              id="nav-mcc-comcc-endorsement"
+              href="mcc-comcc-endorsement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CO MCC Endorsement</a
+            >
+          </div>
+        </div>
         <div class="flex flex-col gap-1">
           <div
             onclick="toggleMedboard()"
@@ -357,9 +394,7 @@
               <span class="material-symbols-outlined text-[20px] shrink-0"
                 >clinical_notes</span
               >
-              <span class="nav-text whitespace-nowrap"
-                >Medical Board</span
-              >
+              <span class="nav-text whitespace-nowrap">Medical Board</span>
             </div>
             <span
               id="medboard-chevron"
@@ -445,14 +480,19 @@
       </div>
     </aside>
     <!-- Main Content Wrapper -->
-    <div class="ml-64 h-full flex flex-col bg-background hidden lg:flex" id="main-content">
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
       <!-- TopNavBar -->
       <header
         class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
         id="top-header"
       >
         <div class="flex items-center gap-2 flex-1">
-          <div class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
             <div
               aria-hidden="true"
               class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
@@ -475,11 +515,19 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center">
-            <span class="material-symbols-outlined text-[22px]">notifications</span>
-            <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
           </button>
-          <button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
             <span class="material-symbols-outlined text-[22px]">help</span>
           </button>
           <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
@@ -492,194 +540,206 @@
         </div>
       </header>
       <!-- Canvas -->
-      <main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low">
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
         <!-- DROPDOWN PATIENT BANNER  -->
         <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
-        <!-- Patient Context Header (Updated) -->
-        <div
-        class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
-        >
-        <div class="flex flex-col gap-4 w-full">
-            <div class="flex justify-end items-start w-full">
-            <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-4">
-                <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+          <!-- Patient Context Header (Updated) -->
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
                     Tan Ah Teck
                 </h2> -->
-                <div class="flex gap-2 h-[24px] items-center">
-                    <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >P</span
-                    >
-                    <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R2</span
-                    >
-                    <span
-                    class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
-                    style="background-color: #c41802"
-                    >R3</span
-                    >
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
+                  </div>
                 </div>
-                </div>
-            </div>
-            </div>  
-            <div
-            class="flex flex-nowrap items-start justify-between w-full gap-4"
-            >
-            <!-- <div class="flex flex-col gap-1">
+              </div>
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
                 <span
                 class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
                 >NRIC</span
                 >
                 <div class="font-bold text-sm">S1234567A</div>
             </div> -->
-            <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
                 <span
                 class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >GENDER</span
-                >
-                <div class="font-bold text-sm">Male</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >AGE</span
-                >
-                <div class="font-bold text-sm">26</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >DOB</span
-                >
-                <div class="font-bold text-sm">08-Sep-1997</div>
-            </div>
-            <!-- <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >MGS DISPOSITION</span
+                >MCS DISPOSITION</span
                 >
                 <div class="font-bold text-sm">Medically Fit for Service</div>
             </div> -->
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >MGS DISPOSITION Code</span
-                >
-                <div class="font-bold text-sm">FIT (Temp)</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >PES</span
-                >
-                <div class="font-bold text-sm">-</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >DENTAL STATUS</span
-                >
-                <div class="font-bold text-sm">D1 (Expired)</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >A CODE</span
-                >
-                <div class="font-bold text-sm">A1</div>
-            </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
 
-            <div class="flex flex-col gap-1"></div>
-            </div>
-            <div
-            class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
-            >
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >SERVICE</span
-                >
-                <div class="w-fit">
-                <span
-                    class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
-                    id="banner-service-tag"
-                    >Army</span
-                >
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
+                  >
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >SERVICE TYPE</span
-                >
-                <div class="font-bold text-sm" id="banner-service-type">
-                NSman
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >RANK</span
-                >
-                <div class="font-bold text-sm" id="banner-rank">CPT</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >UNIT</span
-                >
-                <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
-            </div>
-            <div class="flex flex-col gap-1">
-                <span
-                class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
-                >VOCATION</span
-                >
-                <div
-                class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
-                id="vocation-toggle"
-                >
-                <span class="vocation-text truncate" id="banner-vocation"
-                    >Infantry Specialist</span
-                >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-1 ml-auto">
-                <span id="record-counter" class="text-xs text-white/70 font-medium">
-                RECORD 1 OF 2
-                </span>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
+                    RECORD 1 OF 2
+                  </span>
 
-                <div class="relative w-[200px]">
-                <select
-                    class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
-                    id="service-record-select"
-                >
-                    <option class="text-on-surface bg-white" selected="selected" value="record1">
-                    Service Record 1
-                    </option>
-                    <option class="text-on-surface bg-white" value="record2">
-                    Service Record 2
-                    </option>
-                    <!-- <option class="text-on-surface bg-white" value="record3">
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
                     Service Record 3
                     </option> -->
-                </select>
-                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]">
-                    expand_more
-                </span>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
+                    </span>
+                  </div>
                 </div>
+              </div>
             </div>
-            </div>
-        </div>
+          </div>
         </div>
         <!-- DROPDOWN PATIENT BANNER  -->
-      
+
         <!-- Content Area -->
-        <div >
+        <div class="mt-4">
           <section
             class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
             id="msi-info-section"
@@ -691,7 +751,10 @@
                 <h2
                   class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
                 >
-                  <span class="material-symbols-outlined text-[28px] leading-none">quick_reference_all</span>
+                  <span
+                    class="material-symbols-outlined text-[28px] leading-none"
+                    >quick_reference_all</span
+                  >
                   Submission Details for FFI Waiver Endorsement
                 </h2>
               </div>
@@ -872,10 +935,12 @@
                     >
                       Operation Role
                     </h3>
-                    <button 
-                    id="edit-save-button"
-                    class="bg-white text-primary text-sm font-semibold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
-                    onclick="toggleEdit(['criticality-field', 'substitute-field'])"
+                    <button
+                      id="edit-save-button"
+                      class="bg-white text-primary text-sm font-semibold px-3 py-1 rounded hover:bg-surface-container-high transition-colors border border-primary/20 hover:border-primary/50"
+                      onclick="
+                        toggleEdit(['criticality-field', 'substitute-field'])
+                      "
                     >
                       Edit
                     </button>
@@ -890,7 +955,11 @@
                       <span
                         id="criticality-field"
                         class="text-body-sm text-on-surface leading-relaxed"
-                        >His specific role is highly important to operational readiness, as his physical capacity is fully intact and his condition presents no risk to safety. He possesses the necessary medical fitness to execute these essential duties successfully.</span
+                        >His specific role is highly important to operational
+                        readiness, as his physical capacity is fully intact and
+                        his condition presents no risk to safety. He possesses
+                        the necessary medical fitness to execute these essential
+                        duties successfully.</span
                       >
                     </div>
                     <div class="flex flex-col gap-3">
@@ -902,7 +971,13 @@
                       <span
                         id="substitute-field"
                         class="text-body-sm text-on-surface leading-relaxed"
-                        >The serviceman is medically fit for full deployment in this important assignment. While his specialized role is critical to operations, any decision regarding the feasibility or training of an administrative substitute remains entirely under the purview of Unit Command, as there are no medical barriers to his continued deployment.</span
+                        >The serviceman is medically fit for full deployment in
+                        this important assignment. While his specialized role is
+                        critical to operations, any decision regarding the
+                        feasibility or training of an administrative substitute
+                        remains entirely under the purview of Unit Command, as
+                        there are no medical barriers to his continued
+                        deployment.</span
                       >
                     </div>
                   </div>
@@ -962,7 +1037,10 @@
                 <h2
                   class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
                 >
-                  <span class="material-symbols-outlined text-[28px] leading-none">sync_saved_locally</span>
+                  <span
+                    class="material-symbols-outlined text-[28px] leading-none"
+                    >sync_saved_locally</span
+                  >
                   NGEMR Information
                 </h2>
               </div>
@@ -984,9 +1062,12 @@
                       >
                         Conditions affecting overseas deployment
                       </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Patient displays persistent mild exercise-induced bronchospasms, typically aggravated by high-humidity environments. Managed effectively via PRN inhaler therapy, but requires structured monitoring during heavy physical exertion phases.</span
+                      <span class="text-body-sm text-on-surface leading-relaxed"
+                        >Patient displays persistent mild exercise-induced
+                        bronchospasms, typically aggravated by high-humidity
+                        environments. Managed effectively via PRN inhaler
+                        therapy, but requires structured monitoring during heavy
+                        physical exertion phases.</span
                       >
                     </div>
                     <div class="flex flex-col gap-3">
@@ -995,9 +1076,11 @@
                       >
                         Medical Problems
                       </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Mild persistent asthma (diagnosed 2021). Controlled hypertension under current monotherapy regimen (Lisinopril 10mg daily). No acute hospitalizations reported within the past 24 months.</span
+                      <span class="text-body-sm text-on-surface leading-relaxed"
+                        >Mild persistent asthma (diagnosed 2021). Controlled
+                        hypertension under current monotherapy regimen
+                        (Lisinopril 10mg daily). No acute hospitalizations
+                        reported within the past 24 months.</span
                       >
                     </div>
                     <div class="flex flex-col gap-3">
@@ -1006,9 +1089,9 @@
                       >
                         Functional Status
                       </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >No limitations specified. Full functional capacity for regular duty cycles reported.</span
+                      <span class="text-body-sm text-on-surface leading-relaxed"
+                        >No limitations specified. Full functional capacity for
+                        regular duty cycles reported.</span
                       >
                     </div>
                     <div class="flex flex-col gap-3">
@@ -1017,9 +1100,11 @@
                       >
                         Physical Examination
                       </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Chest is clear to auscultation bilaterally. No wheezing or prolonged expiratory phase noted at rest. Cardiovascular assessment: normal S1/S2, no murmurs. Blood pressure stable at 124/78 mmHg.</span
+                      <span class="text-body-sm text-on-surface leading-relaxed"
+                        >Chest is clear to auscultation bilaterally. No wheezing
+                        or prolonged expiratory phase noted at rest.
+                        Cardiovascular assessment: normal S1/S2, no murmurs.
+                        Blood pressure stable at 124/78 mmHg.</span
                       >
                     </div>
                     <div class="flex flex-col gap-3">
@@ -1028,9 +1113,11 @@
                       >
                         Investigations
                       </h4>
-                      <span
-                        class="text-body-sm text-on-surface leading-relaxed"
-                        >Spirometry reports FEV1/FVC ratio within normal parameters (82% of predicted values). Baseline ECG demonstrates normal sinus rhythm with no ST-segment or T-wave alterations.</span
+                      <span class="text-body-sm text-on-surface leading-relaxed"
+                        >Spirometry reports FEV1/FVC ratio within normal
+                        parameters (82% of predicted values). Baseline ECG
+                        demonstrates normal sinus rhythm with no ST-segment or
+                        T-wave alterations.</span
                       >
                     </div>
                   </div>
@@ -1043,11 +1130,14 @@
             class="bg-white border border-outline-variant rounded-lg shadow-sm"
           >
             <div
-              class="p-stack-gap-lg border-b border-surface-container bg-surface-container-lowest"
+              class="px-6 py-4 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
             >
               <h2
-                class="font-headline-section text-headline-section text-primary"
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
               >
+                <span class="material-symbols-outlined text-[28px] leading-none"
+                  >fact_check</span
+                >
                 Higher Authority Review for Endorsement
               </h2>
             </div>
@@ -1113,8 +1203,7 @@
               >
                 Save
               </button>
-              <a
-              href="submitted-form.html">
+              <a href="submitted-form.html">
                 <button
                   class="px-8 py-2 bg-primary text-white rounded font-semibold text-body-md hover:bg-primary-container shadow-sm transition-all active:scale-95"
                 >
@@ -1122,7 +1211,7 @@
                 </button>
               </a>
             </div>
-          </div>  
+          </div>
         </div>
       </main>
     </div>
@@ -1141,60 +1230,77 @@
       "
     ></div>
     <script>
-    //PATIENT DROPDOWN
-    const selectEl = document.getElementById('service-record-select');
-    const counterEl = document.getElementById('record-counter');
+      //PATIENT DROPDOWN
+      const selectEl = document.getElementById("service-record-select");
+      const counterEl = document.getElementById("record-counter");
 
-    selectEl.addEventListener('change', (e) => {
-      const currentIndex = e.target.selectedIndex + 1;
-      const totalRecords = e.target.options.length;
-      
-      counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
-    });
+      selectEl.addEventListener("change", (e) => {
+        const currentIndex = e.target.selectedIndex + 1;
+        const totalRecords = e.target.options.length;
 
-    var ffiOpen = true;
-    var medboardOpen = false;
+        counterEl.textContent = `RECORD ${currentIndex} OF ${totalRecords}`;
+      });
 
-    function toggleFFI() {
-    ffiOpen = !ffiOpen;
-    document.getElementById('ffi-submenu').style.display = ffiOpen ? '' : 'none';
-    document.getElementById('ffi-chevron').textContent = ffiOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-    }
+      var ffiOpen = true;
+      var mccOpen = false;
+      var medboardOpen = false;
 
-    function toggleMedboard() {
-    medboardOpen = !medboardOpen;
-    document.getElementById('medboard-submenu').style.display = medboardOpen ? '' : 'none';
-    document.getElementById('medboard-chevron').textContent = medboardOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-    }
-    // ═══════════════════════════════════════════════════════════════
-    // SIDEBAR COLLAPSE
-    // ═══════════════════════════════════════════════════════════════
-    // Sidebar toggle
-    document
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMCC() {
+        mccOpen = !mccOpen;
+        document.getElementById("mcc-submenu").style.display = mccOpen
+          ? ""
+          : "none";
+        document.getElementById("mcc-chevron").textContent = mccOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // ═══════════════════════════════════════════════════════════════
+      // SIDEBAR COLLAPSE
+      // ═══════════════════════════════════════════════════════════════
+      // Sidebar toggle
+      document
         .getElementById("toggle-sidebar")
         .addEventListener("click", function () {
-            const sidebar = document.getElementById("sidebar");
-            const mainContent = document.getElementById("main-content");
-            const topHeader = document.getElementById("top-header");
-            const toggleIcon = this.querySelector("span");
-            const ffiSubmenu = document.getElementById("ffi-submenu");
-            const medboardSubmenu = document.getElementById("medboard-submenu");
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
 
-            const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
-            mainContent.classList.toggle("content-expanded");
-            topHeader.classList.toggle("header-expanded");
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
 
-            if (isCollapsed) {
-              toggleIcon.textContent = "chevron_right";
-              ffiSubmenu.style.display = "none";
-              medboardSubmenu.style.display = "none";
-            } else {
-              toggleIcon.textContent = "chevron_left";
-              ffiSubmenu.style.display = "";
-              medboardSubmenu.style.display = "";
-            }
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
         });
-    // Service Record Switcher Logic
+      // Service Record Switcher Logic
       const serviceRecordSelect = document.getElementById(
         "service-record-select",
       );
@@ -1237,7 +1343,7 @@
           service: "Navy",
           isCurrent: false,
           // tagClass: "bg-[#002B5C]", // navy blue
-          tagClass: "bg-blue-700"
+          tagClass: "bg-blue-700",
         },
         record3: {
           type: "-",
@@ -1246,7 +1352,7 @@
           vocation: "-",
           service: "-",
           isCurrent: false,
-          tagClass: ""
+          tagClass: "",
         },
       };
 
@@ -1262,46 +1368,52 @@
 
           // Update Service Tag Style
           // Remove previous color classes
-          bannerServiceTag.classList.remove("bg-secondary", "bg-[#002B5C]", "bg-blue-700", "-");
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "bg-blue-700",
+            "-",
+          );
           // Add new color class
           bannerServiceTag.classList.add(data.tagClass);
         }
       });
 
       function toggleEdit(idList) {
-        const button = document.getElementById('edit-save-button');
+        const button = document.getElementById("edit-save-button");
 
         const firstElem = document.getElementById(idList[0]);
-        const isEditing = firstElem && firstElem.tagName === 'SPAN';
+        const isEditing = firstElem && firstElem.tagName === "SPAN";
 
         idList.forEach((id) => {
           const currentElem = document.getElementById(id);
           if (!currentElem) return;
 
           if (isEditing) {
-            const textarea = document.createElement('textarea');
+            const textarea = document.createElement("textarea");
             textarea.id = id;
             textarea.value = currentElem.textContent.trim();
             textarea.rows = 3;
 
-            textarea.className = 'w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-sm font-body-md resize-none bg-white';
+            textarea.className =
+              "w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-sm font-body-md resize-none bg-white";
 
             currentElem.replaceWith(textarea);
           } else {
-            const span = document.createElement('span');
+            const span = document.createElement("span");
             span.id = id;
             span.textContent = currentElem.value;
-            
-            span.className = 'text-body-sm text-on-surface leading-relaxed block';
+
+            span.className =
+              "text-body-sm text-on-surface leading-relaxed block";
 
             currentElem.replaceWith(span);
           }
         });
 
         // Toggle button text
-        button.textContent = isEditing ? 'Save' : 'Edit';
+        button.textContent = isEditing ? "Save" : "Edit";
       }
-
     </script>
   </body>
 </html>
