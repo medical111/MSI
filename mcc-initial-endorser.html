@@ -2510,10 +2510,13 @@
             }
           }
 
-          if (option.getAttribute("data-value") === "D[0]") {
-            unfitReasonSection.classList.remove("hidden");
-          } else {
-            unfitReasonSection.classList.add("hidden");
+          const currentSelect = openMenuData.select;
+          if (currentSelect.id === "mcs-disposition-select") {
+            if (option.getAttribute("data-value") === "D[0]") {
+              unfitReasonSection.classList.remove("hidden");
+            } else {
+              unfitReasonSection.classList.add("hidden");
+            }
           }
 
           closeAllMenus();

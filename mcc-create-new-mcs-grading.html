@@ -2381,7 +2381,7 @@
                           ><font color="#475569">Disposition </font>*</span
                         ></label
                       >
-                      <div class="custom-select relative w-full">
+                      <div id="mcs-disposition-select" class="custom-select relative w-full">
                         <button
                           type="button"
                           class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
@@ -2433,7 +2433,7 @@
                           ><font color="#475569">Validity </font>*</span
                         ></label
                       >
-                      <div class="custom-select relative w-full">
+                      <div id="mcs-validity-select" class="custom-select relative w-full">
                         <button
                           type="button"
                           class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
@@ -3123,10 +3123,13 @@
             }
           }
 
-          if (option.getAttribute("data-value") === "D[0]") {
-            unfitReasonSection.classList.remove("hidden");
-          } else {
-            unfitReasonSection.classList.add("hidden");
+          const currentSelect = openMenuData.select;
+          if (currentSelect.id === "mcs-disposition-select") {
+            if (option.getAttribute("data-value") === "D[0]") {
+              unfitReasonSection.classList.remove("hidden");
+            } else {
+              unfitReasonSection.classList.add("hidden");
+            }
           }
 
           closeAllMenus();
