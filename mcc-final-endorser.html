@@ -755,7 +755,7 @@
                 <!-- Information Subsection -->
                 <div id="mcc-submission-subsection">
                   <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant mb-4 rounded-t"
+                    class="p-2 border-b border-outline-variant mb-4 rounded-t"
                   >
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
@@ -774,7 +774,7 @@
                       <div class="w-2/3">
                         <span
                           class="font-data-tabular text-data-tabular text-on-surface"
-                          >Dr. Ryan Goh</span
+                          >Dr Ryan Goh</span
                         >
                       </div>
                     </div>
@@ -794,10 +794,8 @@
                     </div>
                   </div>
                 </div>
-                <div id="mcc-proposed-excuses-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant rounded-t"
-                  >
+                <!-- <div id="mcc-proposed-excuses-subsection">
+                  <div class="p-2 border-b border-outline-variant rounded-t">
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
@@ -893,15 +891,13 @@
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div id="mcc--diagnosis-mcs-grading-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant rounded-t"
-                  >
+                </div> -->
+                <div id="mcc-proposed-mcs-grading-subsection">
+                  <div class="p-2 border-b border-outline-variant rounded-t">
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
-                      Diagnosis of MCS
+                      Proposed MCS
                     </h3>
                   </div>
                   <div class="overflow-x-auto">
@@ -916,7 +912,92 @@
                           <th
                             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
                           >
-                            Diagnosis
+                            Problem
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >
+                            Domain
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >
+                            Score
+                          </th>
+                          <th
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >
+                            Problem Summary
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                      >
+                        <tr
+                          class="hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Back Pain
+                          </td>
+                          <td class="py-3.5 px-4 text-on-surface-variant">L</td>
+                          <td class="py-3.5 px-4 text-on-surface-variant">4</td>
+                          <td
+                            class="py-3.5 px-4 text-on-surface-variant max-w-sm"
+                          >
+                            [12/05/2026] Heavy lifting caused severe L4-L5
+                            lumbar pain. MRI showed a 4.5mm extrusion with nerve
+                            impingement. Dr. John Chua recommended
+                            microdiscectomy. Reason: Objective imaging matches
+                            persistent 4/5 motor weakness, resulting in L = 4.
+                          </td>
+                        </tr>
+                        <tr
+                          class="hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Acute Asthma
+                          </td>
+                          <td class="py-3.5 px-4 text-on-surface-variant">
+                            CR
+                          </td>
+                          <td class="py-3.5 px-4 text-on-surface-variant">0</td>
+                          <td
+                            class="py-3.5 px-4 text-on-surface-variant max-w-sm"
+                          >
+                            [12/05/2026] Acute bronchospasm. SpO2 92%, Peak Flow
+                            50% predicted. Pulmonologist confirmed severe
+                            refractoriness to outpatient albuterol. Reason: High
+                            risk of respiratory fatigue requires urgent
+                            inpatient nebulizers and systemic steroids,
+                            resulting CR = 0
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="mcc-overview-mcs-grading-subsection">
+                  <div class="p-2 border-b border-outline-variant rounded-t">
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Overview of MCS Score
+                    </h3>
+                  </div>
+                  <div class="overflow-x-auto">
+                    <table
+                      id="mcs-table"
+                      class="w-full text-left border-collapse min-w-max"
+                    >
+                      <thead>
+                        <tr
+                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                        >
+                          <th
+                            class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Newly Proposed Problem
                           </th>
                           <th
                             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
@@ -968,11 +1049,6 @@
                           >
                             S
                           </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
-                          >
-                            Add for Grading
-                          </th>
                         </tr>
                       </thead>
                       <tbody
@@ -990,10 +1066,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1002,10 +1076,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1014,9 +1086,37 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
                               value="4"
                               disabled
                             />
@@ -1026,10 +1126,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1038,10 +1136,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1050,10 +1146,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="3"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1062,53 +1156,10 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
-                          </td>
-                          <td
-                            class="py-3.5 px-3 text-center text-on-surface-variant"
-                          >
-                            <input
-                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
-                              disabled
-                            />
-                          </td>
-                          <td
-                            class="py-3.5 px-3 text-center text-on-surface-variant"
-                          >
-                            <input
-                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
-                              disabled
-                            />
-                          </td>
-                          <td
-                            class="py-3.5 px-3 text-center text-on-surface-variant"
-                          >
-                            <input
-                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
-                              disabled
-                            />
-                          </td>
-                          <td
-                            class="py-3.5 px-3 text-center text-on-surface-variant"
-                          >
-                            Yes
                           </td>
                         </tr>
                         <tr
@@ -1122,9 +1173,7 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
+                              type="text"
                               value="0"
                               disabled
                             />
@@ -1134,10 +1183,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1146,10 +1193,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1158,10 +1203,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1170,10 +1213,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1182,10 +1223,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1194,10 +1233,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1206,10 +1243,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1218,10 +1253,8 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="2"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
@@ -1230,17 +1263,127 @@
                           >
                             <input
                               class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                              type="number"
-                              min="0"
-                              max="10"
-                              value="1"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                        </tr>
+                        <tr
+                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                        >
+                          <th
+                            class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                            colspan="11"
+                          >
+                            Past Approved Problem
+                          </th>
+                        </tr>
+                        <tr
+                          class="hover:bg-surface-container-hover/50 transition-colors"
+                        >
+                          <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                            Depression
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
                               disabled
                             />
                           </td>
                           <td
                             class="py-3.5 px-3 text-center text-on-surface-variant"
                           >
-                            Yes
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="-"
+                              disabled
+                            />
+                          </td>
+                          <td
+                            class="py-3.5 px-3 text-center text-on-surface-variant"
+                          >
+                            <input
+                              class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              type="text"
+                              value="5"
+                              disabled
+                            />
                           </td>
                         </tr>
                       </tbody>
@@ -1248,16 +1391,13 @@
                   </div>
                 </div>
                 <div id="mcc-recommended-outcome-subsection">
-                  <div
-                    class="bg-surface-container-low px-4 py-2 border-b border-outline-variant rounded-t"
-                  >
+                  <div class="p-2 border-b border-outline-variant rounded-t">
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
-                      Recommended Outcome
+                      Final MCS Score
                     </h3>
                   </div>
-
                   <div class="space-y-2 relative">
                     <div class="overflow-x-auto">
                       <table class="w-full text-left border-collapse min-w-max">
@@ -1336,6 +1476,21 @@
                             <td
                               class="py-3 px-3 text-center text-on-surface-variant"
                             >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
+                              1
+                            </td>
+                            <td
+                              class="py-3 px-3 text-center text-on-surface-variant"
+                            >
                               4
                             </td>
                             <td
@@ -1351,161 +1506,146 @@
                             <td
                               class="py-3 px-3 text-center text-on-surface-variant"
                             >
-                              3
-                            </td>
-                            <td
-                              class="py-3 px-3 text-center text-on-surface-variant"
-                            >
                               1
                             </td>
                             <td
                               class="py-3 px-3 text-center text-on-surface-variant"
                             >
-                              1
-                            </td>
-                            <td
-                              class="py-3 px-3 text-center text-on-surface-variant"
-                            >
-                              2
-                            </td>
-                            <td
-                              class="py-3 px-3 text-center text-on-surface-variant"
-                            >
-                              1
+                              5
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                  <div class="col-span-2 flex flex-col gap-2">
-                    <div class="grid grid-cols-3 items-center gap-3">
-                      <div class="col-span-1">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Disposition</span
-                        >
-                      </div>
-                      <div class="col-span-2">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >D[0]</span
-                        >
-                      </div>
+                </div>
+                <div class="col-span-2 flex flex-col gap-2">
+                  <div class="grid grid-cols-3 items-center gap-3">
+                    <div class="col-span-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Disposition</span
+                      >
                     </div>
-                    <div class="grid grid-cols-3 items-center gap-3">
-                      <div class="col-span-1">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Validity</span
-                        >
-                      </div>
-                      <div class="col-span-2">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >Permanent</span
-                        >
-                      </div>
+                    <div class="col-span-2">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >D[0]</span
+                      >
                     </div>
-                    <div class="grid grid-cols-3 items-center gap-3">
-                      <div class="col-span-1">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Date of Expiry</span
-                        >
-                      </div>
-                      <div class="col-span-2">
-                        <span
-                          class="font-data-tabular text-data-tabular text-on-surface"
-                          >NA</span
-                        >
-                      </div>
+                  </div>
+                  <div class="grid grid-cols-3 items-center gap-3">
+                    <div class="col-span-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Validity</span
+                      >
                     </div>
-                    <div class="flex items-start">
-                      <div class="w-1/3">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Reason for Pending for D[0]</span
+                    <div class="col-span-2">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >Temporary</span
+                      >
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-3 items-center gap-3">
+                    <div class="col-span-1">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Date of Expiry</span
+                      >
+                    </div>
+                    <div class="col-span-2">
+                      <span
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                        >3 Months</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div class="w-1/3">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Reason for Pending for D[0]</span
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <div class="flex flex-col gap-2 mt-0.5">
+                        <div
+                          class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
                         >
-                      </div>
-                      <div class="w-2/3">
-                        <div class="flex flex-col gap-2 mt-0.5">
-                          <div
-                            class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                          <span
+                            class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                            >1</span
                           >
-                            <span
-                              class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
-                              >1</span
-                            >
-                            <span>Option 5</span>
-                          </div>
-                          <div
-                            class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                          <span>Option 5</span>
+                        </div>
+                        <div
+                          class="flex items-center gap-2.5 font-data-tabular text-data-tabular text-on-surface"
+                        >
+                          <span
+                            class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
+                            >2</span
                           >
-                            <span
-                              class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold"
-                              >2</span
-                            >
-                            <span>Option 6</span>
-                          </div>
+                          <span>Option 6</span>
                         </div>
                       </div>
                     </div>
-                    <div class="col-span-2 flex flex-col gap-1">
-                      <div class="col-span-2">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Justification for Proposed (Especially if there is
-                          Deviation from Guidelines)</span
-                        >
-                      </div>
-                      <div>
-                        <p
-                          class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
-                        >
-                          The patient is recommended for a status downgrade due
-                          to the high-risk synergy of their acute asthma and
-                          recurrent low back pain. Because these combined
-                          conditions strictly limit the patient’s capacity for
-                          physical training and axial loading, they are
-                          medically unfit for front-line combat and must be
-                          restricted to combat service support roles in a
-                          controlled environment.
-                        </p>
-                      </div>
+                  </div>
+                  <div class="col-span-2 flex flex-col gap-1">
+                    <div class="col-span-2">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Justification for Proposed (Especially if there is
+                        Deviation from Guidelines)</span
+                      >
                     </div>
-                    <div class="col-span-2 flex flex-col gap-1">
-                      <div class="col-span-2">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >MCG Reference(s)</span
-                        >
-                      </div>
-                      <div>
-                        <p
-                          class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
-                        >
-                          Due to the high-risk synergy of their acute asthma and
-                          recurrent low back pain, they are medically unfit for
-                          front-line combat and must be restricted to combat
-                          service support roles.
-                        </p>
-                      </div>
+                    <div>
+                      <p
+                        class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                      >
+                        The patient is recommended for a status downgrade due to
+                        the high-risk synergy of their acute asthma and
+                        recurrent low back pain. Because these combined
+                        conditions strictly limit the patient’s capacity for
+                        physical training and axial loading, they are medically
+                        unfit for front-line combat and must be restricted to
+                        combat service support roles in a controlled
+                        environment.
+                      </p>
                     </div>
-                    <div class="col-span-2 flex flex-col gap-1">
-                      <div class="col-span-2">
-                        <span
-                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >Page(s)</span
-                        >
-                      </div>
-                      <div>
-                        <p
-                          class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
-                        >
-                          123
-                        </p>
-                      </div>
+                  </div>
+                  <div class="col-span-2 flex flex-col gap-1">
+                    <div class="col-span-2">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >MCG Reference(s)</span
+                      >
+                    </div>
+                    <div>
+                      <p
+                        class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                      >
+                        Due to the high-risk synergy of their acute asthma and
+                        recurrent low back pain, they are medically unfit for
+                        front-line combat and must be restricted to combat
+                        service support roles.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-span-2 flex flex-col gap-1">
+                    <div class="col-span-2">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Page(s)</span
+                      >
+                    </div>
+                    <div>
+                      <p
+                        class="font-data-tabular text-data-tabular text-on-surface break-words leading-relaxed text-slate-500"
+                      >
+                        123
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1539,7 +1679,7 @@
                   <div class="flex gap-stack-gap-lg">
                     <span
                       class="font-data-tabular text-data-tabular text-on-surface"
-                      >Dr. John Doe</span
+                      >Dr John Doe</span
                     >
                   </div>
                 </div>

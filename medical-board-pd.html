@@ -2769,16 +2769,17 @@
                 pes_backpain_ncode: "-",
                 pes_backpain_suggested_status: ["B3", "B4"],
                 mcs_backpain_board_date: "01 Jan 2025",
-                mcs_backpain_CR: 0,
-                mcs_backpain_N: 0,
-                mcs_backpain_P: 4,
-                mcs_backpain_A: 1,
-                mcs_backpain_U: 0,
-                mcs_backpain_L: 3,
-                mcs_backpain_H: 0,
-                mcs_backpain_V: 0,
-                mcs_backpain_C: 1,
-                mcs_backpain_S: 0,
+                mcs_backpain_CR: "-",
+                mcs_backpain_N: "-",
+                mcs_backpain_P: "-",
+                mcs_backpain_A: "-",
+                mcs_backpain_U: "-",
+                mcs_backpain_L: "4",
+                mcs_backpain_newL: "10",
+                mcs_backpain_H: "-",
+                mcs_backpain_V: "-",
+                mcs_backpain_C: "-",
+                mcs_backpain_S: "-",
                 mcs_backpain_suggested_disposition: "FIT",
 
                 pes_asthma_board_date: "01 Jan 2025",
@@ -2795,16 +2796,16 @@
                 pes_asthma_ncode: "-",
                 pes_asthma_suggested_status: ["B1", "B2"],
                 mcs_asthma_board_date: "01 Jan 2025",
-                mcs_asthma_CR: 10,
-                mcs_asthma_N: 0,
-                mcs_asthma_P: 0,
-                mcs_asthma_A: 0,
-                mcs_asthma_U: 0,
-                mcs_asthma_L: 0,
-                mcs_asthma_H: 0,
-                mcs_asthma_V: 0,
-                mcs_asthma_C: 2,
-                mcs_asthma_S: 0,
+                mcs_asthma_CR: "4",
+                mcs_asthma_N: "-",
+                mcs_asthma_P: "-",
+                mcs_asthma_A: "-",
+                mcs_asthma_U: "-",
+                mcs_asthma_L: "-",
+                mcs_asthma_H: "-",
+                mcs_asthma_V: "-",
+                mcs_asthma_C: "-",
+                mcs_asthma_S: "-",
                 mcs_asthma_suggested_disposition: "UNFIT",
 
                 excuses_hearing_category: "Hearing (MCC)",
@@ -4286,7 +4287,7 @@
                       <td
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
-                        ${data.mcs_backpain_L}
+                        ${data.mcs_asthma_L}
                       </td>
                       <td
                         class="py-3.5 px-3 text-center text-on-surface-variant"
@@ -5388,9 +5389,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_CR}
                           disabled
@@ -5401,9 +5400,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_N}
                           disabled
@@ -5414,9 +5411,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_P}
                           disabled
@@ -5427,9 +5422,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_A}
                           disabled
@@ -5440,9 +5433,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_U}
                           disabled
@@ -5452,12 +5443,10 @@
                         class="py-3.5 px-3 text-center text-on-surface-variant"
                       >
                         <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-red-600 font-bold"
+                          type="text"
                           oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_L}
+                          value=${data.mcs_backpain_newL}
                           disabled
                         />
                       </td>
@@ -5466,9 +5455,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_H}
                           disabled
@@ -5479,9 +5466,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_V}
                           disabled
@@ -5492,9 +5477,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_C}
                           disabled
@@ -5505,9 +5488,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_backpain_S}
                           disabled
@@ -5534,9 +5515,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_CR}
                           disabled
@@ -5547,9 +5526,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_N}
                           disabled
@@ -5560,9 +5537,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_P}
                           disabled
@@ -5573,9 +5548,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_A}
                           disabled
@@ -5586,9 +5559,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_U}
                           disabled
@@ -5599,9 +5570,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_L}
                           disabled
@@ -5612,9 +5581,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_H}
                           disabled
@@ -5625,9 +5592,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_V}
                           disabled
@@ -5638,9 +5603,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_C}
                           disabled
@@ -5651,9 +5614,7 @@
                       >
                         <input
                           class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="1"
-                          max="10"
+                          type="text"
                           oninput="handleMCSInput(this)"
                           value=${data.mcs_asthma_S}
                           disabled
@@ -5703,9 +5664,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5719,9 +5678,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5735,9 +5692,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5751,9 +5706,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5767,9 +5720,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5783,9 +5734,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5799,9 +5748,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5815,9 +5762,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5831,9 +5776,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5847,9 +5790,7 @@
                           >
                           <input
                             class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="1"
-                            max="10"
+                            type="text"
                             oninput="handleMCSInput(this)"
                             disabled
                           />
@@ -5867,7 +5808,7 @@
                           ><font color="#475569">Disposition </font>*</span
                         ></label
                       >
-                      <div class="custom-select relative w-full">
+                      <div id="mcs-disposition-select" class="custom-select relative w-full">
                         <button
                           type="button"
                           class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
@@ -5969,6 +5910,79 @@
                     </div>
                   </div>
                 </div>
+                <div id="mcs-temp-unfit-reason" class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm hidden">
+                  <div
+                    class="py-2"
+                  >
+                    <h3
+                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                    >
+                      Pending:
+                    </h3>
+                  </div>
+                  <div class="grid grid-cols-4 gap-4">
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Lab Result</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">X-Ray Result</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Dental Review</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Psychiatrist Review</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 5</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 6</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 7</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 8</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 9</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 10</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 11</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                      <input type="checkbox" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-medium text-slate-700">Option 12</span>
+                    </label>
+                    <label class="col-span-full flex items-center gap-3 p-2.5 mt-2 pt-4 border-t border-dashed border-slate-200 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer select-none">
+                      <input type="checkbox" id="chk-other" name="option" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer">
+                      <span class="text-sm font-semibold text-slate-800">Others <span class="font-normal text-slate-500">(please specify)</span></span>
+                    </label>
+                    <div id="other-reason-container" class="col-span-full hidden pl-7 pt-1 transition-all">
+                      <textarea
+                        id="other-reason-text"
+                        class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md resize-none bg-white"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!--
                 <div class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm">
                   <div
                     class="py-2 border-b border-outline-variant rounded-t"
@@ -6011,13 +6025,14 @@
                           <td
                             class="py-3.5 px-4 text-on-surface-variant whitespace-nowrap"
                           >
-                            Recommend to issue 'High Intensity Activities' excuse as P Domain Score for Back Pain is 4.
+                            Recommend to issue 'High Intensity Activities' excuse as CR Domain Score for Asthma is 4.
                           </td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
+                -->
                 <div class="gap-6">
                   <div class="flex flex-col space-y-2">
                     <label
@@ -6255,6 +6270,8 @@
             );
             calculatePulheemsMax();
             calculateMCSMax();
+            handleMCSTempDuration();
+            handleTempDispostion();
           } catch (error) {
             medicalBoardSelectionSection.innerHTML = `
             <div class="flex flex-col gap-4 px-6">
@@ -7099,6 +7116,7 @@
         const rows = tbody.querySelectorAll("tr");
         const mcsCount = 10;
         let maxMCS = new Array(mcsCount).fill(null);
+        let hasDash = new Array(mcsCount).fill(false);
         let hasCheckedRow = false;
 
         rows.forEach((row) => {
@@ -7112,11 +7130,18 @@
               const input = cells[i + 1]
                 ? cells[i + 1].querySelector("input")
                 : null;
-              if (input && input.value.trim() !== "") {
-                const val = parseFloat(input.value);
-                if (!isNaN(val)) {
-                  if (maxMCS[i] === null || val > maxMCS[i]) {
-                    maxMCS[i] = val;
+
+              if (input) {
+                const rawVal = input.value.trim();
+
+                if (rawVal === "-") {
+                  hasDash[i] = true;
+                } else if (rawVal !== "") {
+                  const val = parseFloat(rawVal);
+                  if (!isNaN(val)) {
+                    if (maxMCS[i] === null || val > maxMCS[i]) {
+                      maxMCS[i] = val;
+                    }
                   }
                 }
               }
@@ -7130,8 +7155,17 @@
           const outputInputs = mcsContainer.querySelectorAll("input");
           outputInputs.forEach((input, i) => {
             if (i < mcsCount) {
-              input.value =
-                hasCheckedRow && maxMCS[i] !== null ? maxMCS[i] : "";
+              if (!hasCheckedRow) {
+                input.value = "";
+              } else if (maxMCS[i] !== null) {
+                // If numbers exist, show the maximum number
+                input.value = maxMCS[i];
+              } else if (hasDash[i]) {
+                // If no numbers exist but a '-' was checked, show '1'
+                input.value = "1";
+              } else {
+                input.value = "";
+              }
             }
           });
         }
@@ -7312,8 +7346,9 @@
           const selectedText = select.querySelector(".selected-text");
           const hiddenInput = select.querySelector(".select-value");
           const deviationTag = select.querySelector(".deviation-tag-container");
-
-          const excuseCheckTag = select.querySelector(".excuseCheck");
+          const unfitReasonSection = document.getElementById(
+            "mcs-temp-unfit-reason",
+          );
 
           if (selectedText) {
             const clone = option.cloneNode(true);
@@ -7351,8 +7386,13 @@
             }
           }
 
-          if (excuseCheckTag) {
-            checkExcusesForPES(option, menu, excuseCheckTag);
+          const currentSelect = openMenuData.select;
+          if (currentSelect.id === "mcs-disposition-select") {
+            if (option.getAttribute("data-value") === "D[0]") {
+              unfitReasonSection.classList.remove("hidden");
+            } else {
+              unfitReasonSection.classList.add("hidden");
+            }
           }
 
           closeAllMenus();
@@ -7364,6 +7404,24 @@
           closeAllMenus();
         }
       });
+
+      function handleTempDispostion() {
+        const chkOther = document.getElementById("chk-other");
+        const otherContainer = document.getElementById(
+          "other-reason-container",
+        );
+        const otherText = document.getElementById("other-reason-text");
+
+        chkOther.addEventListener("change", (e) => {
+          if (e.target.checked) {
+            otherContainer.classList.remove("hidden");
+            otherText.focus();
+          } else {
+            otherContainer.classList.add("hidden");
+            otherText.value = "";
+          }
+        });
+      }
 
       const excuseList = {
         A: [],
@@ -7712,12 +7770,27 @@
                               <td
                                 class="py-3 px-3 text-center text-on-surface-variant"
                               >
-                                10
+                                4
                               </td>
                               <td
                                 class="py-3 px-3 text-center text-on-surface-variant"
                               >
-                                0
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
+                              </td>
+                              <td
+                                class="py-3 px-3 text-center text-on-surface-variant"
+                              >
+                                1
                               </td>
                               <td
                                 class="py-3 px-3 text-center text-on-surface-variant"
@@ -7732,32 +7805,17 @@
                               <td
                                 class="py-3 px-3 text-center text-on-surface-variant"
                               >
-                                0
+                                1
                               </td>
                               <td
                                 class="py-3 px-3 text-center text-on-surface-variant"
                               >
-                                3
+                                1
                               </td>
                               <td
                                 class="py-3 px-3 text-center text-on-surface-variant"
                               >
-                                0
-                              </td>
-                              <td
-                                class="py-3 px-3 text-center text-on-surface-variant"
-                              >
-                                0
-                              </td>
-                              <td
-                                class="py-3 px-3 text-center text-on-surface-variant"
-                              >
-                                2
-                              </td>
-                              <td
-                                class="py-3 px-3 text-center text-on-surface-variant"
-                              >
-                                0
+                                1
                               </td>
                             </tr>
                           </tbody>
@@ -7774,7 +7832,7 @@
                           <div class="col-span-2">
                             <span
                               class="font-data-tabular text-data-tabular text-on-surface"
-                              >UNFIT</span
+                              >FIT</span
                             >
                           </div>
                         </div>

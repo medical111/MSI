@@ -824,12 +824,12 @@
               class="flex flex-col p-6 space-y-6"
             >
               <!-- Excuses -->
-              <div
+              <!-- <div
                 id="excuses-section"
                 class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
               >
                 <div>
-                  <div class="py-2 border-b border-outline-variant rounded-t">
+                  <div class="pb-2 border-b border-outline-variant rounded-t">
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
@@ -853,17 +853,17 @@
                             Type
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                           >
                             IRB Eligibility
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                           >
                             Permanent
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                           >
                             Duration
                           </th>
@@ -887,18 +887,18 @@
                     </table>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- MCS -->
               <div
-                id="diagnosis-mcs-section"
+                id="proposed-mcs-section"
                 class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm space-y-6"
               >
                 <div>
-                  <div class="py-2 border-b border-outline-variant rounded-t">
+                  <div class="pb-2 border-b border-outline-variant rounded-t">
                     <h3
                       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                     >
-                      Diagnosis of MCS
+                      Proposed MCS
                     </h3>
                   </div>
                   <div class="overflow-x-auto">
@@ -910,62 +910,22 @@
                           <th
                             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
                           >
-                            Diagnosis
+                            Problem
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                           >
-                            CR
+                            Domain
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                           >
-                            N
+                            Score
                           </th>
                           <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                           >
-                            P
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            A
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            U
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            L
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            H
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            V
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            C
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                          >
-                            S
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
-                          >
-                            Add for Grading
+                            Problem Summary
                           </th>
                         </tr>
                       </thead>
@@ -976,7 +936,7 @@
                           class="col-hover:bg-surface-container-hover/50 transition-colors"
                         >
                           <td
-                            colspan="12"
+                            colspan="4"
                             class="py-3.5 px-4 font-medium whitespace-nowrap"
                           >
                             No records found. Fetch to get diagnosis and
@@ -1415,9 +1375,9 @@
         const fetchDataIcon = document.getElementById("fetchDataIcon");
         const fetchDataBtnText = document.getElementById("fetchDataBtnText");
 
-        const excusesSection = document.getElementById("excuses-section");
+        //const excusesSection = document.getElementById("excuses-section");
         const diagnosisMCSSection = document.getElementById(
-          "diagnosis-mcs-section",
+          "proposed-mcs-section",
         );
 
         const submitBtn = document.getElementById("submitBtn");
@@ -1426,31 +1386,46 @@
           return new Promise((resolve) => {
             setTimeout(() => {
               resolve({
-                mcs_backpain_board_date: "01 Jan 2025",
-                mcs_backpain_CR: 1,
-                mcs_backpain_N: 1,
-                mcs_backpain_P: 4,
-                mcs_backpain_A: 1,
-                mcs_backpain_U: 1,
-                mcs_backpain_L: 3,
-                mcs_backpain_H: 1,
-                mcs_backpain_V: 1,
-                mcs_backpain_C: 1,
-                mcs_backpain_S: 1,
-                mcs_backpain_suggested_disposition: "FIT",
+                mcs_backpain_CR: "-",
+                mcs_backpain_N: "-",
+                mcs_backpain_P: "-",
+                mcs_backpain_A: "-",
+                mcs_backpain_U: "-",
+                mcs_backpain_L: "4",
+                mcs_backpain_H: "-",
+                mcs_backpain_V: "-",
+                mcs_backpain_C: "-",
+                mcs_backpain_S: "-",
+                mcs_backpain_domain: "L",
+                mcs_backpain_score: "4",
+                mcs_backpain_summary:
+                  "[12/05/2026] Heavy lifting caused severe L4-L5 lumbar pain. MRI showed a 4.5mm extrusion with nerve impingement. Dr. John Chua recommended microdiscectomy. Reason: Objective imaging matches persistent 4/5 motor weakness, resulting in L = 4.",
 
-                mcs_asthma_board_date: "01 Jan 2025",
-                mcs_asthma_CR: 0,
-                mcs_asthma_N: 1,
-                mcs_asthma_P: 1,
-                mcs_asthma_A: 1,
-                mcs_asthma_U: 1,
-                mcs_asthma_L: 1,
-                mcs_asthma_H: 1,
-                mcs_asthma_V: 1,
-                mcs_asthma_C: 2,
-                mcs_asthma_S: 1,
-                mcs_asthma_suggested_disposition: "D[0]",
+                mcs_asthma_CR: "0",
+                mcs_asthma_N: "-",
+                mcs_asthma_P: "-",
+                mcs_asthma_A: "-",
+                mcs_asthma_U: "-",
+                mcs_asthma_L: "-",
+                mcs_asthma_H: "-",
+                mcs_asthma_V: "-",
+                mcs_asthma_C: "-",
+                mcs_asthma_S: "-",
+                mcs_asthma_domain: "CR",
+                mcs_asthma_score: "0",
+                mcs_asthma_summary:
+                  "[12/05/2026] Acute bronchospasm. SpO2 92%, Peak Flow 50% predicted. Pulmonologist confirmed severe refractoriness to outpatient albuterol. Reason: High risk of respiratory fatigue requires urgent inpatient nebulizers and systemic steroids, resulting CR = 0",
+
+                mcs_depression_CR: "-",
+                mcs_depression_N: "-",
+                mcs_depression_P: "-",
+                mcs_depression_A: "-",
+                mcs_depression_U: "-",
+                mcs_depression_L: "-",
+                mcs_depression_H: "-",
+                mcs_depression_V: "-",
+                mcs_depression_C: "-",
+                mcs_depression_S: "5",
 
                 excuses_hearing_category: "Hearing (MCC)",
                 excuses_hearing_type: "Loud Noise Environment & Location",
@@ -1481,85 +1456,85 @@
         }
 
         function renderSkeletons() {
-          excusesSection.innerHTML = `
-          <div>
-            <div
-              class="py-2 border-b border-outline-variant rounded-t"
-            >
-              <h3
-                class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-              >
-                Proposed Excuses from MCS Grading
-              </h3>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-collapse min-w-max">
-                <thead>
-                  <tr
-                    class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                  >
-                    <th
-                      class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                    >
-                      Category
-                    </th>
-                    <th
-                      class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                    >
-                      Type
-                    </th>
-                    <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                    >
-                      IRB Eligibility
-                    </th>
-                    <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                    >
-                      Permanent
-                    </th>
-                    <th
-                      class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                    >
-                      Duration
-                    </th>
-                  </tr>
-                </thead>
-                <tbody
-                  class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                >
-                  <tr
-                    class="col-hover:bg-surface-container-hover/50 transition-colors"
-                  >
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                    <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                      <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          `;
+          // excusesSection.innerHTML = `
+          // <div>
+          //   <div
+          //     class="pb-2 border-b border-outline-variant rounded-t"
+          //   >
+          //     <h3
+          //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+          //     >
+          //       Proposed Excuses from MCS Grading
+          //     </h3>
+          //   </div>
+          //   <div class="overflow-x-auto">
+          //     <table class="w-full text-left border-collapse min-w-max">
+          //       <thead>
+          //         <tr
+          //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+          //         >
+          //           <th
+          //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+          //           >
+          //             Category
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+          //           >
+          //             Type
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >
+          //             IRB Eligibility
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >
+          //             Permanent
+          //           </th>
+          //           <th
+          //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+          //           >
+          //             Duration
+          //           </th>
+          //         </tr>
+          //       </thead>
+          //       <tbody
+          //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+          //       >
+          //         <tr
+          //           class="col-hover:bg-surface-container-hover/50 transition-colors"
+          //         >
+          //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+          //             <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+          //             <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+          //             <div class="h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+          //             <div class="h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+          //             <div class="h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+          //           </td>
+          //         </tr>
+          //       </tbody>
+          //     </table>
+          //   </div>
+          // </div>
+          // `;
 
           diagnosisMCSSection.innerHTML = `
             <div>
-              <div class="py-2 border-b border-outline-variant rounded-t">
+              <div class="pb-2 border-b border-outline-variant rounded-t">
                 <h3
                   class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                 >
-                  Diagnosis of MCS
+                  Proposed MCS
                 </h3>
               </div>
               <div class="overflow-x-auto">
@@ -1571,130 +1546,43 @@
                       <th
                         class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
                       >
-                        Diagnosis
+                        Problem
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        CR
+                        Domain
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        N
+                        Score
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        P
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        A
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        U
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        L
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        H
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        V
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        C
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        S
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
-                      >
-                        Add for Grading
+                        Problem Summary
                       </th>
                     </tr>
                   </thead>
                   <tbody
-                    id="diagnosis-mcs-section"
                     class="divide-y divide-outline-variant/30 text-sm text-on-surface"
                   >
                     <tr
                       class="hover:bg-surface-container-hover/50 transition-colors"
                     >
                       <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                        <div class="h-10 w-20 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+                        <div class="h-10 w-28 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                       </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                        <div class="h-10 w-28 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                       </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                        <div class="h-10 w-28 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
                       </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-10 w-10 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <div class="mx-auto h-[16px] w-[16px] rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
-                      </td>
+                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                        <div class="h-10 w-28 rounded-lg bg-[linear-gradient(90deg,#e2e8f0_25%,#f1f5f9_50%,#e2e8f0_75%)] bg-[length:200%_100%] animate-[shimmer_1.5s_infinite_ease-in-out]"></div>
+                      </td>                      
                     </tr>
                   </tbody>
                 </table>
@@ -1719,104 +1607,104 @@
           try {
             const data = await fetchData();
 
-            excusesSection.innerHTML = `
-            <div>
-              <div
-                class="py-2 border-b border-outline-variant rounded-t"
-              >
-                <h3
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  Proposed Excuses from MCS Grading
-                </h3>
-              </div>
-              <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-max">
-                  <thead>
-                    <tr
-                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                    >
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Category
-                      </th>
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Type
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        IRB Eligibility
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        Permanent
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        Duration
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                  >
-                    <tr
-                      class="col-hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                        ${data.excuses_firearms_category}
-                      </td>
-                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                        ${data.excuses_firearms_type}
-                      </td>
-                      <td class="py-3.5 px-3 text-center text-on-surface-variant">
-                        ${data.excuses_firearms_irb}
-                      </td>
-                      <td class="py-3.5 px-3 text-center text-on-surface-variant">
-                        ${data.excuses_firearms_perm}
-                      </td>
-                      <td class="py-3.5 px-3 text-center text-on-surface-variant">
-                        ${data.excuses_firearms_duration}
-                      </td>
-                    </tr>
-                    <tr
-                      class="col-hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                        ${data.excuses_ippt_category}
-                      </td>
-                      <td class="py-3.5 px-4 font-medium whitespace-nowrap">
-                        ${data.excuses_ippt_type}
-                      </td>
-                      <td class="py-3.5 px-3 text-center text-on-surface-variant">
-                        ${data.excuses_ippt_irb}
-                      </td>
-                      <td class="py-3.5 px-3 text-center text-on-surface-variant">
-                        ${data.excuses_ippt_perm}
-                      </td>
-                      <td class="py-3.5 px-3 text-center text-on-surface-variant">
-                        ${data.excuses_ippt_duration}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            `;
+            // excusesSection.innerHTML = `
+            // <div>
+            //   <div
+            //     class="pb-2 border-b border-outline-variant rounded-t"
+            //   >
+            //     <h3
+            //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //     >
+            //       Proposed Excuses from MCS Grading
+            //     </h3>
+            //   </div>
+            //   <div class="overflow-x-auto">
+            //     <table class="w-full text-left border-collapse min-w-max">
+            //       <thead>
+            //         <tr
+            //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+            //         >
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Category
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Type
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             IRB Eligibility
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Permanent
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Duration
+            //           </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody
+            //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+            //       >
+            //         <tr
+            //           class="col-hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+            //             ${data.excuses_firearms_category}
+            //           </td>
+            //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+            //             ${data.excuses_firearms_type}
+            //           </td>
+            //           <td class="py-3.5 px-4 text-on-surface-variant">
+            //             ${data.excuses_firearms_irb}
+            //           </td>
+            //           <td class="py-3.5 px-4 text-on-surface-variant">
+            //             ${data.excuses_firearms_perm}
+            //           </td>
+            //           <td class="py-3.5 px-4 text-on-surface-variant">
+            //             ${data.excuses_firearms_duration}
+            //           </td>
+            //         </tr>
+            //         <tr
+            //           class="col-hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+            //             ${data.excuses_ippt_category}
+            //           </td>
+            //           <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+            //             ${data.excuses_ippt_type}
+            //           </td>
+            //           <td class="py-3.5 px-4 text-on-surface-variant">
+            //             ${data.excuses_ippt_irb}
+            //           </td>
+            //           <td class="py-3.5 px-4 text-on-surface-variant">
+            //             ${data.excuses_ippt_perm}
+            //           </td>
+            //           <td class="py-3.5 px-4 text-on-surface-variant">
+            //             ${data.excuses_ippt_duration}
+            //           </td>
+            //         </tr>
+            //       </tbody>
+            //     </table>
+            //   </div>
+            // </div>
+            // `;
 
             diagnosisMCSSection.innerHTML = `
             <div>
-              <div class="py-2 border-b border-outline-variant rounded-t">
+              <div class="pb-2 border-b border-outline-variant rounded-t">
                 <h3
                   class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                 >
-                  Diagnosis of MCS
+                  Proposed MCS
                 </h3>
               </div>
               <div class="overflow-x-auto">
@@ -1828,62 +1716,22 @@
                       <th
                         class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
                       >
-                        Diagnosis
+                        Problem
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        CR
+                        Domain
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        N
+                        Score
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        P
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        A
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        U
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        L
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        H
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        V
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        C
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        S
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
-                      >
-                        Add for Grading
+                        Problem Summary
                       </th>
                     </tr>
                   </thead>
@@ -1898,143 +1746,31 @@
                         Back Pain
                       </td>
                       <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                        class="py-3.5 px-4 text-on-surface-variant"
                       >
                         <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
+                          class="score-input mcs-input h-10 w-12 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                          type="text"
                           oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_CR}
+                          value=${data.mcs_backpain_domain}
                           disabled
                         />
                       </td>
                       <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                        class="py-3.5 px-4 text-on-surface-variant"
                       >
                         <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
+                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                          type="text"
                           oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_N}
+                          value=${data.mcs_backpain_score}
                           disabled
                         />
                       </td>
                       <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                        class="py-3.5 px-4 text-on-surface-variant max-w-sm"
                       >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_P}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_A}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_U}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_L}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_H}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_V}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_C}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_backpain_S}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="mcs-row-checkbox rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          style="accent-color: #003d9b"
-                          type="checkbox"
-                        />
+                        <p>${data.mcs_backpain_summary}</p>
                       </td>
                     </tr>
                     <tr
@@ -2044,143 +1780,31 @@
                         Acute Asthma
                       </td>
                       <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                        class="py-3.5 px-4 text-on-surface-variant"
                       >
                         <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
+                          class="score-input mcs-input h-10 w-12 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                          type="text"
                           oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_CR}
+                          value=${data.mcs_asthma_domain}
                           disabled
                         />
                       </td>
                       <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                        class="py-3.5 px-4 text-on-surface-variant"
                       >
                         <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
+                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                          type="text"
                           oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_N}
+                          value=${data.mcs_asthma_score}
                           disabled
                         />
                       </td>
                       <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
+                        class="py-3.5 px-4 text-on-surface-variant max-w-sm"
                       >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_P}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_A}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_U}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_L}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_H}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_V}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_C}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          type="number"
-                          min="0"
-                          max="10"
-                          oninput="handleMCSInput(this)"
-                          value=${data.mcs_asthma_S}
-                          disabled
-                        />
-                      </td>
-                      <td
-                        class="py-3.5 px-3 text-center text-on-surface-variant"
-                      >
-                        <input
-                          class="mcs-row-checkbox rounded-lg border border-slate-300 text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          style="accent-color: #003d9b"
-                          type="checkbox"
-                        />
+                        <p>${data.mcs_asthma_summary}</p>
                       </td>
                     </tr>
                   </tbody>
@@ -2199,178 +1823,622 @@
                 class="flex flex-col bg-surface-container-low border border-outline-variant rounded-lg shadow-sm p-4 gap-6"
               >
                 <div class="space-y-2 relative">
-                  <label
-                    class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
-                    ><span class="text-error"
-                      ><font color="#475569">MCS Score </font>*</span
-                    ></label
-                  >
-                  <div class="grid gap-6">
-                    <div class="space-y-2">
-                      <div class="flex flex-wrap gap-4" id="mcs-inputs">
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >CR</span
+                  <div class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm">
+                    <label
+                      class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm pb-2"
+                    >
+                      Overview of MCS Score
+                    </label>
+                    <div class="overflow-x-auto">
+                      <table id="mcs-table" class="w-full text-left border-collapse min-w-max">
+                        <thead>
+                          <tr
+                            class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
                           >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
+                            <th
+                              class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                            >
+                              Newly Proposed Problem
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              CR
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              N
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              P
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              A
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              U
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              L
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              H
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              V
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              C
+                            </th>
+                            <th
+                              class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                            >
+                              S
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          id="recommended-mcs-grading-section"
+                          class="divide-y divide-outline-variant/30 text-sm text-on-surface"
                         >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >N</span
+                          <tr
+                            class="hover:bg-surface-container-hover/50 transition-colors"
                           >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
+                            <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                              Back Pain
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_CR}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_N}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_P}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_A}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_U}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_L}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_H}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_V}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_C}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_backpain_S}
+                                disabled
+                              />
+                            </td>
+                          </tr>
+                          <tr
+                            class="hover:bg-surface-container-hover/50 transition-colors"
+                          >
+                            <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                              Acute Asthma
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_CR}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_N}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_P}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_A}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_U}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_L}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_H}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_V}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_C}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_asthma_S}
+                                disabled
+                              />
+                            </td>
+                          </tr>
+                          <tr
+                            class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                          >
+                            <th
+                              class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+                              colspan="11"
+                            >
+                              Past Approved Problem
+                            </th>
+                          </tr>
+                          <tr
+                            class="hover:bg-surface-container-hover/50 transition-colors"
+                          >
+                            <td class="py-3.5 px-4 font-medium whitespace-nowrap">
+                              Depression
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_CR}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_N}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_P}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_A}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_U}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_L}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_H}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_V}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_C}
+                                disabled
+                              />
+                            </td>
+                            <td
+                              class="py-3.5 px-4 text-on-surface-variant"
+                            >
+                              <input
+                                class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none p-0"
+                                type="text"
+                                oninput="handleMCSInput(this)"
+                                value=${data.mcs_depression_S}
+                                disabled
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div>
+                      <label
+                        class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm pb-2 pt-6"
+                      >
+                        Final MCS Score
+                      </label>
+                      <div id="mcs-inputs">
+                        <table
+                          class="w-full text-left border-collapse min-w-max"
                         >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >P</span
+                          <thead>
+                            <tr
+                              class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                            >
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                CR
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                N
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                P
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                A
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                U
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                L
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                H
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                V
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                C
+                              </th>
+                              <th
+                                class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                              >
+                                S
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="divide-y divide-outline-variant/30 text-sm text-on-surface"
                           >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >A</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >U</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >L</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >H</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >V</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >C</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
-                        <div
-                          class="flex flex-col items-center w-8 space-y-2"
-                        >
-                          <span
-                            class="text-xs text-outline font-label-caps text-slate-600"
-                            >S</span
-                          >
-                          <input
-                            class="score-input mcs-input h-10 w-10 rounded-lg border-none text-center text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent"
-                            type="number"
-                            min="0"
-                            max="10"
-                            oninput="handleMCSInput(this)"
-                            disabled
-                          />
-                        </div>
+                            <tr
+                              class="hover:bg-surface-container-hover/50 transition-colors"
+                            >
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                              <td
+                                class="py-3 px-4 text-on-surface-variant text-center"
+                              >
+                                <input
+                                  class="score-input mcs-input h-10 w-10 rounded-lg border-none text-body-md [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none bg-transparent p-0 text-center"
+                                  type="text"
+                                  oninput="handleMCSInput(this)"
+                                  disabled
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
+                  
                 </div>
                 <div class="flex flex-col space-y-2 relative">
                   <div class="grid grid-cols-2 gap-6">
@@ -2555,55 +2623,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="bg-white p-5 rounded-xl border border-outline-variant/60 shadow-sm">
-                  <div
-                    class="py-2 border-b border-outline-variant rounded-t"
-                  >
-                    <h3
-                      class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                    >
-                      Compatible Excuses Based on MCS Score
-                    </h3>
-                  </div>
-                  <div class="overflow-x-auto">
-                    <table
-                      class="w-full text-left border-collapse min-w-max"
-                    >
-                      <thead>
-                        <tr
-                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                        >
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >
-                            Excuse
-                          </th>
-                          <th
-                            class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
-                          >
-                            Reasons
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                      >
-                        <tr
-                          class="col-hover:bg-surface-container-hover/50 transition-colors"
-                        >
-                          <td class="py-3.5 px-3 text-on-surface-variant">
-                            High Intensity Activities  
-                          </td>
-                          <td
-                            class="py-3.5 px-4 text-on-surface-variant whitespace-nowrap"
-                          >
-                            Recommend to issue 'High Intensity Activities' excuse as P Domain Score for Back Pain is 4.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
                 <div class="gap-6">
                   <div class="flex flex-col space-y-2">
                     <label
@@ -2625,11 +2644,15 @@
                       class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
                     >
                       MCG Reference(s)
+                      <span
+                        class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                        >Suggested</span
+                      >
                     </label>
                     <textarea
                       class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md resize-none bg-white"
                       rows="2"
-                    ></textarea>
+                    >Due to the high-risk synergy of their acute asthma and recurrent low back pain, they are medically unfit for front-line combat and must be restricted to combat service support roles.</textarea>
                   </div>
                 </div>
                 <div class="gap-6">
@@ -2638,9 +2661,14 @@
                       class="block font-label-caps text-slate-600 uppercase tracking-widest text-body-sm"
                     >
                       Page(s)
+                      <span
+                        class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                        >Suggested</span
+                      >
                     </label>
                     <input
                       class="w-1/2 border border-outline-variant rounded-lg px-2 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md bg-white"
+                      value="123"
                     />
                   </div>
                 </div>
@@ -2759,77 +2787,77 @@
             calculateMCSMax();
             handleTempDispostion();
           } catch (error) {
-            excusesSection.innerHTML = `
-            <div>
-              <div
-                class="py-2 border-b border-outline-variant rounded-t"
-              >
-                <h3
-                  class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
-                >
-                  Proposed Excuses from MCS Grading
-                </h3>
-              </div>
-              <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-max">
-                  <thead>
-                    <tr
-                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
-                    >
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Category
-                      </th>
-                      <th
-                        class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
-                      >
-                        Type
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        IRB Eligibility
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        Permanent
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        Duration
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
-                  >
-                    <tr
-                      class="col-hover:bg-surface-container-hover/50 transition-colors"
-                    >
-                      <td
-                        colspan="5"
-                        class="py-3.5 px-4 font-medium whitespace-nowrap"
-                      >
-                        No records found. Fetch to get excuses and
-                        recommend an outcome.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            `;
+            // excusesSection.innerHTML = `
+            // <div>
+            //   <div
+            //     class="pb-2 border-b border-outline-variant rounded-t"
+            //   >
+            //     <h3
+            //       class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+            //     >
+            //       Proposed Excuses from MCS Grading
+            //     </h3>
+            //   </div>
+            //   <div class="overflow-x-auto">
+            //     <table class="w-full text-left border-collapse min-w-max">
+            //       <thead>
+            //         <tr
+            //           class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+            //         >
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Category
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
+            //           >
+            //             Type
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             IRB Eligibility
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Permanent
+            //           </th>
+            //           <th
+            //             class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+            //           >
+            //             Duration
+            //           </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody
+            //         class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+            //       >
+            //         <tr
+            //           class="col-hover:bg-surface-container-hover/50 transition-colors"
+            //         >
+            //           <td
+            //             colspan="5"
+            //             class="py-3.5 px-4 font-medium whitespace-nowrap"
+            //           >
+            //             No records found. Fetch to get excuses and
+            //             recommend an outcome.
+            //           </td>
+            //         </tr>
+            //       </tbody>
+            //     </table>
+            //   </div>
+            // </div>
+            // `;
 
             diagnosisMCSSection.innerHTML = `
             <div>
-              <div class="py-2 border-b border-outline-variant rounded-t">
+              <div class="pb-2 border-b border-outline-variant rounded-t">
                 <h3
                   class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
                 >
-                  Diagnosis of MCS
+                  Proposed MCS
                 </h3>
               </div>
               <div class="overflow-x-auto">
@@ -2841,62 +2869,22 @@
                       <th
                         class="py-3 px-4 uppercase tracking-wider whitespace-nowrap"
                       >
-                        Diagnosis
+                        Problem
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        CR
+                        Domain
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        N
+                        Score
                       </th>
                       <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
                       >
-                        P
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        A
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        U
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        L
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        H
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        V
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        C
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
-                      >
-                        S
-                      </th>
-                      <th
-                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center whitespace-nowrap w-px"
-                      >
-                        Add for Grading
+                        Problem Summary
                       </th>
                     </tr>
                   </thead>
@@ -2907,7 +2895,7 @@
                       class="col-hover:bg-surface-container-hover/50 transition-colors"
                     >
                       <td
-                        colspan="12"
+                        colspan="4"
                         class="py-3.5 px-4 font-medium whitespace-nowrap"
                       >
                         No records found. Fetch to get diagnosis and recommend
@@ -2929,32 +2917,34 @@
 
       //MCS Calculation
       function calculateMCSMax() {
-        const tbody = document.getElementById("diagnosis-mcs-records-section");
+        const tbody = document.getElementById(
+          "recommended-mcs-grading-section",
+        );
         if (!tbody) return;
 
         const rows = tbody.querySelectorAll("tr");
         const mcsCount = 10;
         let maxMCS = new Array(mcsCount).fill(null);
-        let hasZero = new Array(mcsCount).fill(false);
-        let hasCheckedRow = false;
+        let hasDash = new Array(mcsCount).fill(false);
 
         rows.forEach((row) => {
-          const checkbox = row.querySelector(".mcs-row-checkbox");
-          if (checkbox && checkbox.checked) {
-            hasCheckedRow = true;
-            const cells = row.querySelectorAll("td");
+          const cells = row.querySelectorAll("td");
 
-            // Process MCS scores (Columns 1 to 10)
-            for (let i = 0; i < mcsCount; i++) {
-              const input = cells[i + 1]
-                ? cells[i + 1].querySelector("input")
-                : null;
-              if (input && input.value.trim() !== "") {
-                const val = parseFloat(input.value);
+          // Process MCS scores (Columns 1 to 10)
+          for (let i = 0; i < mcsCount; i++) {
+            const input = cells[i + 1]
+              ? cells[i + 1].querySelector("input")
+              : null;
+
+            if (input) {
+              const rawVal = input.value.trim();
+
+              if (rawVal === "-") {
+                hasDash[i] = true;
+              } else if (rawVal !== "") {
+                const val = parseFloat(rawVal);
                 if (!isNaN(val)) {
-                  if (val === 0) {
-                    hasZero[i] = true;
-                  } else if (maxMCS[i] === null || val > maxMCS[i]) {
+                  if (maxMCS[i] === null || val > maxMCS[i]) {
                     maxMCS[i] = val;
                   }
                 }
@@ -2968,11 +2958,16 @@
         if (mcsContainer) {
           const outputInputs = mcsContainer.querySelectorAll("input");
           outputInputs.forEach((input, i) => {
-            if (hasZero[i]) {
-              input.value = 0;
-            } else if (i < mcsCount) {
-              input.value =
-                hasCheckedRow && maxMCS[i] !== null ? maxMCS[i] : "";
+            if (i < mcsCount) {
+              if (maxMCS[i] !== null) {
+                // If numbers exist, show the maximum number
+                input.value = maxMCS[i];
+              } else if (hasDash[i]) {
+                // If no numbers exist but a '-' was checked, show '1'
+                input.value = "1";
+              } else {
+                input.value = "";
+              }
             }
           });
         }
