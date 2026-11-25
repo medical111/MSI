@@ -1,0 +1,2238 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MSI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c3c6d6",
+              "on-tertiary-container": "#ffc6b9",
+              "surface-dim": "#cadaff",
+              secondary: "#006c47",
+              "on-tertiary-fixed": "#3d0600",
+              "primary-fixed": "#dae2ff",
+              "on-secondary-container": "#00714b",
+              background: "#f9f9ff",
+              tertiary: "#851800",
+              "primary-fixed-dim": "#b2c5ff",
+              "surface-container": "#e8edff",
+              "on-secondary-fixed": "#002113",
+              "on-background": "#041b3c",
+              "tertiary-fixed": "#ffdad2",
+              outline: "#737685",
+              "inverse-surface": "#1d3052",
+              "tertiary-container": "#b02300",
+              "secondary-fixed-dim": "#71dba6",
+              error: "#ba1a1a",
+              surface: "#f9f9ff",
+              "on-primary-fixed": "#001848",
+              "tertiary-fixed-dim": "#ffb4a3",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#edf0ff",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#c4d2ff",
+              "on-surface": "#041b3c",
+              "on-tertiary-fixed-variant": "#8b1a00",
+              "secondary-fixed": "#8df7c1",
+              "surface-bright": "#f9f9ff",
+              "inverse-primary": "#b2c5ff",
+              primary: "#003d9b",
+              "surface-tint": "#0c56d0",
+              "on-primary": "#ffffff",
+              "surface-variant": "#d7e2ff",
+              "surface-container-highest": "#d7e2ff",
+              "surface-container-high": "#e0e8ff",
+              "primary-container": "#2a56b4",
+              "on-primary-fixed-variant": "#0040a2",
+              "secondary-container": "#8af5be",
+              "surface-container-low": "#f1f3ff",
+              "on-surface-variant": "#434654",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#005235",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "stack-gap-md": "8px",
+              "stack-gap-sm": "4px",
+              "stack-gap-lg": "16px",
+              "container-padding": "24px",
+              "grid-gutter": "16px",
+              baseline: "4px",
+            },
+            fontFamily: {
+              "headline-section": ["Inter"],
+              "body-md": ["Inter"],
+              "status-badge": ["Inter"],
+              "data-tabular": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-context": ["Inter"],
+              "body-sm": ["Inter"],
+            },
+            fontSize: {
+              "headline-section": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "status-badge": [
+                "12px",
+                { lineHeight: "16px", fontWeight: "600" },
+              ],
+              "data-tabular": [
+                "13px",
+                { lineHeight: "20px", fontWeight: "500" },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-context": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      /* .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      } */
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
+
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface antialiased h-screen overflow-hidden"
+  >
+    <!-- Mobile view -->
+    <div
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-slate-900 p-8 bg-surface-container-lowest border border-outline-variant rounded-xl"
+      >
+        <div
+          class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"
+            />
+          </svg>
+        </div>
+
+        <h1 class="text-xl font-bold">Larger Screen Required</h1>
+        <p class="mt-2 text-sm text-slate-400">
+          This application requires a larger screen resolution to function
+          properly. Please open this link on a desktop or laptop.
+        </p>
+      </div>
+    </div>
+    <!-- SideNavBar -->
+    <aside
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider hidden lg:flex"
+      id="sidebar"
+    >
+      <div class="px-6 mb-8 logo-container flex items-center">
+        <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper"
+          >
+            <img
+              alt="MSI Logo"
+              class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+            />
+          </div>
+          <button
+            class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2"
+            id="toggle-sidebar"
+            title="Toggle Sidebar"
+          >
+            <span
+              class="material-symbols-outlined text-[24px] transition-transform duration-300"
+              >chevron_left</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] shrink-0"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="nav-text whitespace-nowrap">MSI Profile</span>
+        </a>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="ffi-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
+              href="create-new-ffi-outcome.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
+            >
+            <a
+              id="nav-ffi-ha"
+              href="approve-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >APPROVE WAIVER</a
+            >
+            <a
+              id="nav-ffi-mo-acknowledgement"
+              href="medical-officer-acknowledgement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MEDICAL OFFICER ACKNOWLEDGEMENT</a
+            >
+            <a
+              id="nav-ffi-validity"
+              href="maintain-validity.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >MAINTAIN VALIDITY</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMCC()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >fact_check</span
+              >
+              <span class="nav-text whitespace-nowrap">MCC</span>
+            </div>
+            <span
+              id="mcc-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="mcc-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-mcc-mcs-grading"
+              href="mcc-create-new-mcs-grading.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create MCS Grading</a
+            >
+            <a
+              id="nav-mcc-initial-endorser"
+              href="mcc-initial-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Initial Endorser</a
+            >
+            <a
+              id="nav-mcc-final-endorser"
+              href="mcc-final-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Final Endorser</a
+            >
+            <a
+              id="nav-mcc-comcc-endorsement"
+              href="mcc-comcc-endorsement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CO MCC Endorsement</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMedboard()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >clinical_notes</span
+              >
+              <span class="nav-text whitespace-nowrap">Medical Board</span>
+            </div>
+            <span
+              id="medboard-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="medboard-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-routine-board"
+              href="medical-board.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create SOC</a
+            >
+            <a
+              id="nav-routine-board-note"
+              href="medical-board-note.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Medical Board Review</a
+            >
+          </div>
+        </div>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >analytics</span
+          >
+          <span class="nav-text whitespace-nowrap">ACE</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >monitor_heart</span
+          >
+          <span class="nav-text whitespace-nowrap">PEMS</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >description</span
+          >
+          <span class="nav-text whitespace-nowrap">NUMC</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200"
+          href="patient-list-overview.html"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >list</span
+          >
+          <span class="nav-text whitespace-nowrap">Patient List</span>
+        </a>
+      </div>
+      <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >settings</span
+          >
+          <span class="nav-text whitespace-nowrap">Settings</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >logout</span
+          >
+          <span class="nav-text whitespace-nowrap">Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
+      <!-- TopNavBar -->
+      <header
+        class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
+        id="top-header"
+      >
+        <div class="flex items-center gap-2 flex-1">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
+            <div
+              aria-hidden="true"
+              class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
+            ></div>
+            NGEMR
+          </div>
+          <div>
+            <div
+              class="flex items-end gap-2 bg-surface-container-low px-3 py-1 rounded-lg h-[32px]"
+            >
+              <span
+                class="text-on-surface font-bold text-[24px] leading-none tracking-tight"
+                >Tan Ah Teck</span
+              >
+              <span
+                class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-1"
+                >S1234567A</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
+          </button>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]">help</span>
+          </button>
+          <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+          <div class="flex flex-col items-center gap-1">
+            <span
+              class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none"
+              >DR ryan goh</span
+            >
+          </div>
+        </div>
+      </header>
+      <!-- Canvas -->
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                      Tan Ah Teck
+                    </h2> -->
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >NRIC</span
+                  >
+                  <div class="font-bold text-sm">S1234567A</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION</span
+                  >
+                  <div class="font-bold text-sm">Medically Fit for Service</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
+                  >
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
+                        Service Record 3
+                      </option> -->
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section
+            class="bg-surface border border-outline-variant rounded-lg flex flex-col shadow-sm p-5"
+          >
+            <div class="items-center relative inline-block w-full mb-2">
+              <div
+                style="
+                  border-bottom: 1px solid var(--gray-200);
+                  display: flex;
+                  gap: 0;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <div class="flex">
+                  <div
+                    id="patient-list-tab-my-list"
+                    onclick="switchRadioTab('my-list')"
+                    style="
+                      padding: 14px 20px;
+                      font-size: 13.5px;
+                      font-weight: 600;
+                      color: #1e4fc4;
+                      border-bottom: 2px solid #1e4fc4;
+                      cursor: pointer;
+                    "
+                  >
+                    My List
+                  </div>
+                  <div
+                    id="patient-list-tab-all-list"
+                    onclick="switchRadioTab('all-list')"
+                    style="
+                      padding: 14px 20px;
+                      font-size: 13.5px;
+                      font-weight: 500;
+                      color: #64748b;
+                      border-bottom: 2px solid transparent;
+                      cursor: pointer;
+                    "
+                  >
+                    All List
+                  </div>
+                </div>
+                <div class="flex flex-row items-center gap-4">
+                  <div class="relative">
+                    <svg
+                      class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 select-none pointer-events-none"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input
+                      type="text"
+                      id="nominal-roll-search"
+                      placeholder="Search by ID or Form Name"
+                      class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl bg-white text-gray-800 placeholder-gray-400 text-[14px] outline-none focus:ring-2 focus:ring-[#1a3a8f]/20 focus:border-[#1a3a8f] transition-all duration-150 shadow-sm"
+                    />
+                  </div>
+                  <div class="relative" id="my-list-filter-toggle-section">
+                    <button
+                      id="my-list-filter-toggle-btn"
+                      class="flex items-center gap-[5px] px-4 py-2.5 rounded-[7px] text-[13px] font-semibold cursor-pointer border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-150"
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <line x1="4" y1="6" x2="20" y2="6" />
+                        <line x1="8" y1="12" x2="16" y2="12" />
+                        <line x1="10" y1="18" x2="14" y2="18" />
+                      </svg>
+                      Filter
+                    </button>
+                    <div
+                      id="my-list-filter-panel"
+                      class="hidden absolute right-0 mt-2 top-full border border-outline-variant bg-[#f1f5f9] p-4 rounded-xl shadow-xl z-50 w-[340px] text-left"
+                    >
+                      <div
+                        class="grid grid-cols-1 gap-2 mb-4 px-2 pb-2 max-h-[300px] overflow-y-auto"
+                      >
+                        <div>
+                          <label
+                            for="filter-my-list-date-from"
+                            class="text-left text-[11.5px] font-semibold uppercase tracking-wider text-[var(--gray-400)]"
+                            >Valid Till Date</label
+                          >
+                          <div class="flex items-center gap-2">
+                            <div
+                              class="flex justify-between items-center w-full"
+                            >
+                              <input
+                                class="px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                id="filter-my-list-date-from"
+                                type="date"
+                                aria-label="my-list from date"
+                              />
+                              <span
+                                class="text-[14px] font-mono font-bold tracking-wider text-slate-400 shrink-0 w-8 text-center"
+                                >-</span
+                              >
+                              <input
+                                class="px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                id="filter-my-list-date-to"
+                                type="date"
+                                aria-label="my-list to date"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <label
+                            for="filter-my-list-status"
+                            class="text-left text-[11.5px] font-semibold uppercase tracking-wider text-[var(--gray-400)]"
+                            >Status</label
+                          >
+                          <select
+                            class="w-full px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                            id="filter-my-list-status"
+                          >
+                            <option value="">All</option>
+                            <option value="Transferred">Transferred</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Draft">Draft</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="flex justify-end gap-3">
+                        <button
+                          type="button"
+                          class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-slate-100 rounded transition-colors"
+                          id="my-list-reset-filters"
+                        >
+                          Reset
+                        </button>
+                        <button
+                          type="button"
+                          class="px-6 py-2 bg-primary text-white text-sm font-medium rounded hover:bg-primary-container transition-colors shadow-sm"
+                          id="my-list-apply-filters"
+                        >
+                          Apply Filters
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="relative hidden"
+                    id="all-list-filter-toggle-section"
+                  >
+                    <button
+                      id="all-list-filter-toggle-btn"
+                      class="flex items-center gap-[5px] px-4 py-2.5 rounded-[7px] text-[13px] font-semibold cursor-pointer border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-150 hidden"
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <line x1="4" y1="6" x2="20" y2="6" />
+                        <line x1="8" y1="12" x2="16" y2="12" />
+                        <line x1="10" y1="18" x2="14" y2="18" />
+                      </svg>
+                      Filter
+                    </button>
+                    <div
+                      id="all-list-filter-panel"
+                      class="hidden absolute right-0 mt-2 top-full border border-outline-variant bg-[#f1f5f9] p-4 rounded-xl shadow-xl z-50 w-[340px] text-left"
+                    >
+                      <div
+                        class="grid grid-cols-1 gap-2 mb-4 px-2 pb-2 max-h-[300px] overflow-y-auto"
+                      >
+                        <div>
+                          <label
+                            for="filter-all-list-date-from"
+                            class="text-left text-[11.5px] font-semibold uppercase tracking-wider text-[var(--gray-400)]"
+                            >Valid Till Date</label
+                          >
+                          <div class="flex items-center gap-2">
+                            <div
+                              class="flex justify-between items-center w-full"
+                            >
+                              <input
+                                class="px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                id="filter-all-list-date-from"
+                                type="date"
+                                aria-label="all-list from date"
+                              />
+                              <span
+                                class="text-[14px] font-mono font-bold tracking-wider text-slate-400 shrink-0 w-8 text-center"
+                                >-</span
+                              >
+                              <input
+                                class="px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                                id="filter-all-list-date-to"
+                                type="date"
+                                aria-label="all-list to date"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <label
+                            for="filter-all-list-status"
+                            class="text-left text-[11.5px] font-semibold uppercase tracking-wider text-[var(--gray-400)]"
+                            >Status</label
+                          >
+                          <select
+                            class="w-full px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                            id="filter-all-list-status"
+                          >
+                            <option value="">All</option>
+                            <option value="Transferred">Transferred</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Draft">Draft</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="flex justify-end gap-3">
+                        <button
+                          type="button"
+                          class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-slate-100 rounded transition-colors"
+                          id="all-list-reset-filters"
+                        >
+                          Reset
+                        </button>
+                        <button
+                          type="button"
+                          class="px-6 py-2 bg-primary text-white text-sm font-medium rounded hover:bg-primary-container transition-colors shadow-sm"
+                          id="all-list-apply-filters"
+                        >
+                          Apply Filters
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="patient-list-create-new-list.html">
+                    <button
+                      id="create-new-nominal-roll-btn"
+                      class="flex items-center gap-[5px] px-4 py-2.5 rounded-[7px] text-[13px] font-semibold cursor-pointer border border-[#1e4fc4] bg-[#1e4fc4] hover:bg-[#1e4fc4]/90 text-white transition-all duration-150"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        viewBox="0 0 24 24"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Create
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div id="my-list-results-table">
+              <div class="overflow-x-auto">
+                <table
+                  class="w-full text-left border-collapse min-w-max list-table"
+                >
+                  <thead>
+                    <tr
+                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                    >
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Form ID
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Form Name
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Assigned To
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Last Edited
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Valid Till
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                      >
+                        Status
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                      >
+                        Details
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="my-list-table-body"
+                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                  >
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR79235"
+                      data-form-name="XXX_10112026"
+                      data-assigned-to-name="Dr Ryan Goh"
+                      data-assigned-to-date="10 Nov 2026, 12:00 PM"
+                      data-last-edited-name="-"
+                      data-last-edited-date="-"
+                      data-validity="01 Jan 2027, 11:00 AM"
+                      data-status="Draft"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR79235
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_10112026
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          10 Nov 2026, 12:00 PM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">-</td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2027-01-01T11:00"
+                      >
+                        01 Jan 2027, 11:00 AM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-gray-200 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Draft</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR67890"
+                      data-form-name="XXX_09082026"
+                      data-assigned-to-name="Dr Ryan Goh"
+                      data-assigned-to-date="09 Aug 2026, 08:00 AM"
+                      data-last-edited-name="Dr John Chua"
+                      data-last-edited-date="10 Aug 2026, 11:28 AM"
+                      data-validity="08 Aug 2027, 10:00 AM"
+                      data-status="Transferred"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR67890
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_09082026
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          09 Aug 2026, 08:00 AM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr John Chua
+                        <div class="text-xs text-gray-400">
+                          10 Aug 2026, 11:28 AM
+                        </div>
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2027-08-08T10:00"
+                      >
+                        08 Aug 2027, 10:00 AM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Transferred</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR12345"
+                      data-form-name="XXX_06112025"
+                      data-assigned-to-name="Dr Ryan Goh"
+                      data-assigned-to-date="06 Nov 2025, 10:10 AM"
+                      data-last-edited-name="Dr Ryan Goh"
+                      data-last-edited-date="04 Dec 2025, 12:34 PM"
+                      data-validity="25 Dec 2025, 12:30 PM"
+                      data-status="Inactive"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR12345
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_06112025
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          06 Nov 2025, 10:10 AM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          04 Dec 2025, 12:34 PM
+                        </div>
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2025-12-25T12:30"
+                      >
+                        25 Dec 2025, 12:30 PM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-error-container text-error text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Inactive</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR05632"
+                      data-form-name="XXX_10102025"
+                      data-assigned-to-name="Dr Jason Chua"
+                      data-assigned-to-date="10 Oct 2025, 11:39 AM"
+                      data-last-edited-name="-"
+                      data-last-edited-date="-"
+                      data-validity="15 Oct 2025, 04:15 PM"
+                      data-status="Inactive"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR05632
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_10102025
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Jason Chua
+                        <div class="text-xs text-gray-400">
+                          10 Oct 2025, 11:39 AM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">-</td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2025-10-15T16:15"
+                      >
+                        15 Oct 2025, 04:15 PM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-error-container text-error text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Inactive</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="flex justify-between items-center pt-3 px-3 pb-1 text-gray-400 text-[12.5px]"
+              id="my-list-footer"
+            >
+              <span>Showing 1 to 4 of 4 entries</span>
+              <button
+                class="w-[30px] h-[30px] rounded-md text-[13px] cursor-pointer flex items-center justify-center bg-[#1e4fc4] text-white"
+              >
+                1
+              </button>
+            </div>
+            <div id="all-list-results-table" class="hidden">
+              <div class="overflow-x-auto">
+                <table
+                  class="w-full text-left border-collapse min-w-max list-table"
+                >
+                  <thead>
+                    <tr
+                      class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                    >
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Form ID
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Form Name
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Assigned To
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Last Edited
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase"
+                      >
+                        Valid Till
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                      >
+                        Status
+                      </th>
+                      <th
+                        class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-center"
+                      >
+                        Details
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="all-list-table-body"
+                    class="divide-y divide-outline-variant/30 text-sm text-on-surface"
+                  >
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR79235"
+                      data-form-name="XXX_10112026"
+                      data-assigned-to-name="Dr Ryan Goh"
+                      data-assigned-to-date="10 Nov 2026, 12:00 PM"
+                      data-last-edited-name="-"
+                      data-last-edited-date="-"
+                      data-validity="01 Jan 2027, 11:00 AM"
+                      data-status="Draft"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR79235
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_10112026
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          10 Nov 2026, 12:00 PM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">-</td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2027-01-01T11:00"
+                      >
+                        01 Jan 2027, 11:00 AM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-gray-200 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Draft</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR67890"
+                      data-form-name="XXX_09082026"
+                      data-assigned-to-name="Dr Ryan Goh"
+                      data-assigned-to-date="09 Aug 2026, 08:00 AM"
+                      data-last-edited-name="Dr John Chua"
+                      data-last-edited-date="10 Aug 2026, 11:28 AM"
+                      data-validity="08 Aug 2027, 10:00 AM"
+                      data-status="Transferred"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR67890
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_09082026
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          09 Aug 2026, 08:00 AM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr John Chua
+                        <div class="text-xs text-gray-400">
+                          10 Aug 2026, 11:28 AM
+                        </div>
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2027-08-08T10:00"
+                      >
+                        08 Aug 2027, 10:00 AM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Transferred</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR54321"
+                      data-form-name="XXX_10042026"
+                      data-assigned-to-name="Dr James Lim"
+                      data-assigned-to-date="10 Apr 2026, 02:15 PM"
+                      data-last-edited-name="Dr James Lim"
+                      data-last-edited-date="12 May 2026, 09:31 AM"
+                      data-validity="25 Sep 2026, 10:00 AM"
+                      data-status="Transferred"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR54321
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_10042026
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr James Lim
+                        <div class="text-xs text-gray-400">
+                          10 Apr 2026, 02:15 PM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr James Lim
+                        <div class="text-xs text-gray-400">
+                          12 May 2026, 09:31 AM
+                        </div>
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2026-09-25T10:00"
+                      >
+                        25 Sep 2026, 10:00 AM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Transferred</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR12459"
+                      data-form-name="XXX_23012026"
+                      data-assigned-to-name="Dr Jason Chua"
+                      data-assigned-to-date="23 Jan 2026, 04:44 PM"
+                      data-last-edited-name="Dr John Doe"
+                      data-last-edited-date="25 Jan 2026, 03:21 PM"
+                      data-validity="31 Dec 2025, 12:00 PM"
+                      data-status="Transferred"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR12459
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_23012026
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Jason Chua
+                        <div class="text-xs text-gray-400">
+                          23 Jan 2026, 04:44 PM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr John Doe
+                        <div class="text-xs text-gray-400">
+                          25 Jan 2026, 03:21 PM
+                        </div>
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2025-12-31T12:00"
+                      >
+                        31 Dec 2025, 12:00 PM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Transferred</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR12345"
+                      data-form-name="XXX_06112025"
+                      data-assigned-to-name="Dr Ryan Goh"
+                      data-assigned-to-date="06 Nov 2025, 10:10 AM"
+                      data-last-edited-name="Dr Ryan Goh"
+                      data-last-edited-date="04 Dec 2025, 12:34 PM"
+                      data-validity="25 Dec 2025, 12:30 PM"
+                      data-status="Inactive"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR12345
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_06112025
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          06 Nov 2025, 10:10 AM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Ryan Goh
+                        <div class="text-xs text-gray-400">
+                          04 Dec 2025, 12:34 PM
+                        </div>
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2025-12-25T12:30"
+                      >
+                        25 Dec 2025, 12:30 PM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-error-container text-error text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Inactive</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR05632"
+                      data-form-name="XXX_10102025"
+                      data-assigned-to-name="Dr Jason Chua"
+                      data-assigned-to-date="10 Oct 2025, 11:39 AM"
+                      data-last-edited-name="-"
+                      data-last-edited-date="-"
+                      data-validity="15 Oct 2025, 04:15 PM"
+                      data-status="Inactive"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR05632
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_10102025
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr Jason Chua
+                        <div class="text-xs text-gray-400">
+                          10 Oct 2025, 11:39 AM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">-</td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2025-10-15T16:15"
+                      >
+                        15 Oct 2025, 04:15 PM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-error-container text-error text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Inactive</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr
+                      class="col-hover:bg-surface-container-hover/50 transition-colors"
+                      data-form-id="NR02314"
+                      data-form-name="XXX_26092025"
+                      data-assigned-to-name="Dr John Doe"
+                      data-assigned-to-date="26 Sep 2025, 05:30 PM"
+                      data-last-edited-name="-"
+                      data-last-edited-date="-"
+                      data-validity="15 Oct 2025, 12:30 PM"
+                      data-status="Transferred"
+                    >
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        NR02314
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        XXX_26092025
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">
+                        Dr John Doe
+                        <div class="text-xs text-gray-400">
+                          26 Sep 2025, 05:30 PM
+                        </div>
+                      </td>
+                      <td class="py-3.5 px-4 text-on-surface-variant">-</td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant"
+                        data-date="2025-10-15T12:30"
+                      >
+                        15 Oct 2025, 12:30 PM
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider"
+                          >Transferred</span
+                        >
+                      </td>
+                      <td
+                        class="py-3.5 px-4 text-on-surface-variant text-center"
+                      >
+                        <a href="patient-list-view-details.html">
+                          <div
+                            class="text-[#1e4fc4] font-semibold cursor-pointer no-underline"
+                          >
+                            View
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="flex justify-between items-center pt-3 px-3 pb-1 text-gray-400 text-[12.5px] hidden"
+              id="all-list-footer"
+            >
+              <span>Showing 1 to 5 of 7 entries</span>
+              <div class="flex gap-1" id="all-list-pagination">
+                <button
+                  class="w-[30px] h-[30px] rounded-md text-[13px] cursor-pointer flex items-center justify-center bg-[#1a3a8f] text-white"
+                >
+                  1
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      var ffiOpen = false;
+      var mccOpen = false;
+      var medboardOpen = false;
+
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMCC() {
+        mccOpen = !mccOpen;
+        document.getElementById("mcc-submenu").style.display = mccOpen
+          ? ""
+          : "none";
+        document.getElementById("mcc-chevron").textContent = mccOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
+
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
+
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
+        });
+
+      // Vocation expand/collapse logic
+      const vocationToggle = document.getElementById("vocation-toggle");
+      if (vocationToggle) {
+        vocationToggle.addEventListener("click", function () {
+          this.classList.toggle("expanded");
+        });
+      }
+
+      // Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          tagClass: "bg-[#002B5C]", // navy blue
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: "",
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "-",
+          );
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("nominal-roll-search");
+        const rowsPerPage = 5;
+
+        const tableStates = {
+          "my-list": { currentPage: 1, dateFrom: "", dateTo: "", status: "" },
+          "all-list": { currentPage: 1, dateFrom: "", dateTo: "", status: "" },
+        };
+
+        function updateTable(
+          tableKey,
+          tbody,
+          footerSpan,
+          paginationContainer,
+          query = "",
+        ) {
+          if (!tbody) return;
+
+          const state = tableStates[tableKey];
+          const rows = Array.from(tbody.querySelectorAll("tr"));
+
+          // 1. Filter rows based on Search Query, Date Range, and Status
+          const matchedRows = rows.filter((row) => {
+            const cells = row.querySelectorAll("td");
+            if (cells.length < 6) return false; // Ensure row has enough cells
+
+            // Search Query Check (Column 0 or Column 1)
+            const col0 = cells[0].textContent.toLowerCase();
+            const col1 = cells[1].textContent.toLowerCase();
+            const matchesSearch = col0.includes(query) || col1.includes(query);
+            if (!matchesSearch) return false;
+
+            // Advanced Filter Checks (Date & Status)
+            // Adjust cell indices [4] and [5] to match your actual table column layout
+            const dateStr =
+              cells[4].getAttribute("data-date") || cells[4].textContent.trim();
+            const rowDate = dateStr ? new Date(dateStr) : null;
+            const statusText = cells[5].textContent.trim().toLowerCase();
+
+            // Date From check
+            if (
+              state.dateFrom &&
+              rowDate &&
+              rowDate < new Date(state.dateFrom)
+            ) {
+              return false;
+            }
+            // Date To check
+            if (state.dateTo && rowDate && rowDate > new Date(state.dateTo)) {
+              return false;
+            }
+            // Status check
+            if (state.status && statusText !== state.status.toLowerCase()) {
+              return false;
+            }
+
+            return true;
+          });
+
+          const totalMatched = matchedRows.length;
+          const totalPages = Math.ceil(totalMatched / rowsPerPage) || 1;
+
+          // Ensure current page stays within valid bounds
+          if (state.currentPage > totalPages) state.currentPage = totalPages;
+          if (state.currentPage < 1) state.currentPage = 1;
+
+          // 2. Calculate slice indices for 5 entries per page
+          const startIndex = (state.currentPage - 1) * rowsPerPage;
+          const endIndex = startIndex + rowsPerPage;
+
+          // 3. Update row visibility (Hide all, show only current page slice)
+          rows.forEach((row) => (row.style.display = "none"));
+          const visibleRows = matchedRows.slice(startIndex, endIndex);
+          visibleRows.forEach((row) => (row.style.display = ""));
+
+          // 4. Update Footer Text
+          if (footerSpan) {
+            if (totalMatched === 0) {
+              footerSpan.textContent = "Showing 0 to 0 of 0 entries";
+            } else {
+              footerSpan.textContent = `Showing ${startIndex + 1} to ${Math.min(endIndex, totalMatched)} of ${totalMatched} entries`;
+            }
+          }
+
+          // 5. Render Pagination Controls (Arrows + Numbers)
+          if (paginationContainer) {
+            paginationContainer.innerHTML = "";
+            paginationContainer.className = "flex gap-1 items-center";
+
+            // --- Previous Arrow ---
+            if (totalPages > 1) {
+              const prevBtn = document.createElement("button");
+              prevBtn.innerHTML = "‹";
+              prevBtn.className = `w-[30px] h-[30px] rounded-md text-[16px] font-bold flex items-center justify-center transition-colors ${
+                state.currentPage === 1
+                  ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer"
+              }`;
+              prevBtn.disabled = state.currentPage === 1;
+              prevBtn.addEventListener("click", () => {
+                if (state.currentPage > 1) {
+                  state.currentPage--;
+                  updateTable(
+                    tableKey,
+                    tbody,
+                    footerSpan,
+                    paginationContainer,
+                    query,
+                  );
+                }
+              });
+              paginationContainer.appendChild(prevBtn);
+            }
+
+            // --- Numeric Buttons ---
+            for (let i = 1; i <= totalPages; i++) {
+              const btn = document.createElement("button");
+              btn.textContent = i;
+              btn.className = `w-[30px] h-[30px] rounded-md text-[13px] cursor-pointer flex items-center justify-center transition-colors ${
+                i === state.currentPage
+                  ? "bg-[#1e4fc4] text-white font-semibold"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`;
+
+              btn.addEventListener("click", () => {
+                state.currentPage = i;
+                updateTable(
+                  tableKey,
+                  tbody,
+                  footerSpan,
+                  paginationContainer,
+                  query,
+                );
+              });
+
+              paginationContainer.appendChild(btn);
+            }
+
+            // --- Next Arrow ---
+            if (totalPages > 1) {
+              const nextBtn = document.createElement("button");
+              nextBtn.innerHTML = "›";
+              nextBtn.className = `w-[30px] h-[30px] rounded-md text-[16px] font-bold flex items-center justify-center transition-colors ${
+                state.currentPage === totalPages || totalPages === 0
+                  ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer"
+              }`;
+              nextBtn.disabled =
+                state.currentPage === totalPages || totalPages === 0;
+              nextBtn.addEventListener("click", () => {
+                if (state.currentPage < totalPages) {
+                  state.currentPage++;
+                  updateTable(
+                    tableKey,
+                    tbody,
+                    footerSpan,
+                    paginationContainer,
+                    query,
+                  );
+                }
+              });
+              paginationContainer.appendChild(nextBtn);
+            }
+          }
+        }
+
+        // Setup Tables configuration map
+        const tableConfigs = [
+          {
+            key: "my-list",
+            tbody: document.getElementById("my-list-table-body"),
+            footerSpan: document.querySelector("#my-list-footer span"),
+            paginationContainer: document.getElementById("my-list-pagination"),
+            dateFromInput: document.getElementById("filter-my-list-date-from"),
+            dateToInput: document.getElementById("filter-my-list-date-to"),
+            statusSelect: document.getElementById("filter-my-list-status"),
+            applyBtn: document.getElementById("my-list-apply-filters"),
+            resetBtn: document.getElementById("my-list-reset-filters"),
+            panel: document.getElementById("my-list-filter-panel"),
+            toggleBtn: document.getElementById("my-list-filter-toggle-btn"),
+          },
+          {
+            key: "all-list",
+            tbody: document.getElementById("all-list-table-body"),
+            footerSpan: document.querySelector("#all-list-footer span"),
+            paginationContainer: document.getElementById("all-list-pagination"),
+            dateFromInput: document.getElementById("filter-all-list-date-from"),
+            dateToInput: document.getElementById("filter-all-list-date-to"),
+            statusSelect: document.getElementById("filter-all-list-status"),
+            applyBtn: document.getElementById("all-list-apply-filters"),
+            resetBtn: document.getElementById("all-list-reset-filters"),
+            panel: document.getElementById("all-list-filter-panel"),
+            toggleBtn: document.getElementById("all-list-filter-toggle-btn"),
+          },
+        ];
+
+        // Initial load
+        tableConfigs.forEach((config) => {
+          updateTable(
+            config.key,
+            config.tbody,
+            config.footerSpan,
+            config.paginationContainer,
+            "",
+          );
+        });
+
+        // Search input listener (resets page to 1)
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            const query = searchInput.value.toLowerCase().trim();
+            Object.keys(tableStates).forEach(
+              (k) => (tableStates[k].currentPage = 1),
+            );
+            tableConfigs.forEach((config) => {
+              updateTable(
+                config.key,
+                config.tbody,
+                config.footerSpan,
+                config.paginationContainer,
+                query,
+              );
+            });
+          });
+        }
+
+        // Bind Filter Toggles, Apply, and Reset for each table
+        tableConfigs.forEach((config) => {
+          // Toggle dropdown
+          if (config.toggleBtn && config.panel) {
+            config.toggleBtn.addEventListener("click", () => {
+              config.panel.classList.toggle("hidden");
+            });
+          }
+
+          // Apply Filters button
+          if (config.applyBtn) {
+            config.applyBtn.addEventListener("click", () => {
+              // Save filter values to state and reset to page 1
+              tableStates[config.key].dateFrom = config.dateFromInput
+                ? config.dateFromInput.value
+                : "";
+              tableStates[config.key].dateTo = config.dateToInput
+                ? config.dateToInput.value
+                : "";
+              tableStates[config.key].status = config.statusSelect
+                ? config.statusSelect.value
+                : "";
+              tableStates[config.key].currentPage = 1;
+
+              const query = searchInput
+                ? searchInput.value.toLowerCase().trim()
+                : "";
+              updateTable(
+                config.key,
+                config.tbody,
+                config.footerSpan,
+                config.paginationContainer,
+                query,
+              );
+
+              // Optionally close panel on apply
+              if (config.panel) config.panel.classList.add("hidden");
+            });
+          }
+
+          // Reset Filters button
+          if (config.resetBtn) {
+            config.resetBtn.addEventListener("click", () => {
+              if (config.dateFromInput) config.dateFromInput.value = "";
+              if (config.dateToInput) config.dateToInput.value = "";
+              if (config.statusSelect) config.statusSelect.value = "";
+
+              tableStates[config.key].dateFrom = "";
+              tableStates[config.key].dateTo = "";
+              tableStates[config.key].status = "";
+              tableStates[config.key].currentPage = 1;
+
+              const query = searchInput
+                ? searchInput.value.toLowerCase().trim()
+                : "";
+              updateTable(
+                config.key,
+                config.tbody,
+                config.footerSpan,
+                config.paginationContainer,
+                query,
+              );
+            });
+          }
+        });
+      });
+
+      function switchRadioTab(tab) {
+        if (tab === "my-list") {
+          document
+            .getElementById("my-list-filter-toggle-btn")
+            .classList.remove("hidden");
+          document
+            .getElementById("my-list-filter-toggle-section")
+            .classList.remove("hidden");
+          document
+            .getElementById("my-list-results-table")
+            .classList.remove("hidden");
+          document.getElementById("my-list-footer").classList.remove("hidden");
+          document
+            .getElementById("all-list-filter-toggle-btn")
+            .classList.add("hidden");
+          document
+            .getElementById("all-list-filter-toggle-section")
+            .classList.add("hidden");
+          document
+            .getElementById("all-list-results-table")
+            .classList.add("hidden");
+          document.getElementById("all-list-footer").classList.add("hidden");
+          document
+            .getElementById("my-list-filter-panel")
+            .classList.add("hidden");
+          document
+            .getElementById("all-list-filter-panel")
+            .classList.add("hidden");
+          document.getElementById("patient-list-tab-my-list").style.cssText +=
+            "color:#1e4fc4;border-bottom:2px solid #1e4fc4;font-weight:600;";
+          document.getElementById("patient-list-tab-all-list").style.cssText +=
+            "color:#64748b;border-bottom:2px solid transparent;font-weight:500;";
+        } else {
+          document
+            .getElementById("my-list-filter-toggle-btn")
+            .classList.add("hidden");
+          document
+            .getElementById("my-list-filter-toggle-section")
+            .classList.add("hidden");
+          document
+            .getElementById("my-list-results-table")
+            .classList.add("hidden");
+          document.getElementById("my-list-footer").classList.add("hidden");
+          document
+            .getElementById("all-list-filter-toggle-btn")
+            .classList.remove("hidden");
+          document
+            .getElementById("all-list-filter-toggle-section")
+            .classList.remove("hidden");
+          document
+            .getElementById("all-list-results-table")
+            .classList.remove("hidden");
+          document.getElementById("all-list-footer").classList.remove("hidden");
+          document
+            .getElementById("my-list-filter-panel")
+            .classList.add("hidden");
+          document
+            .getElementById("all-list-filter-panel")
+            .classList.add("hidden");
+          document.getElementById("patient-list-tab-all-list").style.cssText +=
+            "color:#1e4fc4;border-bottom:2px solid #1e4fc4;font-weight:600;";
+          document.getElementById("patient-list-tab-my-list").style.cssText +=
+            "color:#64748b;border-bottom:2px solid transparent;font-weight:500;";
+        }
+      }
+
+      document.querySelectorAll(".list-table").forEach((table) => {
+        table.addEventListener("click", (e) => {
+          const link = e.target.closest("a");
+          if (link) {
+            const row = link.closest("tr");
+            sessionStorage.setItem(
+              "selectedPatientList",
+              JSON.stringify({ ...row.dataset }),
+            );
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

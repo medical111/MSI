@@ -1,0 +1,2320 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MSI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c3c6d6",
+              "on-tertiary-container": "#ffc6b9",
+              "surface-dim": "#cadaff",
+              secondary: "#006c47",
+              "on-tertiary-fixed": "#3d0600",
+              "primary-fixed": "#dae2ff",
+              "on-secondary-container": "#00714b",
+              background: "#f9f9ff",
+              tertiary: "#851800",
+              "primary-fixed-dim": "#b2c5ff",
+              "surface-container": "#e8edff",
+              "on-secondary-fixed": "#002113",
+              "on-background": "#041b3c",
+              "tertiary-fixed": "#ffdad2",
+              outline: "#737685",
+              "inverse-surface": "#1d3052",
+              "tertiary-container": "#b02300",
+              "secondary-fixed-dim": "#71dba6",
+              error: "#ba1a1a",
+              surface: "#f9f9ff",
+              "on-primary-fixed": "#001848",
+              "tertiary-fixed-dim": "#ffb4a3",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#edf0ff",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#c4d2ff",
+              "on-surface": "#041b3c",
+              "on-tertiary-fixed-variant": "#8b1a00",
+              "secondary-fixed": "#8df7c1",
+              "surface-bright": "#f9f9ff",
+              "inverse-primary": "#b2c5ff",
+              primary: "#003d9b",
+              "surface-tint": "#0c56d0",
+              "on-primary": "#ffffff",
+              "surface-variant": "#d7e2ff",
+              "surface-container-highest": "#d7e2ff",
+              "surface-container-high": "#e0e8ff",
+              "primary-container": "#2a56b4",
+              "on-primary-fixed-variant": "#0040a2",
+              "secondary-container": "#8af5be",
+              "surface-container-low": "#f1f3ff",
+              "on-surface-variant": "#434654",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#005235",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "stack-gap-md": "8px",
+              "stack-gap-sm": "4px",
+              "stack-gap-lg": "16px",
+              "container-padding": "24px",
+              "grid-gutter": "16px",
+              baseline: "4px",
+            },
+            fontFamily: {
+              "headline-section": ["Inter"],
+              "body-md": ["Inter"],
+              "status-badge": ["Inter"],
+              "data-tabular": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-context": ["Inter"],
+              "body-sm": ["Inter"],
+            },
+            fontSize: {
+              "headline-section": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "status-badge": [
+                "12px",
+                { lineHeight: "16px", fontWeight: "600" },
+              ],
+              "data-tabular": [
+                "13px",
+                { lineHeight: "20px", fontWeight: "500" },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-context": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #main-content {
+        transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #top-header {
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-collapsed {
+        width: 5rem !important;
+      }
+      .sidebar-collapsed .nav-text {
+        display: none;
+      }
+      .sidebar-collapsed .logo-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        justify-content: center;
+      }
+      .sidebar-collapsed .logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+      }
+      /* .sidebar-collapsed .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      } */
+      .sidebar-collapsed .sidebar-toggle-btn span {
+        transform: rotate(180deg);
+      }
+      .sidebar-collapsed .logo-wrapper {
+        display: none;
+      }
+      .content-expanded {
+        margin-left: 5rem !important;
+      }
+      .header-expanded {
+        left: 5rem !important;
+      }
+
+      /* Vocation field expansion styles */
+      .vocation-container.expanded .vocation-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+      .vocation-container.expanded .chevron-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface antialiased h-screen overflow-hidden"
+  >
+    <!-- Mobile view -->
+    <div
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 bg-background text-center lg:hidden"
+    >
+      <div
+        class="max-w-md rounded-2xl bg-slate-900 p-8 bg-surface-container-lowest border border-outline-variant rounded-xl"
+      >
+        <div
+          class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"
+            />
+          </svg>
+        </div>
+
+        <h1 class="text-xl font-bold">Larger Screen Required</h1>
+        <p class="mt-2 text-sm text-slate-400">
+          This application requires a larger screen resolution to function
+          properly. Please open this link on a desktop or laptop.
+        </p>
+      </div>
+    </div>
+    <!-- SideNavBar -->
+    <aside
+      class="w-64 h-screen fixed left-0 top-0 bg-slate-50 border-r border-slate-200 flex flex-col py-4 z-50 font-sans text-xs font-semibold uppercase tracking-wider hidden lg:flex"
+      id="sidebar"
+    >
+      <div class="px-6 mb-8 logo-container flex items-center">
+        <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center gap-3 overflow-hidden shrink-0 logo-wrapper"
+          >
+            <img
+              alt="MSI Logo"
+              class="rounded-lg w-12 h-12 min-w-[3rem] logo-image object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmAwCHA8q_tUgNpMBIGRnSP-S94XpMcbVSiJvIy2mcocb2E-tmE5IGgyd0mYlXx13O6gcvsGhPZAdqxRT9IaVyhkGpq2v5Y7Lt80c1mEQDIjFQdf1TOF93UASfK6K7ncz8I4zc5v9iNFYUDd2uCppJDsSOUcLD_dWzT3cZcfiUOju5F9Nh7rR2rylg2hjdYYCI15ejp6WTyPPe6tz20TWBdFSMeiPYWQNzkmaDUip3ThYCDn3W0LN8EjB6YS0J8KyACEBzd-LuTE"
+            />
+          </div>
+          <button
+            class="sidebar-toggle-btn rounded hover:bg-slate-200 transition-colors flex items-center justify-center text-blue-700 p-2"
+            id="toggle-sidebar"
+            title="Toggle Sidebar"
+          >
+            <span
+              class="material-symbols-outlined text-[24px] transition-transform duration-300"
+              >chevron_left</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] shrink-0"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="nav-text whitespace-nowrap">MSI Profile</span>
+        </a>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleFFI()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >medical_services</span
+              >
+              <span class="nav-text whitespace-nowrap">FFI</span>
+            </div>
+            <span
+              id="ffi-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="ffi-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-ffi-create-type"
+              href="ffi-type.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI TYPE</a
+            >
+            <a
+              id="nav-ffi-create-outcome"
+              href="create-new-ffi-outcome.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CREATE FFI OUTCOME</a
+            >
+            <a
+              id="nav-ffi-endorse"
+              href="endorse-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >ENDORSE WAIVER</a
+            >
+            <a
+              id="nav-ffi-ha"
+              href="approve-waiver.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >APPROVE WAIVER</a
+            >
+            <a
+              id="nav-ffi-mo-acknowledgement"
+              href="medical-officer-acknowledgement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace"
+              >MEDICAL OFFICER ACKNOWLEDGEMENT</a
+            >
+            <a
+              id="nav-ffi-validity"
+              href="maintain-validity.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >MAINTAIN VALIDITY</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMCC()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >fact_check</span
+              >
+              <span class="nav-text whitespace-nowrap">MCC</span>
+            </div>
+            <span
+              id="mcc-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="mcc-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-mcc-mcs-grading"
+              href="mcc-create-new-mcs-grading.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create MCS Grading</a
+            >
+            <a
+              id="nav-mcc-initial-endorser"
+              href="mcc-initial-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Initial Endorser</a
+            >
+            <a
+              id="nav-mcc-final-endorser"
+              href="mcc-final-endorser.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Final Endorser</a
+            >
+            <a
+              id="nav-mcc-comcc-endorsement"
+              href="mcc-comcc-endorsement.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >CO MCC Endorsement</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            onclick="toggleMedboard()"
+            class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 cursor-pointer nav-item"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] shrink-0"
+                >clinical_notes</span
+              >
+              <span class="nav-text whitespace-nowrap">Medical Board</span>
+            </div>
+            <span
+              id="medboard-chevron"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text"
+              >keyboard_arrow_down</span
+            >
+          </div>
+          <div
+            id="medboard-submenu"
+            style="display: none"
+            class="flex flex-col gap-1 ml-10 mt-1 border-l border-slate-200 pl-2"
+          >
+            <a
+              id="nav-routine-board"
+              href="medical-board.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Create SOC</a
+            >
+            <a
+              id="nav-routine-board-note"
+              href="medical-board-note.html"
+              class="px-3 py-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 transition-all duration-200 nav-text whitespace-nowrap"
+              >Medical Board Review</a
+            >
+          </div>
+        </div>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >analytics</span
+          >
+          <span class="nav-text whitespace-nowrap">ACE</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >monitor_heart</span
+          >
+          <span class="nav-text whitespace-nowrap">PEMS</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant/40 opacity-40 grayscale pointer-events-none transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >description</span
+          >
+          <span class="nav-text whitespace-nowrap">NUMC</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white text-blue-700 border-r-4 border-blue-700 shadow-sm transition-all duration-200"
+          href="patient-list-overview.html"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >list</span
+          >
+          <span class="nav-text whitespace-nowrap">Patient List</span>
+        </a>
+      </div>
+      <div class="px-3 pt-4 border-t border-slate-200 mt-auto">
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >settings</span
+          >
+          <span class="nav-text whitespace-nowrap">Settings</span>
+        </a>
+        <a
+          class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] shrink-0"
+            >logout</span
+          >
+          <span class="nav-text whitespace-nowrap">Logout</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <div
+      class="ml-64 h-full flex flex-col bg-background hidden lg:flex"
+      id="main-content"
+    >
+      <!-- TopNavBar -->
+      <header
+        class="bg-white dark:bg-slate-900 font-sans text-sm tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows fixed right-0 left-64 h-16 flex items-center justify-between px-6 z-40 transition-all"
+        id="top-header"
+      >
+        <div class="flex items-center gap-2 flex-1">
+          <div
+            class="flex items-center text-[10px] font-bold px-2 py-2 rounded-lg uppercase tracking-wider bg-secondary-container text-on-secondary-container h-[32px]"
+          >
+            <div
+              aria-hidden="true"
+              class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(1,108,71,0.6)] animate-pulse mr-1.5"
+            ></div>
+            NGEMR
+          </div>
+          <div>
+            <div
+              class="flex items-end gap-2 bg-surface-container-low px-3 py-1 rounded-lg h-[32px]"
+            >
+              <span
+                class="text-on-surface font-bold text-[24px] leading-none tracking-tight"
+                >Tan Ah Teck</span
+              >
+              <span
+                class="text-on-surface-variant/70 font-semibold text-sm tracking-widest uppercase ml-1"
+                >S1234567A</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out relative flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"
+            ></span>
+          </button>
+          <button
+            class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out mr-2 flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[22px]">help</span>
+          </button>
+          <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+          <div class="flex flex-col items-center gap-1">
+            <span
+              class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider leading-none"
+              >DR ryan goh</span
+            >
+          </div>
+        </div>
+      </header>
+      <!-- Canvas -->
+      <main
+        class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface-container-low"
+      >
+        <div class="max-w-[1400px] mx-auto flex flex-col gap-grid-gutter">
+          <div
+            class="rounded-xl text-white flex flex-col bg-gradient-to-tl from-primary-container to-primary shadow-md border border-white/10 py-4 px-6"
+          >
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex justify-end items-start w-full">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-4">
+                    <!-- <h2 class="text-[40px] font-bold tracking-tight text-white">
+                      Tan Ah Teck
+                    </h2> -->
+                    <div class="flex gap-2 h-[24px] items-center">
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >P</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R2</span
+                      >
+                      <span
+                        class="text-white px-3 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider w-fit"
+                        style="background-color: #c41802"
+                        >R3</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-nowrap items-start justify-between w-full gap-4"
+              >
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >NRIC</span
+                  >
+                  <div class="font-bold text-sm">S1234567A</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >GENDER</span
+                  >
+                  <div class="font-bold text-sm">Male</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >AGE</span
+                  >
+                  <div class="font-bold text-sm">26</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DOB</span
+                  >
+                  <div class="font-bold text-sm">08-Sep-1997</div>
+                </div>
+                <!-- <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION</span
+                  >
+                  <div class="font-bold text-sm">Medically Fit for Service</div>
+                </div> -->
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >MCS DISPOSITION Code</span
+                  >
+                  <div class="font-bold text-sm">FIT (Temp)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >PES</span
+                  >
+                  <div class="font-bold text-sm">-</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >DENTAL STATUS</span
+                  >
+                  <div class="font-bold text-sm">D1 (Expired)</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >A CODE</span
+                  >
+                  <div class="font-bold text-sm">A1</div>
+                </div>
+                <div class="flex flex-col gap-1"></div>
+              </div>
+              <div
+                class="flex flex-row flex-nowrap items-center justify-start w-full gap-12"
+              >
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE</span
+                  >
+                  <div class="w-fit">
+                    <span
+                      class="bg-secondary text-white px-3 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+                      id="banner-service-tag"
+                      >Army</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >SERVICE TYPE</span
+                  >
+                  <div class="font-bold text-sm" id="banner-service-type">
+                    NSman
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >RANK</span
+                  >
+                  <div class="font-bold text-sm" id="banner-rank">CPT</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >UNIT</span
+                  >
+                  <div class="font-bold text-sm" id="banner-unit">3 SIR</div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-white/60 font-label-caps text-[10px] uppercase tracking-widest"
+                    >VOCATION</span
+                  >
+                  <div
+                    class="vocation-container flex items-center gap-1 font-bold text-sm select-none group"
+                    id="vocation-toggle"
+                  >
+                    <span class="vocation-text truncate" id="banner-vocation"
+                      >Infantry Specialist</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1 ml-auto">
+                  <span
+                    id="record-counter"
+                    class="text-xs text-white/70 font-medium"
+                  >
+                    RECORD 1 OF 2
+                  </span>
+
+                  <div class="relative w-[200px]">
+                    <select
+                      class="appearance-none w-full bg-white/10 border border-white/20 text-white rounded px-3 py-1 pr-8 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer transition-all hover:bg-white/20"
+                      id="service-record-select"
+                    >
+                      <option
+                        class="text-on-surface bg-white"
+                        selected="selected"
+                        value="record1"
+                      >
+                        Service Record 1
+                      </option>
+                      <option class="text-on-surface bg-white" value="record2">
+                        Service Record 2
+                      </option>
+                      <!-- <option class="text-on-surface bg-white" value="record3">
+                        Service Record 3
+                      </option> -->
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none text-[18px]"
+                    >
+                      expand_more
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section
+            id="new-list-section"
+            class="bg-white border border-outline-variant rounded-lg overflow-hidden mb-stack-gap-lg shadow-sm"
+          >
+            <div
+              class="flex justify-between py-4 px-6 border-b border-outline-variant bg-surface-container-low rounded-t-lg"
+            >
+              <h2
+                class="font-headline-section text-headline-section text-on-surface flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[28px] leading-none"
+                  >edit_document</span
+                >
+                Create New Patient List
+              </h2>
+              <span
+                class="flex items-center bg-gray-200 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit"
+                >Draft</span
+              >
+            </div>
+            <div class="flex flex-col gap-8 p-6">
+              <!-- Information Subsection -->
+              <div id="form-details-subsection">
+                <div class="p-2 border-b border-outline-variant mb-4 rounded-t">
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Form Details
+                  </h3>
+                </div>
+                <div class="flex flex-col gap-4 px-4">
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <label
+                        for="form-name-input"
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Form Name</label
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <input
+                        id="form-name-input"
+                        class="w-full border border-outline-variant rounded-lg px-3 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
+                      />
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <label
+                        for="valid-till-input"
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Valid Till</label
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <input
+                        id="valid-till-input"
+                        class="px-3 py-2 border border-outline-variant bg-white rounded-lg text-[11.5px] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                        type="datetime-local"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="new-criteria-subsection">
+                <div class="p-2 border-b border-outline-variant mb-4 rounded-t">
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Add Filter Criteria
+                  </h3>
+                </div>
+                <div class="flex flex-col gap-4 px-4">
+                  <div class="relative">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Search Filter Column</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <div class="relative">
+                          <svg
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 select-none pointer-events-none"
+                            width="14"
+                            height="14"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                          </svg>
+                          <input
+                            type="text"
+                            id="column-search-input"
+                            placeholder="Search to add filter column"
+                            class="w-full border border-outline-variant rounded-lg pl-10 pr-4 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
+                            autocomplete="off"
+                          />
+                          <div
+                            id="column-dropdown-results"
+                            class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-40 overflow-y-auto hidden"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="filter-column-selection-section"
+                    class="space-y-3 hidden"
+                  >
+                    <div id="accordion-stack" class="space-y-3"></div>
+                    <button
+                      type="button"
+                      id="generate-btn"
+                      class="w-full px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex justify-center items-center gap-2"
+                    >
+                      <span>Generate Patient List</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="filtered-patient-list-subsection">
+                <div class="p-2 border-b border-outline-variant mb-4 rounded-t">
+                  <h3
+                    class="font-headline-section text-sm text-on-surface uppercase tracking-wider"
+                  >
+                    Patient List
+                  </h3>
+                </div>
+                <div class="flex flex-col gap-4 px-4">
+                  <div id="manual-search" class="relative">
+                    <div class="flex items-center">
+                      <div class="w-1/3">
+                        <span
+                          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                          >Manual Search</span
+                        >
+                      </div>
+                      <div class="w-2/3">
+                        <div class="relative">
+                          <svg
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 select-none pointer-events-none"
+                            width="14"
+                            height="14"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                          </svg>
+                          <input
+                            type="text"
+                            id="patient-list-search-input"
+                            placeholder="Search NRIC or name to manually add patient"
+                            class="w-full border border-outline-variant rounded-lg pl-10 pr-4 py-2 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md font-body-md resize-none bg-white"
+                            autocomplete="off"
+                          />
+                          <div
+                            id="manual-add-dropdown"
+                            class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-40 overflow-y-auto hidden"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="max-h-[480px] w-full overflow-auto">
+                    <table
+                      id="patient-list-table"
+                      class="w-full border-collapse text-left text-[13px]"
+                    >
+                      <thead class="sticky top-0 z-5" id="patient-list-thead">
+                        <tr
+                          class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium"
+                        >
+                          <th class="py-3 px-3.5 inline-flex w-fit">
+                            <label
+                              class="inline-flex items-center gap-1.5 cursor-pointer select-none"
+                            >
+                              <input
+                                type="checkbox"
+                                id="patient-list-select-all"
+                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600 cursor-pointer"
+                                onchange="toggleAllPatientListRows(this)"
+                              />
+                            </label>
+                          </th>
+                          <th
+                            class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            NRIC
+                          </th>
+                          <th
+                            class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Rank
+                          </th>
+                          <th
+                            class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Name
+                          </th>
+                          <th
+                            class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Source
+                          </th>
+                          <th
+                            class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap"
+                          >
+                            Action
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        id="patient-list-tbody"
+                        class="divide-y divide-gray-100"
+                      >
+                        <tr>
+                          <td
+                            colspan="6"
+                            class="px-4 py-7 text-center text-[13px] text-gray-500"
+                          >
+                            Configure your filter columns above to populate the
+                            list.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <span
+                    id="patient-list-count-badge"
+                    class="text-xs font-medium text-gray-600 hidden"
+                  >
+                    Showing 0 of 0 patients
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              id="create-new-patient-list-footer"
+              class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-between items-center"
+            >
+              <!-- Left Side: Autosave Status Indicator -->
+              <div
+                id="autosave-status"
+                class="text-xs font-medium text-slate-600 flex items-center gap-1.5 transition-all duration-300"
+              >
+                <span
+                  class="material-symbols-outlined text-base text-emerald-600 leading-none"
+                  >check_circle</span
+                >
+                All changes saved
+              </div>
+
+              <!-- Right Side: Action Buttons -->
+              <div class="flex items-center gap-3">
+                <a href="patient-list-overview.html">
+                  <button
+                    class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
+                  >
+                    Cancel
+                  </button>
+                </a>
+                <button
+                  class="px-6 py-2.5 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold text-sm"
+                >
+                  Save Draft
+                </button>
+                <button
+                  id="finalize-patient-list-btn"
+                  class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
+                  onclick="finalizePatientListSubmission()"
+                >
+                  Finalize
+                </button>
+              </div>
+            </div>
+            <div
+              id="patient-list-confirm-modal"
+              class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4"
+            >
+              <div
+                class="w-full max-w-4xl rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden"
+              >
+                <div
+                  class="flex items-center justify-between px-5 py-4 border-b border-gray-100"
+                >
+                  <div>
+                    <h3
+                      id="patient-list-confirm-title"
+                      class="text-base font-semibold text-gray-900"
+                    >
+                      Finalise Patient List
+                    </h3>
+                    <p
+                      id="patient-list-confirm-subtitle"
+                      class="text-xs text-gray-500 mt-0.5"
+                    >
+                      0 patients selected
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onclick="closePatientListConfirmModal()"
+                    class="text-gray-400 hover:text-gray-600 p-1 rounded-lg cursor-pointer"
+                    aria-label="Close modal"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div class="flex flex-col gap-4 px-4 pt-4">
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <label
+                        for="confirm-form-name-input"
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Form Name</label
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        id="confirm-form-name-input"
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-1/3">
+                      <label
+                        for="confirm-valid-till-input"
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Valid Till</label
+                      >
+                    </div>
+                    <div class="w-2/3">
+                      <span
+                        id="confirm-valid-till-input"
+                        class="font-data-tabular text-data-tabular text-on-surface"
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 max-h-[60vh] overflow-auto">
+                  <div
+                    class="overflow-x-auto border border-gray-200 rounded-xl"
+                  >
+                    <table class="min-w-full border-collapse text-sm">
+                      <thead
+                        id="patient-list-confirm-thead"
+                        class="sticky top-0 z-10 bg-gray-50"
+                      ></thead>
+                      <tbody
+                        id="patient-list-confirm-tbody"
+                        class="divide-y divide-gray-100 bg-white"
+                      ></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div
+                  class="flex items-center justify-end gap-2.5 px-5 py-3.5 bg-gray-50 border-t border-gray-100"
+                >
+                  <button
+                    type="button"
+                    onclick="closePatientListConfirmModal()"
+                    class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-semibold text-sm"
+                  >
+                    Cancel
+                  </button>
+                  <a href="submitted-form.html">
+                    <button
+                      type="button"
+                      id="modal-submit-patient-list-btn"
+                      onclick="finalizePatientListSubmission()"
+                      class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm flex items-center gap-2"
+                    >
+                      Submit
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      var ffiOpen = false;
+      var mccOpen = false;
+      var medboardOpen = false;
+
+      function toggleFFI() {
+        ffiOpen = !ffiOpen;
+        document.getElementById("ffi-submenu").style.display = ffiOpen
+          ? ""
+          : "none";
+        document.getElementById("ffi-chevron").textContent = ffiOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMCC() {
+        mccOpen = !mccOpen;
+        document.getElementById("mcc-submenu").style.display = mccOpen
+          ? ""
+          : "none";
+        document.getElementById("mcc-chevron").textContent = mccOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      function toggleMedboard() {
+        medboardOpen = !medboardOpen;
+        document.getElementById("medboard-submenu").style.display = medboardOpen
+          ? ""
+          : "none";
+        document.getElementById("medboard-chevron").textContent = medboardOpen
+          ? "keyboard_arrow_up"
+          : "keyboard_arrow_down";
+      }
+      // Sidebar toggle
+      document
+        .getElementById("toggle-sidebar")
+        .addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("main-content");
+          const topHeader = document.getElementById("top-header");
+          const toggleIcon = this.querySelector("span");
+          const ffiSubmenu = document.getElementById("ffi-submenu");
+          const medboardSubmenu = document.getElementById("medboard-submenu");
+
+          const isCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+          mainContent.classList.toggle("content-expanded");
+          topHeader.classList.toggle("header-expanded");
+
+          if (isCollapsed) {
+            toggleIcon.textContent = "chevron_right";
+            ffiSubmenu.style.display = "none";
+            medboardSubmenu.style.display = "none";
+          } else {
+            toggleIcon.textContent = "chevron_left";
+            ffiSubmenu.style.display = "";
+            medboardSubmenu.style.display = "";
+          }
+        });
+
+      // Vocation expand/collapse logic
+      const vocationToggle = document.getElementById("vocation-toggle");
+      if (vocationToggle) {
+        vocationToggle.addEventListener("click", function () {
+          this.classList.toggle("expanded");
+        });
+      }
+
+      // Service Record Switcher Logic
+      const serviceRecordSelect = document.getElementById(
+        "service-record-select",
+      );
+
+      // Banner Elements
+      const bannerServiceType = document.getElementById("banner-service-type");
+      const bannerRank = document.getElementById("banner-rank");
+      const bannerUnit = document.getElementById("banner-unit");
+      const bannerVocation = document.getElementById("banner-vocation");
+      const bannerServiceTag = document.getElementById("banner-service-tag");
+
+      // Overview Card Elements
+      const overviewLabel1 = document.getElementById("overview-label-1");
+      const overviewLabel2 = document.getElementById("overview-label-2");
+      const overviewServiceType = document.getElementById(
+        "overview-service-type",
+      );
+      const overviewRank = document.getElementById("overview-rank");
+      const overviewUnitService = document.getElementById(
+        "overview-unit-service",
+      );
+      const overviewVocation = document.getElementById("overview-vocation");
+      const overviewBadge = document.getElementById("overview-badge");
+
+      const bannerRecords = {
+        record1: {
+          type: "NSman",
+          rank: "CPT",
+          unit: "3 SIR",
+          vocation: "Infantry Specialist",
+          service: "Army",
+          isCurrent: true,
+          tagClass: "bg-secondary", // army green
+        },
+        record2: {
+          type: "DXO",
+          rank: "ME2",
+          unit: "RSS Supreme",
+          vocation: "Naval Safety Officer",
+          service: "Navy",
+          isCurrent: false,
+          tagClass: "bg-[#002B5C]", // navy blue
+        },
+        record3: {
+          type: "-",
+          rank: "-",
+          unit: "-",
+          vocation: "-",
+          service: "-",
+          isCurrent: false,
+          tagClass: "",
+        },
+      };
+
+      serviceRecordSelect.addEventListener("change", function (e) {
+        const data = bannerRecords[e.target.value];
+        if (data) {
+          // Update Banner Text
+          bannerServiceType.textContent = data.type;
+          bannerRank.textContent = data.rank;
+          bannerUnit.textContent = data.unit;
+          bannerVocation.textContent = data.vocation;
+          bannerServiceTag.textContent = data.service;
+
+          // Update Service Tag Style
+          // Remove previous color classes
+          bannerServiceTag.classList.remove(
+            "bg-secondary",
+            "bg-[#002B5C]",
+            "-",
+          );
+          // Add new color class
+          bannerServiceTag.classList.add(data.tagClass);
+        }
+      });
+
+      const statusEl = document.getElementById("autosave-status");
+      const formContainer = document.getElementById("new-list-section");
+
+      const availableColumns = [
+        {
+          id: "pes-status",
+          title: "PES Status",
+          tag: "PES",
+          options: [
+            "A",
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "C2",
+            "C9",
+            "D",
+            "E1",
+            "E9",
+            "F",
+            "NA",
+          ],
+        },
+        {
+          id: "disposition",
+          title: "Disposition",
+          tag: "MCS",
+          options: ["FIT", "FIT (Temp)", "BP", "D[0]", "D1", "UNFIT", "NA"],
+        },
+        {
+          id: "unit",
+          title: "Unit",
+          tag: "Vocation",
+          options: [
+            "Unit 1",
+            "Unit 2",
+            "Unit 3",
+            "Unit 4",
+            "Unit 5",
+            "Unit 6",
+            "NA",
+          ],
+        },
+        {
+          id: "ffi-outcome-ranger-course",
+          title: "Ranger Course",
+          tag: "FFI",
+          options: ["Fit", "Unfit", "NA"],
+        },
+        {
+          id: "ffi-outcome-military-freefall",
+          title: "Military Freefall",
+          tag: "FFI",
+          options: ["Fit", "Unfit", "NA"],
+        },
+        {
+          id: "hsp-outcome",
+          title: "HSP Outcome",
+          tag: "HSP",
+          options: ["Low", "Moderate", "High", "NA"],
+        },
+        {
+          id: "numc-outcome-hyperbaric-chamber-duties",
+          title: "Hyperbaric Chamber Duties",
+          tag: "NUMC",
+          options: ["Fit", "Unfit", "Waiver Granted", "Waiver Rejected", "NA"],
+        },
+        {
+          id: "numc-outcome-submariner-duties",
+          title: "Submariner Duties",
+          tag: "NUMC",
+          options: ["Fit", "Unfit", "Waiver Granted", "Waiver Rejected", "NA"],
+        },
+        {
+          id: "armc-outcome-ace",
+          title: "ACE",
+          tag: "ARMC",
+          options: ["Fit", "Unfit", "NA"],
+        },
+      ];
+
+      // Track active columns currently rendered on the screen
+      let activeColumns = [];
+
+      const searchInput = document.getElementById("column-search-input");
+      const dropdownResults = document.getElementById(
+        "column-dropdown-results",
+      );
+      const accordionStack = document.getElementById("accordion-stack");
+      const filterColumnSelection = document.getElementById(
+        "filter-column-selection-section",
+      );
+
+      // Reusable function to render the dropdown list (showing all available if query is empty)
+      function renderDropdown(query = "") {
+        if (!dropdownResults) return;
+
+        // Filter out columns that are already active (no repeats)
+        const unselectedColumns = availableColumns.filter(
+          (col) => !activeColumns.includes(col.id),
+        );
+
+        // Filter by query if user typed something
+        const matches = query
+          ? unselectedColumns.filter(
+              (col) =>
+                col.title.toLowerCase().includes(query) ||
+                (col.tag && col.tag.toLowerCase().includes(query)),
+            )
+          : unselectedColumns;
+
+        if (matches.length === 0) {
+          dropdownResults.innerHTML = `<div class="px-4 py-3 text-sm text-gray-500">No matching columns available</div>`;
+        } else {
+          dropdownResults.innerHTML = matches
+            .map(
+              (col) => `
+          <div class="px-4 py-2.5 hover:bg-blue-50 text-sm text-gray-700 cursor-pointer border-b border-gray-100 last:border-none flex items-center gap-2" onclick="addColumnRule('${col.id}')">
+            <span class="font-medium">${col.title}</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200/80 group-hover:bg-white group-hover:border-blue-200 group-hover:text-blue-700 transition-colors">
+              ${col.tag}
+            </span>
+          </div>
+        `,
+            )
+            .join("");
+        }
+
+        dropdownResults.classList.remove("hidden");
+      }
+
+      // Show available columns instantly when focusing/clicking on the search input
+      if (searchInput && dropdownResults) {
+        searchInput.addEventListener("focus", function () {
+          renderDropdown(searchInput.value.toLowerCase().trim());
+        });
+
+        // Filter list dynamically as the user types
+        searchInput.addEventListener("input", function () {
+          renderDropdown(searchInput.value.toLowerCase().trim());
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener("click", function (e) {
+          if (
+            !searchInput.contains(e.target) &&
+            !dropdownResults.contains(e.target)
+          ) {
+            dropdownResults.classList.add("hidden");
+          }
+        });
+      }
+
+      // Helper: Close all accordions except the targetId
+      function openSingleAccordion(targetId) {
+        activeColumns.forEach((id) => {
+          const body = document.getElementById(`body-${id}`);
+          const chevron = document.getElementById(`chevron-${id}`);
+          if (!body) return;
+
+          if (id === targetId) {
+            body.classList.remove("hidden");
+            if (chevron) chevron.classList.remove("rotate-180");
+          } else {
+            body.classList.add("hidden");
+            if (chevron) chevron.classList.add("rotate-180");
+          }
+        });
+      }
+
+      // Show/hide both the accordion stack and the generate button based on activeColumns
+      function syncFilterColumnVisibility() {
+        if (!filterColumnSelection) return;
+        const isEmpty = activeColumns.length === 0;
+        filterColumnSelection.classList.toggle("hidden", isEmpty);
+        filterColumnSelection.hidden = isEmpty;
+      }
+
+      // Add Column Rule, Render Accordion & Auto-Expand Only This One
+      window.addColumnRule = function (columnId) {
+        const columnData = availableColumns.find((c) => c.id === columnId);
+        if (!columnData || activeColumns.includes(columnId) || !accordionStack)
+          return;
+
+        activeColumns.push(columnId);
+        syncFilterColumnVisibility();
+
+        if (searchInput) searchInput.value = "";
+        if (dropdownResults) dropdownResults.classList.add("hidden");
+
+        const accordionEl = document.createElement("div");
+        accordionEl.id = `accordion-${columnId}`;
+        accordionEl.className =
+          "border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm transition-all";
+
+        accordionEl.innerHTML = `
+        <!-- Accordion Header -->
+        <div class="px-4 py-3 bg-surface-container-low flex items-center justify-between transition-colors">
+          <div class="flex items-center gap-2 flex-1 text-left cursor-pointer select-none" onclick="toggleAccordion('${columnId}')">
+            <span class="font-semibold text-sm text-gray-800">${columnData.title}</span>
+            <span id="badge-${columnId}" class="px-2 py-0.5 rounded-xl bg-surface-variant text-primary text-xs font-medium">0 selected</span>
+          </div>
+
+          <!-- Right Side: Actions (Remove Button + Chevron) -->
+          <div class="flex items-center gap-2">
+            <!-- Remove Column Button -->
+            <button type="button" class="text-slate-400 p-1.5 rounded-md transition-colors cursor-pointer" onclick="removeColumnRule('${columnId}')">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+
+            <!-- Collapse/Expand Chevron Indicator -->
+            <span
+              id="chevron-${columnId}"
+              class="material-symbols-outlined text-[18px] text-slate-400 nav-text cursor-pointer"
+              onclick="toggleAccordion('${columnId}')"
+              >keyboard_arrow_up</span
+            >
+          </div>
+        </div>
+
+        <!-- Accordion Body -->
+        <div id="body-${columnId}" class="p-4 space-y-2 bg-white">
+          <div class="flex items-center justify-between text-xs p-1 border-b border-gray-100">
+            <label class="flex items-center gap-2 cursor-pointer text-gray-600 font-medium">
+              <input
+                type="checkbox"
+                id="select-all-${columnId}"
+                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                onchange="toggleSelectAll(this, '${columnId}')"
+              />
+              Select All
+            </label>
+          </div>
+
+          <div id="options-list-${columnId}" class="max-h-40 overflow-y-auto space-y-1 pr-1 text-sm">
+            ${columnData.options
+              .map(
+                (opt) => `
+              <label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded option-row">
+                <input type="checkbox" value="${opt}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-600 item-checkbox" onchange="updateBadge('${columnId}')" />
+                <span class="text-gray-700 text-xs">${opt}</span>
+              </label>
+            `,
+              )
+              .join("")}
+          </div>
+        </div>
+      `;
+
+        accordionStack.prepend(accordionEl);
+        openSingleAccordion(columnId);
+      };
+
+      // Remove Column Rule (Re-enables it in the search dropdown)
+      window.removeColumnRule = function (columnId) {
+        const el = document.getElementById(`accordion-${columnId}`);
+        if (el) el.remove();
+        activeColumns = activeColumns.filter((id) => id !== columnId);
+        syncFilterColumnVisibility();
+      };
+
+      // Accordion Toggle Helper
+      window.toggleAccordion = function (columnId) {
+        const targetBody = document.getElementById(`body-${columnId}`);
+        if (!targetBody) return;
+
+        const isCurrentlyHidden = targetBody.classList.contains("hidden");
+        if (isCurrentlyHidden) {
+          openSingleAccordion(columnId);
+        } else {
+          targetBody.classList.add("hidden");
+          const chevron = document.getElementById(`chevron-${columnId}`);
+          if (chevron) chevron.classList.add("rotate-180");
+        }
+      };
+
+      function syncSelectAll(columnId) {
+        const container = document.getElementById(`options-list-${columnId}`);
+        const masterCheckbox = document.getElementById(
+          `select-all-${columnId}`,
+        );
+        if (!container || !masterCheckbox) return;
+
+        const allBoxes = Array.from(
+          container.querySelectorAll(".item-checkbox"),
+        );
+        const checkedCount = allBoxes.filter((cb) => cb.checked).length;
+
+        masterCheckbox.checked =
+          allBoxes.length > 0 && checkedCount === allBoxes.length;
+      }
+
+      // Update Selection Tally Badge + Sync Select All
+      window.updateBadge = function (columnId) {
+        const container = document.getElementById(`options-list-${columnId}`);
+        if (!container) return;
+
+        const checkedCount = container.querySelectorAll(
+          ".item-checkbox:checked",
+        ).length;
+        const badge = document.getElementById(`badge-${columnId}`);
+        if (badge) {
+          badge.textContent = `${checkedCount} selected`;
+        }
+
+        syncSelectAll(columnId);
+      };
+
+      // Select All / Deselect All Handler
+      window.toggleSelectAll = function (masterCheckbox, columnId) {
+        const container = document.getElementById(`options-list-${columnId}`);
+        if (!container) return;
+
+        const visibleRows = container.querySelectorAll(".option-row");
+        visibleRows.forEach((row) => {
+          if (row.style.display !== "none") {
+            const cb = row.querySelector(".item-checkbox");
+            if (cb) cb.checked = masterCheckbox.checked;
+          }
+        });
+
+        updateBadge(columnId);
+      };
+
+      // In-Accordion Option Search Filter
+      window.filterOptions = function (input, columnId) {
+        const query = input.value.toLowerCase().trim();
+        const container = document.getElementById(`options-list-${columnId}`);
+        if (!container) return;
+
+        const rows = container.querySelectorAll(".option-row");
+        rows.forEach((row) => {
+          const text = row.querySelector("span").textContent.toLowerCase();
+          row.style.display = text.includes(query) ? "" : "none";
+        });
+      };
+
+      // Ensure initial visibility matches activeColumns (empty on load -> hidden)
+      syncFilterColumnVisibility();
+
+      // This variable will hold our debounce timer
+      let autosaveTimeout;
+
+      // Define the UI states
+      function setSavingState() {
+        statusEl.className =
+          "text-xs font-medium text-slate-400 flex items-center gap-1.5";
+        statusEl.innerHTML = `
+          <svg class="animate-spin h-3.5 w-3.5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Saving changes...
+        `;
+      }
+
+      function setSavedState() {
+        statusEl.className =
+          "text-xs font-medium text-slate-600 flex items-center gap-1.5 transition-all duration-300";
+        statusEl.innerHTML = `
+          <span class="material-symbols-outlined text-base text-emerald-600 leading-none">check_circle</span> 
+          All changes saved
+        `;
+      }
+
+      // Autosave Logic
+      function handleInputChange() {
+        // Immediately switch the UI to "Saving..." when they interact
+        setSavingState();
+
+        // Clear the old timer if they are still typing/clicking
+        clearTimeout(autosaveTimeout);
+
+        // Set a new timer
+        autosaveTimeout = setTimeout(() => {
+          // Change UI to "Saved"
+          setSavedState();
+        }, 2000);
+      }
+      // 'input' catches keystrokes in textareas/inputs; 'change' catches radio button/select adjustments
+      formContainer.addEventListener("input", handleInputChange);
+      formContainer.addEventListener("change", handleInputChange);
+
+      const allPersonnel = [
+        {
+          id: "S1234561A",
+          rank: "3SG",
+          name: "Adam Tan",
+          "pes-status": "NA",
+          disposition: "FIT",
+          unit: "Unit 1",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "Low",
+          "numc-outcome-hyperbaric-chamber-duties": "NA",
+          "numc-outcome-submariner-duties": "NA",
+          "armc-outcome-ace": "NA",
+        },
+        {
+          id: "S1234562B",
+          rank: "3SG",
+          name: "Benedict Lee",
+          "pes-status": "A",
+          disposition: "NA",
+          unit: "Unit 1",
+          "ffi-outcome-ranger-course": "Fit",
+          "ffi-outcome-military-freefall": "Fit",
+          "hsp-outcome": "NA",
+          "numc-outcome-hyperbaric-chamber-duties": "NA",
+          "numc-outcome-submariner-duties": "NA",
+          "armc-outcome-ace": "NA",
+        },
+        {
+          id: "S1234563C",
+          rank: "CFC",
+          name: "Casey Chan",
+          "pes-status": "C9",
+          disposition: "NA",
+          unit: "Unit 2",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "Low",
+          "numc-outcome-hyperbaric-chamber-duties": "Unfit",
+          "numc-outcome-submariner-duties": "Unfit",
+          "armc-outcome-ace": "NA",
+        },
+        {
+          id: "S1234564D",
+          rank: "CFC",
+          name: "Derek Chia",
+          "pes-status": "NA",
+          disposition: "UNFIT",
+          unit: "Unit 3",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "High",
+          "numc-outcome-hyperbaric-chamber-duties": "Unfit",
+          "numc-outcome-submariner-duties": "Unfit",
+          "armc-outcome-ace": "NA",
+        },
+        {
+          id: "S1234565E",
+          rank: "3SG",
+          name: "Elliot Loh",
+          "pes-status": "NA",
+          disposition: "FIT",
+          unit: "Unit 4",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "Moderate",
+          "numc-outcome-hyperbaric-chamber-duties": "Waiver Granted",
+          "numc-outcome-submariner-duties": "Waiver Granted",
+          "armc-outcome-ace": "NA",
+        },
+        {
+          id: "S1234566F",
+          rank: "CPL",
+          name: "Frank Lee",
+          "pes-status": "B3",
+          disposition: "NA",
+          unit: "Unit 5",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "NA",
+          "numc-outcome-hyperbaric-chamber-duties": "NA",
+          "numc-outcome-submariner-duties": "NA",
+          "armc-outcome-ace": "Fit",
+        },
+        {
+          id: "S1234567G",
+          rank: "LCP",
+          name: "Goh Jia Ming",
+          "pes-status": "A",
+          disposition: "NA",
+          unit: "Unit 6",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "Moderate",
+          "numc-outcome-hyperbaric-chamber-duties": "NA",
+          "numc-outcome-submariner-duties": "NA",
+          "armc-outcome-ace": "Fit",
+        },
+        {
+          id: "S1234568H",
+          rank: "3SG",
+          name: "Hou Chee Ming",
+          "pes-status": "NA",
+          disposition: "BP",
+          unit: "Unit 6",
+          "ffi-outcome-ranger-course": "NA",
+          "ffi-outcome-military-freefall": "NA",
+          "hsp-outcome": "High",
+          "numc-outcome-hyperbaric-chamber-duties": "NA",
+          "numc-outcome-submariner-duties": "NA",
+          "armc-outcome-ace": "Unfit",
+        },
+      ];
+
+      // Current rows: { person, source: 'Filter Rule' | 'Manual', included: boolean }
+      let patientListRows = [];
+
+      // Active rule column IDs shown as dynamic table columns
+      let displayedRuleColIds = [];
+
+      const generateBtn = document.getElementById("generate-btn");
+      const patientListThead = document.getElementById("patient-list-thead");
+      const patientListTbody = document.getElementById("patient-list-tbody");
+      const patientListSearchInput = document.getElementById(
+        "patient-list-search-input",
+      );
+      const manualAddDropdown = document.getElementById("manual-add-dropdown");
+      const patientListCountBadge = document.getElementById(
+        "patient-list-count-badge",
+      );
+      const patientListSelectAll = document.getElementById(
+        "patient-list-select-all",
+      );
+
+      function getColumnTitle(colId) {
+        if (typeof availableColumns !== "undefined") {
+          const found = availableColumns.find((col) => col.id === colId);
+          if (found) return found.title;
+        }
+        return colId;
+      }
+
+      function getActiveFilterRules() {
+        const rules = {};
+        if (typeof activeColumns === "undefined") return rules;
+
+        activeColumns.forEach((colId) => {
+          const listEl = document.getElementById(`options-list-${colId}`);
+          if (!listEl) return;
+          const checked = Array.from(
+            listEl.querySelectorAll(".item-checkbox:checked"),
+          ).map((cb) => cb.value);
+          if (checked.length > 0) {
+            rules[colId] = checked;
+          }
+        });
+        return rules;
+      }
+
+      function matchesFilterRules(person, rules) {
+        const ruleEntries = Object.entries(rules);
+        if (ruleEntries.length === 0) return true;
+
+        return ruleEntries.every(([colId, selectedValues]) => {
+          return selectedValues.includes(person[colId]);
+        });
+      }
+
+      function renderPatientListHeaders() {
+        const dynamicHeaders = displayedRuleColIds
+          .map(
+            (colId) => `
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              ${getColumnTitle(colId)}
+            </th>
+          `,
+          )
+          .join("");
+
+        patientListThead.innerHTML = `
+          <tr class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium">
+            <th class="py-3 px-3.5 inline-flex w-fit">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  id="patient-list-select-all"
+                  class="rounded border-gray-300 text-blue-600 focus:ring-blue-600 cursor-pointer"
+                  onchange="toggleAllPatientListRows(this)"
+                />
+              </label>
+            </th>
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              NRIC
+            </th>
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              Rank
+            </th>
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              Name
+            </th>
+            ${dynamicHeaders}
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              Source
+            </th>
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              Action
+            </th>
+          </tr>
+        `;
+      }
+
+      if (generateBtn) {
+        generateBtn.addEventListener("click", function () {
+          const rules = getActiveFilterRules();
+
+          // Show columns for active filter rules with selections (or use activeColumns if you want all added accordions)
+          displayedRuleColIds = Object.keys(rules);
+
+          const previousIncludeMap = new Map(
+            patientListRows.map((r) => [r.person.id, r.included]),
+          );
+          const manualRows = patientListRows.filter(
+            (r) => r.source === "Manual",
+          );
+
+          const matchedPeople = allPersonnel.filter((person) =>
+            matchesFilterRules(person, rules),
+          );
+          const matchedRows = matchedPeople.map((person) => ({
+            person,
+            source: "From Filter",
+            included: previousIncludeMap.has(person.id)
+              ? previousIncludeMap.get(person.id)
+              : true,
+          }));
+
+          const matchedIds = new Set(matchedRows.map((r) => r.person.id));
+          const uniqueManualRows = manualRows.filter(
+            (r) => !matchedIds.has(r.person.id),
+          );
+
+          patientListRows = [...matchedRows, ...uniqueManualRows];
+          console.log(patientListRows);
+          renderPatientListHeaders();
+          renderPatientListTable(
+            patientListSearchInput.value.trim().toLowerCase(),
+          );
+        });
+      }
+
+      function renderPatientListTable(searchQuery = "") {
+        const colSpan = 2 + displayedRuleColIds.length + 3; // Name + ID + dynamic rule cols + Source + Include + Remove
+
+        const filteredRows = searchQuery
+          ? patientListRows.filter(
+              (row) =>
+                row.person.name.toLowerCase().includes(searchQuery) ||
+                row.person.id.toLowerCase().includes(searchQuery),
+            )
+          : patientListRows;
+
+        if (filteredRows.length === 0) {
+          patientListTbody.innerHTML = `
+            <tr>
+              <td colspan="${colSpan}" class="px-4 py-7 text-center text-[13px] text-gray-500">
+                ${
+                  patientListRows.length === 0
+                    ? "No personnel matched your current filter rules. Adjust filters before generating, or search above to manually add."
+                    : "No rows in the table match your search. Select a person from the dropdown to add them manually."
+                }
+              </td>
+            </tr>
+          `;
+          updatePatientListSummary();
+          return;
+        }
+
+        patientListTbody.innerHTML = filteredRows
+          .map((row) => {
+            const { person, source, included } = row;
+            const isManual = source === "Manual";
+
+            const dynamicCells = displayedRuleColIds
+              .map(
+                (colId) => `
+                  <td class="px-3.5 py-2.5 text-gray-700 whitespace-nowrap">${person[colId] ?? "-"}</td>
+                `,
+              )
+              .join("");
+
+            return `
+              <tr id="patient-list-row-${person.id}" class="transition-opacity ${included ? "bg-white" : "opacity-50 bg-gray-50/70"}">
+                <td class="px-3.5 py-2.5 font-medium w-1 whitespace-nowrap">
+                  <input
+                    type="checkbox"
+                    class="patient-list-include-cb rounded border-gray-300 text-blue-600 focus:ring-blue-600 cursor-pointer"
+                    data-person-id="${person.id}"
+                    ${included ? "checked" : ""}
+                    onchange="toggleRowInclude('${person.id}', this.checked)"
+                  />
+                </td>
+                <td class="px-3.5 py-2.5 text-gray-500 text-xs font-medium whitespace-nowrap">${person.id}</td>
+                <td class="px-3.5 py-2.5 text-gray-500 text-xs font-medium whitespace-nowrap">${person.rank}</td>
+                <td class="px-3.5 py-2.5 font-semibold text-gray-900 whitespace-nowrap">${person.name}</td>
+                ${dynamicCells}
+                <td class="px-3.5 py-2.5">
+                  <span class="inline-block text-[11px] font-medium px-[7px] py-[2px] rounded-[5px] whitespace-nowrap ${
+                    isManual
+                      ? "bg-primary text-white"
+                      : "bg-surface-variant text-primary"
+                  }">${source}</span>
+                </td>
+                <td class="px-2.5 py-2.5 text-center w-1 whitespace-nowrap">
+                  <button type="button" class="text-slate-400 p-1.5 rounded-md transition-colors cursor-pointer" onclick="removePatientListRow('${person.id}')">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </td>
+              </tr>
+            `;
+          })
+          .join("");
+
+        updatePatientListSummary();
+      }
+
+      function updatePatientListSummary() {
+        const total = patientListRows.length;
+        const includedCount = patientListRows.filter((r) => r.included).length;
+
+        if (total === 0) {
+          patientListCountBadge.classList.add("hidden");
+        } else {
+          patientListCountBadge.classList.remove("hidden");
+          patientListCountBadge.textContent = `Showing ${includedCount} of ${total} patients`;
+        }
+
+        const selectAllEl = document.getElementById("patient-list-select-all");
+        if (!selectAllEl) return;
+
+        if (includedCount === total) {
+          selectAllEl.checked = true;
+        } else {
+          selectAllEl.checked = false;
+        }
+      }
+
+      window.toggleRowInclude = function (personId, isChecked) {
+        const target = patientListRows.find((r) => r.person.id === personId);
+        if (!target) return;
+        target.included = isChecked;
+
+        const tr = document.getElementById(`patient-list-row-${personId}`);
+        if (tr) {
+          tr.classList.toggle("opacity-50", !isChecked);
+          tr.classList.toggle("bg-gray-50/70", !isChecked);
+          tr.classList.toggle("bg-white", isChecked);
+        }
+        updatePatientListSummary();
+      };
+
+      window.toggleAllPatientListRows = function (masterCb) {
+        const query = patientListSearchInput.value.trim().toLowerCase();
+        patientListRows.forEach((row) => {
+          const matchesSearch =
+            !query ||
+            row.person.name.toLowerCase().includes(query) ||
+            row.person.id.toLowerCase().includes(query);
+          if (matchesSearch) {
+            row.included = masterCb.checked;
+          }
+        });
+        renderPatientListTable(query);
+      };
+
+      window.removePatientListRow = function (personId) {
+        patientListRows = patientListRows.filter(
+          (row) => row.person.id !== personId,
+        );
+        renderPatientListTable(
+          patientListSearchInput.value.trim().toLowerCase(),
+        );
+      };
+
+      patientListSearchInput.addEventListener("input", function () {
+        const query = patientListSearchInput.value.trim().toLowerCase();
+        renderPatientListTable(query);
+
+        if (!query) {
+          manualAddDropdown.classList.add("hidden");
+          return;
+        }
+
+        const existingIds = new Set(patientListRows.map((r) => r.person.id));
+        const matches = allPersonnel.filter(
+          (p) =>
+            !existingIds.has(p.id) &&
+            (p.name.toLowerCase().includes(query) ||
+              p.id.toLowerCase().includes(query) ||
+              (p.department && p.department.toLowerCase().includes(query)) ||
+              (p.status && p.status.toLowerCase().includes(query))),
+        );
+
+        if (matches.length === 0) {
+          manualAddDropdown.innerHTML = `<div class="px-4 py-3 text-sm text-gray-500">No matching columns available</div>`;
+        } else {
+          manualAddDropdown.innerHTML = matches
+            .map(
+              (person) => `
+          <div class="group px-4 py-2.5 hover:bg-blue-50 text-sm text-gray-700 cursor-pointer border-b border-gray-100 last:border-none flex items-center gap-2" onclick="manuallyAddPerson('${person.id}')">
+            <span class="font-medium">${person.rank} ${person.name} (${person.id})</span>
+          </div>
+        `,
+            )
+            .join("");
+        }
+
+        manualAddDropdown.classList.remove("hidden");
+      });
+
+      window.manuallyAddPerson = function (personId) {
+        const person = allPersonnel.find((p) => p.id === personId);
+        if (!person || patientListRows.some((r) => r.person.id === personId))
+          return;
+
+        patientListRows.push({
+          person,
+          source: "Manual",
+          included: true,
+        });
+
+        patientListSearchInput.value = "";
+        manualAddDropdown.classList.add("hidden");
+        renderPatientListTable("");
+      };
+
+      document.addEventListener("click", function (e) {
+        if (
+          !patientListSearchInput.contains(e.target) &&
+          !manualAddDropdown.contains(e.target)
+        ) {
+          manualAddDropdown.classList.add("hidden");
+        }
+      });
+
+      function getIncludedPatientListRows() {
+        if (!Array.isArray(patientListRows)) return [];
+        return patientListRows.filter((row) => Boolean(row.included));
+      }
+
+      window.openPatientListConfirmModal = function () {
+        const modal = document.getElementById("patient-list-confirm-modal");
+        const thead = document.getElementById("patient-list-confirm-thead");
+        const tbody = document.getElementById("patient-list-confirm-tbody");
+        const subtitle = document.getElementById(
+          "patient-list-confirm-subtitle",
+        );
+        const submitBtn = document.getElementById(
+          "patient-list-final-submit-btn",
+        );
+        const mainTable = document.getElementById("patient-list-table");
+
+        const formNameInput = document.getElementById("form-name-input");
+        const validTillInput = document.getElementById("valid-till-input");
+        const modalFormName = document.getElementById(
+          "confirm-form-name-input",
+        );
+        const modalValidTill = document.getElementById(
+          "confirm-valid-till-input",
+        );
+
+        if (modalFormName) {
+          modalFormName.textContent = formNameInput?.value.trim() || "NA";
+        }
+
+        if (modalValidTill) {
+          modalValidTill.textContent = formatPatientListDateTime(
+            validTillInput?.value,
+          );
+        }
+        if (!modal || !thead || !tbody || !mainTable) return;
+
+        const mainHeaders = Array.from(mainTable.querySelectorAll("thead th"));
+        const firstBodyRow = mainTable.querySelector("tbody tr");
+        const skipIndexes = new Set();
+
+        mainHeaders.forEach((th, idx) => {
+          const label = th.textContent.trim().toLowerCase();
+          const bodyCell = firstBodyRow?.children[idx];
+
+          // 1. Include column: header has #patient-list-select-all or any checkbox, or body cell has row checkbox
+          const isIncludeCol =
+            label.includes("include") ||
+            label.includes("select") ||
+            Boolean(
+              th.querySelector(
+                '#patient-list-select-all, input[type="checkbox"]',
+              ),
+            ) ||
+            Boolean(bodyCell?.querySelector('input[type="checkbox"]'));
+
+          // 2. Remove column: header says remove/action, or body cell has a remove button / action control
+          const bodyCellText = bodyCell?.textContent.trim().toLowerCase() || "";
+          const bodyCellHtml = bodyCell?.innerHTML.toLowerCase() || "";
+          const hasActionButton = Boolean(
+            bodyCell?.querySelector(
+              "button, [onclick*='remove'], [onclick*='delete']",
+            ),
+          );
+
+          const isRemoveCol = label.includes("action") || hasActionButton;
+
+          if (isIncludeCol || isRemoveCol) {
+            skipIndexes.add(idx);
+          }
+        });
+
+        const keptHeaders = mainHeaders.filter(
+          (_, idx) => !skipIndexes.has(idx),
+        );
+        thead.innerHTML = `
+        <tr class="border-b border-outline-variant bg-surface-container-low text-xs text-on-surface-variant font-medium text-left">
+          ${keptHeaders
+            .map(
+              (th) => `
+            <th class="py-3 px-3.5 uppercase tracking-wider whitespace-nowrap">
+              ${th.innerHTML}
+            </th>
+          `,
+            )
+            .join("")}
+        </tr>
+      `;
+
+        const mainRows = Array.from(mainTable.querySelectorAll("tbody tr"));
+        const checkedRows = mainRows.filter((tr) => {
+          const checkbox = tr.querySelector('input[type="checkbox"]');
+          return checkbox ? checkbox.checked : false;
+        });
+
+        if (subtitle) {
+          subtitle.textContent = `${checkedRows.length} ${
+            checkedRows.length === 1 ? "patient" : "patients"
+          } selected`;
+        }
+
+        if (checkedRows.length === 0) {
+          tbody.innerHTML = `
+          <tr>
+            <td colspan="${keptHeaders.length}" class="px-4 py-6 text-center text-xs text-gray-500 whitespace-nowrap">
+              No patients are selected for inclusion.
+            </td>
+          </tr>
+        `;
+          if (submitBtn) submitBtn.disabled = true;
+        } else {
+          tbody.innerHTML = checkedRows
+            .map((tr) => {
+              const cells = Array.from(tr.children).filter(
+                (_, idx) => !skipIndexes.has(idx),
+              );
+              return `
+              <tr class="hover:bg-gray-50/70">
+                ${cells
+                  .map(
+                    (td) => `
+                  <td class="px-3.5 py-2.5 text-xs text-gray-700 whitespace-nowrap">
+                    ${td.innerHTML}
+                  </td>
+                `,
+                  )
+                  .join("")}
+              </tr>
+            `;
+            })
+            .join("");
+          if (submitBtn) submitBtn.disabled = false;
+        }
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        modal.style.display = "flex";
+      };
+
+      window.closePatientListConfirmModal = function () {
+        const modal = document.getElementById("patient-list-confirm-modal");
+        if (!modal) return;
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        modal.style.display = "none";
+      };
+
+      window.finalizePatientListSubmission = function () {
+        const includedRows = getIncludedPatientListRows();
+        if (includedRows.length === 0) return;
+
+        const formName =
+          document.getElementById("confirm-form-name-input")?.value.trim() ||
+          "";
+        const validTill =
+          document.getElementById("confirm-valid-till-input")?.value.trim() ||
+          "";
+
+        const submissionPayload = {
+          title: formName,
+          validTill,
+          rows: includedRows,
+        };
+
+        closePatientListConfirmModal();
+      };
+
+      // 1. Clicking "Finalize" on the form opens the confirmation modal
+      document
+        .getElementById("finalize-patient-list-btn")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          openPatientListConfirmModal();
+        });
+
+      // 2. Clicking "Submit" inside the modal processes the included rows & closes the modal
+      document
+        .getElementById("modal-submit-patient-list-btn")
+        ?.addEventListener("click", function () {
+          finalizePatientListSubmission();
+        });
+
+      function formatPatientListDateTime(rawValue) {
+        if (!rawValue) return "NA";
+
+        const date = rawValue instanceof Date ? rawValue : new Date(rawValue);
+        if (Number.isNaN(date.getTime())) {
+          return String(rawValue); // Fallback if it's already custom text
+        }
+
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        let hours24 = date.getHours();
+        const ampm = hours24 >= 12 ? "PM" : "AM";
+        let hours12 = hours24 % 12;
+        if (hours12 === 0) hours12 = 12;
+
+        const hours = String(hours12).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+
+        return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+      }
+    </script>
+  </body>
+</html>
