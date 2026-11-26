@@ -5041,13 +5041,66 @@ Due to the high-risk synergy of their acute asthma and recurrent low back pain, 
                               <div class="flex items-center gap-2">
                                 <input
                                   class="score-input form-input rounded border-outline-variant text-body-md text-center py-1.5 w-16 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                                  id="mcs-temp-validity-duration"
+                                  id="pes-assessment-duration"
                                   type="number"
                                 />
-                                <span
-                                  class="text-[10px] font-bold text-on-surface-variant uppercase"
-                                  >months</span
-                                >
+                                <div class="custom-select relative w-28">
+                                  <button
+                                    type="button"
+                                    class="select-trigger score-input pul-input border border-outline-variant rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-body-md bg-white appearance-none w-full flex items-center justify-between px-3 py-2 text-left"
+                                    aria-haspopup="listbox"
+                                    aria-expanded="false"
+                                  >
+                                    <span
+                                      class="selected-text flex items-center gap-1.5 truncate min-w-0 pr-1"
+                                    >
+                                      <span class="truncate">Month(s)</span>
+                                    </span>
+                                    <svg
+                                      class="h-4 w-4 text-gray-400 pointer-events-none flex-shrink-0"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                        clip-rule="evenodd"
+                                      />
+                                    </svg>
+                                  </button>
+                                  <input
+                                    type="hidden"
+                                    id="approved-select"
+                                    name="approved_select"
+                                    class="select-value"
+                                    value="Month(s)"
+                                  />
+                                  <ul
+                                    class="select-options hidden fixed z-[9999] max-h-60 w-max max-w-[90vw] overflow-auto rounded-lg border border-outline-variant bg-white p-1 shadow-lg text-body-md"
+                                    role="listbox"
+                                  >
+                                    <li
+                                      class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                                      data-value="Month(s)"
+                                    >
+                                      <span class="text-gray-900"
+                                        >Month(s)</span
+                                      >
+                                    </li>
+                                    <li
+                                      class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                                      data-value="Week(s)"
+                                    >
+                                      <span class="text-gray-900">Week(s)</span>
+                                    </li>
+                                    <li
+                                      class="option-item flex cursor-pointer items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                                      data-value="Day(s)"
+                                    >
+                                      <span class="text-gray-900">Day(s)</span>
+                                    </li>
+                                  </ul>
+                                </div>
                               </div>
                             </div>
                           </div>
